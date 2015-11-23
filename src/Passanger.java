@@ -39,4 +39,7 @@ public class Passanger {
                ", id=" + id +
                '}';
     }
+
+    public static class AddServlet {
+    }
 }
