@@ -6,13 +6,13 @@
   <display-name>Archetype Created Web Application</display-name>
 
     <servlet>
-        <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>HelloServlet</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>main.Servlets.HelloServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>HelloWorld</servlet-name>
-        <url-pattern>/HelloWorld</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
