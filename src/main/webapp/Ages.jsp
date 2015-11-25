@@ -16,10 +16,11 @@
 </form>
 
 <table>
-    <c:forEach var = "person" items = "@{personList}" >
+    <c:set var="personList" value="${sessionScope.personList}"/>
+    <c:forEach items="${personList}" var="name">
         <tr>
-            <td>${person.getName()}</td>
-            <td>${person.getAge()}</td>
+            <td>${name.getName()}</td>
+            <td>${name.getAge()}</td>
         </tr>
     </c:forEach>
 </table>

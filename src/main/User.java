@@ -6,12 +6,12 @@ import java.util.Date;
 
 public class User {
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public DateTime getBirthDate() {
@@ -23,14 +23,16 @@ public class User {
     }
 
     private String email;
-    private String name;
-    private String surname;
+    private String firstName;
+    private String lastName;
+    private String password;
     private DateTime birthDate;
 
-    public User(String email, String name, String surname, DateTime birthDate) {
+    public User(String email, String password, String firstName, String lastName, DateTime birthDate) {
+        this.password = password;
         this.email = email;
-        this.name = name;
-        this.surname = surname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.birthDate = birthDate;
     }
 

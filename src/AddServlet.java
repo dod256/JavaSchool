@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AddServlet  extends HttpServlet {
+public class AddServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String name = req.getParameter("name");
@@ -15,6 +15,7 @@ public class AddServlet  extends HttpServlet {
         }
         ArrayList<Person> personList = (ArrayList<Person>) req.getSession().getAttribute("personList");
         personList.add(new Person(name, age));
+        req.getSession().setAttribute("personList", personList);
         res.sendRedirect("/Ages.jsp");
     }
 

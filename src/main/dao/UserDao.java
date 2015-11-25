@@ -15,9 +15,13 @@ public class UserDao {
 
     public UserDao() {
         users = new ArrayList<User>();
-        users.add(new User("qwe", "admin", "admin", new DateTime(100)));
-        users.add(new User("qwe@qwe.qwe", "qwe", "rty", new DateTime(100)));
-        users.add(new User("asd@asd.com", "asd", "fgh", new DateTime(100)));
-        users.add(new User("zxc@zxc.com", "zxc", "vbn", new DateTime(100)));
+        users.add(new User("qwe", "qwe", "admin", "admin", new DateTime(100)));
+        users.add(new User("qwe@qwe.qwe", "ewq", "qwe", "rty", new DateTime(100)));
+        users.add(new User("asd@asd.com", "dsa", "asd", "fgh", new DateTime(100)));
+        users.add(new User("zxc@zxc.com", "cxz", "zxc", "vbn", new DateTime(100)));
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 }

@@ -2,29 +2,18 @@
 <head>
     <title>Index</title>
 </head>
-
-<script>
-    function validate() {
-        var x = document.forms["myForm"]["login"].value;
-        if (x.length  < 3 || x.length > 30) {
-            alert("invalid length");
-            return false;
-        }
-        var re1 = new RegExp("[a-zA-Z0-9]+");
-        if (!re1.test(x)) {
-            alert("invalid symbols");
-            return false;
-        }
-        return true;
-    }
-</script>
-<h2>LOGIN FORM</h2>
+<body>
+<h2>Log In</h2>
 <br><br>
-<form name = "myForm" action="Login" onSubmit = "return validate()" method=post>
-    <input type="text" name="login" size="25" placeholder = "login">
+<form name = "LogInForm" action = "Login" method = post>
+    <input type="text" name="email" size="25" placeholder = "email">
     <br><br>
     <input type="password" name="password" size="15" placeholder = "password">
     <br><br>
-    <input type="submit" value="Login">
+    <input type = "submit" value = "Log In">
 </form>
+<form name = "SignUpForm" action = "SignUp.html" method = get>
+    <input type = "submit" value = "Sign Up">
+</form>
+</body>
 </html>

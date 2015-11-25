@@ -60,7 +60,7 @@ public class HelloServlet extends HttpServlet{
         out.println("<head><title>Sample</title></head>");
         out.println("<body>");
         out.print("Hello, ");
-        out.println(currentUser.getName());
+        out.println(currentUser.getFirstName());
         out.println("</body>");
         out.println("</html>");
         out.close();
