@@ -34,7 +34,7 @@ public class HelloServlet extends HttpServlet{
             }
         }
         if (!flag) {
-            res.sendRedirect("login.html");
+            res.sendRedirect("loginPage.jsp");
             return;
         }
         res.sendRedirect("profile.jsp");
