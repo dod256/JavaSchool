@@ -1,45 +1,39 @@
 package main.dao;
 
 import main.User;
-import org.joda.time.DateTime;
+import main.database.domain.Artist;
+import main.database.service.UserService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
 
 public class UserDao {
 
-    public ArrayList<User> getUsers() {
-        return users;
-    }
+    private EntityManager em;
+    private UserService service;
 
-    private ArrayList<User> users;
-
-    public UserDao() {
-        users = new ArrayList<User>();
-        users.add(new User("qwe", "qwe", "admin", "admin", new DateTime(100)));
-        users.add(new User("qwe@qwe.qwe", "ewq", "qwe", "rty", new DateTime(100)));
-        users.add(new User("asd@asd.com", "dsa", "asd", "fgh", new DateTime(100)));
-        users.add(new User("zxc@zxc.com", "cxz", "zxc", "vbn", new DateTime(100)));
+    public UserDao(EntityManager em) {
+        this.em = em;
+        this.service = new UserService(em);
     }
 
     public void addUser(User user) {
-        users.add(user);
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        service.addUser(user);
+        transaction.commit();
     }
 
     public boolean findUser(String email) {
-        for(User user : users) {
-            if (email.equals(user.getEmail())) {
-                return true;
-            }
-        }
-        return false;
+        return service.findUser(email);
     }
 
     public User getUser(String email) {
-        for(User user : users) {
-            if (email.equals(user.getEmail())) {
-                return user;
-            }
-        }
-        return null;
+        return service.getUser(email);
+    }
+
+    public ArrayList<User> getUsers() {
+        return (ArrayList<User>) service.getUsers();
     }
 }

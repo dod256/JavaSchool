@@ -2,6 +2,7 @@ package main.Servlets;
 
 import main.Service;
 import main.User;
+import main.UserBuilder;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class AddNewUserServlet extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String birthdate = req.getParameter("birthdate");
         DateTime dt = DateTime.parse(birthdate);
-        User user = new User(email, password, firstName, lastName, dt);
+        User user = new UserBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setLastName(lastName).setBirthDate(dt).createUser();
         Service.addUser(user);
         res.sendRedirect("/AllUsers.jsp");
     }

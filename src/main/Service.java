@@ -2,17 +2,24 @@ package main;
 
 import main.dao.UserDao;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 
 public class Service {
 
-    static private UserDao userDao = new UserDao();
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JpaBasicsTutorial");
 
-    static public ArrayList<User> getUsers() { return userDao.getUsers(); }
+    private static EntityManager em = emf.createEntityManager();
 
-    static public void addUser(User user) { userDao.addUser(user); }
+    private static UserDao userDao = new UserDao(em);
 
-    static public boolean findUser(String email) { return userDao.findUser(email); }
+    public static ArrayList<User> getUsers() { return userDao.getUsers(); }
 
-    static public User getUser(String email) { return userDao.getUser(email); }
+    public static void addUser(User user) { userDao.addUser(user); }
+
+    public static boolean findUser(String email) { return userDao.findUser(email); }
+
+    public static User getUser(String email) { return userDao.getUser(email); }
 }
