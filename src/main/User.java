@@ -10,9 +10,7 @@ public class User {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public String getLastName() { return lastName; }
 
     public DateTime getBirthDate() {
         return birthDate;
@@ -21,6 +19,8 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public boolean checkPassword(String password) { return password.equals(this.password); }
 
     private String email;
     private String firstName;

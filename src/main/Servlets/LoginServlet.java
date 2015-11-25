@@ -14,22 +14,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class HelloServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet{
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
         ArrayList<User> users = Service.getUsers();
-        String email = req.getParameter("login");
-        User currentUser = null;
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
         boolean flag = false;
         for(User user : users) {
-            if (email.equals(user.getEmail())) {
+            if (email.equals(user.getEmail()) && user.checkPassword(password)) {
                 flag = true;
-                currentUser = user;
                 break;
             }
         }

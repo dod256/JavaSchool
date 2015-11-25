@@ -24,4 +24,22 @@ public class UserDao {
     public void addUser(User user) {
         users.add(user);
     }
+
+    public boolean findUser(String email) {
+        for(User user : users) {
+            if (email.equals(user.getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public User getUser(String email) {
+        for(User user : users) {
+            if (email.equals(user.getEmail())) {
+                return user;
+            }
+        }
+        return null;
+    }
 }
