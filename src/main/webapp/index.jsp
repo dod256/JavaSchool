@@ -9,5 +9,6 @@
     <form name = "SignUpForm" action = "SignUp.html" method = get>
         <input type = "submit" value = "Sign Up">
     </form>
+    <%@ include file = "/menu.jsp" %>
     </body>
 </html>
