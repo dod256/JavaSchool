@@ -1,7 +1,6 @@
 package main.dao;
 
 import main.User;
-import main.database.domain.Artist;
 import main.database.service.UserService;
 
 import javax.persistence.EntityManager;
