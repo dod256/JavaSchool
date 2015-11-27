@@ -12,5 +12,6 @@
 </head>
 <body>
 Some timetable
+<%@ include file = "/menu.jsp" %>
 </body>
 </html>

@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class AddNewUserServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String firstName = req.getParameter("firstName");

@@ -5,6 +5,6 @@
     <title>Profile</title>
 </head>
 <body>
-<h1>Hihi</h1>
+<%@ include file = "/menu.jsp" %>
 </body>
 </html>
