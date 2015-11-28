@@ -24,10 +24,6 @@ public class UserDao {
         transaction.commit();
     }
 
-    public boolean findUser(String email) {
-        return service.findUser(email);
-    }
-
     public User getUser(String email) {
         return service.getUser(email);
     }

@@ -6,7 +6,29 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table
 public class User {
+
+    @Id
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private Date birthdate;
+    private int userTypeId;
+
+    public int getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setUserTypeId(int userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -15,7 +37,7 @@ public class User {
     public String getLastName() { return lastName; }
 
     public DateTime getBirthDate() {
-        return new DateTime(birthDate);
+        return new DateTime(birthdate);
     }
 
     public User() {
@@ -27,23 +49,18 @@ public class User {
 
     public boolean checkPassword(String password) { return password.equals(this.password); }
 
-    @Id
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private Date birthDate;
 
     public User(String email, String password, String firstName, String lastName, DateTime birthDate) {
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = new Date(birthDate.getMillis());
+        this.birthdate = new Date(birthDate.getMillis());
+        this.userTypeId = 1;
     }
 
-    public void setBirthDate(DateTime birthDate) {
-        this.birthDate = new Date(birthDate.getMillis());
+    public void setBirthDate(Date birthDate) {
+        this.birthdate = birthDate;
     }
 
     public void setEmail(String email) {

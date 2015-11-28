@@ -18,9 +18,15 @@ public class AddNewUserServlet extends HttpServlet {
         String password = req.getParameter("password");
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
-        String birthdate = req.getParameter("birthdate");
-        DateTime dt = DateTime.parse(birthdate);
-        User user = new UserBuilder().setEmail(email).setPassword(password).setFirstName(firstName).setLastName(lastName).setBirthDate(dt).createUser();
+        String birthDate = req.getParameter("birthdate");
+        DateTime dt = DateTime.parse(birthDate);
+        User user = new UserBuilder()
+                .setEmail(email)
+                .setPassword(password)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setBirthDate(dt)
+                .createUser();
         Service.addUser(user);
         res.sendRedirect("/loginPage.jsp");
     }

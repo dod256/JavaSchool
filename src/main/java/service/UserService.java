@@ -16,14 +16,9 @@ public class UserService {
         em.persist(user);
     }
 
-    public boolean findUser(String email) {
-        User user = em.find(User.class, email);
-        return user != null;
-    }
 
     public User getUser(String email) {
-        if (findUser(email)) {return em.find(User.class, email);}
-        return null;
+       return em.find(User.class, email);
     }
 
     public List<User> getUsers() {
