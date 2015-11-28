@@ -5,7 +5,9 @@ import main.java.Entities.User;
 import main.java.builders.TrainBuilder;
 import main.java.dao.StationDao;
 import main.java.dao.UserDao;
-import main.java.dto.TimetableDto;
+import main.java.data.Route;
+import main.java.data.RouteRequest;
+import main.java.data.TrainRequest;
 import main.java.Entities.Train;
 import org.joda.time.DateTime;
 
@@ -35,7 +37,7 @@ public class Service {
     public static User getUser(String email) { return userDao.getUser(email); }
 
     //ToDo add logic
-    public static ArrayList<Train> getTrains(TimetableDto timetableDto) {
+    public static ArrayList<Train> getTrains(TrainRequest trainRequest) {
         ArrayList<Train> trainList = new ArrayList<Train>();
         trainList.add(new TrainBuilder()
                 .setName("First, bitch")
@@ -46,6 +48,11 @@ public class Service {
                 .setNumberOfSeats(1)
                 .createTrainDto());
         return trainList;
+    }
+
+    //ToDo add logic
+    public static ArrayList<Route> getRoutes(RouteRequest request) {
+        return null;
     }
 
 }

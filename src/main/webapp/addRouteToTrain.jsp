@@ -15,7 +15,7 @@
     </div>
     <div class = "form-element">
       <label> Arrival Station </label>
-      <input type="text" name="departureStation">
+      <input type="text" name="arrivalStation">
     </div>
     <div class = "form-element">
       <label>Departure time range</label>
@@ -28,11 +28,11 @@
   </form>
 
   <table>
-    <c:set var="routesList" value="${sessionScope.routesList}"/>
-    <c:forEach items="${routesList}" var="route">
+    <c:set var="routeList" value="${sessionScope.routeList}"/>
+    <c:forEach items="${routeList}" var="route">
       <tr>
-        <c:set var="stationsList" value="${route.getStations()}"/>
-        <c:forEach items="${stationsList}" var="station">
+        <c:set var="stationList" value="${route.getStations()}"/>
+        <c:forEach items="${stationList}" var="station">
           <td>${station.GetName()}</td>
         </c:forEach>
         <td>

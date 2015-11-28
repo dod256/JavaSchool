@@ -1,16 +1,16 @@
-package main.java.dto;
+package main.java.data;
 
 import main.java.Entities.Station;
 
 import java.util.ArrayList;
 
-public class RouteDto {
+public class Route {
 
-    private ArrayList<Station> route;
+    private ArrayList<Station> stations;
     private int routeId;
 
     public ArrayList<Station> GetStations() {
-        return route;
+        return stations;
     }
 
     public int getId() {

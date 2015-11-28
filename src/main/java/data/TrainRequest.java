@@ -1,8 +1,8 @@
-package main.java.dto;
+package main.java.data;
 
 import org.joda.time.DateTime;
 
-public class TimetableDto {
+public class TrainRequest {
 
 
     public String getDepartureStation() {
@@ -21,7 +21,7 @@ public class TimetableDto {
     private String arrivalStation;
     private DateTime date;
 
-    public TimetableDto(String departureStation, String arrivalStation, DateTime date) {
+    public TrainRequest(String departureStation, String arrivalStation, DateTime date) {
         this.departureStation = departureStation;
         this.arrivalStation = arrivalStation;
         this.date = date;
