@@ -31,6 +31,7 @@ public class Service {
     public static Station getStation(String name) {
         return stationDao.getStation(name);
     }
+    public static ArrayList<Station> getAllStations() {return stationDao.getAllStations();}
 
     public static ArrayList<User> getUsers() { return userDao.getUsers(); }
 
@@ -58,9 +59,11 @@ public class Service {
         return null;
     }
 
-    //ToDo add logic
+    //ToDo add logic (mocked temprorary)
     public static ArrayList<Route> getAllRoutes() {
-        return null;
+        ArrayList<Route> routeList = new ArrayList<Route>();
+        routeList.add(new Route(1, getAllStations()));
+        return routeList;
     }
 
 

@@ -40,7 +40,7 @@
       <tr>
         <c:set var="stationList" value="${route.getStations()}"/>
         <c:forEach items="${stationList}" var="station">
-          <td>${station.GetName()}</td>
+          <td>${station.getName()}</td>
         </c:forEach>
         <td>
           <form name = "AddRouteForm" action = "AddRouteToTrainServlet" method = post>
