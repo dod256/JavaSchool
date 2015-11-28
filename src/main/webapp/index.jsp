@@ -2,42 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <title>Login</title>
-        <link type="text/css" rel="stylesheet" href="styles.css" />
+        <title>Home Page</title>
     </head>
     <body>
-
-    <div id = "wrapper">
-        <header>Index</header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="Profile.jsp">Profile</a>
-                </li>
-                <li>
-                    <a href="StationTimetable.jsp">Station Timetable</a>
-                </li>
-                <li>
-                    <a href="TrainTimetable.jsp">Find Train</a>
-                </li>
-            </ul>
-        </nav>
-        <section id = "content" class = "clearfix" >
-            <section id = "page-content">
-                <div class = "content-wrap">
-                    <%@ include file = "/login.jsp" %>
-                    <form name = "SignUpForm" action = "SignUp.html" method = get>
-                        <div class = "form-element">
-                            <input type = "submit" value = "Sign Up">
-                        </div>
-                    </form>
-                </div>
-            </section>
-            <aside></aside>
-        </section>
-        <div id = "empty-div"></div>
-    </div>
-    <footer></footer>
-
+        <h1>hihi</h1>
     </body>
 </html>
