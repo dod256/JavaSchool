@@ -25,6 +25,10 @@
         <servlet-class>main.java.Servlets.AddTrainServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ShowRoutesServlet</servlet-name>
+        <servlet-class>main.java.Servlets.ShowRoutesServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -46,6 +50,10 @@
         <url-pattern>/AddTrainServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>ShowRoutesServlet</servlet-name>
+        <url-pattern>/ShowRoutesServlet</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

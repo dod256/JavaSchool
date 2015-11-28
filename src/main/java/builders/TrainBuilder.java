@@ -1,9 +1,9 @@
 package main.java.builders;
 
-import main.java.dto.TrainDto;
+import main.java.Entities.Train;
 import org.joda.time.DateTime;
 
-public class TrainDtoBuilder {
+public class TrainBuilder {
     private String name;
     private String departureStation;
     private String arrivalStation;
@@ -11,37 +11,37 @@ public class TrainDtoBuilder {
     private DateTime arrivalTime;
     private int numberOfSeats;
 
-    public TrainDtoBuilder setName(String name) {
+    public TrainBuilder setName(String name) {
         this.name = name;
         return this;
     }
 
-    public TrainDtoBuilder setDepartureStation(String departureStation) {
+    public TrainBuilder setDepartureStation(String departureStation) {
         this.departureStation = departureStation;
         return this;
     }
 
-    public TrainDtoBuilder setArrivalStation(String arrivalStation) {
+    public TrainBuilder setArrivalStation(String arrivalStation) {
         this.arrivalStation = arrivalStation;
         return this;
     }
 
-    public TrainDtoBuilder setDepartureTime(DateTime departureTime) {
+    public TrainBuilder setDepartureTime(DateTime departureTime) {
         this.departureTime = departureTime;
         return this;
     }
 
-    public TrainDtoBuilder setArrivalTime(DateTime arrivalTime) {
+    public TrainBuilder setArrivalTime(DateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
         return this;
     }
 
-    public TrainDtoBuilder setNumberOfSeats(int numberOfSeats) {
+    public TrainBuilder setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
         return this;
     }
 
-    public TrainDto createTrainDto() {
-        return new TrainDto(name, departureStation, arrivalStation, departureTime, arrivalTime, numberOfSeats);
+    public Train createTrainDto() {
+        return new Train(name, departureStation, arrivalStation, departureTime, arrivalTime, numberOfSeats);
     }
 }

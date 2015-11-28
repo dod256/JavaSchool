@@ -1,8 +1,8 @@
-package main.java.dto;
+package main.java.Entities;
 
 import org.joda.time.DateTime;
 
-public class TrainDto {
+public class Train {
 
     private String name;
     private String departureStation;
@@ -40,7 +40,7 @@ public class TrainDto {
         return numberOfFreeSeats;
     }
 
-    public TrainDto(String name, String departureStation, String arrivalStation, DateTime departureTime, DateTime arrivalTime, int numberOfSeats) {
+    public Train(String name, String departureStation, String arrivalStation, DateTime departureTime, DateTime arrivalTime, int numberOfSeats) {
         this.name = name;
         this.departureStation = departureStation;
         this.arrivalStation = arrivalStation;

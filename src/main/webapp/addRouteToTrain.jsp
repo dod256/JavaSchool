@@ -18,8 +18,9 @@
       <input type="text" name="departureStation">
     </div>
     <div class = "form-element">
-      <label> Time </label>
-      <input type="time" name="time">
+      <label>Departure time range</label>
+      <input type="time" name="firstTime">
+      <input type="time" name="secondTime">
     </div>
     <div class = "form-element">
       <input type="submit" value="Find">
@@ -27,21 +28,24 @@
   </form>
 
   <table>
-    <tr>
-      <td>Train Name</td>
-      <td>Departure Station</td>
-      <td>Arrival Station</td>
-      <td>Departure Date</td>
-      <td>Arrival Date</td>
-    </tr>
-    <c:set var="trainList" value="${sessionScope.trainList}"/>
-    <c:forEach items="${trainList}" var="train">
+    <c:set var="routesList" value="${sessionScope.routesList}"/>
+    <c:forEach items="${routesList}" var="route">
       <tr>
-        <td>${train.getName()}</td>
-        <td>${train.getDepartureStation()}</td>
-        <td>${train.getArrivalStation()}</td>
-        <td>${train.getDepartureTime()}</td>
-        <td>${train.getArrivalTime()}</td>
+        <c:set var="stationsList" value="${route.getStations()}"/>
+        <c:forEach items="${stationsList}" var="station">
+          <td>${station.GetName()}</td>
+        </c:forEach>
+        <td>
+          <form name = "AddRouteForm" action = "AddRouteToTrainServlet" method = post>
+            <div class = "form-element">
+              <input type="hidden" name = "routeId" value = ${route.getId()}>
+            </div>
+            <div class = "form-element">
+              <input type="submit" value="Add">
+            </div>
+          </form>
+
+        </td>
       </tr>
     </c:forEach>
   </table>

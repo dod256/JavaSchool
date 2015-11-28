@@ -3,7 +3,7 @@ package main.java.Servlets;
 import main.java.Service;
 import main.java.builders.TimetableDtoBuilder;
 import main.java.dto.TimetableDto;
-import main.java.dto.TrainDto;
+import main.java.Entities.Train;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class FindTrainServlet extends HttpServlet {
                         .setArrivalStation(arrivalStation)
                         .setDate(date)
                         .createTimetableDto();
-                ArrayList<TrainDto> trainList = Service.getTrains(timetableDto);
+                ArrayList<Train> trainList = Service.getTrains(timetableDto);
                 req.getSession().setAttribute("trainList", trainList);
                 res.sendRedirect("/TrainTimetable.jsp");
         }
