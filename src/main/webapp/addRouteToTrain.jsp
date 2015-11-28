@@ -27,6 +27,13 @@
     </div>
   </form>
 
+  <form name = "ShowAllRoutesForm" action = "ShowAllRoutesServlet" method = post>
+    <div class = "form-element">
+      <input type="submit" value="Show all">
+    </div>
+  </form>
+
+
   <table>
     <c:set var="routeList" value="${sessionScope.routeList}"/>
     <c:forEach items="${routeList}" var="route">

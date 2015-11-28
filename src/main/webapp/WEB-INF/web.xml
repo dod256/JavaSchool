@@ -30,6 +30,11 @@
         <servlet-class>main.java.Servlets.ShowRoutesServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ShowAllRoutesServlet</servlet-name>
+        <servlet-class>main.java.Servlets.ShowAllRoutesServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -53,6 +58,11 @@
     <servlet-mapping>
         <servlet-name>ShowRoutesServlet</servlet-name>
         <url-pattern>/ShowRoutesServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ShowAllRoutesServlet</servlet-name>
+        <url-pattern>/ShowAllRoutesServlet</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

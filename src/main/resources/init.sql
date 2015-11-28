@@ -129,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`User` (
   `password` VARCHAR(45) NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
   `userTypeId` INT NOT NULL,
+  `birthDate` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_User_UserType1_idx` (`userTypeId` ASC),
   CONSTRAINT `type`

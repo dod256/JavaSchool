@@ -55,4 +55,10 @@ public class Service {
         return null;
     }
 
+    //ToDo add logic
+    public static ArrayList<Route> getAllRoutes() {
+        return null;
+    }
+
+
 }
