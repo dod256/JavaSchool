@@ -22,4 +22,6 @@ public class Service {
     public static boolean findUser(String email) { return userDao.findUser(email); }
 
     public static User getUser(String email) { return userDao.getUser(email); }
+
+
 }
