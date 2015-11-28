@@ -8,6 +8,23 @@
   </head>
   <body>
     <%@ include file = "/menu.jsp" %>
+    <form name = "AddTrainForm" action = "AddTrainServlet" method = post>
+      <div class = "form-element">
+        <label> Departure date </label>
+        <input type="date" name="date">
+      </div>
+      <div class = "form-element">
+        <label> Number of seats </label>
+        <input type="text" name="numberOfSeats">
+      </div>
+      <div class = "form-element">
+        <label> Cost per ticket </label>
+        <input type="text" name="cost">
+      </div>
+      <div class = "form-element">
+        <input type="submit" value="Add">
+      </div>
+    </form>
 
   </body>
 </html>

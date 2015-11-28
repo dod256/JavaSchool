@@ -3,6 +3,9 @@
 <nav>
     <ul>
         <li>
+            <a href="index.jsp">Home Page</a>
+        </li>
+        <li>
             <a href="profile.jsp">Profile</a>
         </li>
         <li>

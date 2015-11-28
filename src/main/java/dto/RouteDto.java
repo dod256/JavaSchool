@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public class RouteDto {
 
     ArrayList<Station> route;
-    
+
 }
