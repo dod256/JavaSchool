@@ -1,5 +1,6 @@
 package main.java;
 
+import main.java.Entities.User;
 import main.java.builders.TrainDtoBuilder;
 import main.java.dao.UserDao;
 import main.java.dto.TimetableDto;

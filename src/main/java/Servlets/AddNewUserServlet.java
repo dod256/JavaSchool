@@ -1,7 +1,7 @@
 package main.java.Servlets;
 
 import main.java.Service;
-import main.java.User;
+import main.java.Entities.User;
 import main.java.builders.UserBuilder;
 import org.joda.time.DateTime;
 

@@ -1,6 +1,6 @@
 package main.java.dao;
 
-import main.java.User;
+import main.java.Entities.User;
 import main.java.service.UserService;
 
 import javax.persistence.EntityManager;

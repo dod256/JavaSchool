@@ -20,6 +20,11 @@
         <servlet-class>main.java.Servlets.FindTrainServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AddTrainServlet</servlet-name>
+        <servlet-class>main.java.Servlets.AddTrainServlet</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -34,6 +39,11 @@
     <servlet-mapping>
         <servlet-name>FindTrainServlet</servlet-name>
         <url-pattern>/FindTrainServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddTrainServlet</servlet-name>
+        <url-pattern>/AddTrainServlet</url-pattern>
     </servlet-mapping>
 
 

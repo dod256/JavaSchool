@@ -11,5 +11,8 @@
         <li>
             <a href="TrainTimetable.jsp">Find Train</a>
         </li>
+        <li>
+            <a href="addTrain.jsp">Add Train</a>
+        </li>
     </ul>
 </nav>

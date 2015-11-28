@@ -1,5 +1,5 @@
 <%@ page import="main.java.Service" %>
-<%@ page import="main.java.User" %>
+<%@ page import="main.java.Entities.User" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
