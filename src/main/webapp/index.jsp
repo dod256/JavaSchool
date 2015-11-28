@@ -3,25 +3,13 @@
 <html>
     <head>
         <title>Login</title>
-        <link type="text/css" rel="stylesheet" href="styles.css" />
+        <link type="text/css" rel="stylesheet" href="Styles/styles.css" />
     </head>
     <body>
 
     <div id = "wrapper">
         <header>Index</header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="Profile.jsp">Profile</a>
-                </li>
-                <li>
-                    <a href="StationTimetable.jsp">Station Timetable</a>
-                </li>
-                <li>
-                    <a href="TrainTimetable.jsp">Find Train</a>
-                </li>
-            </ul>
-        </nav>
+        <%@ include file = "/menu.jsp" %>
         <section id = "content" class = "clearfix" >
             <section id = "page-content">
                 <div class = "content-wrap">

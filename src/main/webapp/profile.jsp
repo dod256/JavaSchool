@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Profile</title>
+    <link type="text/css" rel="stylesheet" href="Styles/styles.css" />
 </head>
 <body>
 <%@ include file = "/menu.jsp" %>

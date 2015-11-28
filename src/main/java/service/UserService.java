@@ -1,7 +1,6 @@
 package main.java.service;
 
 import main.java.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;

@@ -1,5 +1,6 @@
-package main.java;
+package main.java.builders;
 
+import main.java.User;
 import org.joda.time.DateTime;
 
 public class UserBuilder {

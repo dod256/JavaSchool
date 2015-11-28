@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Timetable</title>
+    <link type="text/css" rel="stylesheet" href="Styles/styles.css" />
 </head>
 <body>
-Some timetable
 <%@ include file = "/menu.jsp" %>
 </body>
 </html>

@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         if (Service.findUser(email) && Service.getUser(email).checkPassword(password)) {
+            req.getSession().setAttribute("CurrentUser", Service.getUser(email));
             res.sendRedirect("profile.jsp");
         } else {
             res.sendRedirect("loginPage.jsp");
