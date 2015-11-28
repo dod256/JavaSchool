@@ -7,12 +7,12 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>main.Servlets.LoginServlet</servlet-class>
+        <servlet-class>main.java.Servlets.LoginServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>SignUp</servlet-name>
-        <servlet-class>main.Servlets.AddNewUserServlet</servlet-class>
+        <servlet-class>main.java.Servlets.AddNewUserServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -1,6 +1,6 @@
-package main;
+package main.java;
 
-import main.dao.UserDao;
+import main.java.dao.UserDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,8 +1,8 @@
-package main.Servlets;
+package main.java.Servlets;
 
-import main.Service;
-import main.User;
-import main.UserBuilder;
+import main.java.Service;
+import main.java.User;
+import main.java.UserBuilder;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;

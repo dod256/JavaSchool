@@ -1,7 +1,7 @@
-package main.dao;
+package main.java.dao;
 
-import main.User;
-import main.database.service.UserService;
+import main.java.User;
+import main.java.service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

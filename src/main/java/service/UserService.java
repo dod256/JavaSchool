@@ -1,6 +1,6 @@
-package main.database.service;
+package main.java.service;
 
-import main.User;
+import main.java.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
