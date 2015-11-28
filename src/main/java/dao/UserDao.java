@@ -1,34 +1,33 @@
 package main.java.dao;
 
 import main.java.Entities.User;
-import main.java.service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 
-public class UserDao {
+public class UserDao implements Dao {
 
     private EntityManager em;
-    private UserService service;
 
     public UserDao(EntityManager em) {
         this.em = em;
-        this.service = new UserService(em);
     }
 
     public void addUser(User user) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        service.addUser(user);
+        em.persist(user);
         transaction.commit();
     }
 
     public User getUser(String email) {
-        return service.getUser(email);
+        return em.find(User.class, email);
     }
 
     public ArrayList<User> getUsers() {
-        return (ArrayList<User>) service.getUsers();
+        TypedQuery<User> query = em.createQuery("SELECT a FROM User a", User.class);
+        return (ArrayList<User>) query.getResultList();
     }
 }

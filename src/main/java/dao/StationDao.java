@@ -5,7 +5,7 @@ import main.java.Entities.Station;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public class StationDao {
+public class StationDao implements Dao {
     private EntityManager em;
 
     public StationDao(EntityManager em) {
@@ -19,6 +19,9 @@ public class StationDao {
         transaction.commit();
     }
 
- //   public void
+    public Station getStation(String name) {
+        return em.find(Station.class, name);
+    }
+ //   public void todo: add getter!!
 
 }

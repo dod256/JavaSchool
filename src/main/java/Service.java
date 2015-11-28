@@ -28,6 +28,9 @@ public class Service {
     public static void addStation(Station station) {
         stationDao.addStation(station);
     }
+    public static Station getStation(String name) {
+        return stationDao.getStation(name);
+    }
 
     public static ArrayList<User> getUsers() { return userDao.getUsers(); }
 

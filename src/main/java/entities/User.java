@@ -49,7 +49,6 @@ public class User {
 
     public boolean checkPassword(String password) { return password.equals(this.password); }
 
-
     public User(String email, String password, String firstName, String lastName, DateTime birthDate) {
         this.password = password;
         this.email = email;
