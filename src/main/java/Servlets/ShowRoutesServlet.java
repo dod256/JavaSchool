@@ -1,8 +1,8 @@
 package main.java.Servlets;
 
-import main.java.Service;
 import main.java.data.Route;
 import main.java.data.RouteRequest;
+import main.java.services.RouteService;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -25,7 +25,7 @@ public class ShowRoutesServlet extends HttpServlet {
                 .withFirstTime(firstTime)
                 .withSecondTime(secondTime)
                 .build();
-        ArrayList<Route> routeList = Service.getRoutes(request);
+        ArrayList<Route> routeList = RouteService.getRoutes(request);
         req.getSession().setAttribute("routeList", routeList);
 
         res.sendRedirect("addRouteToTrain.jsp");

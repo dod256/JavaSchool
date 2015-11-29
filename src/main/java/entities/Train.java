@@ -1,13 +1,27 @@
 package main.java.Entities;
 
+import com.google.common.base.MoreObjects;
 import org.joda.time.DateTime;
 
-public class Train {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class Train {
+    @Id
     private int id;
     private String name;
-    private int departureStation;
-    private int arrivalStation;
+
+    @ManyToOne
+    @JoinColumn(name="departureStation")
+    private RouteStation departureStation;
+
+    @ManyToOne
+    @JoinColumn(name="arrivalStation")
+    private RouteStation arrivalStation;
+
     private DateTime departureDate;
     private int numberOfSeats;
     private int numberOfFreeSeats;
@@ -22,6 +36,9 @@ public class Train {
         numberOfSeats = builder.numberOfSeats;
         numberOfFreeSeats = builder.numberOfFreeSeats;
         cost = builder.cost;
+    }
+
+    public Train() {
     }
 
     public static Builder newBuilder() {
@@ -42,43 +59,11 @@ public class Train {
     }
 
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getDepartureStation() {
-        return departureStation;
-    }
-
-    public int getArrivalStation() {
-        return arrivalStation;
-    }
-
-    public DateTime getDepartureDate() {
-        return departureDate;
-    }
-
-    public int getNumberOfSeats() {
-        return numberOfSeats;
-    }
-
-    public int getNumberOfFreeSeats() {
-        return numberOfFreeSeats;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
     public static final class Builder {
-        private int arrivalStation;
+        private RouteStation arrivalStation;
         private int id;
         private String name;
-        private int departureStation;
+        private RouteStation departureStation;
         private DateTime departureDate;
         private int numberOfSeats;
         private int numberOfFreeSeats;
@@ -87,7 +72,7 @@ public class Train {
         private Builder() {
         }
 
-        public Builder withArrivalStation(int val) {
+        public Builder withArrivalStation(RouteStation val) {
             arrivalStation = val;
             return this;
         }
@@ -102,7 +87,7 @@ public class Train {
             return this;
         }
 
-        public Builder withDepartureStation(int val) {
+        public Builder withDepartureStation(RouteStation val) {
             departureStation = val;
             return this;
         }
@@ -130,5 +115,83 @@ public class Train {
         public Train build() {
             return new Train(this);
         }
+    }
+
+    public RouteStation getArrivalStation() {
+        return arrivalStation;
+    }
+
+    public void setArrivalStation(RouteStation arrivalStation) {
+        this.arrivalStation = arrivalStation;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public DateTime getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(DateTime departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public RouteStation getDepartureStation() {
+        return departureStation;
+    }
+
+    public void setDepartureStation(RouteStation departureStation) {
+        this.departureStation = departureStation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getNumberOfFreeSeats() {
+        return numberOfFreeSeats;
+    }
+
+    public void setNumberOfFreeSeats(int numberOfFreeSeats) {
+        this.numberOfFreeSeats = numberOfFreeSeats;
+    }
+
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("arrivalStation", arrivalStation)
+                .add("id", id)
+                .add("name", name)
+                .add("departureStation", departureStation)
+                .add("departureDate", departureDate)
+                .add("numberOfSeats", numberOfSeats)
+                .add("numberOfFreeSeats", numberOfFreeSeats)
+                .add("cost", cost)
+                .toString();
     }
 }

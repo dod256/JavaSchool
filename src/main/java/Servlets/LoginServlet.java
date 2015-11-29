@@ -1,6 +1,7 @@
 package main.java.Servlets;
 
-import main.java.Service;
+import main.java.services.UserService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +19,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if (Service.getUser(email) != null && Service.getUser(email).checkPassword(password)) {
-            req.getSession().setAttribute("CurrentUser", Service.getUser(email));
+        if (UserService.getUser(email) != null && UserService.getUser(email).checkPassword(password)) {
+            req.getSession().setAttribute("CurrentUser", UserService.getUser(email));
             res.sendRedirect("profile.jsp");
         } else {
             res.sendRedirect("loginPage.jsp");

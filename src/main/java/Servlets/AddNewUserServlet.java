@@ -1,7 +1,7 @@
 package main.java.Servlets;
 
-import main.java.Service;
 import main.java.Entities.User;
+import main.java.services.UserService;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -27,7 +27,7 @@ public class AddNewUserServlet extends HttpServlet {
                 .withLastName(lastName)
                 .withBirthdate(new Date(dt.getMillis()))
                 .build();
-        Service.addUser(user);
+        UserService.addUser(user);
         res.sendRedirect("/loginPage.jsp");
     }
 

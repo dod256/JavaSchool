@@ -1,7 +1,7 @@
 package main.java.Servlets;
 
-import main.java.Service;
 import main.java.data.Route;
+import main.java.services.RouteService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ShowAllRoutesServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ArrayList<Route> routeList = Service.getAllRoutes();
+        ArrayList<Route> routeList = RouteService.getAllRoutes();
         req.getSession().setAttribute("routeList", routeList);
         res.sendRedirect("addRouteToTrain.jsp");
     }
