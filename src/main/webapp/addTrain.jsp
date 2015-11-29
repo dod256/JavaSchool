@@ -10,6 +10,10 @@
     <%@ include file = "/menu.jsp" %>
     <form name = "AddTrainForm" action = "AddTrainServlet" method = post>
       <div class = "form-element">
+        <label> Name </label>
+        <input type="text" name="name">
+      </div>
+      <div class = "form-element">
         <label> Departure date </label>
         <input type="date" name="date">
       </div>
