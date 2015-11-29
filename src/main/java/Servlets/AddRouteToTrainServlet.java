@@ -22,7 +22,7 @@ public class AddRouteToTrainServlet extends HttpServlet{
                 .withTrain(train)
                 .withRoute(route)
                 .build();
-        TrainService.addTrain(trainRoute);
+        TrainService.createTrain(trainRoute);
         req.getSession().setAttribute("trainRoute", trainRoute);
         res.sendRedirect("trainAdded.jsp");
     }
