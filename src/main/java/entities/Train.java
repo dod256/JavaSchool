@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.sql.Date;
 
 @Entity
 public class Train {
@@ -22,7 +23,7 @@ public class Train {
     @JoinColumn(name="arrivalStation")
     private RouteStation arrivalStation;
 
-    private DateTime departureDate;
+    private Date departureDate;
     private int numberOfSeats;
     private int numberOfFreeSeats;
     private int cost;
@@ -32,7 +33,8 @@ public class Train {
         id = builder.id;
         name = builder.name;
         departureStation = builder.departureStation;
-        departureDate = builder.departureDate;
+        DateTime date = builder.departureDate;
+        departureDate = new Date(date.getMillis());
         numberOfSeats = builder.numberOfSeats;
         numberOfFreeSeats = builder.numberOfFreeSeats;
         cost = builder.cost;
@@ -51,7 +53,7 @@ public class Train {
         builder.id = copy.id;
         builder.name = copy.name;
         builder.departureStation = copy.departureStation;
-        builder.departureDate = copy.departureDate;
+        builder.departureDate = new DateTime(copy.departureDate);
         builder.numberOfSeats = copy.numberOfSeats;
         builder.numberOfFreeSeats = copy.numberOfFreeSeats;
         builder.cost = copy.cost;
@@ -133,11 +135,11 @@ public class Train {
         this.cost = cost;
     }
 
-    public DateTime getDepartureDate() {
+    public Date getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(DateTime departureDate) {
+    public void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
     }
 

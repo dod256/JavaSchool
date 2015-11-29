@@ -1,11 +1,14 @@
 package main.java.dao;
 
 import main.java.Entities.Train;
+import main.java.Entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 
-public class TrainDao {
+public class TrainDao implements Dao {
 
     private EntityManager em;
 
@@ -20,6 +23,9 @@ public class TrainDao {
         transaction.commit();
     }
 
-
+    public int getTrainTableSize() {
+        TypedQuery<Train> query = em.createQuery("SELECT a FROM Train a", Train.class);
+        return query.getResultList().size();
+    }
 
 }

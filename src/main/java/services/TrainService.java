@@ -1,5 +1,7 @@
 package main.java.services;
 
+import main.java.Entities.RouteStation;
+import main.java.Entities.Timetable;
 import main.java.Entities.Train;
 import main.java.dao.TrainDao;
 import main.java.data.TrainRequest;
@@ -16,9 +18,19 @@ public class TrainService extends Service {
         return null;
     }
 
-    //ToDo add logic third priority!
     public static void createTrain(TrainRoute trainRoute) {
+        trainDao.addTrain(trainRoute.getTrain());
 
+        Train trainWithId = Train.newBuilder(trainRoute.getTrain()).withId(trainDao.getTrainTableSize()).build();
+
+        for (RouteStation routeStation : trainRoute.getRoute().getRouteStations()) {
+            Timetable.Builder timetableBuilder = Timetable.newBuilder();
+            timetableBuilder.withTrain(trainWithId).withRouteStation(routeStation);
+
+            TimetableService.addTimetable(timetableBuilder.build());
+        }
     }
+
+
 
 }

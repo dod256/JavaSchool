@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Time;
 
 @Entity
-public class RouteStation {
+public class RouteStation  {
     @Id
     private int id;
     @ManyToOne

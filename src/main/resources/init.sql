@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Train` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `numberOfSeats` INT NOT NULL,
-  `numberOfFreeSeets` INT NOT NULL,
+  `numberOfFreeSeats` INT NOT NULL,
   `cost` INT NOT NULL,
   `arrivalStation` INT NOT NULL,
   `departureStation` INT NOT NULL,
@@ -188,11 +188,11 @@ insert into usertype (type)
 #add admins:
 
 insert into USER (email, firstName, lastName, password, userTypeId, birthdate)
- values ("qwe", "David", "Koroteev", "qwe", 1, '1993-12-25');
+ values ("david.koroteev@me", "David", "Koroteev", "qwe", 1, '1993-12-25');
  
  
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
- values ("asd", "Alena", "Koroteeva", "qwe", 1, '1993-12-20');
+ values ("alena.koroteeva@me", "Alena", "Koroteeva", "qwe", 1, '1993-12-20');
 
 #add customers:
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
@@ -225,11 +225,11 @@ arrival, waitingTime)
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime)
- values (2, 2, 1, '05:33:55', 10);
+ values (2, 3, 1, '05:33:55', 10);
  
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime)
- values (3, 3, 1, '00:33:55', 30);
+ values (3, 2, 1, '00:33:55', 30);
 
 insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime)
 values (4, 1, 2, "18:33:00", 21);
@@ -240,7 +240,7 @@ values (3, 2, 2, "18:39:00", 40);
 
 ###########################################################################
 
-insert into Train (name, numberOfSeats, numberOfFreeSeets, 
+insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate)
  values ("Train to hell", 100, 99, 1000, 1, 3, "2013-07-19");
 
