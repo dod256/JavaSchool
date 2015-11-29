@@ -28,4 +28,7 @@ public class TrainDao implements Dao {
         return query.getResultList().size();
     }
 
+    public ArrayList<Train> getAllTrains() {
+        return (ArrayList<Train>) em.createQuery("SELECT a FROM Train a", Train.class).getResultList();
+    }
 }

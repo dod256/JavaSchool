@@ -4,6 +4,7 @@ import main.java.Entities.RouteStation;
 import main.java.Entities.Timetable;
 import main.java.Entities.Train;
 import main.java.dao.TrainDao;
+import main.java.data.Route;
 import main.java.data.TrainRequest;
 import main.java.data.TrainRoute;
 
@@ -13,9 +14,15 @@ public class TrainService extends Service {
 
     private static TrainDao trainDao = new TrainDao(em);
 
-    //todo:addLogic
+    //todo:addLogic first priority!!!
     public static ArrayList<Train> getTrains(TrainRequest trainRequest) {
+        ArrayList<Route> allRoutes = RouteService.getAllRoutes();
+        ArrayList<Train> allTrains = getAllTrains();
         return null;
+    }
+
+    private static ArrayList<Train> getAllTrains() {
+        return trainDao.getAllTrains();
     }
 
     public static void createTrain(TrainRoute trainRoute) {
@@ -30,6 +37,8 @@ public class TrainService extends Service {
             TimetableService.addTimetable(timetableBuilder.build());
         }
     }
+
+
 
 
 

@@ -1,6 +1,7 @@
 package main.java.Entities;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -16,6 +17,7 @@ public class RouteStation  {
     private int routeId;
     private Time arrival;
     private int waitingTime;
+    private Time onWheel;
 
     public RouteStation(){}
 
@@ -26,6 +28,7 @@ public class RouteStation  {
         stationNumber = builder.stationNumber;
         routeId = builder.routeId;
         waitingTime = builder.waitingTime;
+        onWheel = builder.onWheel;
     }
 
     public static Builder newBuilder() {
@@ -40,6 +43,7 @@ public class RouteStation  {
         builder.stationNumber = copy.stationNumber;
         builder.routeId = copy.routeId;
         builder.waitingTime = copy.waitingTime;
+        builder.onWheel = copy.onWheel;
         return builder;
     }
 
@@ -51,6 +55,7 @@ public class RouteStation  {
         private int stationNumber;
         private int routeId;
         private int waitingTime;
+        private Time onWheel;
 
         private Builder() {
         }
@@ -62,6 +67,11 @@ public class RouteStation  {
 
         public Builder withId(int val) {
             id = val;
+            return this;
+        }
+
+        public Builder withOnWheel(Time val) {
+            onWheel = val;
             return this;
         }
 
@@ -89,6 +99,10 @@ public class RouteStation  {
             return new RouteStation(this);
         }
     }
+
+    public Time getOnWheel() {return onWheel;}
+
+    public void setOnWheel() {this.onWheel = onWheel;}
 
     public Time getArrival() {
         return arrival;
@@ -140,13 +154,14 @@ public class RouteStation  {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return Objects.toStringHelper(this)
                 .add("arrival", arrival)
                 .add("id", id)
                 .add("station", station)
                 .add("stationNumber", stationNumber)
                 .add("routeId", routeId)
                 .add("waitingTime", waitingTime)
+                .add("onWheel", onWheel)
                 .toString();
     }
 }

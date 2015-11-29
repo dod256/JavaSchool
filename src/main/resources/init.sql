@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `routeId` INT NULL,
   `arrival` TIME NULL,
   `waitingTime` INT NULL,
+  `onWheel` TIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_RouteStation_Station1_idx` (`stationId` ASC),
   CONSTRAINT `station`
@@ -220,22 +221,22 @@ insert into Station (name)
 ###########################################################################
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime)
- values (1, 1, 1, '18:33:55', 15);
+arrival, waitingTime, onWheel)
+ values (1, 1, 1, '18:33:55', 15, '00:00:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime)
- values (2, 3, 1, '05:33:55', 10);
+arrival, waitingTime, onWheel)
+ values (2, 3, 1, '05:33:55', 10, '02:33:55');
  
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime)
- values (3, 2, 1, '00:33:55', 30);
+arrival, waitingTime, onWheel)
+ values (3, 2, 1, '00:33:55', 30, '07:33:55');
 
-insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime)
-values (4, 1, 2, "18:33:00", 21);
+insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime, onWheel)
+values (4, 1, 2, "18:33:00", 21, '00:00:00');
 
-insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime)
-values (3, 2, 2, "18:39:00", 40);
+insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime, onWheel)
+values (3, 2, 2, "18:39:00", 40, '07:33:55');
 
 
 ###########################################################################
