@@ -17,13 +17,12 @@ public class AddTrainServlet extends HttpServlet {
         int numberOfSeats = Integer.parseInt(req.getParameter("numberOfSeats"));
         int cost = Integer.parseInt(req.getParameter("cost"));
         String name = req.getParameter("name");
-        Train train = Train.newBuilder().withCost(cost)
+        Train.Builder trainBuilder = Train.newBuilder().withCost(cost)
                 .withNumberOfSeats(numberOfSeats)
                 .withNumberOfFreeSeats(numberOfSeats)
                 .withDepartureDate(date)
-                .withName(name)
-                .build();
-        req.getSession().setAttribute("newTrain", train);
+                .withName(name);
+        req.getSession().setAttribute("trainBuilder", trainBuilder);
         res.sendRedirect("addRouteToTrain.jsp");
     }
 }

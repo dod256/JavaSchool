@@ -3,29 +3,30 @@
 <html>
     <head>
         <title>Login</title>
-        <link type="text/css" rel="stylesheet" href="Styles/styles.css" />
-    </head>
+        <%@ include file = "/style.jsp" %>
     <body>
 
-    <div id = "wrapper">
-        <header>Index</header>
-        <%@ include file = "/menu.jsp" %>
-        <section id = "content" class = "clearfix" >
-            <section id = "page-content">
-                <div class = "content-wrap">
-                    <%@ include file = "/login.jsp" %>
-                    <form name = "SignUpForm" action = "SignUp.jsp" method = get>
-                        <div class = "form-element">
-                            <input type = "submit" value = "Sign Up">
-                        </div>
-                    </form>
-                </div>
-            </section>
-            <aside></aside>
-        </section>
-        <div id = "empty-div"></div>
+    <%@ include file = "/menu.jsp" %>
+
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+
+                <%@ include file = "/login.jsp" %>
+                <form role = "form" name = "SignUpForm" action = "SignUp.jsp" method = get>
+                    <button type = "submit" class = "btn btn-default">Sign Up</button>
+                </form>
+
+            </div>
+            <div class="col-sm-10 text-left">
+                <h1>Welcome!</h1>
+            </div>
+        </div>
     </div>
-    <footer></footer>
+
+    <footer class="container-fluid text-center">
+        <p>Footer Text</p>
+    </footer>
 
     </body>
 </html>
