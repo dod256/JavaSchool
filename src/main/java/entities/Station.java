@@ -1,14 +1,19 @@
 package main.java.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Station {
 
-    private int id;
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private String name;
+
 
     public Station() {}
 
@@ -66,4 +71,12 @@ public class Station {
         this.name = name;
     }
 
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+                .toString();
+    }
 }

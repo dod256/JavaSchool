@@ -5,11 +5,11 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema
+-- Schema 
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema
+-- Schema 
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `stationId` INT NOT NULL,
   `stationNumber` INT NULL,
   `routeId` INT NULL,
-  `arrival` DATETIME NULL,
+  `arrival` TIME NULL,
   `waitingTime` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_RouteStation_Station1_idx` (`stationId` ASC),
@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Train` (
   `cost` INT NOT NULL,
   `arrivalStation` INT NOT NULL,
   `departureStation` INT NOT NULL,
+  `departureDate` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Train_RouteStation1_idx` (`arrivalStation` ASC),
   INDEX `fk_Train_RouteStation2_idx` (`departureStation` ASC),
@@ -178,7 +179,7 @@ USE chugga_chugga;
 
 insert into usertype (type)
  values ("admin");
-
+ 
 insert into usertype (type)
  values ("customer");
 
@@ -186,20 +187,20 @@ insert into usertype (type)
 #######################################################################
 #add admins:
 
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
+insert into USER (email, firstName, lastName, password, userTypeId, birthdate)
  values ("qwe", "David", "Koroteev", "qwe", 1, '1993-12-25');
-
-
+ 
+ 
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
  values ("asd", "Alena", "Koroteeva", "qwe", 1, '1993-12-20');
 
 #add customers:
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
  values ("pavel.belov@me", "Pavel", "Belov", "qwe", 2, '1993-12-25');
-
+ 
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
  values ("andrey.mischenko@me", "Andrey", "Mischenko", "qwe", 2, '1973-12-25');
-
+ 
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
  values ("lina.miller@me", "Lina", "Miller", "qwe", 2, '1993-12-25');
 ###########################################################################
@@ -209,29 +210,29 @@ insert into Station (name)
 
 insert into Station (name)
  values ("StPetersburg");
-
+ 
 insert into Station (name)
  values ("Tver");
 
 ###########################################################################
 
-insert into RouteStation (stationId, stationNumber, routeId,
+insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime)
- values (1, 1, 1, '2013-07-17 18:33:55', 15);
+ values (1, 1, 1, '18:33:55', 15);
 
-insert into RouteStation (stationId, stationNumber, routeId,
+insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime)
- values (2, 2, 1, '2013-07-18 05:33:55', 10);
-
-insert into RouteStation (stationId, stationNumber, routeId,
+ values (2, 2, 1, '05:33:55', 10);
+ 
+insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime)
- values (3, 3, 1, '2013-07-19 00:33:55', 30);
+ values (3, 3, 1, '00:33:55', 30);
 
 ###########################################################################
 
-insert into Train (name, numberOfSeats, numberOfFreeSeets,
-cost, arrivalStation, departureStation)
- values ("Train to hell", 100, 99, 1000, 1, 3);
+insert into Train (name, numberOfSeats, numberOfFreeSeets, 
+cost, arrivalStation, departureStation, departureDate)
+ values ("Train to hell", 100, 99, 1000, 1, 3, "2013-07-19");
 
 ###########################################################################
 
@@ -240,9 +241,9 @@ insert into Timetable (routeStationId, trainId)
 
 insert into Timetable (routeStationId, trainId)
  values (2, 1);
-
+ 
 insert into Timetable (routeStationId, trainId)
- values (3, 1);
+ values (3, 1); 
 
 ###########################################################################
 
@@ -252,3 +253,4 @@ trainId, userId)
 
 ############################################################################
 
+ 

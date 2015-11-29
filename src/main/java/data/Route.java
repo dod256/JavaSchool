@@ -1,5 +1,7 @@
 package main.java.data;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import main.java.Entities.Station;
 
 import java.util.ArrayList;
@@ -55,4 +57,11 @@ public class Route {
         return routeId;
     }
 
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("routeId", routeId)
+                .add("stations", stations)
+                .toString();
+    }
 }

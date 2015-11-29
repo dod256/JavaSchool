@@ -9,6 +9,7 @@ import main.java.data.RouteRequest;
 import main.java.data.TrainRequest;
 import main.java.Entities.Train;
 import main.java.data.TrainRoute;
+import main.java.services.RouteService;
 import org.joda.time.DateTime;
 
 import javax.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class Service {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JpaBasicsTutorial");
 
-    private static EntityManager em = emf.createEntityManager();
+    protected static EntityManager em = emf.createEntityManager();
 
     private static UserDao userDao = new UserDao(em);
     private static StationDao stationDao = new StationDao(em);
@@ -37,7 +38,6 @@ public class Service {
 
     public static void addUser(User user) { userDao.addUser(user); }
 
-
     public static User getUser(String email) { return userDao.getUser(email); }
 
     //ToDo add logic (mocked temprorary)
@@ -53,27 +53,29 @@ public class Service {
         return trainList;
     }
 
-    //ToDo add logic
+    //ToDo: please use RouteService.getRoutes() instead of it
     public static ArrayList<Route> getRoutes(RouteRequest request) {
-        return null;
+        return RouteService.getRoutes(request);
     }
 
-    //ToDo add logic
+    //ToDo: please use RouteService.getRouteById() instead of it
     public static Route getRouteById(int routeId) {
-        return null;
+        return RouteService.getRouteById(routeId);
     }
 
-    //ToDo add logic (mocked temprorary)
+    //ToDo: please use RouteService.getAllRoutes() instead of it
     public static ArrayList<Route> getAllRoutes() {
-        ArrayList<Route> routeList = new ArrayList<Route>();
+        /*ArrayList<Route> routeList = new ArrayList<Route>();
         routeList.add(Route.newBuilder()
                             .withRouteId(1)
                             .withStations(getAllStations())
                             .build());
-        return routeList;
+        return routeList;*/
+        return RouteService.getAllRoutes();
     }
 
-    //ToDo add logic
+
+    //ToDo add logic third priority!
     public static void addTrain(TrainRoute trainRoute) {
         //make some magic
     }

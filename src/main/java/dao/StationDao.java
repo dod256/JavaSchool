@@ -4,6 +4,7 @@ import main.java.Entities.Station;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 
@@ -22,7 +23,9 @@ public class StationDao implements Dao {
     }
 
     public Station getStation(String name) {
-        return em.find(Station.class, name);
+        return (Station) em.createQuery("from Station where name = '" + name + "'")
+                            .getResultList()
+                            .get(0);
     }
 
     public ArrayList<Station> getAllStations() {
