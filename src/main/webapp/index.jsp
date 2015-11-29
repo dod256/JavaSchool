@@ -14,7 +14,7 @@
             <section id = "page-content">
                 <div class = "content-wrap">
                     <%@ include file = "/login.jsp" %>
-                    <form name = "SignUpForm" action = "SignUp.html" method = get>
+                    <form name = "SignUpForm" action = "SignUp.jsp" method = get>
                         <div class = "form-element">
                             <input type = "submit" value = "Sign Up">
                         </div>

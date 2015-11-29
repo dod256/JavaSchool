@@ -27,7 +27,7 @@
       </div>
     </form>
 
-    <table>
+    <table width = 100%>
       <tr>
         <td>Train Name</td>
         <td>Departure Station</td>
