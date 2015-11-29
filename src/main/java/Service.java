@@ -50,7 +50,7 @@ public class Service {
                 .setDepartureTime(DateTime.now())
                 .setArrivalTime(DateTime.now())
                 .setNumberOfSeats(1)
-                .createTrainDto());
+                .createTrain());
         return trainList;
     }
 

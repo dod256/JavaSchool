@@ -29,7 +29,7 @@
 
   <form name = "ShowAllRoutesForm" action = "ShowAllRoutesServlet" method = post>
     <div class = "form-element">
-      <input type="submit" value="Show all">
+      <input type="submit" value="Show all routes">
     </div>
   </form>
 

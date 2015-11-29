@@ -4,32 +4,24 @@ import org.joda.time.DateTime;
 
 public class Train {
 
-    private String name;
-    private String departureStation;
-    private String arrivalStation;
-    private DateTime departureTime;
-    private DateTime arrivalTime;
-    private int numberOfSeats;
-    private int numberOfFreeSeats;
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
     }
 
-    public String getDepartureStation() {
+    public int getDepartureStation() {
         return departureStation;
     }
 
-    public String getArrivalStation() {
+    public int getArrivalStation() {
         return arrivalStation;
     }
 
-    public String getDepartureTime() {
-        return departureTime.toString();
-    }
-
-    public String getArrivalTime() {
-        return arrivalTime.toString();
+    public DateTime getDepartureDate() {
+        return departureDate;
     }
 
     public int getNumberOfSeats() {
@@ -40,13 +32,29 @@ public class Train {
         return numberOfFreeSeats;
     }
 
-    public Train(String name, String departureStation, String arrivalStation, DateTime departureTime, DateTime arrivalTime, int numberOfSeats) {
+    public int getCost() {
+        return cost;
+    }
+
+    private int id;
+    private String name;
+    private int departureStation;
+    private int arrivalStation;
+    private DateTime departureDate;
+    private int numberOfSeats;
+    private int numberOfFreeSeats;
+    private int cost;
+
+
+    //ToDo create Builder
+    public Train(int id, String name, int departureStation, int arrivalStation, DateTime departureDate, int numberOfSeats, int cost) {
+        this.id = id;
         this.name = name;
         this.departureStation = departureStation;
         this.arrivalStation = arrivalStation;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
+        this.departureDate = departureDate;
         this.numberOfSeats = numberOfSeats;
         this.numberOfFreeSeats = this.numberOfSeats;
+        this.cost = cost;
     }
 }

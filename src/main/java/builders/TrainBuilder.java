@@ -1,6 +1,7 @@
 package main.java.builders;
 
 import main.java.Entities.Train;
+import main.java.data.Route;
 import org.joda.time.DateTime;
 
 public class TrainBuilder {
@@ -10,6 +11,7 @@ public class TrainBuilder {
     private DateTime departureTime;
     private DateTime arrivalTime;
     private int numberOfSeats;
+    private Route route;
 
     public TrainBuilder setName(String name) {
         this.name = name;
@@ -41,7 +43,7 @@ public class TrainBuilder {
         return this;
     }
 
-    public Train createTrainDto() {
+    public Train createTrain() {
         return new Train(name, departureStation, arrivalStation, departureTime, arrivalTime, numberOfSeats);
     }
 }
