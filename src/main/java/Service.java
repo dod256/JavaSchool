@@ -2,7 +2,6 @@ package main.java;
 
 import main.java.Entities.Station;
 import main.java.Entities.User;
-import main.java.builders.TrainBuilder;
 import main.java.dao.StationDao;
 import main.java.dao.UserDao;
 import main.java.data.Route;
@@ -43,14 +42,13 @@ public class Service {
     //ToDo add logic
     public static ArrayList<Train> getTrains(TrainRequest trainRequest) {
         ArrayList<Train> trainList = new ArrayList<Train>();
-        trainList.add(new TrainBuilder()
-                .setName("First, bitch")
-                .setDepartureStation("Spb")
-                .setArrivalStation("Msk")
-                .setDepartureTime(DateTime.now())
-                .setArrivalTime(DateTime.now())
-                .setNumberOfSeats(1)
-                .createTrain());
+        trainList.add(Train.newBuilder()
+                .withName("First, bitch")
+                .withDepartureStation(1)
+                .withArrivalStation(3)
+                .withDepartureDate(DateTime.now())
+                .withNumberOfSeats(1)
+                .build());
         return trainList;
     }
 
