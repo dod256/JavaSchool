@@ -1,7 +1,6 @@
 package main.java.dao;
 
 import main.java.Entities.RouteStation;
-import main.java.Entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -19,5 +18,7 @@ public class RouteStationDao implements Dao {
         return (ArrayList<RouteStation>) query.getResultList();
     }
 
-
+    public ArrayList<RouteStation> getAllRouteStations() {
+        return (ArrayList<RouteStation>) em.createQuery("from RouteStation").getResultList();
+    }
 }

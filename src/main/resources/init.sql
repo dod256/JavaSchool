@@ -214,6 +214,9 @@ insert into Station (name)
 insert into Station (name)
  values ("Tver");
 
+insert into Station (name)
+ values ("Salavat");
+
 ###########################################################################
 
 insert into RouteStation (stationId, stationNumber, routeId, 
@@ -227,6 +230,13 @@ arrival, waitingTime)
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime)
  values (3, 3, 1, '00:33:55', 30);
+
+insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime)
+values (4, 1, 2, "18:33:00", 21);
+
+insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime)
+values (3, 2, 2, "18:39:00", 40);
+
 
 ###########################################################################
 
