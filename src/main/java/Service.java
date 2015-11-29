@@ -58,6 +58,11 @@ public class Service {
         return null;
     }
 
+    //ToDo add logic
+    public static Route getRouteById(int routeId) {
+        return null;
+    }
+
     //ToDo add logic (mocked temprorary)
     public static ArrayList<Route> getAllRoutes() {
         ArrayList<Route> routeList = new ArrayList<Route>();
