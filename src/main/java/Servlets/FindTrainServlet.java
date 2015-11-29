@@ -1,7 +1,6 @@
 package main.java.Servlets;
 
 import main.java.Service;
-import main.java.builders.TrainRequestBuilder;
 import main.java.data.TrainRequest;
 import main.java.Entities.Train;
 import org.joda.time.DateTime;
@@ -19,11 +18,11 @@ public class FindTrainServlet extends HttpServlet {
                 String departureStation = req.getParameter("departureStation");
                 String arrivalStation = req.getParameter("arrivalStation");;
                 DateTime date = DateTime.parse(req.getParameter("date"));
-                TrainRequest trainRequest = new TrainRequestBuilder()
-                        .setDepartureStation(departureStation)
-                        .setArrivalStation(arrivalStation)
-                        .setDate(date)
-                        .createTimetableDto();
+                TrainRequest trainRequest = TrainRequest.newBuilder()
+                        .withDepartureStation(departureStation)
+                        .withArrivalStation(arrivalStation)
+                        .withDate(date)
+                        .build();
                 ArrayList<Train> trainList = Service.getTrains(trainRequest);
                 req.getSession().setAttribute("trainList", trainList);
                 res.sendRedirect("/TrainTimetable.jsp");

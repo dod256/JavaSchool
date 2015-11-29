@@ -12,8 +12,42 @@ public class Station {
 
     public Station() {}
 
-    public Station(String name) {
-        this.name = name;
+    private Station(Builder builder) {
+        setId(builder.id);
+        setName(builder.name);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+    public static Builder newBuilder(Station copy) {
+        Builder builder = new Builder();
+        builder.id = copy.id;
+        builder.name = copy.name;
+        return builder;
+    }
+
+    public static final class Builder {
+        private int id;
+        private String name;
+
+        private Builder() {
+        }
+
+        public Builder withId(int val) {
+            id = val;
+            return this;
+        }
+
+        public Builder withName(String val) {
+            name = val;
+            return this;
+        }
+
+        public Station build() {
+            return new Station(this);
+        }
     }
 
     public int getId() {
@@ -32,11 +66,4 @@ public class Station {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Station{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

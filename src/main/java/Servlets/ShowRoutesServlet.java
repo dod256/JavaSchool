@@ -1,7 +1,6 @@
 package main.java.Servlets;
 
 import main.java.Service;
-import main.java.builders.RouteRequestBuilder;
 import main.java.data.Route;
 import main.java.data.RouteRequest;
 import org.joda.time.DateTime;
@@ -20,12 +19,12 @@ public class ShowRoutesServlet extends HttpServlet {
         String arrivalStation = req.getParameter("arrivalStation");;
         DateTime firstTime = DateTime.parse(req.getParameter("firstTime"));
         DateTime secondTime = DateTime.parse(req.getParameter("secondTime"));
-        RouteRequest request = new RouteRequestBuilder()
-                .setDepartureStation(departureStation)
-                .setArrivalStation(arrivalStation)
-                .setFirstTime(firstTime)
-                .setSecondTime(secondTime)
-                .createRouteRequest();
+        RouteRequest request = RouteRequest.newBuilder()
+                .withDepartureStation(departureStation)
+                .withArrivalStation(arrivalStation)
+                .withFirstTime(firstTime)
+                .withSecondTime(secondTime)
+                .build();
         ArrayList<Route> routeList = Service.getRoutes(request);
         req.getSession().setAttribute("routeList", routeList);
 

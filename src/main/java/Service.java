@@ -61,7 +61,10 @@ public class Service {
     //ToDo add logic (mocked temprorary)
     public static ArrayList<Route> getAllRoutes() {
         ArrayList<Route> routeList = new ArrayList<Route>();
-        routeList.add(new Route(1, getAllStations()));
+        routeList.add(Route.newBuilder()
+                            .withRouteId(1)
+                            .withStations(getAllStations())
+                            .build());
         return routeList;
     }
 
