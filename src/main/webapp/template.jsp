@@ -19,7 +19,6 @@
 
     </div>
     <div class="col-sm-10 text-left">
-      <h1>Done!</h1>
     </div>
   </div>
 </div>
