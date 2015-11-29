@@ -8,6 +8,7 @@ import main.java.data.Route;
 import main.java.data.RouteRequest;
 import main.java.data.TrainRequest;
 import main.java.Entities.Train;
+import main.java.data.TrainRoute;
 import org.joda.time.DateTime;
 
 import javax.persistence.EntityManager;
@@ -39,7 +40,7 @@ public class Service {
 
     public static User getUser(String email) { return userDao.getUser(email); }
 
-    //ToDo add logic
+    //ToDo add logic (mocked temprorary)
     public static ArrayList<Train> getTrains(TrainRequest trainRequest) {
         ArrayList<Train> trainList = new ArrayList<Train>();
         trainList.add(Train.newBuilder()
@@ -62,6 +63,11 @@ public class Service {
         ArrayList<Route> routeList = new ArrayList<Route>();
         routeList.add(new Route(1, getAllStations()));
         return routeList;
+    }
+
+    //ToDo add logic
+    public static void addTrain(TrainRoute trainRoute) {
+        //make some magic
     }
 
 
