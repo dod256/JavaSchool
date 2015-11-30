@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <form role="form" name = "LoginForm" action = "LoginServlet" method = post>
     <div class="form-group">
       <label for="email">Email address:</label>
@@ -11,3 +9,7 @@
     </div>
     <button type="submit" class="btn btn-default">Log in</button>
   </form>
+  <form role = "form" name = "SignUpForm" action = "SignUp.jsp" method = get>
+    <button type = "submit" class = "btn btn-default">Sign Up</button>
+  </form>
+

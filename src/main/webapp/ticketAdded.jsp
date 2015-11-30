@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <title></title>
+  <title>Ticket Added</title>
   <%@ include file = "/style.jsp" %>
 <body>
 
@@ -15,14 +15,13 @@
 
     </div>
     <div class="col-sm-10 text-left">
-
+      <div class="alert alert-success">
+        <strong>Success!</strong> You have bought the ticket.
+      </div>
+      <p>Info about ticket</p>
     </div>
   </div>
 </div>
-
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
 
 </body>
 </html>

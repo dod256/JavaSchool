@@ -11,22 +11,17 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-
-      <%@ include file = "/login.jsp" %>
-      <form role = "form" name = "SignUpForm" action = "SignUp.jsp" method = get>
-        <button type = "submit" class = "btn btn-default">Sign Up</button>
-      </form>
+      <%@ include file="greeting.jsp"%>
 
     </div>
     <div class="col-sm-10 text-left">
-      <h1>Done!</h1>
+      <div class="alert alert-success">
+        <strong>Success!</strong> Train added.
+      </div>
+      <p>Info about train</p>
     </div>
   </div>
 </div>
-
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
 
 </body>
 </html>

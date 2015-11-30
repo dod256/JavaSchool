@@ -21,7 +21,7 @@ public class TrainService extends Service {
         return null;
     }
 
-    private static ArrayList<Train> getAllTrains() {
+    public static ArrayList<Train> getAllTrains() {
         return trainDao.getAllTrains();
     }
 

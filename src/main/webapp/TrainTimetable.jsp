@@ -11,11 +11,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-
-      <%@ include file = "/login.jsp" %>
-      <form role = "form" name = "SignUpForm" action = "SignUp.jsp" method = get>
-        <button type = "submit" class = "btn btn-default">Sign Up</button>
-      </form>
+      <%@ include file="greeting.jsp"%>
 
     </div>
     <div class="col-sm-10 text-left">
@@ -36,24 +32,39 @@
         <button type="submit" class="btn btn-default">Find</button>
       </form>
 
+      <form role = "form" name = "ShowAllTrainForm" action = "ShowAllTrainsServlet" method = post>
+        <button type="submit" class="btn btn-default">Show all trains</button>
+      </form>
+
       <table class="table table-hover">
         <thead>
           <tr>
             <td>Train Name</td>
             <td>Departure Station</td>
             <td>Arrival Station</td>
-            <td>Departure Date</td>
-            <td>Arrival Date</td>
+            <td>Time on Wheels</td>
+            <td>Number of free seats</td>
+            <td>Cost</td>
+            <td>Ticket</td>
           </tr>
         </thead>
         <c:set var="trainList" value="${sessionScope.trainList}"/>
         <c:forEach items="${trainList}" var="train">
           <tr>
-            <td>${train.getName()}</td>
-            <td>${train.getDepartureStation()}</td>
-            <td>${train.getArrivalStation()}</td>
-            <td>${train.getDepartureTime()}</td>
-            <td>${train.getArrivalTime()}</td>
+            <td><p>${train.getName()}</p></td>
+            <td><p>${train.getDepartureStation().getStation().getName()} <small>${train.getDepartureStation().getArrival()}</small></p></td>
+            <td><p>${train.getArrivalStation().getStation().getName()} <small>${train.getArrivalStation().getArrival()}</small></p></td>
+            <td><p>${train.getNumberOfFreeSeats()}</p></td>
+            <td><p>${train.getCost()}</p></td>
+            <td>
+              <form role = "form" name = "BuyTicketForm" action = "BuyTicketServlet" method = post>
+                <div class = "form-group">
+                  <input type="hidden" name = "trainId" value = ${train.getId()}>
+                </div>
+                <button type = "submit" class = "btn btn-default">Buy</button>
+              </form>
+            </td>
+
           </tr>
         </c:forEach>
       </table>
@@ -61,10 +72,6 @@
     </div>
   </div>
 </div>
-
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
 
 </body>
 </html>
