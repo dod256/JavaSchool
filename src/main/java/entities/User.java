@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -17,6 +18,17 @@ public class User {
     private String password;
     private Date birthdate;
     private int userTypeId;
+
+    @OneToMany(mappedBy="user")
+    private List<Ticket> tickets;
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     private User(Builder builder) {
         birthdate = builder.birthdate;

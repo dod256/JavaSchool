@@ -1,6 +1,5 @@
 package main.java.Entities;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
@@ -16,6 +15,7 @@ public class RouteStation  {
     private int stationNumber;
     private int routeId;
     private Time arrival;
+    //todo: to sqlTime
     private int waitingTime;
     private Time onWheel;
 

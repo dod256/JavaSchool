@@ -157,13 +157,25 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   CONSTRAINT `fk_Ticket_Train1`
     FOREIGN KEY (`trainId`)
     REFERENCES `chugga_chugga`.`Train` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE cascade
+    ON UPDATE cascade,
   CONSTRAINT `fk_Ticket_User1`
     FOREIGN KEY (`userId`)
     REFERENCES `chugga_chugga`.`User` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE cascade
+    ON UPDATE cascade,
+  CONSTRAINT `fk_Ticket_RouteStation1`
+    FOREIGN KEY (`arrivalStationId`)
+    REFERENCES `chugga_chugga`.`RouteStation` (`id`)
+    ON DELETE cascade
+    ON UPDATE cascade,
+  CONSTRAINT `fk_Ticket_RouteStation2`
+    FOREIGN KEY (`departureStationId`)
+    REFERENCES `chugga_chugga`.`RouteStation` (`id`)
+    ON DELETE cascade
+    ON UPDATE cascade)
+      
+  
 ENGINE = InnoDB;
 
 
