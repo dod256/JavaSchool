@@ -5,6 +5,7 @@ import main.java.Entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import java.util.ArrayList;
 
 public class TicketDao implements Dao {
@@ -21,8 +22,8 @@ public class TicketDao implements Dao {
         transaction.commit();
     }
 
-
     public ArrayList<Ticket> getTicketsByUser(User user) {
-        return (ArrayList<Ticket>) user.getTickets();
+        Query query = em.createQuery("from Ticket where userId = " + user.getId());
+        return (ArrayList<Ticket>) query.getResultList();
     }
 }

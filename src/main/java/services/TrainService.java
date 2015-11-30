@@ -38,6 +38,9 @@ public class TrainService extends Service {
         }
     }
 
+    public static Train getTrain(int id) {
+        return trainDao.getTrain(id);
+    }
 
 
 

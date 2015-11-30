@@ -22,9 +22,14 @@ public class UserDao implements Dao {
         transaction.commit();
     }
 
-    public User getUser(String email) {
-        return em.find(User.class, email);
+    public User getUser(int id) {
+        return em.find(User.class, id);
     }
+
+    public User getUserByEmail(String email) {
+        return (User) em.createQuery("from User where email = '" + email + "'").getResultList().get(0);
+    }
+
 
     public ArrayList<User> getUsers() {
         TypedQuery<User> query = em.createQuery("SELECT a FROM User a", User.class);

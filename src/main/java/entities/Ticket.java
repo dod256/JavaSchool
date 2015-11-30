@@ -18,20 +18,15 @@ public class Ticket {
     @JoinColumn(name="userId")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="routeStationId")
-    private RouteStation arrivalStation;
-
-    @ManyToOne
-    @JoinColumn(name="routeStationId")
-    private RouteStation departureStation;
+    private int routeNumberOfArrivalStation;
+    private int routeNumberOfDepartureStation;
 
     private Ticket(Builder builder) {
-        arrivalStation = builder.arrivalStation;
         id = builder.id;
         train = builder.train;
         user = builder.user;
-        departureStation = builder.departureStation;
+        routeNumberOfArrivalStation = builder.routeNumberOfArrivalStation;
+        routeNumberOfDepartureStation = builder.routeNumberOfDepartureStation;
     }
 
     public Ticket() {
@@ -43,28 +38,23 @@ public class Ticket {
 
     public static Builder newBuilder(Ticket copy) {
         Builder builder = new Builder();
-        builder.arrivalStation = copy.arrivalStation;
         builder.id = copy.id;
         builder.train = copy.train;
         builder.user = copy.user;
-        builder.departureStation = copy.departureStation;
+        builder.routeNumberOfArrivalStation = copy.routeNumberOfArrivalStation;
+        builder.routeNumberOfDepartureStation = copy.routeNumberOfDepartureStation;
         return builder;
     }
 
 
     public static final class Builder {
-        private RouteStation arrivalStation;
         private int id;
         private Train train;
         private User user;
-        private RouteStation departureStation;
+        private int routeNumberOfArrivalStation;
+        private int routeNumberOfDepartureStation;
 
         private Builder() {
-        }
-
-        public Builder withArrivalStation(RouteStation val) {
-            arrivalStation = val;
-            return this;
         }
 
         public Builder withId(int val) {
@@ -82,8 +72,13 @@ public class Ticket {
             return this;
         }
 
-        public Builder withDepartureStation(RouteStation val) {
-            departureStation = val;
+        public Builder withRouteNumberOfArrivalStation(int val) {
+            routeNumberOfArrivalStation = val;
+            return this;
+        }
+
+        public Builder withRouteNumberOfDepartureStation(int val) {
+            routeNumberOfDepartureStation = val;
             return this;
         }
 
@@ -92,28 +87,28 @@ public class Ticket {
         }
     }
 
-    public RouteStation getArrivalStation() {
-        return arrivalStation;
-    }
-
-    public void setArrivalStation(RouteStation arrivalStation) {
-        this.arrivalStation = arrivalStation;
-    }
-
-    public RouteStation getDepartureStation() {
-        return departureStation;
-    }
-
-    public void setDepartureStation(RouteStation departureStation) {
-        this.departureStation = departureStation;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRouteNumberOfArrivalStation() {
+        return routeNumberOfArrivalStation;
+    }
+
+    public void setRouteNumberOfArrivalStation(int routeNumberOfArrivalStation) {
+        this.routeNumberOfArrivalStation = routeNumberOfArrivalStation;
+    }
+
+    public int getRouteNumberOfDepartureStation() {
+        return routeNumberOfDepartureStation;
+    }
+
+    public void setRouteNumberOfDepartureStation(int routeNumberOfDepartureStation) {
+        this.routeNumberOfDepartureStation = routeNumberOfDepartureStation;
     }
 
     public Train getTrain() {
@@ -135,11 +130,11 @@ public class Ticket {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("arrivalStation", arrivalStation)
                 .add("id", id)
                 .add("train", train)
                 .add("user", user)
-                .add("departureStation", departureStation)
+                .add("routeNumberOfArrivalStation", routeNumberOfArrivalStation)
+                .add("routeNumberOfDepartureStation", routeNumberOfDepartureStation)
                 .toString();
     }
 }

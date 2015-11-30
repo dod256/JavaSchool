@@ -13,6 +13,6 @@ public class UserService extends Service {
 
     public static void addUser(User user) { userDao.addUser(user); }
 
-    public static User getUser(String email) { return userDao.getUser(email); }
+    public static User getUserByEmail(String email) { return userDao.getUserByEmail(email); }
 
 }

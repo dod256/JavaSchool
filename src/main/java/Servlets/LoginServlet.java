@@ -14,8 +14,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if (UserService.getUser(email) != null && UserService.getUser(email).checkPassword(password)) {
-            req.getSession().setAttribute("currentUser", UserService.getUser(email));
+        if (UserService.getUserByEmail(email) != null && UserService.getUserByEmail(email).checkPassword(password)) {
+            req.getSession().setAttribute("currentUser", UserService.getUserByEmail(email));
             res.sendRedirect("profile.jsp");
         } else {
             res.sendRedirect("loginPage.jsp");

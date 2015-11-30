@@ -5,13 +5,12 @@ import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Table
 public class User {
-
     @Id
+    private int id;
     private String email;
     private String firstName;
     private String lastName;
@@ -19,16 +18,6 @@ public class User {
     private Date birthdate;
     private int userTypeId;
 
-    @OneToMany(mappedBy="user")
-    private List<Ticket> tickets;
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
 
     private User(Builder builder) {
         birthdate = builder.birthdate;
@@ -37,6 +26,14 @@ public class User {
         lastName = builder.lastName;
         password = builder.password;
         userTypeId = 2;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public static Builder newBuilder() {

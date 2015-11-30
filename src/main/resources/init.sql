@@ -147,8 +147,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `departureStationId` INT NULL,
-  `arrivalStationId` INT NULL,
+  `routeNumberOfArrivalStation` INT NULL,
+  `routeNumberOfDepartureStation` INT NULL,
   `trainId` INT NOT NULL,
   `userId` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -162,16 +162,6 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   CONSTRAINT `fk_Ticket_User1`
     FOREIGN KEY (`userId`)
     REFERENCES `chugga_chugga`.`User` (`id`)
-    ON DELETE cascade
-    ON UPDATE cascade,
-  CONSTRAINT `fk_Ticket_RouteStation1`
-    FOREIGN KEY (`arrivalStationId`)
-    REFERENCES `chugga_chugga`.`RouteStation` (`id`)
-    ON DELETE cascade
-    ON UPDATE cascade,
-  CONSTRAINT `fk_Ticket_RouteStation2`
-    FOREIGN KEY (`departureStationId`)
-    REFERENCES `chugga_chugga`.`RouteStation` (`id`)
     ON DELETE cascade
     ON UPDATE cascade)
       
@@ -270,9 +260,9 @@ insert into Timetable (routeStationId, trainId)
 
 ###########################################################################
 
-insert into Ticket (departureStationId, arrivalStationId,
+insert into Ticket (routeNumberOfDepartureStation, routeNumberOfArrivalStation,
 trainId, userId)
- values (1, 3, 1, 1);
+ values (1, 2, 1, 1);
 
 ############################################################################
 
