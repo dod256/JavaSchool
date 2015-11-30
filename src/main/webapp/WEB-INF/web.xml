@@ -55,6 +55,16 @@
         <servlet-class>main.java.Servlets.BuyTicketServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>GetProfileServlet</servlet-name>
+        <servlet-class>main.java.Servlets.GetProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetProfileServlet</servlet-name>
+        <url-pattern>/GetProfileServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>

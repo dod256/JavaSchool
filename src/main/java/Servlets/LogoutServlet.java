@@ -13,10 +13,4 @@ public class LogoutServlet extends HttpServlet {
         req.getSession().setAttribute("currentUser", null);
         res.sendRedirect("index.jsp");
     }
-
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws ServletException, IOException {
-        req.getSession().setAttribute("currentUser", null);
-        res.sendRedirect("index.jsp");
-    }
 }

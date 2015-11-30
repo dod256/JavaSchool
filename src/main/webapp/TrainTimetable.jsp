@@ -42,7 +42,6 @@
             <td>Train Name</td>
             <td>Departure Station</td>
             <td>Arrival Station</td>
-            <td>Time on Wheels</td>
             <td>Number of free seats</td>
             <td>Cost</td>
             <td>Ticket</td>
@@ -51,11 +50,11 @@
         <c:set var="trainList" value="${sessionScope.trainList}"/>
         <c:forEach items="${trainList}" var="train">
           <tr>
-            <td><p>${train.getName()}</p></td>
-            <td><p>${train.getDepartureStation().getStation().getName()} <small>${train.getDepartureStation().getArrival()}</small></p></td>
-            <td><p>${train.getArrivalStation().getStation().getName()} <small>${train.getArrivalStation().getArrival()}</small></p></td>
-            <td><p>${train.getNumberOfFreeSeats()}</p></td>
-            <td><p>${train.getCost()}</p></td>
+            <td><h5>${train.getName()}</h5></td>
+            <td><h5>${train.getDepartureStation().getStation().getName()} <small>${train.getDepartureStation().getArrival()}</small></h5></td>
+            <td><h5>${train.getArrivalStation().getStation().getName()} <small>${train.getArrivalStation().getArrival()}</small></h5></td>
+            <td><h5>${train.getNumberOfFreeSeats()}</h5></td>
+            <td><h5>${train.getCost()}</h5></td>
             <td>
               <form role = "form" name = "BuyTicketForm" action = "BuyTicketServlet" method = post>
                 <div class = "form-group">

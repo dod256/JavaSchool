@@ -10,6 +10,7 @@ public class BuyTicketServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //ToDo add purhase of the ticket
+
         res.sendRedirect("ticketAdded.jsp");
     }
 

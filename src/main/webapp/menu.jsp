@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="profile.jsp">Profile</a></li>
+                <li><a href="GetProfileServlet">Profile</a></li>
                 <li><a href="StationTimetable.jsp">Station timetable</a></li>
                 <li><a href="TrainTimetable.jsp">Find train</a></li>
                 <c:choose>
