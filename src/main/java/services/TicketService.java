@@ -1,6 +1,7 @@
 package main.java.services;
 
 import main.java.Entities.Ticket;
+import main.java.Entities.Train;
 import main.java.Entities.User;
 import main.java.dao.TicketDao;
 import java.util.ArrayList;
@@ -16,9 +17,18 @@ public class TicketService extends Service {
         return ticketDao.getTicketsByUser(user);
     }
 
-    public static boolean isUserHadTicket(User user, int trainId) {
+    public static ArrayList<Ticket> getAllTickets() {
+        return ticketDao.getTickets();
+    }
 
-        //todo return user.getTickets().contains(TrainService.getTrain(trainId));
+    public static boolean isUserHadTicket(User user, int trainId) {
+        ArrayList<Ticket> tickets = getTicketsByUser(user);
+        Train train = TrainService.getTrain(trainId);
+        for (Ticket ticket: tickets) {
+            if (ticket.getTrain().equals(train)) {
+                return true;
+            }
+        }
         return false;
     }
 
