@@ -2,7 +2,9 @@ package main.java.services;
 
 
 import main.java.Entities.Station;
+import main.java.Entities.Train;
 import main.java.dao.StationDao;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
@@ -17,5 +19,14 @@ public class StationService extends Service {
         return stationDao.getStation(name);
     }
     public static ArrayList<Station> getAllStations() {return stationDao.getAllStations();}
+
+    //ToDo
+    public static ArrayList<Train> getTimetable(Station station, DateTime departureDate) {
+        //get all routes
+        //get all trains
+        //make some magic
+        //return arrayList of seeking train
+        return null;
+    }
 
 }
