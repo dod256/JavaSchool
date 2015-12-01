@@ -19,6 +19,7 @@ public class ShowRoutesServlet extends HttpServlet {
         String arrivalStation = req.getParameter("arrivalStation");;
         DateTime firstTime = DateTime.parse(req.getParameter("firstTime"));
         DateTime secondTime = DateTime.parse(req.getParameter("secondTime"));
+
         RouteRequest request = RouteRequest.newBuilder()
                 .withDepartureStation(departureStation)
                 .withArrivalStation(arrivalStation)
@@ -26,6 +27,7 @@ public class ShowRoutesServlet extends HttpServlet {
                 .withSecondTime(secondTime)
                 .build();
         ArrayList<Route> routeList = RouteService.getRoutes(request);
+
         req.getSession().setAttribute("routeList", routeList);
 
         res.sendRedirect("addRouteToTrain.jsp");
