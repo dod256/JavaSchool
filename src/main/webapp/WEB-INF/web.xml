@@ -51,14 +51,59 @@
     </servlet>
 
     <servlet>
+        <servlet-name>AddRouteServlet</servlet-name>
+        <servlet-class>main.java.Servlets.AddRouteServlet</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>BuyTicketServlet</servlet-name>
         <servlet-class>main.java.Servlets.BuyTicketServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AddStationServlet</servlet-name>
+        <servlet-class>main.java.Servlets.AddStationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>GetProfileServlet</servlet-name>
         <servlet-class>main.java.Servlets.GetProfileServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>TrainManagerSetActionServlet</servlet-name>
+        <servlet-class>main.java.Servlets.TrainManagerSetActionServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RouteManagerSetActionServlet</servlet-name>
+        <servlet-class>main.java.Servlets.RouteManagerSetActionServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StationManagerSetActionServlet</servlet-name>
+        <servlet-class>main.java.Servlets.StationManagerSetActionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StationManagerSetActionServlet</servlet-name>
+        <url-pattern>/StationManagerSetActionServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RouteManagerSetActionServlet</servlet-name>
+        <url-pattern>/RouteManagerSetActionServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TrainManagerSetActionServlet</servlet-name>
+        <url-pattern>/TrainManagerSetActionServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddStationServlet</servlet-name>
+        <url-pattern>/AddStationServlet</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>GetProfileServlet</servlet-name>
@@ -108,6 +153,11 @@
     <servlet-mapping>
         <servlet-name>AddRouteToTrainServlet</servlet-name>
         <url-pattern>/AddRouteToTrainServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddRouteServlet</servlet-name>
+        <url-pattern>/AddRouteServlet</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

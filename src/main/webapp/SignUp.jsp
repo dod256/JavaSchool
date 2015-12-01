@@ -47,7 +47,7 @@
         </div>
         <div class = "form-group">
           <label for = "secondPassword"> Confirm your password </label>
-          <input type="secondPassword" class="form-control" id = "secondPassword" name="password">
+          <input type="password" class="form-control" id = "secondPassword" name="password">
         </div>
         <div class = "form-group">
           <label for = "date"> Birthday </label>

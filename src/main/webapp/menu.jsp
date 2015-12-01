@@ -16,7 +16,9 @@
                 <li><a href="TrainTimetable.jsp">Find train</a></li>
                 <c:choose>
                     <c:when test="${sessionScope.currentUser != null && sessionScope.currentUser.getUserTypeId() == 1}">
-                        <li><a href="addTrain.jsp">Add train</a></li>
+                        <li><a href="trainManager.jsp">Train manager</a></li>
+                        <li><a href="stationManager.jsp">Station manager</a></li>
+                        <li><a href="routeManager.jsp">Route manager</a></li>
                     </c:when>
                 </c:choose>
             </ul>

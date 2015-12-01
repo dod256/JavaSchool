@@ -9,6 +9,7 @@ import java.sql.Date;
 @Entity
 @Table
 public class User {
+
     @Id
     private int id;
     private String email;
@@ -16,6 +17,7 @@ public class User {
     private String lastName;
     private String password;
     private Date birthdate;
+
     private int userTypeId;
 
 
