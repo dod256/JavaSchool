@@ -16,7 +16,9 @@ public class FindTrainServlet extends HttpServlet {
 
         public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
                 String departureStation = req.getParameter("departureStation");
-                String arrivalStation = req.getParameter("arrivalStation");;
+                String arrivalStation = req.getParameter("arrivalStation");
+                req.getSession().setAttribute("departureStation", departureStation);
+                req.getSession().setAttribute("arrivalStation", arrivalStation);
                 DateTime date = DateTime.parse(req.getParameter("date"));
                 TrainRequest trainRequest = TrainRequest.newBuilder()
                         .withDepartureStation(departureStation)

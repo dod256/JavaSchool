@@ -60,7 +60,7 @@
                 <div class = "form-group">
                   <input type="hidden" name = "trainId" value = ${train.getId()}>
                 </div>
-                <button type = "submit" class = "btn btn-default">Buy</button>
+                <button type = "submit" class = "btn btn-default">Purhase</button>
               </form>
             </td>
 

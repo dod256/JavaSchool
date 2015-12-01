@@ -29,22 +29,12 @@
                 </tr>
                 </thead>
                 <c:set var="ticketList" value="${sessionScope.ticketList}"/>
-                <c:forEach items="${ticketList}" var="train">
+                <c:forEach items="${ticketList}" var="ticket">
                     <tr>
                         <td><h5>${ticket.getId()}</h5></td>
                         <td><h5>${ticket.getTrain().getName()}</h5></td>
-                        <td><h5>${ticket.getTrain().getDepartureStation().getStation().getName()} <small>${train.getDepartureStation().getArrival()}</small></h5></td>
-                        <td><h5>${ticket.getTrain().getArrivalStation().getStation().getName()} <small>${train.getArrivalStation().getArrival()}</small></h5></td>
-
-                        <td>
-                            <form role = "form" name = "BuyTicketForm" action = "BuyTicketServlet" method = post>
-                                <div class = "form-group">
-                                    <input type="hidden" name = "trainId" value = ${train.getId()}>
-                                </div>
-                                <button type = "submit" class = "btn btn-default">Buy</button>
-                            </form>
-                        </td>
-
+                        <td><h5>${ticket.getTrain().getDepartureStation().getStation().getName()} <small>${ticket.getTrain().getDepartureStation().getArrival()}</small></h5></td>
+                        <td><h5>${ticket.getTrain().getArrivalStation().getStation().getName()} <small>${ticket.getTrain().getArrivalStation().getArrival()}</small></h5></td>
                     </tr>
                 </c:forEach>
             </table>

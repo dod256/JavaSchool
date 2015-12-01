@@ -16,6 +16,8 @@ public class ShowAllTrainsServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ArrayList<Train> trainList = TrainService.getAllTrains();
+        req.getSession().setAttribute("departureStation", null);
+        req.getSession().setAttribute("arrivalStation", null);
         req.getSession().setAttribute("trainList", trainList);
         res.sendRedirect("/TrainTimetable.jsp");
     }
