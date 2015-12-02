@@ -25,7 +25,7 @@ public class StationService extends Service {
     }
     public static ArrayList<Station> getAllStations() {return stationDao.getAllStations();}
 
-    //ToDo
+
     public static StationTimetable getTimetable(Station station, DateTime transitDate) {
         ArrayList<TrainArrivalTime> result = new ArrayList<TrainArrivalTime>();
 
@@ -36,7 +36,7 @@ public class StationService extends Service {
             DateTime departureDate = new DateTime(train.getDepartureDate().getTime());
             if (departureStation.getStation().equals(station) && departureDate.getYear() == transitDate.getYear() && departureDate.getDayOfYear() == transitDate.getDayOfYear()) {
                 result.add(TrainArrivalTime.newBuilder()
-                            .withArrivalTime(new DateTime(train.getDepartureDate().getTime())).withTrain(train).build());
+                            .withArrivalTime(new DateTime(train.getDepartureDate().getTime()).plus(departureStation.getArrival().getTime())).withTrain(train).build());
             } else {
                 departureDate = departureDate.plus(departureStation.getArrival().getTime());
                 for (Route route: routes) {
@@ -44,8 +44,6 @@ public class StationService extends Service {
                         for (RouteStation routeStationOfCurrentRoute: route.getRouteStations()) {
                             if (routeStationOfCurrentRoute.getStation().equals(station)) {
                                 DateTime onWheel = new DateTime( routeStationOfCurrentRoute.getOnWheel().getTime());
-
-                                //departureDate = departureDate.plus(onWheel.getMillis()).plus(new DateTime().withHourOfDay(4).getMillis());
                                 departureDate = departureDate.plus(onWheel.getMillis());
                                 departureDate = departureDate.plusHours(4);
                                 if (departureDate.getYear() == transitDate.getYear() && departureDate.getDayOfYear() == transitDate.getDayOfYear()) {

@@ -2,6 +2,8 @@ package main.java.Servlets;
 
 import main.java.data.TrainRequest;
 import main.java.Entities.Train;
+import main.java.data.TrainTimetable;
+import main.java.dto.TrainDto;
 import main.java.services.TrainService;
 import org.joda.time.DateTime;
 
@@ -25,7 +27,7 @@ public class FindTrainServlet extends HttpServlet {
                         .withArrivalStation(arrivalStation)
                         .withDate(date)
                         .build();
-                ArrayList<Train> trainList = TrainService.getTrains(trainRequest);
+                TrainTimetable trainList = TrainService.getTrains(trainRequest);
                 req.getSession().setAttribute("trainList", trainList);
                 res.sendRedirect("/TrainTimetable.jsp");
         }

@@ -4,29 +4,34 @@ import com.google.common.base.MoreObjects;
 import main.java.Entities.Train;
 import org.joda.time.DateTime;
 
-public class TrainArrivalTime {
-    private DateTime arrivalTime;
+public class TrainRouteTime {
     private Train train;
+    private DateTime departureTime;
+    private DateTime arrivalTime;
 
-    private TrainArrivalTime(Builder builder) {
+    private TrainRouteTime(Builder builder) {
         arrivalTime = builder.arrivalTime;
         train = builder.train;
+        departureTime = builder.departureTime;
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public static Builder newBuilder(TrainArrivalTime copy) {
+    public static Builder newBuilder(TrainRouteTime copy) {
         Builder builder = new Builder();
         builder.arrivalTime = copy.arrivalTime;
         builder.train = copy.train;
+        builder.departureTime = copy.departureTime;
         return builder;
     }
+
 
     public static final class Builder {
         private DateTime arrivalTime;
         private Train train;
+        private DateTime departureTime;
 
         private Builder() {
         }
@@ -41,8 +46,13 @@ public class TrainArrivalTime {
             return this;
         }
 
-        public TrainArrivalTime build() {
-            return new TrainArrivalTime(this);
+        public Builder withDepartureTime(DateTime val) {
+            departureTime = val;
+            return this;
+        }
+
+        public TrainRouteTime build() {
+            return new TrainRouteTime(this);
         }
     }
 
@@ -50,8 +60,24 @@ public class TrainArrivalTime {
         return arrivalTime;
     }
 
+    public void setArrivalTime(DateTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public DateTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(DateTime departureTime) {
+        this.departureTime = departureTime;
+    }
+
     public Train getTrain() {
         return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
     }
 
     @Override
@@ -59,6 +85,7 @@ public class TrainArrivalTime {
         return MoreObjects.toStringHelper(this)
                 .add("arrivalTime", arrivalTime)
                 .add("train", train)
+                .add("departureTime", departureTime)
                 .toString();
     }
 }
