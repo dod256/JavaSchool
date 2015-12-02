@@ -20,13 +20,6 @@
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
-      <form role = "form" name = "SetDeleteActionForm" action = "StationManagerSetActionServlet" method = post>
-        <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "delete">
-        </div>
-        <button type = "submit" class = "btn btn-default">Delete</button>
-      </form>
-
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
@@ -37,6 +30,7 @@
           </div>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'create'}">
+          ${sessionScope.currentManagerAction = null}
           <h1>Create station</h1>
           <form role = "form" name = "AddStationForm" action = "AddStationServlet" method = post>
             <div class = "form-group">
@@ -44,18 +38,6 @@
               <input type="text" class="form-control" id = "name" name="name">
             </div>
             <button type = "submit" class = "btn btn-default">Create</button>
-          </form>
-        </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'delete'}">
-          <h1>Delete station</h1>
-          <form role = "form" name = "DeleteStationForm" action = "DeleteStationServlet" method = post>
-            <div class = "form-group">
-              <label for = "selectName"> Name </label>
-              <select class="form-control" id = "selectName" name="name">
-
-              </select>
-            </div>
-            <button type = "submit" class = "btn btn-default">Delete</button>
           </form>
         </c:when>
       </c:choose>

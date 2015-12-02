@@ -23,7 +23,7 @@
         </c:when>
         <c:when test="${sessionScope.currentMessageType == 'danger'}">
           <div class="alert alert-danger">
-            <strong>Fail!</strong> lalala
+            <strong>Fail!</strong> ${sessionScope.currentMessage}
           </div>
         </c:when>
       </c:choose>

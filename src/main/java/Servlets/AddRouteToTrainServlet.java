@@ -29,8 +29,10 @@ public class AddRouteToTrainServlet extends HttpServlet{
                 .withRoute(route)
                 .build();
         TrainService.createTrain(trainRoute);
-        req.getSession().setAttribute("trainRoute", trainRoute);
-        res.sendRedirect("trainAdded.jsp");
+
+        req.getSession().setAttribute("currentMessageType", "success");
+        req.getSession().setAttribute("currentMessage", "Train created");
+        res.sendRedirect("showMessage.jsp");
     }
 
 }

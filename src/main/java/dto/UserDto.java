@@ -14,7 +14,6 @@ public class UserDto {
     private DateTime birthdate;
     private int userTypeId;
 
-    //ToDo apply innerBuilder
     public UserDto(){}
 
     public UserDto(User user) {

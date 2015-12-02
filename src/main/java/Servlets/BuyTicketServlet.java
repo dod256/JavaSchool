@@ -32,7 +32,14 @@ public class BuyTicketServlet extends HttpServlet {
                 .build();
         boolean tryToBuy = TicketService.tryToByTicket(ticketRequest);
 
-        res.sendRedirect("ticketAdded.jsp");
+        if (tryToBuy) {
+            req.getSession().setAttribute("currentMessageType", "success");
+            req.getSession().setAttribute("currentMessage", "Ticket purhased");
+        } else {
+            req.getSession().setAttribute("currentMessageType", "danger");
+            req.getSession().setAttribute("currentMessage", "Error");
+        }
+        res.sendRedirect("showMessage.jsp");
     }
 
 }

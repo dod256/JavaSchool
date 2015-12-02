@@ -34,7 +34,7 @@
             <c:set var="stationTimetable" value="${sessionScope.stationTimetable}"/>
             <c:choose>
             <c:when test="${stationTimetable != null && stationTimetable.getTrainArrivalTimes().size() > 0}">
-                <h1>${stationTimetable.getStation().getName()}<small>${stationTimetable.getDateString()}</small></h1>
+                <h1>${stationTimetable.getStation().getName()} <small> ${stationTimetable.getDateString()}</small></h1>
                 <table class="table table-hover">
                     <thead>
                     <tr>

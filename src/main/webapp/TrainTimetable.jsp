@@ -68,7 +68,7 @@
             <td>
               <form role = "form" name = "BuyTicketForm" action = "BuyTicketServlet" method = post>
                 <div class = "form-group">
-                  <input type="hidden" name = "trainId" value = ${train.getId()}>
+                  <input type="hidden" name = "trainId" value = ${trainRouteTime.getTrain().getId()}>
                 </div>
                 <button type = "submit" class = "btn btn-default">Purhase</button>
               </form>

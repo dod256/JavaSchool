@@ -73,7 +73,7 @@ public class RouteService extends Service {
         return routes;
     }
 
-    //todo: add logic;
+    //todo: add easy magic
     public static ArrayList<Route> getRoutes(RouteRequest request) {
         return null;
     }

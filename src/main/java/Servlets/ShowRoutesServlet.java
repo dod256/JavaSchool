@@ -17,14 +17,9 @@ public class ShowRoutesServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String departureStation = req.getParameter("departureStation");
         String arrivalStation = req.getParameter("arrivalStation");;
-        DateTime firstTime = DateTime.parse(req.getParameter("firstTime"));
-        DateTime secondTime = DateTime.parse(req.getParameter("secondTime"));
-
         RouteRequest request = RouteRequest.newBuilder()
                 .withDepartureStation(departureStation)
                 .withArrivalStation(arrivalStation)
-                .withFirstTime(firstTime)
-                .withSecondTime(secondTime)
                 .build();
         ArrayList<Route> routeList = RouteService.getRoutes(request);
 

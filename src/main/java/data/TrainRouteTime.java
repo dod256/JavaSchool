@@ -62,7 +62,7 @@ public class TrainRouteTime {
     }
 
     public String getArrivalTimeString() {
-        return arrivalTime.toString(DateTimeFormat.longTime());
+        return arrivalTime.toString(DateTimeFormat.shortTime());
     }
 
 
@@ -75,7 +75,7 @@ public class TrainRouteTime {
     }
 
     public String getDepartureTimeString() {
-        return departureTime.toString(DateTimeFormat.longTime());
+        return departureTime.toString(DateTimeFormat.shortTime());
     }
 
     public void setDepartureTime(DateTime departureTime) {

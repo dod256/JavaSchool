@@ -24,11 +24,6 @@
           <label for = "arrivalStation"> Arrival Station </label>
           <input type="text" class="form-control" id = "arrivalStation" name="arrivalStation">
         </div>
-        <div class = "form-group">
-          <label>Departure time range</label>
-          <input type="time" class="form-control" name="firstTime">
-          <input type="time" class="form-control" name="secondTime">
-        </div>
         <button type = "submit" class = "btn btn-default">Find</button>
       </form>
 

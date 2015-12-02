@@ -27,12 +27,14 @@ public class TicketDao implements Dao {
         Train train = em.find(Train.class, request.getTrainId());
         if (train.getNumberOfFreeSeats() == 0) {
             //todo: add logging! (current train have not free seets any more)
+            transaction.commit();
             return false;
         }
         DateTime departureDateTime = new DateTime(train.getDepartureDate());
         departureDateTime = departureDateTime.plus(train.getDepartureStation().getArrival().getTime());
         if (!DateTime.now().plusMinutes(10).isBefore(departureDateTime)) {
             //todo: add logging! (it's tool late to buy ticket at this train)
+            transaction.commit();
             return false;
         }
 
@@ -40,6 +42,7 @@ public class TicketDao implements Dao {
         for (Ticket ticket: tickets) {
             if (ticket.getTrain().equals(train)) {
                 //todo: add logging! (user already have ticket at this train)
+                transaction.commit();
                 return false;
             }
         }

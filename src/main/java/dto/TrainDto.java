@@ -60,7 +60,6 @@ public class TrainDto {
     private int numberOfFreeSeats;
     private int cost;
 
-    //ToDo innerBuilder
     public TrainDto(){}
 
     public TrainDto(Train train, Route trainRoute) {

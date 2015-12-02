@@ -14,7 +14,6 @@ public class TicketDto {
     private String departureStation;
     private DateTime departureDate;
 
-    //ToDo innerBuilder
     public TicketDto(){}
 
     public TicketDto(Ticket ticket) {

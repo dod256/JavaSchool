@@ -6,16 +6,10 @@ public class RouteRequest {
 
     private String departureStation;
     private String arrivalStation;
-    private DateTime firstTime;
-    private DateTime secondTime;
-
-
 
     private RouteRequest(Builder builder) {
         arrivalStation = builder.arrivalStation;
         departureStation = builder.departureStation;
-        firstTime = builder.firstTime;
-        secondTime = builder.secondTime;
     }
 
     public static Builder newBuilder() {
@@ -26,8 +20,6 @@ public class RouteRequest {
         Builder builder = new Builder();
         builder.arrivalStation = copy.arrivalStation;
         builder.departureStation = copy.departureStation;
-        builder.firstTime = copy.firstTime;
-        builder.secondTime = copy.secondTime;
         return builder;
     }
 
@@ -35,8 +27,6 @@ public class RouteRequest {
     public static final class Builder {
         private String arrivalStation;
         private String departureStation;
-        private DateTime firstTime;
-        private DateTime secondTime;
 
         private Builder() {
         }
@@ -51,16 +41,6 @@ public class RouteRequest {
             return this;
         }
 
-        public Builder withFirstTime(DateTime val) {
-            firstTime = val;
-            return this;
-        }
-
-        public Builder withSecondTime(DateTime val) {
-            secondTime = val;
-            return this;
-        }
-
         public RouteRequest build() {
             return new RouteRequest(this);
         }
@@ -72,14 +52,6 @@ public class RouteRequest {
 
     public String getArrivalStation() {
         return arrivalStation;
-    }
-
-    public DateTime getFirstTime() {
-        return firstTime;
-    }
-
-    public DateTime getSecondTime() {
-        return secondTime;
     }
 
 }

@@ -20,13 +20,6 @@
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
-      <form role = "form" name = "SetDeleteActionForm" action = "RouteManagerSetActionServlet" method = post>
-        <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "delete">
-        </div>
-        <button type = "submit" class = "btn btn-default">Delete</button>
-      </form>
-
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
@@ -37,12 +30,9 @@
           </div>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'create'}">
+          ${sessionScope.currentManagerAction = null}
           <h1>Create route</h1>
           <h1>ToDo create magic</h1>
-        </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'delete'}">
-          <h1>Delete route</h1>
-          <h1>ToDo delete magic</h1>
         </c:when>
       </c:choose>
 
