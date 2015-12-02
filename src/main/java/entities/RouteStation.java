@@ -1,5 +1,6 @@
 package main.java.Entities;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
@@ -15,8 +16,7 @@ public class RouteStation  {
     private int stationNumber;
     private int routeId;
     private Time arrival;
-    //todo: to sqlTime
-    private int waitingTime;
+    private Time waitingTime;
     private Time onWheel;
 
     public RouteStation(){}
@@ -54,7 +54,7 @@ public class RouteStation  {
         private Station station;
         private int stationNumber;
         private int routeId;
-        private int waitingTime;
+        private Time waitingTime;
         private Time onWheel;
 
         private Builder() {
@@ -90,7 +90,7 @@ public class RouteStation  {
             return this;
         }
 
-        public Builder withWaitingTime(int val) {
+        public Builder withWaitingTime(Time val) {
             waitingTime = val;
             return this;
         }
@@ -144,17 +144,17 @@ public class RouteStation  {
         this.stationNumber = stationNumber;
     }
 
-    public int getWaitingTime() {
+    public Time getWaitingTime() {
         return waitingTime;
     }
 
-    public void setWaitingTime(int waitingTime) {
+    public void setWaitingTime(Time waitingTime) {
         this.waitingTime = waitingTime;
     }
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("arrival", arrival)
                 .add("id", id)
                 .add("station", station)

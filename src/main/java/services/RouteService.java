@@ -12,6 +12,10 @@ import java.util.Comparator;
 public class RouteService extends Service {
 
     private static RouteStationDao routeStationDao = new RouteStationDao(em);
+    
+    public static void addRoute(Route route) {
+        routeStationDao.addRoute(route);
+    }
 
     public static Route getRouteById(int routeId) {
         Route.Builder builder = Route.newBuilder();

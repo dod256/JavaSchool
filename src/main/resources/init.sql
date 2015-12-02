@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `stationNumber` INT NULL,
   `routeId` INT NULL,
   `arrival` TIME NULL,
-  `waitingTime` INT NULL,
+  `waitingTime` TIME NULL,
   `onWheel` TIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_RouteStation_Station1_idx` (`stationId` ASC),
@@ -224,28 +224,28 @@ insert into Station (name)
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (1, 1, 1, '18:33:55', 15, '00:00:00');
+ values (1, 1, 1, '18:33:55', '00:00:00', '00:00:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (2, 3, 1, '05:33:55', 10, '02:33:55');
+ values (3, 2, 1, '05:33:55', '00:00:01', '11:00:00');
  
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (3, 2, 1, '00:33:55', 30, '07:33:55');
+ values (2, 3, 1, '08:33:56', '00:00:40', '14:00:01');
 
 insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime, onWheel)
-values (4, 1, 2, "18:33:00", 21, '00:00:00');
+values (4, 1, 2, "18:33:00", '00:00:00', '00:00:00');
 
 insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime, onWheel)
-values (3, 2, 2, "18:39:00", 40, '07:33:55');
+values (3, 2, 2, "18:39:00", '00:00:50', '07:33:55');
 
 
 ###########################################################################
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate)
- values ("Train to hell", 100, 99, 1000, 1, 3, "2013-07-19");
+ values ("Train to hell", 100, 99, 1000, 3, 1, "2013-07-19");
 
 ###########################################################################
 
