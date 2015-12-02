@@ -23,6 +23,7 @@ public class StationService extends Service {
     public static Station getStation(String name) {
         return stationDao.getStation(name);
     }
+    //todo: sort
     public static ArrayList<Station> getAllStations() {return stationDao.getAllStations();}
 
 

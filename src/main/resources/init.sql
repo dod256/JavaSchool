@@ -199,13 +199,8 @@ insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
 
 #add customers:
 insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
- values ("pavel.belov@me", "Pavel", "Belov", "qwe", 2, '1993-12-25');
+ values ("pavel.belov@me", "Pavel", "Belov", "qwe", 2, '1991-10-22');
  
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
- values ("andrey.mischenko@me", "Andrey", "Mischenko", "qwe", 2, '1973-12-25');
- 
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
- values ("lina.miller@me", "Lina", "Miller", "qwe", 2, '1993-12-25');
 ###########################################################################
 
 insert into Station (name)
@@ -218,38 +213,109 @@ insert into Station (name)
  values ("Tver");
 
 insert into Station (name)
- values ("Salavat");
+ values ("Adler");
+ 
+insert into Station (name)
+ values ("Ufa");
+ 
+insert into Station (name)
+ values ("Helsinki");
+ 
+insert into Station (name)
+ values ("Omsk");
+ 
+insert into Station (name)
+ values ("Novosibirsk");
+
+insert into Station (name)
+ values ("Samara");
+
 
 ###########################################################################
 
+#adler->samara->ufa->omsk->novosib
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (1, 1, 1, '18:33:55', '00:00:00', '00:00:00');
+ values (4, 1, 1, '12:25:00', '00:00:00', '00:00:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (3, 2, 1, '05:33:55', '00:00:01', '11:00:00');
+ values (9, 2, 1, '14:26:00', '00:00:01', '02:01:00');
  
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (2, 3, 1, '08:33:56', '00:00:40', '14:00:01');
+ values (5, 3, 1, '18:27:00', '00:00:40', '06:02:00');
 
-insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime, onWheel)
-values (4, 1, 2, "18:33:00", '00:00:00', '00:00:00');
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (7, 4, 1, '21:25:00', '00:00:20', '09:00:00');
 
-insert into routestation (stationId, stationNumber, routeId, arrival, waitingTime, onWheel)
-values (3, 2, 2, "18:39:00", '00:00:50', '07:33:55');
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (8, 5, 1, '05:28:00', '00:00:20', '17:03:00');
+ 
+ 
+#ufa->omsk->novosib
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (5, 1, 2, '14:38:00', '00:00:20', '00:00:00');
 
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (7, 2, 2, '04:39:00', '00:00:20', '10:01:00');
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (8, 3, 2, '13:50:00', '00:00:20', '23:12:00');
+ 
+#msk->tver->spb->helsinki
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (1, 1, 3, '10:11:00', '00:00:20', '00:00:00');
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (3, 2, 3, '14:39:00', '00:00:20', '04:28:00');
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (2, 3, 3, '22:42:00', '00:00:20', '12:12:31');
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (6, 4, 3, '08:15:00', '00:01:20', '21:04:00');
+ 
+#msk->tver->spb
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (1, 1, 4, '00:00:00', '00:00:20', '04:28:00');
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (3, 2, 4, '12:12:00', '00:00:20', '12:12:00');
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, onWheel)
+ values (2, 3, 4, '21:04:00', '00:01:20', '21:04:00');
+ 
 
 ###########################################################################
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate)
- values ("Train to hell", 100, 99, 1000, 3, 1, "2013-07-19");
-
+ values ("Arrow", 100, 99, 1000, 5, 1, "2015-12-04");
+ 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate)
- values ("Happy New Year", 100, 99, 1000, 5, 4, "2016-07-19");
+ values ("Hogwarst express", 100, 99, 1000, 8, 6, "2015-12-04");
+ 
+insert into Train (name, numberOfSeats, numberOfFreeSeats, 
+cost, arrivalStation, departureStation, departureDate)
+ values ("Orient express", 100, 99, 1000, 12, 9, "2015-12-04");
+ 
+insert into Train (name, numberOfSeats, numberOfFreeSeats, 
+cost, arrivalStation, departureStation, departureDate)
+ values ("Pride of Africa", 100, 99, 10000, 15, 14, "2015-12-01");
 
 
 ###########################################################################
@@ -257,18 +323,8 @@ cost, arrivalStation, departureStation, departureDate)
 insert into Timetable (routeStationId, trainId)
  values (1, 1);
 
-insert into Timetable (routeStationId, trainId)
- values (2, 1);
- 
-insert into Timetable (routeStationId, trainId)
- values (3, 1); 
-
 ###########################################################################
 
-insert into Ticket (departureStation, arrivalStation,
-trainId, userId)
- values ("Moscow", "StPetersburg", 1, 1);
 
-############################################################################
 
  
