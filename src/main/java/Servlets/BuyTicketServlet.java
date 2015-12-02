@@ -1,13 +1,8 @@
 package main.java.Servlets;
 
-import main.java.Entities.Ticket;
-import main.java.Entities.Train;
-import main.java.Entities.User;
 import main.java.data.TicketRequest;
 import main.java.dto.UserDto;
-import main.java.services.RouteService;
 import main.java.services.TicketService;
-import main.java.services.TrainService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +27,8 @@ public class BuyTicketServlet extends HttpServlet {
         TicketRequest ticketRequest = TicketRequest.newBuilder()
                 .withTrainId(trainId)
                 .withUserDto((UserDto) req.getSession().getAttribute("currentUser"))
-                //ToDo uncomment
-                //.withArrivalStation(departureStation)
-                //.withDepartureStation(arrivalStation)
+                .withArrivalStation(departureStation)
+                .withDepartureStation(arrivalStation)
                 .build();
         boolean tryToBuy = TicketService.tryToByTicket(ticketRequest);
 

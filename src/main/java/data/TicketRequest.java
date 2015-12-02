@@ -7,14 +7,14 @@ public class TicketRequest {
 
     private UserDto userDto;
     private int trainId;
-    private int routeNumberOfDepartureStation;
-    private int routeNumberOfArrivalStation;
+    private String departureStation;
+    private String arrivalStation;
 
     private TicketRequest(Builder builder) {
-        routeNumberOfArrivalStation = builder.routeNumberOfArrivalStation;
+        arrivalStation = builder.arrivalStation;
         userDto = builder.userDto;
         trainId = builder.trainId;
-        routeNumberOfDepartureStation = builder.routeNumberOfDepartureStation;
+        departureStation = builder.departureStation;
     }
 
     public static Builder newBuilder() {
@@ -23,25 +23,25 @@ public class TicketRequest {
 
     public static Builder newBuilder(TicketRequest copy) {
         Builder builder = new Builder();
-        builder.routeNumberOfArrivalStation = copy.routeNumberOfArrivalStation;
+        builder.arrivalStation = copy.arrivalStation;
         builder.userDto = copy.userDto;
         builder.trainId = copy.trainId;
-        builder.routeNumberOfDepartureStation = copy.routeNumberOfDepartureStation;
+        builder.departureStation = copy.departureStation;
         return builder;
     }
 
 
     public static final class Builder {
-        private int routeNumberOfArrivalStation;
+        private String arrivalStation;
         private UserDto userDto;
         private int trainId;
-        private int routeNumberOfDepartureStation;
+        private String departureStation;
 
         private Builder() {
         }
 
-        public Builder withRouteNumberOfArrivalStation(int val) {
-            routeNumberOfArrivalStation = val;
+        public Builder withArrivalStation(String val) {
+            arrivalStation = val;
             return this;
         }
 
@@ -55,8 +55,8 @@ public class TicketRequest {
             return this;
         }
 
-        public Builder withRouteNumberOfDepartureStation(int val) {
-            routeNumberOfDepartureStation = val;
+        public Builder withDepartureStation(String val) {
+            departureStation = val;
             return this;
         }
 
@@ -65,20 +65,20 @@ public class TicketRequest {
         }
     }
 
-    public int getRouteNumberOfArrivalStation() {
-        return routeNumberOfArrivalStation;
+    public String getArrivalStation() {
+        return arrivalStation;
     }
 
-    public void setRouteNumberOfArrivalStation(int routeNumberOfArrivalStation) {
-        this.routeNumberOfArrivalStation = routeNumberOfArrivalStation;
+    public void setArrivalStation(String arrivalStation) {
+        this.arrivalStation = arrivalStation;
     }
 
-    public int getRouteNumberOfDepartureStation() {
-        return routeNumberOfDepartureStation;
+    public String getDepartureStation() {
+        return departureStation;
     }
 
-    public void setRouteNumberOfDepartureStation(int routeNumberOfDepartureStation) {
-        this.routeNumberOfDepartureStation = routeNumberOfDepartureStation;
+    public void setDepartureStation(String departureStation) {
+        this.departureStation = departureStation;
     }
 
     public int getTrainId() {
@@ -100,10 +100,10 @@ public class TicketRequest {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("routeNumberOfArrivalStation", routeNumberOfArrivalStation)
+                .add("arrivalStation", arrivalStation)
                 .add("userDto", userDto)
                 .add("trainId", trainId)
-                .add("routeNumberOfDepartureStation", routeNumberOfDepartureStation)
+                .add("departureStation", departureStation)
                 .toString();
     }
 }

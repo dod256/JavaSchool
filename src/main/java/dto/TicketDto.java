@@ -10,8 +10,8 @@ public class TicketDto {
     private int id;
     private TrainDto train;
     private UserDto user;
-    private int routeNumberOfArrivalStation;
-    private int routeNumberOfDepartureStation;
+    private String arrivalStation;
+    private String departureStation;
     private DateTime departureDate;
 
     //ToDo innerBuilder
@@ -21,8 +21,8 @@ public class TicketDto {
         id = ticket.getId();
         train = new TrainDto(ticket.getTrain(), RouteService.getRouteById(ticket.getTrain().getDepartureStation().getRouteId()));//ToDo maybe another way to do THIS
         user = new UserDto(ticket.getUser());
-        routeNumberOfArrivalStation = ticket.getRouteNumberOfArrivalStation();
-        routeNumberOfDepartureStation = ticket.getRouteNumberOfDepartureStation();
+        arrivalStation = ticket.getArrivalStation();
+        departureStation = ticket.getDepartureStation();
         departureDate = new DateTime(ticket.getTrain().getDepartureDate());
     }
 
@@ -38,12 +38,12 @@ public class TicketDto {
         return user;
     }
 
-    public int getRouteNumberOfArrivalStation() {
-        return routeNumberOfArrivalStation;
+    public String getArrivalStation() {
+        return arrivalStation;
     }
 
-    public int getRouteNumberOfDepartureStation() {
-        return routeNumberOfDepartureStation;
+    public String getDepartureStation() {
+        return departureStation;
     }
 
     public DateTime getDepartureDate() {

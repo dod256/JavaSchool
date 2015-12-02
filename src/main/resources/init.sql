@@ -147,8 +147,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `routeNumberOfArrivalStation` INT NULL,
-  `routeNumberOfDepartureStation` INT NULL,
+  `arrivalStation` VARCHAR(45) NULL,
+  `departureStation` VARCHAR(45) NULL,
   `trainId` INT NOT NULL,
   `userId` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -247,6 +247,11 @@ insert into Train (name, numberOfSeats, numberOfFreeSeats,
 cost, arrivalStation, departureStation, departureDate)
  values ("Train to hell", 100, 99, 1000, 3, 1, "2013-07-19");
 
+insert into Train (name, numberOfSeats, numberOfFreeSeats, 
+cost, arrivalStation, departureStation, departureDate)
+ values ("Happy New Year", 100, 99, 1000, 5, 4, "2016-07-19");
+
+
 ###########################################################################
 
 insert into Timetable (routeStationId, trainId)
@@ -260,9 +265,9 @@ insert into Timetable (routeStationId, trainId)
 
 ###########################################################################
 
-insert into Ticket (routeNumberOfDepartureStation, routeNumberOfArrivalStation,
+insert into Ticket (departureStation, arrivalStation,
 trainId, userId)
- values (1, 2, 1, 1);
+ values ("Moscow", "StPetersburg", 1, 1);
 
 ############################################################################
 

@@ -1,6 +1,7 @@
 package main.java.Entities;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 
 import javax.persistence.*;
 
@@ -18,15 +19,15 @@ public class Ticket {
     @JoinColumn(name="userId")
     private User user;
 
-    private int routeNumberOfArrivalStation;
-    private int routeNumberOfDepartureStation;
+    private String arrivalStation;
+    private String departureStation;
 
     private Ticket(Builder builder) {
+        arrivalStation = builder.arrivalStation;
         id = builder.id;
         train = builder.train;
         user = builder.user;
-        routeNumberOfArrivalStation = builder.routeNumberOfArrivalStation;
-        routeNumberOfDepartureStation = builder.routeNumberOfDepartureStation;
+        departureStation = builder.departureStation;
     }
 
     public Ticket() {
@@ -38,23 +39,28 @@ public class Ticket {
 
     public static Builder newBuilder(Ticket copy) {
         Builder builder = new Builder();
+        builder.arrivalStation = copy.arrivalStation;
         builder.id = copy.id;
         builder.train = copy.train;
         builder.user = copy.user;
-        builder.routeNumberOfArrivalStation = copy.routeNumberOfArrivalStation;
-        builder.routeNumberOfDepartureStation = copy.routeNumberOfDepartureStation;
+        builder.departureStation = copy.departureStation;
         return builder;
     }
 
 
     public static final class Builder {
+        private String arrivalStation;
         private int id;
         private Train train;
         private User user;
-        private int routeNumberOfArrivalStation;
-        private int routeNumberOfDepartureStation;
+        private String departureStation;
 
         private Builder() {
+        }
+
+        public Builder withArrivalStation(String val) {
+            arrivalStation = val;
+            return this;
         }
 
         public Builder withId(int val) {
@@ -72,13 +78,8 @@ public class Ticket {
             return this;
         }
 
-        public Builder withRouteNumberOfArrivalStation(int val) {
-            routeNumberOfArrivalStation = val;
-            return this;
-        }
-
-        public Builder withRouteNumberOfDepartureStation(int val) {
-            routeNumberOfDepartureStation = val;
+        public Builder withDepartureStation(String val) {
+            departureStation = val;
             return this;
         }
 
@@ -87,28 +88,28 @@ public class Ticket {
         }
     }
 
+    public String getArrivalStation() {
+        return arrivalStation;
+    }
+
+    public void setArrivalStation(String arrivalStation) {
+        this.arrivalStation = arrivalStation;
+    }
+
+    public String getDepartureStation() {
+        return departureStation;
+    }
+
+    public void setDepartureStation(String departureStation) {
+        this.departureStation = departureStation;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getRouteNumberOfArrivalStation() {
-        return routeNumberOfArrivalStation;
-    }
-
-    public void setRouteNumberOfArrivalStation(int routeNumberOfArrivalStation) {
-        this.routeNumberOfArrivalStation = routeNumberOfArrivalStation;
-    }
-
-    public int getRouteNumberOfDepartureStation() {
-        return routeNumberOfDepartureStation;
-    }
-
-    public void setRouteNumberOfDepartureStation(int routeNumberOfDepartureStation) {
-        this.routeNumberOfDepartureStation = routeNumberOfDepartureStation;
     }
 
     public Train getTrain() {
@@ -130,11 +131,11 @@ public class Ticket {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
+                .add("arrivalStation", arrivalStation)
                 .add("id", id)
                 .add("train", train)
                 .add("user", user)
-                .add("routeNumberOfArrivalStation", routeNumberOfArrivalStation)
-                .add("routeNumberOfDepartureStation", routeNumberOfDepartureStation)
+                .add("departureStation", departureStation)
                 .toString();
     }
 }

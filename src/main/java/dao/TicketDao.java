@@ -45,8 +45,8 @@ public class TicketDao implements Dao {
         }
 
         Ticket ticket = Ticket.newBuilder().withUser(new User(request.getUserDto()))
-                    .withRouteNumberOfDepartureStation(request.getRouteNumberOfDepartureStation())
-                    .withRouteNumberOfArrivalStation(request.getRouteNumberOfArrivalStation())
+                    .withDepartureStation(request.getDepartureStation())
+                    .withArrivalStation(request.getArrivalStation())
                     .withTrain(train)
                     .build();
 
