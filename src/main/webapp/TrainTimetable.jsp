@@ -12,6 +12,9 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
+      <form role = "form" name = "ShowAllTrainForm" action = "ShowAllTrainsServlet" method = post>
+        <button type="submit" class="btn btn-default">Show all trains</button>
+      </form>
 
     </div>
     <div class="col-sm-10 text-left">
@@ -40,10 +43,6 @@
           <input type="date" class="form-control" id = "date" name="date">
         </div>
         <button type="submit" class="btn btn-default">Find</button>
-      </form>
-
-      <form role = "form" name = "ShowAllTrainForm" action = "ShowAllTrainsServlet" method = post>
-        <button type="submit" class="btn btn-default">Show all trains</button>
       </form>
 
       <table class="table table-hover">

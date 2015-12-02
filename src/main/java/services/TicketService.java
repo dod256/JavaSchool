@@ -19,6 +19,7 @@ public class TicketService extends Service {
     }
 
     public static ArrayList<TicketDto> getTicketsByUser(UserDto userDto) {
+        //ToDo replace with Builder function
         User user = User.newBuilder()
                 .withUserTypeId(userDto.getId())
                 .withEmail(userDto.getEmail())
@@ -28,10 +29,8 @@ public class TicketService extends Service {
                 .withBirthdate(new Date(userDto.getBirthdate().getMillis()))
                 .withId(userDto.getId())
                 .build();
-        //ToDo fix this
         ArrayList<Ticket> ticketList = ticketDao.getTicketsByUser(user);
         ArrayList<TicketDto> ticketDtoList = new ArrayList<TicketDto>();
-        //ToDo uncomment after fixing bug
         for(Ticket ticket : ticketList) {
             ticketDtoList.add(new TicketDto(ticket));
         }
