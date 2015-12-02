@@ -2,6 +2,8 @@ package main.java.Servlets;
 
 import main.java.Entities.Train;
 import main.java.data.TrainRequest;
+import main.java.dto.TrainDto;
+import main.java.services.RouteService;
 import main.java.services.TrainService;
 import org.joda.time.DateTime;
 
@@ -16,10 +18,12 @@ public class ShowAllTrainsServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ArrayList<Train> trainList = TrainService.getAllTrains();
-        req.getSession().setAttribute("departureStation", null);
-        req.getSession().setAttribute("arrivalStation", null);
-        req.getSession().setAttribute("trainList", trainList);
-        res.sendRedirect("/TrainTimetable.jsp");
+        ArrayList<TrainDto> trainDtoList = new ArrayList<TrainDto>();
+        for(Train train : trainList) {
+            trainDtoList.add(new TrainDto(train, RouteService.getRouteById(train.getDepartureStation().getRouteId())));
+        }
+        req.getSession().setAttribute("trainList", trainDtoList);
+        res.sendRedirect("/trainInfo.jsp");
     }
 
 

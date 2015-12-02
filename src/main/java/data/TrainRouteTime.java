@@ -3,6 +3,7 @@ package main.java.data;
 import com.google.common.base.MoreObjects;
 import main.java.Entities.Train;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 public class TrainRouteTime {
     private Train train;
@@ -60,12 +61,21 @@ public class TrainRouteTime {
         return arrivalTime;
     }
 
+    public String getArrivalTimeString() {
+        return arrivalTime.toString(DateTimeFormat.longTime());
+    }
+
+
     public void setArrivalTime(DateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
     public DateTime getDepartureTime() {
         return departureTime;
+    }
+
+    public String getDepartureTimeString() {
+        return departureTime.toString(DateTimeFormat.longTime());
     }
 
     public void setDepartureTime(DateTime departureTime) {

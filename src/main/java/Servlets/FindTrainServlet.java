@@ -27,8 +27,8 @@ public class FindTrainServlet extends HttpServlet {
                         .withArrivalStation(arrivalStation)
                         .withDate(date)
                         .build();
-                TrainTimetable trainList = TrainService.getTrains(trainRequest);
-                req.getSession().setAttribute("trainList", trainList);
+                TrainTimetable trainTimetable = TrainService.getTrains(trainRequest);
+                req.getSession().setAttribute("trainTimetable", trainTimetable);
                 res.sendRedirect("/TrainTimetable.jsp");
         }
 }
