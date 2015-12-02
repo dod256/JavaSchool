@@ -19,11 +19,21 @@
       <form role = "form" name = "FindTrainForm" action = "FindTrainServlet" method = post>
         <div class = "form-group">
           <label for = "departureStation"> Departure Station </label>
-          <input type="text" class="form-control" id = "departureStation" name="departureStation">
+          <select class="form-control" id = "departureStation" name="departureStation">
+            <c:set var="stationList" value="${sessionScope.stationList}"/>
+            <c:forEach items="${stationList}" var="station">
+              <option>${station.getName()}</option>
+            </c:forEach>
+          </select>
         </div>
         <div class = "form-group">
           <label for = "arrivalStation"> Arrival Station </label>
-          <input type="text" class="form-control" id = "arrivalStation" name = "arrivalStation">
+          <select class="form-control" id = "arrivalStation" name="arrivalStation">
+            <c:set var="stationList" value="${sessionScope.stationList}"/>
+            <c:forEach items="${stationList}" var="station">
+              <option>${station.getName()}</option>
+            </c:forEach>
+          </select>
         </div>
         <div class = "form-group">
           <label for = "date"> Date </label>

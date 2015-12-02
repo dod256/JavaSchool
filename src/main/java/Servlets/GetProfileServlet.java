@@ -1,6 +1,5 @@
 package main.java.Servlets;
 
-import main.java.Entities.Ticket;
 import main.java.dto.TicketDto;
 import main.java.dto.UserDto;
 import main.java.services.TicketService;

@@ -12,8 +12,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.jsp">Home</a></li>
                 <li><a href="GetProfileServlet">Profile</a></li>
-                <li><a href="StationTimetable.jsp">Station timetable</a></li>
-                <li><a href="TrainTimetable.jsp">Find train</a></li>
+                <li><a href="PrepareStationTimetableServlet">Station timetable</a></li>
+                <li><a href="PrepareFindTrainServlet">Find train</a></li>
                 <c:choose>
                     <c:when test="${sessionScope.currentUser != null && sessionScope.currentUser.getUserTypeId() == 1}">
                         <li><a href="trainManager.jsp">Train manager</a></li>

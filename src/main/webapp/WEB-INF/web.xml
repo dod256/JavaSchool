@@ -85,6 +85,36 @@
         <servlet-class>main.java.Servlets.StationManagerSetActionServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>PrepareStationTimetableServlet</servlet-name>
+        <servlet-class>main.java.Servlets.PrepareStationTimetableServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ShowStationTimetableServlet</servlet-name>
+        <servlet-class>main.java.Servlets.ShowStationTimetableServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PrepareFindTrainServlet</servlet-name>
+        <servlet-class>main.java.Servlets.PrepareFindTrainServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowStationTimetableServlet</servlet-name>
+        <url-pattern>/ShowStationTimetableServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PrepareFindTrainServlet</servlet-name>
+        <url-pattern>/PrepareFindTrainServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PrepareStationTimetableServlet</servlet-name>
+        <url-pattern>/PrepareStationTimetableServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>StationManagerSetActionServlet</servlet-name>
         <url-pattern>/StationManagerSetActionServlet</url-pattern>

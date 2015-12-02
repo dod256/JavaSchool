@@ -3,6 +3,7 @@ package main.java.data;
 import com.google.common.base.MoreObjects;
 import main.java.Entities.Station;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,10 @@ public class StationTimetable {
 
     public DateTime getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        return date.toString(DateTimeFormat.longDate());
     }
 
     public Station getStation() {

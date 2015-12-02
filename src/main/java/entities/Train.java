@@ -11,6 +11,7 @@ import java.sql.Date;
 
 @Entity
 public class Train {
+
     @Id
     private int id;
     private String name;
