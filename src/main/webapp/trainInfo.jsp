@@ -24,7 +24,7 @@
     </div>
     <div class="col-sm-10 text-left">
 
-      
+
 
       <c:choose>
       <c:when test="${sessionScope.trainList != null}">

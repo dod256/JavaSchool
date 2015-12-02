@@ -3,6 +3,8 @@ package main.java.Servlets;
 import main.java.Entities.Ticket;
 import main.java.Entities.Train;
 import main.java.Entities.User;
+import main.java.data.TicketRequest;
+import main.java.dto.UserDto;
 import main.java.services.RouteService;
 import main.java.services.TicketService;
 import main.java.services.TrainService;
@@ -20,21 +22,22 @@ public class BuyTicketServlet extends HttpServlet {
             res.sendRedirect("loginPage.jsp");
             return;
         }
+
         int trainId = Integer.parseInt(req.getParameter("trainId"));
-        Train train = TrainService.getTrain(trainId);
-        int routeNumberOfDepartureStation = 0;
-        int routeNumberOfArrivalStation = 0;
-        if (req.getSession().getAttribute("departureStation") == null) {
-            routeNumberOfDepartureStation = 1;
-            //ToDo think about getting Route length
-            routeNumberOfArrivalStation = RouteService.getRouteById(train.getDepartureStation().getRouteId()).getRouteStations().size();
-        }
-        Ticket ticket = Ticket.newBuilder().withUser((User) req.getSession().getAttribute("currentUser"))
-                .withTrain(train)
-                .withRouteNumberOfDepartureStation(routeNumberOfDepartureStation)
-                .withRouteNumberOfArrivalStation(routeNumberOfArrivalStation)
+
+
+        String departureStation = req.getParameter("departureStation");
+        String arrivalStation = req.getParameter("arrivalStation");
+
+        TicketRequest ticketRequest = TicketRequest.newBuilder()
+                .withTrainId(trainId)
+                .withUserDto((UserDto) req.getSession().getAttribute("currentUser"))
+                //ToDo uncomment
+                //.withArrivalStation(departureStation)
+                //.withDepartureStation(arrivalStation)
                 .build();
-        TicketService.addTicket(ticket);
+        boolean tryToBuy = TicketService.tryToByTicket(ticketRequest);
+
         res.sendRedirect("ticketAdded.jsp");
     }
 
