@@ -1,7 +1,5 @@
 package main.java.data;
 
-import org.joda.time.DateTime;
-
 public class RouteRequest {
 
     private String departureStation;

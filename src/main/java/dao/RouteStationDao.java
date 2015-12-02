@@ -24,10 +24,10 @@ public class RouteStationDao implements Dao {
         return (ArrayList<RouteStation>) em.createQuery("from RouteStation").getResultList();
     }
 
-    public void addRoute(Route route) {
+    public void addRouteStation(RouteStation station) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        em.persist(route);
+        em.persist(station);
         transaction.commit();
     }
 }

@@ -3,10 +3,14 @@ package main.java.services;
 import main.java.Entities.RouteStation;
 import main.java.Entities.Station;
 import main.java.dao.RouteStationDao;
+import main.java.data.NewRoute;
 import main.java.data.Route;
 import main.java.data.RouteRequest;
-import main.java.data.RouteStationTimetable;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
 
+import java.sql.Time;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -14,9 +18,28 @@ public class RouteService extends Service {
 
     private static RouteStationDao routeStationDao = new RouteStationDao(em);
     
-    public static void createRoute(ArrayList<RouteStationTimetable> routeStationTimetables) {
-        int routeId = getRoute
+    public static void createRoute(NewRoute newRoute) {
+        int routeId = RouteLengthService.getFreeRouteId();
+
+        Period onWheel = new Period();
+        for (int i = 0; i < newRoute.getStation().size(); i++) {
+            onWheel = onWheel.plusMinutes(newRoute.getOnWheel().get(i));
+            RouteStation.Builder builder = RouteStation.newBuilder();
+            builder.withArrival(new Time(newRoute.getDepartureTime().plus(onWheel).getMillis()))
+                    .withOnWheel(new Time(0,onWheel.getMinutes(),0))
+                            .withRouteId(routeId)
+                            .withStation(StationService.getStation(newRoute.getStation().get(i)))
+                            .withStationNumber(i + 1)
+                            .withWaitingTime(new Time(0,new Period().plusMinutes(newRoute.getWaitingTime().get(i)).getMinutes(),0));
+            RouteStationService.addRouteStation(builder.build());
+            onWheel = onWheel.plusMinutes(newRoute.getWaitingTime().get(i));
+        }
+
+
+
+        RouteLengthService.addRouteLength(newRoute.getStation().size());
     }
+
 
     public static Route getRouteById(int routeId) {
         Route.Builder builder = Route.newBuilder();

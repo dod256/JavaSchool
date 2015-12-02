@@ -9,6 +9,7 @@ import java.sql.Time;
 @Entity
 public class RouteStation  {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     @ManyToOne
     @JoinColumn(name="stationId")

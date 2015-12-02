@@ -121,6 +121,12 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`UserType` (
 ENGINE = InnoDB;
 
 
+CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteLength` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `routeLength` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 -- -----------------------------------------------------
 -- Table ``.`User`
 -- -----------------------------------------------------
@@ -292,11 +298,11 @@ arrival, waitingTime, onWheel)
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (3, 2, 4, '12:12:00', '00:00:20', '12:12:00');
+ values (2, 3, 4, '12:12:00', '00:00:20', '12:12:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (2, 3, 4, '21:04:00', '00:01:20', '21:04:00');
+ values (3, 2, 4, '21:04:00', '00:01:20', '21:04:00');
  
 
 ###########################################################################
@@ -324,7 +330,13 @@ insert into Timetable (routeStationId, trainId)
  values (1, 1);
 
 ###########################################################################
+insert into RouteLength (routeLength)
+ values (5);
+insert into RouteLength (routeLength)
+ values (3);
+insert into RouteLength (routeLength)
+ values (4);
+insert into RouteLength (routeLength)
+ values (3);
 
 
-
- 
