@@ -3,6 +3,7 @@ package main.java.Servlets;
 import main.java.Entities.User;
 import main.java.services.UserService;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,7 @@ public class AddNewUserServlet extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String birthDate = req.getParameter("birthdate");
         DateTime dt = DateTime.parse(birthDate);
+        System.out.println(dt.toString(DateTimeFormat.fullDate()));
         User user = User.newBuilder()
                 .withEmail(email)
                 .withPassword(password)

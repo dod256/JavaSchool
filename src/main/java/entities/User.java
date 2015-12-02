@@ -27,7 +27,8 @@ public class User {
         firstName = builder.firstName;
         lastName = builder.lastName;
         password = builder.password;
-        userTypeId = 2;
+        userTypeId = builder.userTypeId;
+        id = builder.id;
     }
 
     public int getId() {
@@ -50,6 +51,7 @@ public class User {
         builder.lastName = copy.lastName;
         builder.password = copy.password;
         builder.userTypeId = copy.userTypeId;
+        builder.id = copy.id;
         return builder;
     }
 
@@ -112,12 +114,18 @@ public class User {
         private String lastName;
         private String password;
         private int userTypeId;
+        private int id;
 
         private Builder() {
         }
 
         public Builder withBirthdate(Date val) {
             birthdate = val;
+            return this;
+        }
+
+        public Builder withId(int val) {
+            id = val;
             return this;
         }
 

@@ -1,6 +1,7 @@
 package main.java.Servlets;
 
 import main.java.Entities.User;
+import main.java.dto.UserDto;
 import main.java.services.UserService;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         User user = UserService.getUserByEmail(email);
         if (user != null && user.checkPassword(password)) {
-            req.getSession().setAttribute("currentUser", user);
+            req.getSession().setAttribute("currentUser", new UserDto(user));
             res.sendRedirect("GetProfileServlet");
         } else {
             res.sendRedirect("loginPage.jsp");

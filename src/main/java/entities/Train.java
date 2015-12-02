@@ -1,15 +1,12 @@
 package main.java.Entities;
 
 import com.google.common.base.MoreObjects;
-import main.java.data.Route;
-import main.java.services.RouteService;
 import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.lang.reflect.Array;
 import java.sql.Date;
 
 @Entity

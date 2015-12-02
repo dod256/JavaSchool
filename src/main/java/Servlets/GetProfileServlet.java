@@ -1,7 +1,8 @@
 package main.java.Servlets;
 
 import main.java.Entities.Ticket;
-import main.java.Entities.User;
+import main.java.dto.TicketDto;
+import main.java.dto.UserDto;
 import main.java.services.TicketService;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ public class GetProfileServlet extends HttpServlet {
             res.sendRedirect("loginPage.jsp");
             return;
         }
-        ArrayList<Ticket> ticketList = TicketService.getTicketsByUser((User) req.getSession().getAttribute("currentUser"));
+        ArrayList<TicketDto> ticketList = TicketService.getTicketsByUser((UserDto) req.getSession().getAttribute("currentUser"));
         req.getSession().setAttribute("ticketList", ticketList);
         res.sendRedirect("profile.jsp");
     }
