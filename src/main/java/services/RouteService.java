@@ -5,6 +5,7 @@ import main.java.Entities.Station;
 import main.java.dao.RouteStationDao;
 import main.java.data.Route;
 import main.java.data.RouteRequest;
+import main.java.data.RouteStationTimetable;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,8 +14,8 @@ public class RouteService extends Service {
 
     private static RouteStationDao routeStationDao = new RouteStationDao(em);
     
-    public static void addRoute(Route route) {
-        routeStationDao.addRoute(route);
+    public static void createRoute(ArrayList<RouteStationTimetable> routeStationTimetables) {
+        int routeId = getRoute
     }
 
     public static Route getRouteById(int routeId) {
@@ -73,9 +74,25 @@ public class RouteService extends Service {
         return routes;
     }
 
-    //todo: add easy magic
     public static ArrayList<Route> getRoutes(RouteRequest request) {
-        return null;
+        ArrayList<Route> result = new ArrayList<Route>();
+        ArrayList<Route> allRoute = getAllRoutes();
+        for (Route route: allRoute) {
+            boolean hasDepartureStation = false;
+            boolean hasArrivalStation = false;
+            for (Station station: route.getStations()) {
+                if (station.getName().equals(request.getArrivalStation())) {
+                    hasArrivalStation = true;
+                }
+                if (station.getName().equals(request.getDepartureStation())) {
+                    hasDepartureStation = true;
+                }
+            }
+            if (hasArrivalStation && hasDepartureStation) {
+                result.add(route);
+            }
+        }
+        return result;
     }
 
 }
