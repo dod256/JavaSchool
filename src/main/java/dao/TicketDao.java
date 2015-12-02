@@ -27,6 +27,7 @@ public class TicketDao implements Dao {
         Train train = em.find(Train.class, request.getTrainId());
         if (train.getNumberOfFreeSeats() == 0) {
             //todo: add logging! (current train have not free seets any more)
+            //and throw exception!!!
             transaction.commit();
             return false;
         }
@@ -48,10 +49,10 @@ public class TicketDao implements Dao {
         }
 
         Ticket ticket = Ticket.newBuilder().withUser(new User(request.getUserDto()))
-                    .withDepartureStation(request.getDepartureStation())
-                    .withArrivalStation(request.getArrivalStation())
-                    .withTrain(train)
-                    .build();
+                .withDepartureStation(request.getDepartureStation())
+                .withArrivalStation(request.getArrivalStation())
+                .withTrain(train)
+                .build();
 
         em.persist(ticket);
         train.setNumberOfFreeSeats(train.getNumberOfFreeSeats() - 1);

@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class StationService extends Service {
 
@@ -23,8 +24,16 @@ public class StationService extends Service {
     public static Station getStation(String name) {
         return stationDao.getStation(name);
     }
-    //todo: sort
-    public static ArrayList<Station> getAllStations() {return stationDao.getAllStations();}
+
+    public static ArrayList<Station> getAllStations() {
+        ArrayList<Station> result = stationDao.getAllStations();
+        result.sort(new Comparator<Station>() {
+            public int compare(Station o1, Station o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        return result;
+    }
 
 
     public static StationTimetable getTimetable(Station station, DateTime transitDate) {
