@@ -1,6 +1,7 @@
 package main.java.Entities;
 
 import com.google.common.base.MoreObjects;
+import main.java.dto.UserDto;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -17,9 +18,17 @@ public class User {
     private String lastName;
     private String password;
     private Date birthdate;
-
     private int userTypeId;
 
+    public User (UserDto userDto) {
+        this.id = userDto.getId();
+        this.email = userDto.getEmail();
+        this.firstName = userDto.getFirstName();
+        this.lastName = userDto.getLastName();
+        this.password = userDto.getPassword();
+        this.birthdate = new Date(userDto.getBirthdate().getMillis());
+        this.userTypeId = userDto.getUserTypeId();
+    }
 
     private User(Builder builder) {
         birthdate = builder.birthdate;

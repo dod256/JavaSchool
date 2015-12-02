@@ -14,7 +14,6 @@ public class TrainService extends Service {
 
     private static TrainDao trainDao = new TrainDao(em);
 
-    //todo:addLogic first priority!!!
     public static TrainTimetable getTrains(TrainRequest trainRequest) {
         Station departureStation = StationService.getStation(trainRequest.getDepartureStation());
         Station arrivalStation = StationService.getStation(trainRequest.getArrivalStation());

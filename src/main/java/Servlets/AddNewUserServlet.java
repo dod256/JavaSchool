@@ -28,6 +28,7 @@ public class AddNewUserServlet extends HttpServlet {
                 .withFirstName(firstName)
                 .withLastName(lastName)
                 .withBirthdate(new Date(dt.getMillis()))
+                .withUserTypeId(2)
                 .build();
         UserService.addUser(user);
         res.sendRedirect("/loginPage.jsp");
