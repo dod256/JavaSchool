@@ -100,6 +100,36 @@
         <servlet-class>main.java.Servlets.PrepareFindTrainServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ShowPassengersServlet</servlet-name>
+        <servlet-class>main.java.Servlets.ShowPassengersServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CreateRouteServlet</servlet-name>
+        <servlet-class>main.java.Servlets.CreateRouteServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AddStationToRouteServlet</servlet-name>
+        <servlet-class>main.java.Servlets.AddStationToRouteServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddStationToRouteServlet</servlet-name>
+        <url-pattern>/AddStationToRouteServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CreateRouteServlet</servlet-name>
+        <url-pattern>/CreateRouteServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ShowPassengersServlet</servlet-name>
+        <url-pattern>/ShowPassengersServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ShowStationTimetableServlet</servlet-name>
         <url-pattern>/ShowStationTimetableServlet</url-pattern>

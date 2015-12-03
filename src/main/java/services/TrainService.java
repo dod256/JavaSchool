@@ -6,6 +6,7 @@ import main.java.Entities.Timetable;
 import main.java.Entities.Train;
 import main.java.dao.TrainDao;
 import main.java.data.*;
+import main.java.dto.UserDto;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -75,7 +76,8 @@ public class TrainService extends Service {
         return trainDao.getTrain(id);
     }
 
-
-
-
+    //ToDo magic
+    public static ArrayList<UserDto> getPassangers(int trainId) {
+        return null;
+    }
 }

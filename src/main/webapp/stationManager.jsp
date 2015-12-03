@@ -20,6 +20,13 @@
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
+      <form role = "form" name = "SetAddActionForm" action = "StationManagerSetActionServlet" method = post>
+        <div class = "form-group">
+          <input type="hidden" name = "actionType" value = "showAll">
+        </div>
+        <button type = "submit" class = "btn btn-default">ShowAll</button>
+      </form>
+
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
@@ -39,6 +46,15 @@
             </div>
             <button type = "submit" class = "btn btn-default">Create</button>
           </form>
+        </c:when>
+        <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
+          ${sessionScope.currentManagerAction = null}
+          <h1>All Stations</h1>
+          <c:set var="stationList" value="${sessionScope.actionObjectList}"/>
+          <c:forEach items="${stationList}" var="station">
+            <h5>${station.getName()}</h5>
+          </c:forEach>
+          ${sessionScope.actionObjectList = null}
         </c:when>
       </c:choose>
 

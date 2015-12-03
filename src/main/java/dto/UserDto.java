@@ -46,7 +46,7 @@ public class UserDto {
         return password;
     }
 
-    public DateTime getBirthdate() {
+    public DateTime getBirthDate() {
         return birthdate;
     }
 

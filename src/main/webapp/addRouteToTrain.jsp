@@ -12,27 +12,37 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
+      <form role = "form" name = "ShowAllRoutesForm" action = "ShowAllRoutesServlet" method = post>
+        <button type = "submit" class = "btn btn-default">Show all routes</button>
+      </form>
     </div>
     <div class="col-sm-10 text-left">
 
-      <form for = "form" name = "ShowRoutesForm" action = "ShowRoutesServlet" method = post>
+      <h1> Select Route </h1>
+
+      <form role = "form" name = "ShowRoutesForm" action = "ShowRoutesServlet" method = post>
         <div class = "form-group">
           <label for = "departureStation"> Departure Station </label>
-          <input type="text" class="form-control" id = "departureStation" name="departureStation">
+          <select class="form-control" id = "departureStation" name="departureStation">
+            <c:set var="stationList" value="${sessionScope.stationList}"/>
+            <c:forEach items="${stationList}" var="station">
+              <option>${station.getName()}</option>
+            </c:forEach>
+          </select>
         </div>
         <div class = "form-group">
           <label for = "arrivalStation"> Arrival Station </label>
-          <input type="text" class="form-control" id = "arrivalStation" name="arrivalStation">
+          <select class="form-control" id = "arrivalStation" name="arrivalStation">
+            <c:set var="stationList" value="${sessionScope.stationList}"/>
+            <c:forEach items="${stationList}" var="station">
+              <option>${station.getName()}</option>
+            </c:forEach>
+          </select>
         </div>
         <button type = "submit" class = "btn btn-default">Find</button>
       </form>
 
-      <form role = "form" name = "ShowAllRoutesForm" action = "ShowAllRoutesServlet" method = post>
-          <button type = "submit" class = "btn btn-default">Show all routes</button>
-      </form>
-
-
-        <table class="table table-hover">
+       <table class="table table-hover">
           <thead>
           <tr>
             <th>Routes</th>
@@ -50,9 +60,9 @@
                     <button type = "submit" class = "btn btn-default">Add</button>
                 </form>
               </td>
-              <c:set var="stationList" value="${route.getStations()}"/>
-              <c:forEach items="${stationList}" var="station">
-                <td>${station.getName()}</td>
+              <c:set var="routeStationList" value="${route.getRouteStations()}"/>
+              <c:forEach items="${routeStationList}" var="routeStation">
+                <td><h5>${routeStation.getStation().getName()} <small> ${routeStation.getArrival()}</small></h5></td>
               </c:forEach>
             </tr>
           </c:forEach>

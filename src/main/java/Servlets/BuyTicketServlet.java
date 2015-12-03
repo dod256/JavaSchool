@@ -37,7 +37,7 @@ public class BuyTicketServlet extends HttpServlet {
             req.getSession().setAttribute("currentMessage", "Ticket purhased");
         } else {
             req.getSession().setAttribute("currentMessageType", "danger");
-            req.getSession().setAttribute("currentMessage", "Error");
+            req.getSession().setAttribute("currentMessage", "Couldn't purhase ticket");
         }
         res.sendRedirect("showMessage.jsp");
     }

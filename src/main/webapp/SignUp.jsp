@@ -39,7 +39,7 @@
         </div>
         <div class = "form-group">
           <label for = "email"> Email </label>
-          <input type="text" class="form-control" id = "email" name="email">
+          <input type="email" class="form-control" id = "email" name="email">
         </div>
         <div class = "form-group">
           <label for = "password"> Create password </label>
@@ -47,7 +47,7 @@
         </div>
         <div class = "form-group">
           <label for = "secondPassword"> Confirm your password </label>
-          <input type="password" class="form-control" id = "secondPassword" name="password">
+          <input type="password" class="form-control" id = "secondPassword" name="secondPassword">
         </div>
         <div class = "form-group">
           <label for = "date"> Birthday </label>

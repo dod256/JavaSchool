@@ -12,9 +12,7 @@ public class StationManagerSetActionServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String actionType = req.getParameter("actionType");
-        if (actionType.equals("delete")) {
-            req.getSession().setAttribute("actionObjectList", StationService.getAllStations());
-        }
+        req.getSession().setAttribute("actionObjectList", StationService.getAllStations());
         req.getSession().setAttribute("currentManagerAction", actionType);
         res.sendRedirect("stationManager.jsp");
     }

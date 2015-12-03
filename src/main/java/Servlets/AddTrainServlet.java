@@ -2,6 +2,7 @@ package main.java.Servlets;
 
 
 import main.java.Entities.Train;
+import main.java.services.StationService;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ public class AddTrainServlet extends HttpServlet {
                 .withDepartureDate(date)
                 .withName(name);
         req.getSession().setAttribute("trainBuilder", trainBuilder);
+        req.getSession().setAttribute("stationList", StationService.getAllStations());
         res.sendRedirect("addRouteToTrain.jsp");
     }
 }

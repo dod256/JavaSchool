@@ -84,7 +84,7 @@
                     <td><h5>${train.getNumberOfFreeSeats()}</h5></td>
                     <td><h5>${train.getCost()}</h5></td>
                     <td>
-                      <form role = "form" name = "ShowPassangersForm" action = "ShowPassangersServlet" method = post>
+                      <form role = "form" name = "ShowPassengersForm" action = "ShowPassengersServlet" method = post>
                         <div class = "form-group">
                           <input type="hidden" name = "trainId" value = ${train.getId()}>
                         </div>
@@ -96,7 +96,7 @@
               </table>
             </c:when>
           </c:choose>
-
+          ${sessionScope.actionObjectList = null}
         </c:when>
       </c:choose>
 

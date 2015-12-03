@@ -26,7 +26,7 @@ public class User {
         this.firstName = userDto.getFirstName();
         this.lastName = userDto.getLastName();
         this.password = userDto.getPassword();
-        this.birthdate = new Date(userDto.getBirthdate().getMillis());
+        this.birthdate = new Date(userDto.getBirthDate().getMillis());
         this.userTypeId = userDto.getUserTypeId();
     }
 
