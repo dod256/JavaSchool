@@ -46,7 +46,7 @@ public class StationService extends Service {
             DateTime departureDate = new DateTime(train.getDepartureDate().getTime());
             if (departureStation.getStation().equals(station) && departureDate.getYear() == transitDate.getYear() && departureDate.getDayOfYear() == transitDate.getDayOfYear()) {
                 result.add(TrainArrivalTime.newBuilder()
-                            .withArrivalTime(new DateTime(train.getDepartureDate().getTime()).plus(departureStation.getArrival().getTime())).withTrain(train).build());
+                            .withArrivalTime(new DateTime(train.getDepartureDate().getTime()).plus(departureStation.getArrival().getTime()).plusHours(4)).withTrain(train).build());
             } else {
                 departureDate = departureDate.plus(departureStation.getArrival().getTime());
                 for (Route route: routes) {

@@ -6,11 +6,8 @@ import main.java.dao.RouteStationDao;
 import main.java.data.NewRoute;
 import main.java.data.Route;
 import main.java.data.RouteRequest;
-import org.joda.time.DateTime;
 import org.joda.time.Period;
-
 import java.sql.Time;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -34,8 +31,6 @@ public class RouteService extends Service {
             RouteStationService.addRouteStation(builder.build());
             onWheel = onWheel.plusMinutes(newRoute.getWaitingTime().get(i));
         }
-
-
 
         RouteLengthService.addRouteLength(newRoute.getStation().size());
     }

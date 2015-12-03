@@ -268,7 +268,7 @@ arrival, waitingTime, onWheel)
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (7, 2, 2, '04:39:00', '00:00:20', '10:01:00');
+ values (7, 2, 2, '08:39:00', '00:00:20', '14:01:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
@@ -294,15 +294,15 @@ arrival, waitingTime, onWheel)
 #msk->tver->spb
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (1, 1, 4, '00:00:00', '00:00:20', '04:28:00');
+ values (1, 1, 4, '00:00:00', '00:00:20', '00:00:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (2, 3, 4, '12:12:00', '00:00:20', '12:12:00');
+ values (2, 3, 4, '04:12:00', '00:00:20', '04:12:00');
 
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, onWheel)
- values (3, 2, 4, '21:04:00', '00:01:20', '21:04:00');
+ values (3, 2, 4, '10:14:00', '00:01:20', '10:14:00');
  
 
 ###########################################################################
@@ -321,7 +321,7 @@ cost, arrivalStation, departureStation, departureDate)
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate)
- values ("Pride of Africa", 100, 99, 10000, 15, 14, "2015-12-01");
+ values ("Pride of Africa", 100, 99, 10000, 14, 13, "2015-12-01");
 
 
 ###########################################################################

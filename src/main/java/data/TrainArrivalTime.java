@@ -51,7 +51,7 @@ public class TrainArrivalTime {
         return arrivalTime;
     }
 
-    public String getArrivalTimeString() { return arrivalTime.toString(DateTimeFormat.longTime()); }
+    public String getArrivalTimeString() { return arrivalTime.toString(DateTimeFormat.shortTime()); }
 
     public Train getTrain() {
         return train;
