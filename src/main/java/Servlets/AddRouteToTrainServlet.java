@@ -4,6 +4,8 @@ import main.java.Entities.RouteStation;
 import main.java.Entities.Train;
 import main.java.data.Route;
 import main.java.data.TrainRoute;
+import main.java.helper.OperationResultMessage;
+import main.java.helper.Validator;
 import main.java.services.RouteService;
 import main.java.services.TrainService;
 
@@ -17,7 +19,14 @@ import java.util.ArrayList;
 public class AddRouteToTrainServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("routeId"));
+        String routeIdString = req.getParameter("routeId");
+        OperationResultMessage message = Validator.checkNumber(routeIdString);
+        if (message.getStatus().equals("danger")) {
+            req.getSession().setAttribute("operationResultMessage", message);
+            res.sendRedirect("showMessage.jsp");
+            return;
+        }
+        int id = Integer.parseInt(routeIdString);
         Route route = RouteService.getRouteById(id);
         Train.Builder trainBuilder = (Train.Builder) req.getSession().getAttribute("trainBuilder");
         ArrayList<RouteStation> routeStations = route.getRouteStations();
@@ -30,8 +39,7 @@ public class AddRouteToTrainServlet extends HttpServlet{
                 .build();
         TrainService.createTrain(trainRoute);
 
-        req.getSession().setAttribute("currentMessageType", "success");
-        req.getSession().setAttribute("currentMessage", "Train created");
+        req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "Train created"));
         res.sendRedirect("showMessage.jsp");
     }
 

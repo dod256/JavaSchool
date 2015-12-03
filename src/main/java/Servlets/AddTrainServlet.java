@@ -2,6 +2,8 @@ package main.java.Servlets;
 
 
 import main.java.Entities.Train;
+import main.java.helper.OperationResultMessage;
+import main.java.helper.Validator;
 import main.java.services.StationService;
 import org.joda.time.DateTime;
 
@@ -14,10 +16,40 @@ import java.io.IOException;
 public class AddTrainServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        DateTime date = DateTime.parse(req.getParameter("date"));
-        int numberOfSeats = Integer.parseInt(req.getParameter("numberOfSeats"));
-        int cost = Integer.parseInt(req.getParameter("cost"));
+        String dateString = req.getParameter("date");
+        OperationResultMessage message = Validator.checkDate(dateString);
+        if (message.getStatus().equals("danger")) {
+            req.getSession().setAttribute("operationResultMessage", message);
+            res.sendRedirect("showMessage.jsp");
+            return;
+        }
+        DateTime date = DateTime.parse(dateString);
+        String numberOfSeatsString = req.getParameter("numberOfSeats");
+        message = Validator.checkNumber(numberOfSeatsString);
+        if (message.getStatus().equals("danger")) {
+            req.getSession().setAttribute("operationResultMessage", message);
+            res.sendRedirect("showMessage.jsp");
+            return;
+        }
+        int numberOfSeats = Integer.parseInt(numberOfSeatsString);
+        String costString = req.getParameter("cost");
+        message = Validator.checkNumber(costString);
+        if (message.getStatus().equals("danger")) {
+            req.getSession().setAttribute("operationResultMessage", message);
+            res.sendRedirect("showMessage.jsp");
+            return;
+        }
+        int cost = Integer.parseInt(costString);
+
         String name = req.getParameter("name");
+
+        message = Validator.generalCheck(name);
+        if (message.getStatus().equals("danger")) {
+            req.getSession().setAttribute("operationResultMessage", message);
+            res.sendRedirect("showMessage.jsp");
+            return;
+        }
+
         Train.Builder trainBuilder = Train.newBuilder().withCost(cost)
                 .withNumberOfSeats(numberOfSeats)
                 .withNumberOfFreeSeats(numberOfSeats)

@@ -51,11 +51,6 @@
     </servlet>
 
     <servlet>
-        <servlet-name>AddRouteServlet</servlet-name>
-        <servlet-class>main.java.Servlets.AddRouteServlet</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>BuyTicketServlet</servlet-name>
         <servlet-class>main.java.Servlets.BuyTicketServlet</servlet-class>
     </servlet>
@@ -213,11 +208,6 @@
     <servlet-mapping>
         <servlet-name>AddRouteToTrainServlet</servlet-name>
         <url-pattern>/AddRouteToTrainServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>AddRouteServlet</servlet-name>
-        <url-pattern>/AddRouteServlet</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

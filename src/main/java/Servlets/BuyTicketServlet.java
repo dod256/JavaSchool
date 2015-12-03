@@ -2,6 +2,7 @@ package main.java.Servlets;
 
 import main.java.data.TicketRequest;
 import main.java.dto.UserDto;
+import main.java.helper.OperationResultMessage;
 import main.java.services.TicketService;
 
 import javax.servlet.ServletException;
@@ -33,11 +34,9 @@ public class BuyTicketServlet extends HttpServlet {
         boolean tryToBuy = TicketService.tryToByTicket(ticketRequest);
 
         if (tryToBuy) {
-            req.getSession().setAttribute("currentMessageType", "success");
-            req.getSession().setAttribute("currentMessage", "Ticket purhased");
+            req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "Ticket purhased"));
         } else {
-            req.getSession().setAttribute("currentMessageType", "danger");
-            req.getSession().setAttribute("currentMessage", "Couldn't purhase ticket");
+            req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("danger", "Couldn't purhase ticket"));
         }
         res.sendRedirect("showMessage.jsp");
     }

@@ -1,6 +1,7 @@
 package main.java.Servlets;
 
 import main.java.data.NewRoute;
+import main.java.helper.OperationResultMessage;
 import main.java.services.RouteService;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -40,11 +41,9 @@ public class CreateRouteServlet extends HttpServlet {
         RouteService.createRoute(newRoute);
         boolean tryToCreateRoute = true;
         if (tryToCreateRoute) {
-            req.getSession().setAttribute("currentMessageType", "success");
-            req.getSession().setAttribute("currentMessage", "Route created");
+            req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "Route created"));
         } else {
-            req.getSession().setAttribute("currentMessageType", "danger");
-            req.getSession().setAttribute("currentMessage", "Couldn't create route");
+            req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("danger", "Couldn't create route"));
         }
         res.sendRedirect("showMessage.jsp");
 
