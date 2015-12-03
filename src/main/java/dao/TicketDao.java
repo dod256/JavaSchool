@@ -19,7 +19,6 @@ public class TicketDao implements Dao {
         this.em = em;
     }
 
-
     public boolean tryToByTicket(TicketRequest request) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
@@ -61,20 +60,9 @@ public class TicketDao implements Dao {
         return true;
     }
 
-    public void addTicket(Ticket ticket) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(ticket);
-        transaction.commit();
-    }
-
     public ArrayList<Ticket> getTicketsByUser(User user) {
         Query query = em.createQuery("from Ticket where userId = " + user.getId());
         return (ArrayList<Ticket>) query.getResultList();
     }
 
-    public ArrayList<Ticket> getTickets() {
-        Query query = em.createQuery("from Ticket");
-        return (ArrayList<Ticket>) query.getResultList();
-    }
 }

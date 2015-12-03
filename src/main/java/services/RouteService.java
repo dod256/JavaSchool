@@ -35,12 +35,10 @@ public class RouteService extends Service {
         RouteLengthService.addRouteLength(newRoute.getStation().size());
     }
 
-
     public static Route getRouteById(int routeId) {
         Route.Builder builder = Route.newBuilder();
         builder.withRouteId(routeId);
         ArrayList<RouteStation> routeStations = routeStationDao.getRouteStationsBy(routeId);
-
 
         routeStations.sort(new Comparator<RouteStation>() {
             public int compare(RouteStation o1, RouteStation o2) {
@@ -69,7 +67,6 @@ public class RouteService extends Service {
                 }
             }
         });
-
 
         Route.Builder routeBuilder = Route.newBuilder().withRouteId(allRouteStations.get(0).getRouteId());
         ArrayList<Station> stations = new ArrayList<Station>();
