@@ -6,7 +6,6 @@
                 <li><a href="GetProfileServlet">Profile</a></li>
                 <li><a href="PrepareStationTimetableServlet">Station timetable</a></li>
                 <li><a href="PrepareFindTrainServlet">Find train</a></li>
-                <li><a href="trainInfo.jsp">Train info</a></li>
                 <c:choose>
                     <c:when test="${sessionScope.currentUser != null && sessionScope.currentUser.getUserTypeId() == 1}">
                         <li><a href="trainManager.jsp">Train manager</a></li>
