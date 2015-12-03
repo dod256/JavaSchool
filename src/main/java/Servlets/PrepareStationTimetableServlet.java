@@ -10,7 +10,8 @@ import java.io.IOException;
 
 public class PrepareStationTimetableServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         req.getSession().setAttribute("stationList", StationService.getAllStations());
         res.sendRedirect("StationTimetable.jsp");
     }

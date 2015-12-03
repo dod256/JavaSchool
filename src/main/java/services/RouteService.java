@@ -3,7 +3,7 @@ package main.java.services;
 import main.java.Entities.RouteStation;
 import main.java.Entities.Station;
 import main.java.dao.RouteStationDao;
-import main.java.data.NewRoute;
+import main.java.data.NewRouteImpl;
 import main.java.data.Route;
 import main.java.data.RouteRequest;
 import org.joda.time.Period;
@@ -11,28 +11,31 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/*
+* Implements logic connected to routes
+* */
 public class RouteService extends Service {
 
     private static RouteStationDao routeStationDao = new RouteStationDao(em);
     
-    public static void createRoute(NewRoute newRoute) {
+    public static void createRoute(NewRouteImpl newRouteImpl) {
         int routeId = RouteLengthService.getFreeRouteId();
 
         Period onWheel = new Period();
-        for (int i = 0; i < newRoute.getStation().size(); i++) {
-            onWheel = onWheel.plusMinutes(newRoute.getOnWheel().get(i));
+        for (int i = 0; i < newRouteImpl.getStation().size(); i++) {
+            onWheel = onWheel.plusMinutes(newRouteImpl.getOnWheel().get(i));
             RouteStation.Builder builder = RouteStation.newBuilder();
-            builder.withArrival(new Time(newRoute.getDepartureTime().plus(onWheel).getMillis()))
-                    .withOnWheel(new Time(0,onWheel.getMinutes(),0))
+            builder.withArrival(new Time(newRouteImpl.getDepartureTime().plus(onWheel).getMillis()))
+                    .withOnWheel(new Time(0, onWheel.getMinutes(), 0))
                             .withRouteId(routeId)
-                            .withStation(StationService.getStation(newRoute.getStation().get(i)))
+                            .withStation(StationService.getStation(newRouteImpl.getStation().get(i)))
                             .withStationNumber(i + 1)
-                            .withWaitingTime(new Time(0,new Period().plusMinutes(newRoute.getWaitingTime().get(i)).getMinutes(),0));
+                            .withWaitingTime(new Time(0, new Period().plusMinutes(newRouteImpl.getWaitingTime().get(i)).getMinutes(), 0));
             RouteStationService.addRouteStation(builder.build());
-            onWheel = onWheel.plusMinutes(newRoute.getWaitingTime().get(i));
+            onWheel = onWheel.plusMinutes(newRouteImpl.getWaitingTime().get(i));
         }
 
-        RouteLengthService.addRouteLength(newRoute.getStation().size());
+        RouteLengthService.addRouteLength(newRouteImpl.getStation().size());
     }
 
     public static Route getRouteById(int routeId) {
@@ -53,7 +56,6 @@ public class RouteService extends Service {
         return builder.withStations(stations).withRouteStations(routeStations).build();
     }
 
-    //todo: add unit test!
     public static ArrayList<Route> getAllRoutes() {
         ArrayList<Route> routes = new ArrayList<Route>();
         ArrayList<RouteStation> allRouteStations = routeStationDao.getAllRouteStations();
@@ -75,8 +77,11 @@ public class RouteService extends Service {
         routeStations.add(allRouteStations.get(0));
         for (int i = 1; i < allRouteStations.size(); i++) {
             RouteStation currentRouteStation = allRouteStations.get(i);
-            if (currentRouteStation.getRouteId() != allRouteStations.get(i-1).getRouteId()) {
-                routes.add(routeBuilder.withStations(stations).withRouteStations(routeStations).build());
+            if (currentRouteStation.getRouteId() != allRouteStations.get(i - 1).getRouteId()) {
+                routes.add(routeBuilder
+                        .withStations(stations)
+                        .withRouteStations(routeStations)
+                        .build());
                 stations = new ArrayList<Station>();
                 routeStations = new ArrayList<RouteStation>();
                 routeBuilder.withRouteId(currentRouteStation.getRouteId());

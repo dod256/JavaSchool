@@ -7,6 +7,10 @@ import org.joda.time.DateTime;
 import javax.persistence.*;
 import java.sql.Date;
 
+
+/*
+* Represent User table from the DB
+* */
 @Entity
 @Table
 public class User {

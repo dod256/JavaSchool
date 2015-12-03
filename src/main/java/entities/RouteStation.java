@@ -6,6 +6,9 @@ import com.google.common.base.Objects;
 import javax.persistence.*;
 import java.sql.Time;
 
+/*
+* Represent RouteStation table from the DB
+* */
 @Entity
 public class RouteStation  {
     @Id

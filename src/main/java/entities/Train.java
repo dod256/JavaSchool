@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.sql.Date;
 
+/*
+* Represent Train table from the DB
+* */
 @Entity
 public class Train {
 

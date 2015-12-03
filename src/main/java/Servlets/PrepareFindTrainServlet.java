@@ -10,8 +10,10 @@ import java.io.IOException;
 
 public class PrepareFindTrainServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getSession().setAttribute("stationList", StationService.getAllStations());
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        req.getSession().setAttribute("stationList",
+                StationService.getAllStations());
         res.sendRedirect("TrainTimetable.jsp");
     }
 

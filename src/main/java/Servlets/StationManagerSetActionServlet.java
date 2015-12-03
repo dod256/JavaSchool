@@ -10,7 +10,8 @@ import java.io.IOException;
 
 public class StationManagerSetActionServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         String actionType = req.getParameter("actionType");
         req.getSession().setAttribute("actionObjectList", StationService.getAllStations());
         req.getSession().setAttribute("currentManagerAction", actionType);

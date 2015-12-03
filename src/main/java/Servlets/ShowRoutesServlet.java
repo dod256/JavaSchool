@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 public class ShowRoutesServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         String departureStation = req.getParameter("departureStation");
         String arrivalStation = req.getParameter("arrivalStation");;
         RouteRequest request = RouteRequest.newBuilder()

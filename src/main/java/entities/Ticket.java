@@ -5,6 +5,9 @@ import com.google.common.base.Objects;
 
 import javax.persistence.*;
 
+/*
+* Represent Ticket table from the DB
+* */
 @Entity
 public class Ticket {
     @Id

@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+* Response for buying the tickets
+* */
 public class BuyTicketServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         if (req.getSession().getAttribute("currentUser") == null) {
             res.sendRedirect("loginPage.jsp");
             return;
@@ -31,7 +35,7 @@ public class BuyTicketServlet extends HttpServlet {
                 .withArrivalStation(departureStation)
                 .withDepartureStation(arrivalStation)
                 .build();
-        boolean tryToBuy = TicketService.tryToByTicket(ticketRequest);
+        boolean tryToBuy = TicketService.tryToPurhaseTicket(ticketRequest);
 
         if (tryToBuy) {
             req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "Ticket purhased"));

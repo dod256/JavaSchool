@@ -6,6 +6,10 @@ import main.java.dto.UserDto;
 
 import java.util.ArrayList;
 
+/*
+*  Implements logic connected to users
+*
+* */
 public class UserService extends Service {
 
     private static UserDao userDao = new UserDao(em);

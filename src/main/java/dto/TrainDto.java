@@ -74,9 +74,4 @@ public class TrainDto {
         route = trainRoute;
     }
 
-    //ToDo add some magic
-    public DateTime getArrivalTime(Station station) {
-        return null;
-    }
-
 }

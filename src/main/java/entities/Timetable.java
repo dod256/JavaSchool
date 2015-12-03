@@ -4,6 +4,9 @@ import com.google.common.base.MoreObjects;
 
 import javax.persistence.*;
 
+/*
+* Represent Timetable table from the DB
+* */
 @Entity
 public class Timetable {
     @Id

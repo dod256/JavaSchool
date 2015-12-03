@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 public class ShowStationTimetableServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         String stationName = req.getParameter("name");
 
         Station station = StationService.getStation(stationName);

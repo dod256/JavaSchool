@@ -3,6 +3,9 @@ package main.java.Entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/*
+* Represent RouteLength table from the DB
+* */
 @Entity
 public class RouteLength {
     @Id

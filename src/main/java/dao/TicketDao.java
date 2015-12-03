@@ -19,7 +19,7 @@ public class TicketDao implements Dao {
         this.em = em;
     }
 
-    public boolean tryToByTicket(TicketRequest request) {
+    public boolean tryToPurhaseTicket(TicketRequest request) {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 

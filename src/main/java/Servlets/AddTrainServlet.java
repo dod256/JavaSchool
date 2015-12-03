@@ -3,7 +3,7 @@ package main.java.Servlets;
 
 import main.java.Entities.Train;
 import main.java.helper.OperationResultMessage;
-import main.java.helper.Validator;
+import main.java.helper.ValidatorImpl;
 import main.java.services.StationService;
 import org.joda.time.DateTime;
 
@@ -13,11 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+* Response for filling general info about train
+* */
 public class AddTrainServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         String dateString = req.getParameter("date");
-        OperationResultMessage message = Validator.checkDate(dateString);
+        OperationResultMessage message = ValidatorImpl.checkDate(dateString);
         if (message.getStatus().equals("danger")) {
             req.getSession().setAttribute("operationResultMessage", message);
             res.sendRedirect("showMessage.jsp");
@@ -25,7 +29,7 @@ public class AddTrainServlet extends HttpServlet {
         }
         DateTime date = DateTime.parse(dateString);
         String numberOfSeatsString = req.getParameter("numberOfSeats");
-        message = Validator.checkNumber(numberOfSeatsString);
+        message = ValidatorImpl.checkNumber(numberOfSeatsString);
         if (message.getStatus().equals("danger")) {
             req.getSession().setAttribute("operationResultMessage", message);
             res.sendRedirect("showMessage.jsp");
@@ -33,7 +37,7 @@ public class AddTrainServlet extends HttpServlet {
         }
         int numberOfSeats = Integer.parseInt(numberOfSeatsString);
         String costString = req.getParameter("cost");
-        message = Validator.checkNumber(costString);
+        message = ValidatorImpl.checkNumber(costString);
         if (message.getStatus().equals("danger")) {
             req.getSession().setAttribute("operationResultMessage", message);
             res.sendRedirect("showMessage.jsp");
@@ -43,7 +47,7 @@ public class AddTrainServlet extends HttpServlet {
 
         String name = req.getParameter("name");
 
-        message = Validator.generalCheck(name);
+        message = ValidatorImpl.generalCheck(name);
         if (message.getStatus().equals("danger")) {
             req.getSession().setAttribute("operationResultMessage", message);
             res.sendRedirect("showMessage.jsp");

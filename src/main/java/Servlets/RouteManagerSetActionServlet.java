@@ -11,7 +11,8 @@ import java.io.IOException;
 
 public class RouteManagerSetActionServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         String actionType = req.getParameter("actionType");
         if (actionType.equals("showAll")) {
             req.getSession().setAttribute("actionObjectList", RouteService.getAllRoutes());

@@ -8,6 +8,10 @@ import main.java.dto.TicketDto;
 import main.java.dto.UserDto;
 import java.util.ArrayList;
 
+/*
+*  Implements logic connected to tickets
+*
+* */
 public class TicketService extends Service {
     private static TicketDao ticketDao = new TicketDao(em);
 
@@ -21,8 +25,8 @@ public class TicketService extends Service {
         return ticketDtoList;
     }
 
-    public static boolean tryToByTicket(TicketRequest request) {
-        return ticketDao.tryToByTicket(request);
+    public static boolean tryToPurhaseTicket(TicketRequest request) {
+        return ticketDao.tryToPurhaseTicket(request);
     }
 
 

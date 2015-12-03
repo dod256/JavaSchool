@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 public class ShowAllTrainsServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
         ArrayList<Train> trainList = TrainService.getAllTrains();
         ArrayList<TrainDto> trainDtoList = new ArrayList<TrainDto>();
         for(Train train : trainList) {

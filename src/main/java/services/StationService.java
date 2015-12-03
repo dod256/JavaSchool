@@ -13,6 +13,10 @@ import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/*
+*  Implements logic connected to stations
+*
+* */
 public class StationService extends Service {
 
     private static StationDao stationDao = new StationDao(em);
@@ -35,6 +39,14 @@ public class StationService extends Service {
     }
 
 
+    /*
+    *  Find all trains that arrival in selected day to selected station
+    *
+    * @param Station and date
+    *
+    * @return List of train with arrival time
+    *
+    * */
     public static StationTimetable getTimetable(Station station, DateTime transitDate) {
         ArrayList<TrainArrivalTime> result = new ArrayList<TrainArrivalTime>();
 

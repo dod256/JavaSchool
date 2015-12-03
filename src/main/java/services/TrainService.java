@@ -8,10 +8,24 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
+
+/*
+*  Implements logic connected to trains
+*
+* */
 public class TrainService extends Service {
 
     private static TrainDao trainDao = new TrainDao(em);
 
+
+    /*
+    * Using for finding trains, that depart from selected station at selected day, and arrival to another selected station
+    *
+    * @param Two stations and date
+    *
+    * @return All the required train
+    *
+    * */
     public static TrainTimetable getTrains(TrainRequest trainRequest) {
         Station departureStation = StationService.getStation(trainRequest.getDepartureStation());
         Station arrivalStation = StationService.getStation(trainRequest.getArrivalStation());
@@ -37,6 +51,14 @@ public class TrainService extends Service {
         return resultBuilder.withTrainRouteTimes(times).build();
     }
 
+    /*
+    *  Counting when selected train arrival at selected station
+    *
+    *  @param Train and station
+    *
+    *  @return Date
+    *
+    * */
     private static DateTime trainPassStation(Train train, Station arrivalStation) {
         int routeId = train.getDepartureStation().getRouteId();
         ArrayList<Route> allRoutes = RouteService.getAllRoutes();

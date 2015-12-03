@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 public class FindTrainServlet extends HttpServlet {
 
-        public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        public void doPost(HttpServletRequest req, HttpServletResponse res)
+                throws ServletException, IOException {
                 String departureStation = req.getParameter("departureStation");
                 String arrivalStation = req.getParameter("arrivalStation");
                 req.getSession().setAttribute("departureStation", departureStation);

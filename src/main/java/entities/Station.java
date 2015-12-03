@@ -6,6 +6,9 @@ import com.google.common.base.Objects;
 import javax.persistence.*;
 import java.util.Set;
 
+/*
+* Represent Station table from the DB
+* */
 @Entity
 public class Station {
 

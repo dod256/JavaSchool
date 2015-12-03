@@ -1,5 +1,9 @@
 package main.java.Entities;
 
+
+/*
+* Represent UserType table from the DB
+* */
 public enum UserType {
     ADMIN(1), CUSTOMER(2);
 
