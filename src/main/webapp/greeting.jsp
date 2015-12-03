@@ -8,7 +8,7 @@
   </c:when>
   <c:otherwise>
     <div class="alert alert-info">
-      <strong>Hello, ${sessionScope.currentUser.getFirstName()} ${sessionScope.currentUser.getLastName()}.</strong>
+      <strong>You logged as ${sessionScope.currentUser.getFirstName()} ${sessionScope.currentUser.getLastName()}.</strong>
     </div>
   </c:otherwise>
 </c:choose>
