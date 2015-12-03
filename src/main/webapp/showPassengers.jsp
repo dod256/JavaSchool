@@ -18,6 +18,9 @@
 
       <c:set var="passengerList" value="${sessionScope.passengerList}"/>
       <c:choose>
+        <c:when test="${passengerList == null || passengerList.size() == 0}">
+          <h1>No registered passengers</h1>
+        </c:when>
         <c:when test="${passengerList != null && passengerList.size() > 0}">
           <h1>Passengers</h1>
           <table class="table table-hover">

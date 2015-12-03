@@ -4,6 +4,7 @@ import main.java.Entities.Station;
 import main.java.Entities.Train;
 import main.java.data.Route;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 public class TrainDto {
 
@@ -38,6 +39,8 @@ public class TrainDto {
     public DateTime getDepartureDate() {
         return departureDate;
     }
+
+    public String getDepartureDateString() {return departureDate.toString(DateTimeFormat.longDate()); }
 
     public int getNumberOfSeats() {
         return numberOfSeats;

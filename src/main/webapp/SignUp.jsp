@@ -4,21 +4,6 @@
 <head>
   <title>Sign Up</title>
   <%@ include file = "/style.jsp" %>
-  <script>
-    function validate() {
-      var x = document.forms["newUserForm"]["firstName"].value;
-      if (x.length  < 1 || x.length > 30) {
-        alert("invalid length");
-        return false;
-      }
-      var re1 = new RegExp("[a-zA-Z0-9]+");
-      if (!re1.test(x)) {
-        alert("invalid symbols");
-        return false;
-      }
-      return true;
-    }
-  </script>
 <body>
 
 <%@ include file = "/menu.jsp" %>

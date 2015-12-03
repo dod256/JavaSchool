@@ -69,6 +69,7 @@
                 <thead>
                 <tr>
                   <td>Train Name</td>
+                  <td>Departure Date</td>
                   <td>Departure Station</td>
                   <td>Arrival Station</td>
                   <td>Number of free seats</td>
@@ -79,6 +80,7 @@
                 <c:forEach items="${trainList}" var="train">
                   <tr>
                     <td><h5>${train.getName()}</h5></td>
+                    <td><h5>${train.getDepartureDateString()}</h5></td>
                     <td><h5>${train.getDepartureStation()} <small>${train.getDepartureStationTime()}</small></h5></td>
                     <td><h5>${train.getArrivalStation()} <small>${train.getArrivalStationTime()}</small></h5></td>
                     <td><h5>${train.getNumberOfFreeSeats()}</h5></td>
