@@ -1,4 +1,4 @@
-package main.java.services;
+package main.java.helper;
 
 public class OperationResultMessage {
 

@@ -15,15 +15,16 @@
     </div>
     <div class="col-sm-10 text-left">
       <h1>Status</h1>
+
       <c:choose>
-        <c:when test="${sessionScope.currentMessageType == 'success'}">
+        <c:when test="${sessionScope.operationResultMessage.getStatus() == 'success'}">
           <div class="alert alert-success">
-            <strong>Success!</strong> ${sessionScope.currentMessage}
+            <strong>${sessionScope.operationResultMessage.getMessage()}</strong>
           </div>
         </c:when>
-        <c:when test="${sessionScope.currentMessageType == 'danger'}">
+        <c:when test="${sessionScope.operationResultMessage.getStatus() == 'danger'}">
           <div class="alert alert-danger">
-            <strong>Fail!</strong> ${sessionScope.currentMessage}
+            <strong>${sessionScope.operationResultMessage.getMessage()}</strong>
           </div>
         </c:when>
       </c:choose>
