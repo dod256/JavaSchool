@@ -45,7 +45,7 @@ public class Validator {
         if (isEmpty.getStatus().equals("danger")) {
             return isEmpty;
         }
-        Pattern p = Pattern.compile("^[@a-zA-Z0-9_-]+?$");
+        Pattern p = Pattern.compile("^[@a-zA-Z0-9_\\-\\.]+?$");
         Matcher m = p.matcher(email);
         if (m.matches()) {
             return new OperationResultMessage("success", "Email is ok");

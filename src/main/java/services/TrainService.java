@@ -1,9 +1,6 @@
 package main.java.services;
 
-import main.java.Entities.RouteStation;
-import main.java.Entities.Station;
-import main.java.Entities.Timetable;
-import main.java.Entities.Train;
+import main.java.Entities.*;
 import main.java.dao.TrainDao;
 import main.java.data.*;
 import main.java.dto.UserDto;
@@ -76,8 +73,12 @@ public class TrainService extends Service {
         return trainDao.getTrain(id);
     }
 
-    //ToDo magic
     public static ArrayList<UserDto> getPassangers(int trainId) {
-        return null;
+        ArrayList<Ticket> tickets = TicketService.getTicketByTrain(trainId);
+        ArrayList<UserDto> result = new ArrayList<UserDto>();
+        for (Ticket ticket: tickets) {
+            result.add(new UserDto(ticket.getUser()));
+        }
+        return result;
     }
 }

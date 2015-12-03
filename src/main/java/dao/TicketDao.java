@@ -65,4 +65,9 @@ public class TicketDao implements Dao {
         return (ArrayList<Ticket>) query.getResultList();
     }
 
+
+    public ArrayList<Ticket> getTicketByTrain(int trainId) {
+        Query query = em.createQuery("from Ticket where trainId = " + trainId);
+        return (ArrayList<Ticket>) query.getResultList();
+    }
 }

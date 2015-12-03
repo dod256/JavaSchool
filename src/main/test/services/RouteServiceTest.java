@@ -1,13 +1,12 @@
 package main.test.services;
 
-import junit.framework.TestCase;
 
-/**
- * Created by Dod on 12/3/2015.
- */
-public class RouteServiceTest extends TestCase {
+import main.java.data.RouteRequest;
+import org.junit.Test;
 
+public class RouteServiceTest {
+    @Test
     public void testGetRoutes() throws Exception {
-
+        RouteRequest routeRequest = RouteRequest.newBuilder().withArrivalStation("B").withDepartureStation("A").build();
     }
 }

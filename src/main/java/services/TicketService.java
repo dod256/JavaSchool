@@ -24,4 +24,9 @@ public class TicketService extends Service {
     public static boolean tryToByTicket(TicketRequest request) {
         return ticketDao.tryToByTicket(request);
     }
+
+
+    public static ArrayList<Ticket> getTicketByTrain(int trainId) {
+        return ticketDao.getTicketByTrain(trainId);
+    }
 }
