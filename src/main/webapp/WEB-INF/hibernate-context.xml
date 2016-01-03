@@ -14,35 +14,36 @@
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	   		">
 
-    <context:property-placeholder location="/WEB-INF/spring.properties" />
+    <context:component-scan  base-package="chuggaChugga" />
 
-    <!-- Enable annotation style of managing transactions -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!-- Declare the Hibernate SessionFactory for retrieving Hibernate sessions -->
-    <!-- See http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/orm/hibernate3/annotation/AnnotationSessionFactoryBean.html -->
-    <!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/SessionFactory.html -->
-    <!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/Session.html -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
-          p:dataSource-ref="dataSource"
-          p:configLocation="${hibernate.config}"
-          p:packagesToScan="chuggaChugga"/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost/chugga_chugga"/>
+        <property name="username" value="$root" />
+        <property name="password" value="$root"/>
 
-    <!-- Declare a datasource that has pooling capabilities-->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close"
-          p:driverClass="${app.jdbc.driverClassName}"
-          p:jdbcUrl="${app.jdbc.url}"
-          p:user="${app.jdbc.username}"
-          p:password="${app.jdbc.password}"
-          p:acquireIncrement="5"
-          p:idleConnectionTestPeriod="60"
-          p:maxPoolSize="100"
-          p:maxStatements="50"
-          p:minPoolSize="10" />
+    </bean>
 
-    <!-- Declare a transaction manager-->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory" />
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>chuggaChugga.model</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager"  class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
 </beans>

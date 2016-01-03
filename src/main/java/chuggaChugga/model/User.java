@@ -13,6 +13,7 @@ import java.sql.Date;
 * Represent User table from the DB
 * */
 @Entity
+@Table(name = "User")
 public class User implements Serializable {
 
     @Id
