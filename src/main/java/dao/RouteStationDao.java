@@ -1,7 +1,6 @@
-package main.java.dao;
+package dao;
 
-import main.java.Entities.RouteStation;
-import main.java.data.Route;
+import model.RouteStation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

@@ -1,6 +1,6 @@
-package main.java.dao;
+package dao;
 
-import main.java.Entities.Timetable;
+import model.Timetable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

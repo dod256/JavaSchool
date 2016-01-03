@@ -1,6 +1,6 @@
 package main.test.helper;
 
-import main.java.helper.ValidatorImpl;
+import helper.ValidatorImpl;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 

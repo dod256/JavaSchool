@@ -1,10 +1,9 @@
-package main.java.dao;
+package dao;
 
-import main.java.Entities.Ticket;
-import main.java.Entities.Train;
-import main.java.Entities.User;
-import main.java.data.TicketRequest;
-import main.java.dto.UserDto;
+import model.Ticket;
+import model.Train;
+import model.User;
+import data.TicketRequest;
 import org.joda.time.DateTime;
 
 import javax.persistence.EntityManager;

@@ -1,8 +1,7 @@
-package main.java.data;
+package data;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import main.java.Entities.Station;
+import model.Station;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;

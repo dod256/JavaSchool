@@ -1,8 +1,7 @@
-package main.java.dto;
+package dto;
 
-import main.java.Entities.Station;
-import main.java.Entities.Train;
-import main.java.data.Route;
+import model.Train;
+import data.Route;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 

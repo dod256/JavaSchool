@@ -1,4 +1,4 @@
-package main.java.data;
+package data;
 
 import org.joda.time.DateTime;
 

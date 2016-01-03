@@ -1,7 +1,7 @@
-package main.java.data;
+package data;
 
 import com.google.common.base.MoreObjects;
-import main.java.dto.UserDto;
+import dto.UserDto;
 
 public class TicketRequest {
 

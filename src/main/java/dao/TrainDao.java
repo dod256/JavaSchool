@@ -1,7 +1,6 @@
-package main.java.dao;
+package dao;
 
-import main.java.Entities.Train;
-import main.java.Entities.User;
+import model.Train;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

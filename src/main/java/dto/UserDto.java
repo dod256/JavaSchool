@@ -1,6 +1,6 @@
-package main.java.dto;
+package dto;
 
-import main.java.Entities.User;
+import model.User;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 

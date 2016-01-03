@@ -1,7 +1,7 @@
-package main.java.data;
+package data;
 
 import com.google.common.base.MoreObjects;
-import main.java.Entities.Train;
+import model.Train;
 
 public class TrainRoute {
 

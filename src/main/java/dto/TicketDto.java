@@ -1,7 +1,7 @@
-package main.java.dto;
+package dto;
 
-import main.java.Entities.Ticket;
-import main.java.services.RouteService;
+import model.Ticket;
+import service.RouteService;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 

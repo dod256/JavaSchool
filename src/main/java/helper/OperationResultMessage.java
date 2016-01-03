@@ -1,4 +1,4 @@
-package main.java.helper;
+package helper;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;

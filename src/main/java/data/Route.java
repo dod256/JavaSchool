@@ -1,8 +1,8 @@
-package main.java.data;
+package data;
 
 import com.google.common.base.MoreObjects;
-import main.java.Entities.RouteStation;
-import main.java.Entities.Station;
+import model.RouteStation;
+import model.Station;
 
 import java.util.ArrayList;
 

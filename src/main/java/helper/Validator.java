@@ -1,4 +1,4 @@
-package main.java.helper;
+package helper;
 
 public interface Validator {
 

@@ -1,7 +1,7 @@
 package main.test.services;
 
 
-import main.java.data.RouteRequest;
+import data.RouteRequest;
 import org.junit.Test;
 
 public class RouteServiceTest {

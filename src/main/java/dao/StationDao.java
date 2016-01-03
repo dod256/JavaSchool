@@ -1,10 +1,9 @@
-package main.java.dao;
+package dao;
 
-import main.java.Entities.Station;
+import model.Station;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 

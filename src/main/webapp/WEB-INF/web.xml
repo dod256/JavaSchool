@@ -3,111 +3,120 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>Chugga Chugga</display-name>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>main.java.Servlets.LoginServlet</servlet-class>
+        <servlet-class>servlet.LoginServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>main.java.Servlets.LogoutServlet</servlet-class>
+        <servlet-class>servlet.LogoutServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>SignUp</servlet-name>
-        <servlet-class>main.java.Servlets.AddNewUserServlet</servlet-class>
+        <servlet-class>servlet.AddNewUserServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>FindTrainServlet</servlet-name>
-        <servlet-class>main.java.Servlets.FindTrainServlet</servlet-class>
+        <servlet-class>servlet.FindTrainServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ShowAllTrainsServlet</servlet-name>
-        <servlet-class>main.java.Servlets.ShowAllTrainsServlet</servlet-class>
+        <servlet-class>servlet.ShowAllTrainsServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddTrainServlet</servlet-name>
-        <servlet-class>main.java.Servlets.AddTrainServlet</servlet-class>
+        <servlet-class>servlet.AddTrainServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ShowRoutesServlet</servlet-name>
-        <servlet-class>main.java.Servlets.ShowRoutesServlet</servlet-class>
+        <servlet-class>servlet.ShowRoutesServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ShowAllRoutesServlet</servlet-name>
-        <servlet-class>main.java.Servlets.ShowAllRoutesServlet</servlet-class>
+        <servlet-class>servlet.ShowAllRoutesServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddRouteToTrainServlet</servlet-name>
-        <servlet-class>main.java.Servlets.AddRouteToTrainServlet</servlet-class>
+        <servlet-class>servlet.AddRouteToTrainServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>BuyTicketServlet</servlet-name>
-        <servlet-class>main.java.Servlets.BuyTicketServlet</servlet-class>
+        <servlet-class>servlet.BuyTicketServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddStationServlet</servlet-name>
-        <servlet-class>main.java.Servlets.AddStationServlet</servlet-class>
+        <servlet-class>servlet.AddStationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>GetProfileServlet</servlet-name>
-        <servlet-class>main.java.Servlets.GetProfileServlet</servlet-class>
+        <servlet-class>servlet.GetProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>TrainManagerSetActionServlet</servlet-name>
-        <servlet-class>main.java.Servlets.TrainManagerSetActionServlet</servlet-class>
+        <servlet-class>servlet.TrainManagerSetActionServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RouteManagerSetActionServlet</servlet-name>
-        <servlet-class>main.java.Servlets.RouteManagerSetActionServlet</servlet-class>
+        <servlet-class>servlet.RouteManagerSetActionServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>StationManagerSetActionServlet</servlet-name>
-        <servlet-class>main.java.Servlets.StationManagerSetActionServlet</servlet-class>
+        <servlet-class>servlet.StationManagerSetActionServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>PrepareStationTimetableServlet</servlet-name>
-        <servlet-class>main.java.Servlets.PrepareStationTimetableServlet</servlet-class>
+        <servlet-class>servlet.PrepareStationTimetableServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ShowStationTimetableServlet</servlet-name>
-        <servlet-class>main.java.Servlets.ShowStationTimetableServlet</servlet-class>
+        <servlet-class>servlet.ShowStationTimetableServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>PrepareFindTrainServlet</servlet-name>
-        <servlet-class>main.java.Servlets.PrepareFindTrainServlet</servlet-class>
+        <servlet-class>servlet.PrepareFindTrainServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ShowPassengersServlet</servlet-name>
-        <servlet-class>main.java.Servlets.ShowPassengersServlet</servlet-class>
+        <servlet-class>servlet.ShowPassengersServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>CreateRouteServlet</servlet-name>
-        <servlet-class>main.java.Servlets.CreateRouteServlet</servlet-class>
+        <servlet-class>servlet.CreateRouteServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddStationToRouteServlet</servlet-name>
-        <servlet-class>main.java.Servlets.AddStationToRouteServlet</servlet-class>
+        <servlet-class>servlet.AddStationToRouteServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -215,8 +224,17 @@
         <url-pattern>/BuyTicketServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/*.html</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/pages/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>
