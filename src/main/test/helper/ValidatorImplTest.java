@@ -1,6 +1,6 @@
 package main.test.helper;
 
-import helper.ValidatorImpl;
+import chuggaChugga.helper.ValidatorImpl;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 

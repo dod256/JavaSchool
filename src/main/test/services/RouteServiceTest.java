@@ -1,7 +1,7 @@
 package main.test.services;
 
 
-import data.RouteRequest;
+import chuggaChugga.data.RouteRequest;
 import org.junit.Test;
 
 public class RouteServiceTest {
