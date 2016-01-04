@@ -10,6 +10,7 @@ import chuggaChugga.data.TrainArrivalTime;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 * */
 
 @Service
+@Transactional
 public class StationServiceImpl implements StationService {
 
     @Autowired
@@ -32,6 +34,7 @@ public class StationServiceImpl implements StationService {
     public void addStation(Station station) {
         stationDao.addStation(station);
     }
+
     public Station getStation(String name) {
         return stationDao.getStation(name);
     }
@@ -41,7 +44,6 @@ public class StationServiceImpl implements StationService {
         result.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
         return result;
     }
-
 
     /*
     *  Find all trains that arrival in selected day to selected station

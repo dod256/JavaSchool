@@ -4,13 +4,15 @@ import chuggaChugga.dao.TimetableDao;
 import chuggaChugga.model.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /*
 *  Implements connection between trains and routes in DB
 *
 * */
 
- @Service
+@Service
+@Transactional
 public class TimetableServiceImpl implements TimetableService {
 
     @Autowired

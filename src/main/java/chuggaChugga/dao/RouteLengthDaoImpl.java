@@ -1,27 +1,28 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.RouteLength;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import java.util.ArrayList;
+import javax.annotation.Resource;
 import java.util.List;
 
 @Repository
 public class RouteLengthDaoImpl implements RouteLengthDao {
 
+    @Resource(name="sessionFactory")
+    private SessionFactory sessionFactory;
+
     public void addRouteLength(RouteLength routeLength) {
-        /*EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(routeLength);
-        transaction.commit();*/
+        Session session = sessionFactory.openSession();
+        session.save(routeLength);
+        session.close();
     }
 
     public List<RouteLength> getAllRouteLength() {
-       // return em.createQuery("from RouteLength").getResultList();
-        return null;
+        return (List<RouteLength>) sessionFactory
+                .openSession()
+                .createCriteria(RouteLength.class)
+                .list();
     }
-
-
 }
