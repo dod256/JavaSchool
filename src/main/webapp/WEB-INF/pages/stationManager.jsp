@@ -13,18 +13,25 @@
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
 
-      <form role = "form" name = "SetAddActionForm" action = "StationManagerSetActionServlet" method = post>
+      <form role = "form" name = "setAddStationActionForm" action = "setAddStationAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "create">
+          <input type="hidden" name = "actionType" value = "createStation">
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
-      <form role = "form" name = "SetAddActionForm" action = "StationManagerSetActionServlet" method = post>
+      <form role = "form" name = "setShowAllStationsActionForm" action = "setShowAllStationsAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "showAll">
+          <input type="hidden" name = "actionType" value = "showAllStations">
         </div>
-        <button type = "submit" class = "btn btn-default">ShowAll</button>
+        <button type = "submit" class = "btn btn-default">Show all stations</button>
+      </form>
+
+      <form role = "form" name = "setFindStationActionForm" action = "setFindStationAction.form" method = post>
+        <div class = "form-group">
+          <input type="hidden" name = "actionType" value = "findStation">
+        </div>
+        <button type = "submit" class = "btn btn-default">Show all stations</button>
       </form>
 
     </div>
@@ -36,10 +43,10 @@
             <strong>Please, select action</strong>
           </div>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'create'}">
+        <c:when test="${sessionScope.currentManagerAction == 'createStation'}">
           ${sessionScope.currentManagerAction = null}
           <h1>Create station</h1>
-          <form role = "form" name = "AddStationForm" action = "AddStationServlet" method = post>
+          <form role = "form" name = "AddStationForm" action = "addStation.form" method = post>
             <div class = "form-group">
               <label for = "name"> Name </label>
               <input type="text" class="form-control" id = "name" name="name">
@@ -47,10 +54,10 @@
             <button type = "submit" class = "btn btn-default">Create</button>
           </form>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
+        <c:when test="${sessionScope.currentManagerAction == 'showAllStations'}">
           ${sessionScope.currentManagerAction = null}
           <h1>All Stations</h1>
-          <c:set var="stationList" value="${sessionScope.actionObjectList}"/>
+          <c:set var="stationList" value="${sessionScope.stationList}"/>
           <c:forEach items="${stationList}" var="station">
             <h5>${station.getName()}</h5>
           </c:forEach>
