@@ -1,21 +1,6 @@
 package chuggaChugga.servlet;
 
-import chuggaChugga.model.RouteStation;
-import chuggaChugga.model.Train;
-import chuggaChugga.data.Route;
-import chuggaChugga.data.TrainRoute;
-import chuggaChugga.helper.OperationResultMessage;
-import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.service.RouteServiceImpl;
-import chuggaChugga.service.TrainService;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class AddRouteToTrainServlet extends HttpServlet {
 /*
@@ -35,9 +20,9 @@ public class AddRouteToTrainServlet extends HttpServlet {
         int id = Integer.parseInt(routeIdString);
         Route route =
                 RouteServiceImpl.getRouteById(id);
-        Train.Builder trainBuilder = (Train.Builder)
+        TrainDataSet.Builder trainBuilder = (TrainDataSet.Builder)
                 req.getSession().getAttribute("trainBuilder");
-        ArrayList<RouteStation> routeStations =
+        ArrayList<RouteStationDataSet> routeStations =
                 route.getRouteStations();
         trainBuilder = trainBuilder
                 .withDepartureStation(routeStations.get(0))
@@ -51,7 +36,7 @@ public class AddRouteToTrainServlet extends HttpServlet {
         trainService.createTrain(trainRoute);
 
         req.getSession().setAttribute("operationResultMessage",
-                new OperationResultMessage("success", "Train created"));
+                new OperationResultMessage("success", "TrainDataSet created"));
         res.sendRedirect("/WEB-INF/pages/showMessage.jsp");
     }
 */

@@ -30,7 +30,7 @@ CREATE DATABASE IF NOT EXISTS chugga_chugga DEFAULT CHARACTER SET utf8 ;
 USE `chugga_chugga` ;
 
 -- -----------------------------------------------------
--- Table ``.`Station`
+-- Table ``.`StationDataSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Station` (
   `name` VARCHAR(30) NULL,
@@ -40,7 +40,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`RouteStation`
+-- Table ``.`RouteStationDataSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -61,7 +61,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`Train`
+-- Table ``.`TrainDataSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Train` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -89,7 +89,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`Timetable`
+-- Table ``.`TimetableDataSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Timetable` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteLength` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table ``.`User`
+-- Table ``.`UserDataSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`User` (
   `email` VARCHAR(45) NULL,
@@ -149,7 +149,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`Ticket`
+-- Table ``.`TicketDataSet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,

@@ -1,8 +1,8 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.TicketDao;
-import chuggaChugga.model.Ticket;
-import chuggaChugga.model.User;
+import chuggaChugga.model.TicketDataSet;
+import chuggaChugga.model.UserDataSet;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
@@ -25,10 +25,10 @@ public class TicketServiceImpl implements TicketService {
     private TicketDao ticketDao;
 
     public ArrayList<TicketDto> getTicketsByUser(UserDto userDto) {
-        User user = new User(userDto);
-        ArrayList<Ticket> ticketList = (ArrayList<Ticket>) ticketDao.getTicketsByUser(user);
+        UserDataSet user = new UserDataSet(userDto);
+        ArrayList<TicketDataSet> ticketList = (ArrayList<TicketDataSet>) ticketDao.getTicketsByUser(user);
         ArrayList<TicketDto> ticketDtoList = new ArrayList<>();
-        for(Ticket ticket : ticketList) {
+        for(TicketDataSet ticket : ticketList) {
             ticketDtoList.add(new TicketDto(ticket));
         }
         return ticketDtoList;
@@ -39,7 +39,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
 
-    public ArrayList<Ticket> getTicketByTrain(int trainId) {
-        return (ArrayList<Ticket>) ticketDao.getTicketByTrain(trainId);
+    public ArrayList<TicketDataSet> getTicketByTrain(int trainId) {
+        return (ArrayList<TicketDataSet>) ticketDao.getTicketByTrain(trainId);
     }
 }

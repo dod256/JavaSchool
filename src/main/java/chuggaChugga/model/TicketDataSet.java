@@ -5,27 +5,27 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.*;
 
 /*
-* Represent Ticket table from the DB
+* Represent TicketDataSet table from the DB
 * */
 @Entity
 @Table(name = "Ticket")
-public class Ticket {
+public class TicketDataSet {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
     @JoinColumn(name="trainId")
-    private Train train;
+    private TrainDataSet train;
 
     @ManyToOne
     @JoinColumn(name="userId")
-    private User user;
+    private UserDataSet user;
 
     private String arrivalStation;
     private String departureStation;
 
-    private Ticket(Builder builder) {
+    private TicketDataSet(Builder builder) {
         arrivalStation = builder.arrivalStation;
         id = builder.id;
         train = builder.train;
@@ -33,14 +33,14 @@ public class Ticket {
         departureStation = builder.departureStation;
     }
 
-    public Ticket() {
+    public TicketDataSet() {
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public static Builder newBuilder(Ticket copy) {
+    public static Builder newBuilder(TicketDataSet copy) {
         Builder builder = new Builder();
         builder.arrivalStation = copy.arrivalStation;
         builder.id = copy.id;
@@ -54,8 +54,8 @@ public class Ticket {
     public static final class Builder {
         private String arrivalStation;
         private int id;
-        private Train train;
-        private User user;
+        private TrainDataSet train;
+        private UserDataSet user;
         private String departureStation;
 
         private Builder() {
@@ -71,12 +71,12 @@ public class Ticket {
             return this;
         }
 
-        public Builder withTrain(Train val) {
+        public Builder withTrain(TrainDataSet val) {
             train = val;
             return this;
         }
 
-        public Builder withUser(User val) {
+        public Builder withUser(UserDataSet val) {
             user = val;
             return this;
         }
@@ -86,8 +86,8 @@ public class Ticket {
             return this;
         }
 
-        public Ticket build() {
-            return new Ticket(this);
+        public TicketDataSet build() {
+            return new TicketDataSet(this);
         }
     }
 
@@ -115,19 +115,19 @@ public class Ticket {
         this.id = id;
     }
 
-    public Train getTrain() {
+    public TrainDataSet getTrain() {
         return train;
     }
 
-    public void setTrain(Train train) {
+    public void setTrain(TrainDataSet train) {
         this.train = train;
     }
 
-    public User getUser() {
+    public UserDataSet getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDataSet user) {
         this.user = user;
     }
 

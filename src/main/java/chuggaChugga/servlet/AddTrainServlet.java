@@ -1,17 +1,7 @@
 package chuggaChugga.servlet;
 
 
-import chuggaChugga.model.Train;
-import chuggaChugga.helper.OperationResultMessage;
-import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.service.StationServiceImpl;
-import org.joda.time.DateTime;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /*
 * Response for filling general info about train
@@ -54,7 +44,7 @@ public class AddTrainServlet extends HttpServlet {
             return;
         }
 
-        Train.Builder trainBuilder = Train.newBuilder().withCost(cost)
+        TrainDataSet.Builder trainBuilder = TrainDataSet.newBuilder().withCost(cost)
                 .withNumberOfSeats(numberOfSeats)
                 .withNumberOfFreeSeats(numberOfSeats)
                 .withDepartureDate(date)

@@ -1,9 +1,8 @@
 package chuggaChugga.service;
 
-import chuggaChugga.model.Timetable;
-import org.springframework.stereotype.Service;
+import chuggaChugga.model.TimetableDataSet;
 
 
 public interface TimetableService {
-    void addTimetable(Timetable timetable);
+    void addTimetable(TimetableDataSet timetable);
 }

@@ -1,11 +1,11 @@
 package chuggaChugga.data;
 
 import com.google.common.base.MoreObjects;
-import chuggaChugga.model.Train;
+import chuggaChugga.model.TrainDataSet;
 
 public class TrainRoute {
 
-    private Train train;
+    private TrainDataSet train;
     private Route route;
 
     private TrainRoute(Builder builder) {
@@ -27,7 +27,7 @@ public class TrainRoute {
 
     public static final class Builder {
         private Route route;
-        private Train train;
+        private TrainDataSet train;
 
         private Builder() {
         }
@@ -37,7 +37,7 @@ public class TrainRoute {
             return this;
         }
 
-        public Builder withTrain(Train val) {
+        public Builder withTrain(TrainDataSet val) {
             train = val;
             return this;
         }
@@ -55,11 +55,11 @@ public class TrainRoute {
         this.route = route;
     }
 
-    public Train getTrain() {
+    public TrainDataSet getTrain() {
         return train;
     }
 
-    public void setTrain(Train train) {
+    public void setTrain(TrainDataSet train) {
         this.train = train;
     }
 

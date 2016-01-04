@@ -6,26 +6,26 @@ import javax.persistence.*;
 import java.sql.Time;
 
 /*
-* Represent RouteStation table from the DB
+* Represent RouteStationDataSet table from the DB
 * */
 @Entity
 @Table(name = "RouteStation")
-public class RouteStation  {
+public class RouteStationDataSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn(name="stationId")
-    private Station station;
+    private StationDataSet station;
     private int stationNumber;
     private int routeId;
     private Time arrival;
     private Time waitingTime;
     private Time onWheel;
 
-    public RouteStation(){}
+    public RouteStationDataSet(){}
 
-    private RouteStation(Builder builder) {
+    private RouteStationDataSet(Builder builder) {
         arrival = builder.arrival;
         id = builder.id;
         station = builder.station;
@@ -39,7 +39,7 @@ public class RouteStation  {
         return new Builder();
     }
 
-    public static Builder newBuilder(RouteStation copy) {
+    public static Builder newBuilder(RouteStationDataSet copy) {
         Builder builder = new Builder();
         builder.arrival = copy.arrival;
         builder.id = copy.id;
@@ -55,7 +55,7 @@ public class RouteStation  {
     public static final class Builder {
         private Time arrival;
         private int id;
-        private Station station;
+        private StationDataSet station;
         private int stationNumber;
         private int routeId;
         private Time waitingTime;
@@ -79,7 +79,7 @@ public class RouteStation  {
             return this;
         }
 
-        public Builder withStation(Station val) {
+        public Builder withStation(StationDataSet val) {
             station = val;
             return this;
         }
@@ -99,8 +99,8 @@ public class RouteStation  {
             return this;
         }
 
-        public RouteStation build() {
-            return new RouteStation(this);
+        public RouteStationDataSet build() {
+            return new RouteStationDataSet(this);
         }
     }
 
@@ -132,11 +132,11 @@ public class RouteStation  {
         this.routeId = routeId;
     }
 
-    public Station getStation() {
+    public StationDataSet getStation() {
         return station;
     }
 
-    public void setStation(Station station) {
+    public void setStation(StationDataSet station) {
         this.station = station;
     }
 

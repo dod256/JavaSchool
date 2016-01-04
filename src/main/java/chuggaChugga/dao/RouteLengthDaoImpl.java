@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.RouteLength;
+import chuggaChugga.model.RouteLengthDataSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -13,16 +13,16 @@ public class RouteLengthDaoImpl implements RouteLengthDao {
     @Resource(name="sessionFactory")
     private SessionFactory sessionFactory;
 
-    public void addRouteLength(RouteLength routeLength) {
+    public void addRouteLength(RouteLengthDataSet routeLength) {
         Session session = sessionFactory.openSession();
         session.save(routeLength);
         session.close();
     }
 
-    public List<RouteLength> getAllRouteLength() {
-        return (List<RouteLength>) sessionFactory
+    public List<RouteLengthDataSet> getAllRouteLength() {
+        return (List<RouteLengthDataSet>) sessionFactory
                 .openSession()
-                .createCriteria(RouteLength.class)
+                .createCriteria(RouteLengthDataSet.class)
                 .list();
     }
 }

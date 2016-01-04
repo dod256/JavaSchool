@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.User;
+import chuggaChugga.model.UserDataSet;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,29 +17,28 @@ public class UserDaoImpl implements UserDao {
     @Resource(name="sessionFactory")
     private SessionFactory sessionFactory;
 
-    public void addUser(User user) {
+    public void addUser(UserDataSet user) {
         Session session = sessionFactory.openSession();
         session.persist(user);
         session.close();
     }
 
-    public User getUser(int id) {
+    public UserDataSet getUser(int id) {
         Session session = sessionFactory.openSession();
-        return (User) session.get(User.class, id);
+        return (UserDataSet) session.get(UserDataSet.class, id);
     }
 
-    public User getUserByEmail(String email) {
+    public UserDataSet getUserByEmail(String email) {
         Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(User.class);
-        return (User) criteria
+        Criteria criteria = session.createCriteria(UserDataSet.class);
+        return (UserDataSet) criteria
                 .add(Restrictions.eq("email", email))
                 .uniqueResult();
     }
 
-
-    public List<User> getUsers() {
+    public List<UserDataSet> getUsers() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("From User");
+        Query query = session.createQuery("From UserDataSet");
         return query.list();
     }
 }

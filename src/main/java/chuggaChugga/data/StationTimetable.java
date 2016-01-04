@@ -1,14 +1,14 @@
 package chuggaChugga.data;
 
+import chuggaChugga.model.StationDataSet;
 import com.google.common.base.MoreObjects;
-import chuggaChugga.model.Station;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
 import java.util.ArrayList;
 
 public class StationTimetable {
-    private Station station;
+    private StationDataSet station;
     private DateTime date;
     private ArrayList<TrainArrivalTime> trainArrivalTimes;
 
@@ -33,7 +33,7 @@ public class StationTimetable {
 
     public static final class Builder {
         private DateTime date;
-        private Station station;
+        private StationDataSet station;
         private ArrayList<TrainArrivalTime> trainArrivalTimes;
 
         private Builder() {
@@ -44,7 +44,7 @@ public class StationTimetable {
             return this;
         }
 
-        public Builder withStation(Station val) {
+        public Builder withStation(StationDataSet val) {
             station = val;
             return this;
         }
@@ -67,7 +67,7 @@ public class StationTimetable {
         return date.toString(DateTimeFormat.longDate());
     }
 
-    public Station getStation() {
+    public StationDataSet getStation() {
         return station;
     }
 

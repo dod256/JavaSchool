@@ -1,17 +1,16 @@
 package chuggaChugga.service;
 
 import chuggaChugga.data.StationTimetable;
-import chuggaChugga.model.Station;
+import chuggaChugga.model.StationDataSet;
 import org.joda.time.DateTime;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 
 public interface StationService {
-    void addStation(Station station);
-    Station getStation(String name);
-    ArrayList<Station> getAllStations();
-    StationTimetable getTimetable(Station station, DateTime transitDate);
+    void addStation(StationDataSet station);
+    StationDataSet getStation(String name);
+    ArrayList<StationDataSet> getAllStations();
+    StationTimetable getTimetable(StationDataSet station, DateTime transitDate);
 
 }

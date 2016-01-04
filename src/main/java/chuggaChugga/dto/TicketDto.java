@@ -1,11 +1,8 @@
 package chuggaChugga.dto;
 
-import chuggaChugga.model.Ticket;
-import chuggaChugga.service.RouteService;
-import chuggaChugga.service.RouteServiceImpl;
+import chuggaChugga.model.TicketDataSet;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,7 +18,7 @@ public class TicketDto {
 
     public TicketDto(){}
 
-    public TicketDto(Ticket ticket) {
+    public TicketDto(TicketDataSet ticket) {
         id = ticket.getId();
         train = ticket.getTrain().getName();
         user = new UserDto(ticket.getUser());

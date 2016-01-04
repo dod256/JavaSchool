@@ -3,21 +3,21 @@ package chuggaChugga.model;
 import javax.persistence.*;
 
 /*
-* Represent RouteLength table from the DB
+* Represent RouteLengthDataSet table from the DB
 * */
 @Entity
 @Table(name = "RouteLength")
-public class RouteLength {
+public class RouteLengthDataSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int routeLength;
 
-    public RouteLength(int routeLength) {
+    public RouteLengthDataSet(int routeLength) {
         this.routeLength = routeLength;
     }
 
-    public RouteLength() {
+    public RouteLengthDataSet() {
     }
 
     public int getId() {

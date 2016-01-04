@@ -1,9 +1,8 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.Timetable;
-import org.springframework.stereotype.Repository;
+import chuggaChugga.model.TimetableDataSet;
 
 
 public interface TimetableDao {
-    void addTimetable(Timetable timetable);
+    void addTimetable(TimetableDataSet timetable);
 }

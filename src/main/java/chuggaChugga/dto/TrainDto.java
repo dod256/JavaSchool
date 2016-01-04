@@ -1,6 +1,6 @@
 package chuggaChugga.dto;
 
-import chuggaChugga.model.Train;
+import chuggaChugga.model.TrainDataSet;
 import chuggaChugga.data.Route;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -63,7 +63,7 @@ public class TrainDto {
 
     public TrainDto(){}
 
-    public TrainDto(Train train, Route trainRoute) {
+    public TrainDto(TrainDataSet train, Route trainRoute) {
         id = train.getId();
         name = train.getName();
         departureDate = new DateTime(train.getDepartureDate());

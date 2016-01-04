@@ -3,12 +3,12 @@ package chuggaChugga.service;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.Ticket;
+import chuggaChugga.model.TicketDataSet;
 
 import java.util.ArrayList;
 
 public interface TicketService {
     ArrayList<TicketDto> getTicketsByUser(UserDto userDto);
     boolean tryToPurhaseTicket(TicketRequest request);
-    ArrayList<Ticket> getTicketByTrain(int trainId);
+    ArrayList<TicketDataSet> getTicketByTrain(int trainId);
 }

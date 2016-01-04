@@ -1,6 +1,6 @@
 package chuggaChugga.dto;
 
-import chuggaChugga.model.User;
+import chuggaChugga.model.UserDataSet;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
@@ -16,7 +16,7 @@ public class UserDto {
 
     public UserDto(){}
 
-    public UserDto(User user) {
+    public UserDto(UserDataSet user) {
         id = user.getId();
         email = user.getEmail();
         firstName = user.getFirstName();

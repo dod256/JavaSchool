@@ -2,7 +2,7 @@ package chuggaChugga.controller;
 
 import chuggaChugga.helper.OperationResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.model.Station;
+import chuggaChugga.model.StationDataSet;
 import chuggaChugga.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,9 +45,9 @@ public class StationManagerController {
         if (message.getStatus().equals("danger")) {
             session.setAttribute("operationResultMessage", message);
         } else {
-            stationService.addStation(Station.newBuilder().withName(name).build());
+            stationService.addStation(StationDataSet.newBuilder().withName(name).build());
             session.setAttribute("operationResultMessage",
-                    new OperationResultMessage("success", "Station added"));
+                    new OperationResultMessage("success", "StationDataSet added"));
         }
         return "showMessage";
     }

@@ -1,14 +1,14 @@
 package chuggaChugga.data;
 
+import chuggaChugga.model.StationDataSet;
 import com.google.common.base.MoreObjects;
-import chuggaChugga.model.Station;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
 public class TrainTimetable {
-    private Station departureStation;
-    private Station arrivalStation;
+    private StationDataSet departureStation;
+    private StationDataSet arrivalStation;
     private DateTime departureDate;
     private ArrayList<TrainRouteTime> trainRouteTimes;
 
@@ -34,20 +34,20 @@ public class TrainTimetable {
 
 
     public static final class Builder {
-        private Station arrivalStation;
-        private Station departureStation;
+        private StationDataSet arrivalStation;
+        private StationDataSet departureStation;
         private DateTime departureDate;
         private ArrayList<TrainRouteTime> trainRouteTimes;
 
         private Builder() {
         }
 
-        public Builder withArrivalStation(Station val) {
+        public Builder withArrivalStation(StationDataSet val) {
             arrivalStation = val;
             return this;
         }
 
-        public Builder withDepartureStation(Station val) {
+        public Builder withDepartureStation(StationDataSet val) {
             departureStation = val;
             return this;
         }
@@ -67,11 +67,11 @@ public class TrainTimetable {
         }
     }
 
-    public Station getArrivalStation() {
+    public StationDataSet getArrivalStation() {
         return arrivalStation;
     }
 
-    public void setArrivalStation(Station arrivalStation) {
+    public void setArrivalStation(StationDataSet arrivalStation) {
         this.arrivalStation = arrivalStation;
     }
 
@@ -83,11 +83,11 @@ public class TrainTimetable {
         this.departureDate = departureDate;
     }
 
-    public Station getDepartureStation() {
+    public StationDataSet getDepartureStation() {
         return departureStation;
     }
 
-    public void setDepartureStation(Station departureStation) {
+    public void setDepartureStation(StationDataSet departureStation) {
         this.departureStation = departureStation;
     }
 

@@ -2,7 +2,7 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.UserDao;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.User;
+import chuggaChugga.model.UserDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,16 +23,16 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     public List<UserDto> getUsers() {
-        List<User> userList = userDao.getUsers();
+        List<UserDataSet> userList = userDao.getUsers();
         List<UserDto> userDtoList = new ArrayList<>();
-        for(User user : userList) {
+        for(UserDataSet user : userList) {
             userDtoList.add(new UserDto(user));
         }
         return userDtoList;
     }
 
     public void addUser(UserDto user) {
-        userDao.addUser(new User(user));
+        userDao.addUser(new UserDataSet(user));
     }
 
     public UserDto getUserByEmail(String email) {

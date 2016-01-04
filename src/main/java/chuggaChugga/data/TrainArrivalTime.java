@@ -1,13 +1,13 @@
 package chuggaChugga.data;
 
 import com.google.common.base.MoreObjects;
-import chuggaChugga.model.Train;
+import chuggaChugga.model.TrainDataSet;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
 public class TrainArrivalTime {
     private DateTime arrivalTime;
-    private Train train;
+    private TrainDataSet train;
 
     private TrainArrivalTime(Builder builder) {
         arrivalTime = builder.arrivalTime;
@@ -27,7 +27,7 @@ public class TrainArrivalTime {
 
     public static final class Builder {
         private DateTime arrivalTime;
-        private Train train;
+        private TrainDataSet train;
 
         private Builder() {
         }
@@ -37,7 +37,7 @@ public class TrainArrivalTime {
             return this;
         }
 
-        public Builder withTrain(Train val) {
+        public Builder withTrain(TrainDataSet val) {
             train = val;
             return this;
         }
@@ -53,7 +53,7 @@ public class TrainArrivalTime {
 
     public String getArrivalTimeString() { return arrivalTime.toString(DateTimeFormat.shortTime()); }
 
-    public Train getTrain() {
+    public TrainDataSet getTrain() {
         return train;
     }
 

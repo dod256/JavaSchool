@@ -1,9 +1,9 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.StationDao;
-import chuggaChugga.model.RouteStation;
-import chuggaChugga.model.Station;
-import chuggaChugga.model.Train;
+import chuggaChugga.model.RouteStationDataSet;
+import chuggaChugga.model.StationDataSet;
+import chuggaChugga.model.TrainDataSet;
 import chuggaChugga.data.Route;
 import chuggaChugga.data.StationTimetable;
 import chuggaChugga.data.TrainArrivalTime;
@@ -31,16 +31,16 @@ public class StationServiceImpl implements StationService {
     private RouteService routeService;
 
 
-    public void addStation(Station station) {
+    public void addStation(StationDataSet station) {
         stationDao.addStation(station);
     }
 
-    public Station getStation(String name) {
+    public StationDataSet getStation(String name) {
         return stationDao.getStation(name);
     }
 
-    public ArrayList<Station> getAllStations() {
-        ArrayList<Station> result = (ArrayList<Station>) stationDao.getAllStations();
+    public ArrayList<StationDataSet> getAllStations() {
+        ArrayList<StationDataSet> result = (ArrayList<StationDataSet>) stationDao.getAllStations();
         result.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
         return result;
     }
@@ -48,18 +48,18 @@ public class StationServiceImpl implements StationService {
     /*
     *  Find all trains that arrival in selected day to selected station
     *
-    * @param Station and date
+    * @param StationDataSet and date
     *
     * @return List of train with arrival time
     *
     * */
-    public StationTimetable getTimetable(Station station, DateTime transitDate) {
+    public StationTimetable getTimetable(StationDataSet station, DateTime transitDate) {
         ArrayList<TrainArrivalTime> result = new ArrayList<TrainArrivalTime>();
 
-        ArrayList<Train> trains = trainService.getAllTrains();
+        ArrayList<TrainDataSet> trains = trainService.getAllTrains();
         ArrayList<Route> routes = routeService.getAllRoutes();
-        for (Train train: trains) {
-            RouteStation departureStation = train.getDepartureStation();
+        for (TrainDataSet train: trains) {
+            RouteStationDataSet departureStation = train.getDepartureStation();
             DateTime departureDate = new DateTime(train.getDepartureDate().getTime());
             if (departureStation.getStation().equals(station) && departureDate.getYear() == transitDate.getYear() && departureDate.getDayOfYear() == transitDate.getDayOfYear()) {
                 result.add(TrainArrivalTime.newBuilder()
@@ -68,7 +68,7 @@ public class StationServiceImpl implements StationService {
                 departureDate = departureDate.plus(departureStation.getArrival().getTime());
                 for (Route route: routes) {
                     if (route.getRouteId() == departureStation.getRouteId() && route.getStations().contains(station)) {
-                        for (RouteStation routeStationOfCurrentRoute: route.getRouteStations()) {
+                        for (RouteStationDataSet routeStationOfCurrentRoute: route.getRouteStations()) {
                             if (routeStationOfCurrentRoute.getStation().equals(station)) {
                                 DateTime onWheel = new DateTime( routeStationOfCurrentRoute.getOnWheel().getTime());
                                 departureDate = departureDate.plus(onWheel.getMillis());

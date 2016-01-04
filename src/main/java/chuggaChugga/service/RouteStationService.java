@@ -1,9 +1,8 @@
 package chuggaChugga.service;
 
-import chuggaChugga.model.RouteStation;
-import org.springframework.stereotype.Service;
+import chuggaChugga.model.RouteStationDataSet;
 
 
 public interface RouteStationService {
-    void addRouteStation(RouteStation station);
+    void addRouteStation(RouteStationDataSet station);
 }

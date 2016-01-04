@@ -1,15 +1,14 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.data.TicketRequest;
-import chuggaChugga.model.Ticket;
-import chuggaChugga.model.User;
-import org.springframework.stereotype.Repository;
+import chuggaChugga.model.TicketDataSet;
+import chuggaChugga.model.UserDataSet;
 
 import java.util.List;
 
 
 public interface TicketDao {
-    List<Ticket> getTicketsByUser(User user);
-    List<Ticket> getTicketByTrain(int trainId);
+    List<TicketDataSet> getTicketsByUser(UserDataSet user);
+    List<TicketDataSet> getTicketByTrain(int trainId);
     boolean tryToPurhaseTicket(TicketRequest request);
 }

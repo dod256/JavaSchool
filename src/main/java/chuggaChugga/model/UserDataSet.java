@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /*
-* Represent User table from the DB
+* Represent UserDataSet table from the DB
 * */
 @Entity
 @Table(name = "User")
-public class User implements Serializable {
+public class UserDataSet implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class User implements Serializable {
     private Date birthdate;
     private int userTypeId;
 
-    public User (UserDto userDto) {
+    public UserDataSet(UserDto userDto) {
         this.id = userDto.getId();
         this.email = userDto.getEmail();
         this.firstName = userDto.getFirstName();
@@ -36,7 +36,7 @@ public class User implements Serializable {
         this.userTypeId = userDto.getUserTypeId();
     }
 
-    private User(Builder builder) {
+    private UserDataSet(Builder builder) {
         birthdate = builder.birthdate;
         email = builder.email;
         firstName = builder.firstName;
@@ -58,7 +58,7 @@ public class User implements Serializable {
         return new Builder();
     }
 
-    public static Builder newBuilder(User copy) {
+    public static Builder newBuilder(UserDataSet copy) {
         Builder builder = new Builder();
         builder.birthdate = copy.birthdate;
         builder.email = copy.email;
@@ -93,7 +93,7 @@ public class User implements Serializable {
         return new DateTime(birthdate);
     }
 
-    public User() {
+    public UserDataSet() {
     }
 
     public String getEmail() {
@@ -167,8 +167,8 @@ public class User implements Serializable {
             return this;
         }
 
-        public User build() {
-            return new User(this);
+        public UserDataSet build() {
+            return new UserDataSet(this);
         }
     }
 

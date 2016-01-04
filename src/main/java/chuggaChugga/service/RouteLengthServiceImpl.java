@@ -1,7 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.RouteLengthDao;
-import chuggaChugga.model.RouteLength;
+import chuggaChugga.model.RouteLengthDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +14,7 @@ public class RouteLengthServiceImpl implements RouteLengthService {
     private RouteLengthDao routeLengthDao;
 
     public void addRouteLength(int length) {
-        routeLengthDao.addRouteLength(new RouteLength(length));
+        routeLengthDao.addRouteLength(new RouteLengthDataSet(length));
     }
 
     public int getFreeRouteId() {

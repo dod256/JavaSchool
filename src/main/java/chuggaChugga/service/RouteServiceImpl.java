@@ -1,8 +1,8 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.RouteStationDao;
-import chuggaChugga.model.RouteStation;
-import chuggaChugga.model.Station;
+import chuggaChugga.model.RouteStationDataSet;
+import chuggaChugga.model.StationDataSet;
 import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.data.Route;
 import chuggaChugga.data.RouteRequest;
@@ -37,7 +37,7 @@ public class RouteServiceImpl implements RouteService {
         Period onWheel = new Period();
         for (int i = 0; i < newRouteImpl.getStation().size(); i++) {
             onWheel = onWheel.plusMinutes(newRouteImpl.getOnWheel().get(i));
-            RouteStation.Builder builder = RouteStation.newBuilder();
+            RouteStationDataSet.Builder builder = RouteStationDataSet.newBuilder();
             builder.withArrival(new Time(newRouteImpl.getDepartureTime().plus(onWheel).getMillis()))
                     .withOnWheel(new Time(0, onWheel.getMinutes(), 0))
                             .withRouteId(routeId)
@@ -54,12 +54,12 @@ public class RouteServiceImpl implements RouteService {
     public Route getRouteById(int routeId) {
         Route.Builder builder = Route.newBuilder();
         builder.withRouteId(routeId);
-        ArrayList<RouteStation> routeStations = (ArrayList<RouteStation>) routeStationDao.getRouteStationsById(routeId);
+        ArrayList<RouteStationDataSet> routeStations = (ArrayList<RouteStationDataSet>) routeStationDao.getRouteStationsById(routeId);
 
         routeStations.sort((o1, o2) -> o1.getStationNumber() - o2.getStationNumber());
 
-        ArrayList<Station> stations = new ArrayList<Station>();
-        for (RouteStation routeStation: routeStations) {
+        ArrayList<StationDataSet> stations = new ArrayList<StationDataSet>();
+        for (RouteStationDataSet routeStation: routeStations) {
             stations.add(routeStation.getStation());
         }
         return builder.withStations(stations).withRouteStations(routeStations).build();
@@ -67,7 +67,7 @@ public class RouteServiceImpl implements RouteService {
 
     public ArrayList<Route> getAllRoutes() {
         ArrayList<Route> routes = new ArrayList<Route>();
-        ArrayList<RouteStation> allRouteStations = (ArrayList<RouteStation>) routeStationDao.getAllRouteStations();
+        ArrayList<RouteStationDataSet> allRouteStations = (ArrayList<RouteStationDataSet>) routeStationDao.getAllRouteStations();
 
         allRouteStations.sort((o1, o2) -> {
             if (o1.getRouteId() == o2.getRouteId()) {
@@ -78,19 +78,19 @@ public class RouteServiceImpl implements RouteService {
         });
 
         Route.Builder routeBuilder = Route.newBuilder().withRouteId(allRouteStations.get(0).getRouteId());
-        ArrayList<Station> stations = new ArrayList<Station>();
-        ArrayList<RouteStation> routeStations = new ArrayList<RouteStation>();
+        ArrayList<StationDataSet> stations = new ArrayList<StationDataSet>();
+        ArrayList<RouteStationDataSet> routeStations = new ArrayList<RouteStationDataSet>();
         stations.add(allRouteStations.get(0).getStation());
         routeStations.add(allRouteStations.get(0));
         for (int i = 1; i < allRouteStations.size(); i++) {
-            RouteStation currentRouteStation = allRouteStations.get(i);
+            RouteStationDataSet currentRouteStation = allRouteStations.get(i);
             if (currentRouteStation.getRouteId() != allRouteStations.get(i - 1).getRouteId()) {
                 routes.add(routeBuilder
                         .withStations(stations)
                         .withRouteStations(routeStations)
                         .build());
-                stations = new ArrayList<Station>();
-                routeStations = new ArrayList<RouteStation>();
+                stations = new ArrayList<StationDataSet>();
+                routeStations = new ArrayList<RouteStationDataSet>();
                 routeBuilder.withRouteId(currentRouteStation.getRouteId());
             }
             stations.add(currentRouteStation.getStation());
@@ -107,7 +107,7 @@ public class RouteServiceImpl implements RouteService {
         for (Route route: allRoute) {
             boolean hasDepartureStation = false;
             boolean hasArrivalStation = false;
-            for (Station station: route.getStations()) {
+            for (StationDataSet station: route.getStations()) {
                 if (station.getName().equals(request.getArrivalStation())) {
                     hasArrivalStation = true;
                 }

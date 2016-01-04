@@ -1,19 +1,20 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.Timetable;
+import chuggaChugga.model.TimetableDataSet;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.annotation.Resource;
 
 @Repository
 public class TimetableDaoImpl implements TimetableDao {
 
-    public void addTimetable(Timetable timetable) {
-    /*    EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(timetable);
-        transaction.commit();*/
-    }
+    @Resource(name="sessionFactory")
+    private SessionFactory sessionFactory;
 
+    public void addTimetable(TimetableDataSet timetable) {
+        Session session = sessionFactory.openSession();
+        session.save(timetable);
+        session.close();
+    }
 }

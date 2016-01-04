@@ -38,7 +38,7 @@ public class BuyTicketServlet extends HttpServlet {
         boolean tryToBuy = TicketServiceImpl.tryToPurhaseTicket(ticketRequest);
 
         if (tryToBuy) {
-            req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "Ticket purhased"));
+            req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "TicketDataSet purhased"));
         } else {
             req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("danger", "Couldn't purhase ticket"));
         }

@@ -45,8 +45,8 @@ public class TrainServiceImpl implements TrainService {
     *
     * */
     public TrainTimetable getTrains(TrainRequest trainRequest) {
-        Station departureStation = stationService.getStation(trainRequest.getDepartureStation());
-        Station arrivalStation = stationService.getStation(trainRequest.getArrivalStation());
+        StationDataSet departureStation = stationService.getStation(trainRequest.getDepartureStation());
+        StationDataSet arrivalStation = stationService.getStation(trainRequest.getArrivalStation());
         TrainTimetable.Builder resultBuilder = TrainTimetable.newBuilder()
                 .withArrivalStation(arrivalStation)
                 .withDepartureStation(departureStation)
@@ -72,17 +72,17 @@ public class TrainServiceImpl implements TrainService {
     /*
     *  Counting when selected train arrival at selected station
     *
-    *  @param Train and station
+    *  @param TrainDataSet and station
     *
     *  @return Date
     *
     * */
-    public DateTime trainPassStation(Train train, Station arrivalStation) {
+    public DateTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation) {
         int routeId = train.getDepartureStation().getRouteId();
         ArrayList<Route> allRoutes = routeService.getAllRoutes();
         for (Route route: allRoutes) {
             if (route.getRouteId() == routeId) {
-                for (RouteStation station: route.getRouteStations()){
+                for (RouteStationDataSet station: route.getRouteStations()){
                     if (station.getStation().equals(arrivalStation)) {
                         return new DateTime(station.getArrival());
                     }
@@ -92,31 +92,31 @@ public class TrainServiceImpl implements TrainService {
         return null;
     }
 
-    public ArrayList<Train> getAllTrains() {
-        return (ArrayList<Train>) trainDao.getAllTrains();
+    public ArrayList<TrainDataSet> getAllTrains() {
+        return (ArrayList<TrainDataSet>) trainDao.getAllTrains();
     }
 
     public void createTrain(TrainRoute trainRoute) {
         trainDao.addTrain(trainRoute.getTrain());
 
-        Train trainWithId = Train.newBuilder(trainRoute.getTrain()).withId(trainDao.getTrainTableSize()).build();
+        TrainDataSet trainWithId = TrainDataSet.newBuilder(trainRoute.getTrain()).withId(trainDao.getTrainTableSize()).build();
 
-        for (RouteStation routeStation : trainRoute.getRoute().getRouteStations()) {
-            Timetable.Builder timetableBuilder = Timetable.newBuilder();
+        for (RouteStationDataSet routeStation : trainRoute.getRoute().getRouteStations()) {
+            TimetableDataSet.Builder timetableBuilder = TimetableDataSet.newBuilder();
             timetableBuilder.withTrain(trainWithId).withRouteStation(routeStation);
 
             timetableService.addTimetable(timetableBuilder.build());
         }
     }
 
-    public Train getTrain(int id) {
+    public TrainDataSet getTrain(int id) {
         return trainDao.getTrain(id);
     }
 
     public ArrayList<UserDto> getPassangers(int trainId) {
-        ArrayList<Ticket> tickets = ticketService.getTicketByTrain(trainId);
+        ArrayList<TicketDataSet> tickets = ticketService.getTicketByTrain(trainId);
         ArrayList<UserDto> result = new ArrayList<UserDto>();
-        for (Ticket ticket: tickets) {
+        for (TicketDataSet ticket: tickets) {
             result.add(new UserDto(ticket.getUser()));
         }
         return result;

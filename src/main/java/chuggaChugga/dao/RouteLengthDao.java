@@ -1,10 +1,11 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.RouteLength;
+import chuggaChugga.model.RouteLengthDataSet;
+
 import java.util.List;
 
 
 public interface RouteLengthDao {
-    void addRouteLength(RouteLength routeLength);
-    List<RouteLength> getAllRouteLength();
+    void addRouteLength(RouteLengthDataSet routeLength);
+    List<RouteLengthDataSet> getAllRouteLength();
 }

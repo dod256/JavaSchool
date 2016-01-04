@@ -5,20 +5,20 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.*;
 
 /*
-* Represent Station table from the DB
+* Represent StationDataSet table from the DB
 * */
 @Entity
 @Table(name = "Station")
-public class Station {
+public class StationDataSet {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public Station() {}
+    public StationDataSet() {}
 
-    private Station(Builder builder) {
+    private StationDataSet(Builder builder) {
         setId(builder.id);
         setName(builder.name);
     }
@@ -27,7 +27,7 @@ public class Station {
         return new Builder();
     }
 
-    public static Builder newBuilder(Station copy) {
+    public static Builder newBuilder(StationDataSet copy) {
         Builder builder = new Builder();
         builder.id = copy.id;
         builder.name = copy.name;
@@ -51,8 +51,8 @@ public class Station {
             return this;
         }
 
-        public Station build() {
-            return new Station(this);
+        public StationDataSet build() {
+            return new StationDataSet(this);
         }
     }
 

@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.RouteStation;
+import chuggaChugga.model.RouteStationDataSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -14,23 +14,23 @@ public class RouteStationDaoImpl implements RouteStationDao {
     @Resource(name="sessionFactory")
     private SessionFactory sessionFactory;
 
-    public List<RouteStation> getRouteStationsById(int routeId) {
-        return (List<RouteStation>) sessionFactory
+    public List<RouteStationDataSet> getRouteStationsById(int routeId) {
+        return (List<RouteStationDataSet>) sessionFactory
                 .openSession()
-                .createCriteria(RouteStation.class)
+                .createCriteria(RouteStationDataSet.class)
                 .add(Restrictions.eq("routeId", routeId))
                 .list();
     }
 
 
-    public List<RouteStation> getAllRouteStations() {
-        return (List<RouteStation>) sessionFactory
+    public List<RouteStationDataSet> getAllRouteStations() {
+        return (List<RouteStationDataSet>) sessionFactory
                 .openSession()
-                .createCriteria(RouteStation.class)
+                .createCriteria(RouteStationDataSet.class)
                 .list();
     }
 
-    public void addRouteStation(RouteStation station) {
+    public void addRouteStation(RouteStationDataSet station) {
         Session session = sessionFactory.openSession();
         session.save(station);
         session.close();

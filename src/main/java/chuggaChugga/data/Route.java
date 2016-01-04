@@ -1,15 +1,15 @@
 package chuggaChugga.data;
 
+import chuggaChugga.model.StationDataSet;
 import com.google.common.base.MoreObjects;
-import chuggaChugga.model.RouteStation;
-import chuggaChugga.model.Station;
+import chuggaChugga.model.RouteStationDataSet;
 
 import java.util.ArrayList;
 
 public class Route {
 
-    private ArrayList<RouteStation> routeStations;
-    private ArrayList<Station> stations;
+    private ArrayList<RouteStationDataSet> routeStations;
+    private ArrayList<StationDataSet> stations;
     private int routeId;
 
     private Route(Builder builder) {
@@ -33,8 +33,8 @@ public class Route {
 
     public static final class Builder {
         private int routeId;
-        private ArrayList<RouteStation> routeStations;
-        private ArrayList<Station> stations;
+        private ArrayList<RouteStationDataSet> routeStations;
+        private ArrayList<StationDataSet> stations;
 
         private Builder() {
         }
@@ -44,12 +44,12 @@ public class Route {
             return this;
         }
 
-        public Builder withRouteStations(ArrayList<RouteStation> val) {
+        public Builder withRouteStations(ArrayList<RouteStationDataSet> val) {
             routeStations = val;
             return this;
         }
 
-        public Builder withStations(ArrayList<Station> val) {
+        public Builder withStations(ArrayList<StationDataSet> val) {
             stations = val;
             return this;
         }
@@ -67,19 +67,19 @@ public class Route {
         this.routeId = routeId;
     }
 
-    public ArrayList<RouteStation> getRouteStations() {
+    public ArrayList<RouteStationDataSet> getRouteStations() {
         return routeStations;
     }
 
-    public void setRouteStations(ArrayList<RouteStation> routeStations) {
+    public void setRouteStations(ArrayList<RouteStationDataSet> routeStations) {
         this.routeStations = routeStations;
     }
 
-    public ArrayList<Station> getStations() {
+    public ArrayList<StationDataSet> getStations() {
         return stations;
     }
 
-    public void setStations(ArrayList<Station> stations) {
+    public void setStations(ArrayList<StationDataSet> stations) {
         this.stations = stations;
     }
 

@@ -5,37 +5,37 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.*;
 
 /*
-* Represent Timetable table from the DB
+* Represent TimetableDataSet table from the DB
 * */
 @Entity
 @Table(name = "Timetable")
-public class Timetable {
+public class TimetableDataSet {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
     @JoinColumn(name="routeStationId")
-    private RouteStation routeStation;
+    private RouteStationDataSet routeStation;
 
     @ManyToOne
     @JoinColumn(name="trainId")
-    private Train train;
+    private TrainDataSet train;
 
-    private Timetable(Builder builder) {
+    private TimetableDataSet(Builder builder) {
         id = builder.id;
         routeStation = builder.routeStation;
         train = builder.train;
     }
 
-    public Timetable() {
+    public TimetableDataSet() {
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public static Builder newBuilder(Timetable copy) {
+    public static Builder newBuilder(TimetableDataSet copy) {
         Builder builder = new Builder();
         builder.id = copy.id;
         builder.routeStation = copy.routeStation;
@@ -46,8 +46,8 @@ public class Timetable {
 
     public static final class Builder {
         private int id;
-        private RouteStation routeStation;
-        private Train train;
+        private RouteStationDataSet routeStation;
+        private TrainDataSet train;
 
         private Builder() {
         }
@@ -57,18 +57,18 @@ public class Timetable {
             return this;
         }
 
-        public Builder withRouteStation(RouteStation val) {
+        public Builder withRouteStation(RouteStationDataSet val) {
             routeStation = val;
             return this;
         }
 
-        public Builder withTrain(Train val) {
+        public Builder withTrain(TrainDataSet val) {
             train = val;
             return this;
         }
 
-        public Timetable build() {
-            return new Timetable(this);
+        public TimetableDataSet build() {
+            return new TimetableDataSet(this);
         }
     }
 
@@ -80,19 +80,19 @@ public class Timetable {
         this.id = id;
     }
 
-    public RouteStation getRouteStation() {
+    public RouteStationDataSet getRouteStation() {
         return routeStation;
     }
 
-    public void setRouteStation(RouteStation routeStation) {
+    public void setRouteStation(RouteStationDataSet routeStation) {
         this.routeStation = routeStation;
     }
 
-    public Train getTrain() {
+    public TrainDataSet getTrain() {
         return train;
     }
 
-    public void setTrain(Train train) {
+    public void setTrain(TrainDataSet train) {
         this.train = train;
     }
 

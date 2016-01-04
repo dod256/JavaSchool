@@ -7,11 +7,11 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /*
-* Represent Train table from the DB
+* Represent TrainDataSet table from the DB
 * */
 @Entity
 @Table(name = "Train")
-public class Train {
+public class TrainDataSet {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -20,18 +20,18 @@ public class Train {
 
     @ManyToOne
     @JoinColumn(name="departureStation")
-    private RouteStation departureStation;
+    private RouteStationDataSet departureStation;
 
     @ManyToOne
     @JoinColumn(name="arrivalStation")
-    private RouteStation arrivalStation;
+    private RouteStationDataSet arrivalStation;
 
     private Date departureDate;
     private int numberOfSeats;
     private int numberOfFreeSeats;
     private int cost;
 
-    private Train(Builder builder) {
+    private TrainDataSet(Builder builder) {
         arrivalStation = builder.arrivalStation;
         id = builder.id;
         name = builder.name;
@@ -43,14 +43,14 @@ public class Train {
         cost = builder.cost;
     }
 
-    public Train() {
+    public TrainDataSet() {
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public static Builder newBuilder(Train copy) {
+    public static Builder newBuilder(TrainDataSet copy) {
         Builder builder = new Builder();
         builder.arrivalStation = copy.arrivalStation;
         builder.id = copy.id;
@@ -65,10 +65,10 @@ public class Train {
 
 
     public static final class Builder {
-        private RouteStation arrivalStation;
+        private RouteStationDataSet arrivalStation;
         private int id;
         private String name;
-        private RouteStation departureStation;
+        private RouteStationDataSet departureStation;
         private DateTime departureDate;
         private int numberOfSeats;
         private int numberOfFreeSeats;
@@ -77,7 +77,7 @@ public class Train {
         private Builder() {
         }
 
-        public Builder withArrivalStation(RouteStation val) {
+        public Builder withArrivalStation(RouteStationDataSet val) {
             arrivalStation = val;
             return this;
         }
@@ -92,7 +92,7 @@ public class Train {
             return this;
         }
 
-        public Builder withDepartureStation(RouteStation val) {
+        public Builder withDepartureStation(RouteStationDataSet val) {
             departureStation = val;
             return this;
         }
@@ -117,16 +117,16 @@ public class Train {
             return this;
         }
 
-        public Train build() {
-            return new Train(this);
+        public TrainDataSet build() {
+            return new TrainDataSet(this);
         }
     }
 
-    public RouteStation getArrivalStation() {
+    public RouteStationDataSet getArrivalStation() {
         return arrivalStation;
     }
 
-    public void setArrivalStation(RouteStation arrivalStation) {
+    public void setArrivalStation(RouteStationDataSet arrivalStation) {
         this.arrivalStation = arrivalStation;
     }
 
@@ -146,11 +146,11 @@ public class Train {
         this.departureDate = departureDate;
     }
 
-    public RouteStation getDepartureStation() {
+    public RouteStationDataSet getDepartureStation() {
         return departureStation;
     }
 
-    public void setDepartureStation(RouteStation departureStation) {
+    public void setDepartureStation(RouteStationDataSet departureStation) {
         this.departureStation = departureStation;
     }
 

@@ -1,9 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.User;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 
