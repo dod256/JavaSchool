@@ -4,7 +4,7 @@ package chuggaChugga.servlet;
 import chuggaChugga.model.Train;
 import chuggaChugga.helper.OperationResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.service.StationService;
+import chuggaChugga.service.StationServiceImpl;
 import org.joda.time.DateTime;
 
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import java.io.IOException;
 * Response for filling general info about train
 * */
 public class AddTrainServlet extends HttpServlet {
-
+/*-
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         String dateString = req.getParameter("date");
@@ -60,7 +60,7 @@ public class AddTrainServlet extends HttpServlet {
                 .withDepartureDate(date)
                 .withName(name);
         req.getSession().setAttribute("trainBuilder", trainBuilder);
-        req.getSession().setAttribute("stationList", StationService.getAllStations());
+        req.getSession().setAttribute("stationList", StationServiceImpl.getAllStations());
         res.sendRedirect("/WEB-INF/pages/addRouteToTrain.jsp");
     }
-}
+*/}

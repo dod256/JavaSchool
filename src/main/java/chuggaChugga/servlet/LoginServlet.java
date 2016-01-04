@@ -1,9 +1,5 @@
 package chuggaChugga.servlet;
 
-import chuggaChugga.model.User;
-import chuggaChugga.dto.UserDto;
-import chuggaChugga.service.UserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

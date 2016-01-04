@@ -3,7 +3,7 @@ package chuggaChugga.servlet;
 import chuggaChugga.model.Station;
 import chuggaChugga.helper.OperationResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.service.StationService;
+import chuggaChugga.service.StationServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +17,7 @@ import java.io.IOException;
 * */
 public class AddStationServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
+    /*public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         String name = req.getParameter("name");
         OperationResultMessage message = ValidatorImpl.checkName(name);
@@ -26,10 +26,10 @@ public class AddStationServlet extends HttpServlet {
             res.sendRedirect("/WEB-INF/pages/showMessage.jsp");
             return;
         }
-        StationService.addStation(Station.newBuilder().withName(name).build());
+        StationServiceImpl.addStation(Station.newBuilder().withName(name).build());
         req.getSession().setAttribute("operationResultMessage",
                 new OperationResultMessage("success", "Station added"));
         res.sendRedirect("/WEB-INF/pages/showMessage.jsp");
     }
-
+*/
 }

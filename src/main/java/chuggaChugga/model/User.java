@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
-
 /*
 * Represent User table from the DB
 * */

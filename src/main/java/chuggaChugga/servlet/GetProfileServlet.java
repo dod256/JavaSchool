@@ -2,7 +2,7 @@ package chuggaChugga.servlet;
 
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.service.TicketService;
+import chuggaChugga.service.TicketServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GetProfileServlet extends HttpServlet {
-
+/*
 
     private void preparation(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -20,7 +20,7 @@ public class GetProfileServlet extends HttpServlet {
             res.sendRedirect("/WEB-INF/pages/login.jsp");
             return;
         }
-        ArrayList<TicketDto> ticketList = TicketService.getTicketsByUser((UserDto) req.getSession().getAttribute("currentUser"));
+        ArrayList<TicketDto> ticketList = TicketServiceImpl.getTicketsByUser((UserDto) req.getSession().getAttribute("currentUser"));
         req.getSession().setAttribute("ticketList", ticketList);
         res.sendRedirect("/WEB-INF/pages/profile.jsp");
     }
@@ -34,5 +34,5 @@ public class GetProfileServlet extends HttpServlet {
         preparation(req, res);
     }
 
-
+*/
 }

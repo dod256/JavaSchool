@@ -1,37 +1,14 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.Train;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
-import java.util.ArrayList;
+import java.util.List;
 
-public class TrainDao implements Dao {
 
-    private EntityManager em;
-
-    public TrainDao(EntityManager em) {
-        this.em = em;
-    }
-
-    public void addTrain(Train train) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(train);
-        transaction.commit();
-    }
-
-    public int getTrainTableSize() {
-        TypedQuery<Train> query = em.createQuery("SELECT a FROM Train a", Train.class);
-        return query.getResultList().size();
-    }
-
-    public ArrayList<Train> getAllTrains() {
-        return (ArrayList<Train>) em.createQuery("SELECT a FROM Train a", Train.class).getResultList();
-    }
-
-    public Train getTrain(int id) {
-        return em.find(Train.class, id);
-    }
+public interface TrainDao {
+    void addTrain(Train train);
+    int getTrainTableSize();
+    List<Train> getAllTrains();
+    Train getTrain(int id);
 }

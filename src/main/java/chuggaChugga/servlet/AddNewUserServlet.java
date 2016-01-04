@@ -2,7 +2,6 @@ package chuggaChugga.servlet;
 
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.helper.OperationResultMessage;
-import chuggaChugga.service.UserServiceImpl;
 import chuggaChugga.helper.ValidatorImpl;
 import org.joda.time.DateTime;
 

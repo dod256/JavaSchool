@@ -6,8 +6,9 @@ import chuggaChugga.data.Route;
 import chuggaChugga.data.TrainRoute;
 import chuggaChugga.helper.OperationResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.service.RouteService;
+import chuggaChugga.service.RouteServiceImpl;
 import chuggaChugga.service.TrainService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddRouteToTrainServlet extends HttpServlet {
+/*
+    @Autowired
+    TrainService trainService;
 
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -30,7 +34,7 @@ public class AddRouteToTrainServlet extends HttpServlet {
         }
         int id = Integer.parseInt(routeIdString);
         Route route =
-                RouteService.getRouteById(id);
+                RouteServiceImpl.getRouteById(id);
         Train.Builder trainBuilder = (Train.Builder)
                 req.getSession().getAttribute("trainBuilder");
         ArrayList<RouteStation> routeStations =
@@ -44,11 +48,11 @@ public class AddRouteToTrainServlet extends HttpServlet {
                 .withTrain(trainBuilder.build())
                 .withRoute(route)
                 .build();
-        TrainService.createTrain(trainRoute);
+        trainService.createTrain(trainRoute);
 
         req.getSession().setAttribute("operationResultMessage",
                 new OperationResultMessage("success", "Train created"));
         res.sendRedirect("/WEB-INF/pages/showMessage.jsp");
     }
-
+*/
 }

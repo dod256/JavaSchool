@@ -3,7 +3,7 @@ package chuggaChugga.servlet;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.helper.OperationResultMessage;
-import chuggaChugga.service.TicketService;
+import chuggaChugga.service.TicketServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ import java.io.IOException;
 * */
 public class BuyTicketServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
+   /* public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         if (req.getSession().getAttribute("currentUser") == null) {
             res.sendRedirect("/WEB-INF/pages/login.jsp");
@@ -35,7 +35,7 @@ public class BuyTicketServlet extends HttpServlet {
                 .withArrivalStation(departureStation)
                 .withDepartureStation(arrivalStation)
                 .build();
-        boolean tryToBuy = TicketService.tryToPurhaseTicket(ticketRequest);
+        boolean tryToBuy = TicketServiceImpl.tryToPurhaseTicket(ticketRequest);
 
         if (tryToBuy) {
             req.getSession().setAttribute("operationResultMessage", new OperationResultMessage("success", "Ticket purhased"));
@@ -44,5 +44,5 @@ public class BuyTicketServlet extends HttpServlet {
         }
         res.sendRedirect("/WEB-INF/pages/showMessage.jsp");
     }
-
+*/
 }

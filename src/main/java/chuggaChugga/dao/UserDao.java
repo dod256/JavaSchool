@@ -5,15 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface UserDao extends Dao{
 
-    public void addUser(User user);
-
-    public User getUser(int id);
-
-    public User getUserByEmail(String email);
-
-
-    public List<User> getUsers();
+public interface UserDao {
+    void addUser(User user);
+    User getUser(int id);
+    User getUserByEmail(String email);
+    List<User> getUsers();
 }

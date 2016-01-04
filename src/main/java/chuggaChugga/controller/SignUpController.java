@@ -3,6 +3,7 @@ package chuggaChugga.controller;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.model.User;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,8 @@ import chuggaChugga.service.UserService;
 @Controller
 public class SignUpController {
 
-    //@Autowired
-    //UserService userService;
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/signUp.form", method = RequestMethod.POST)
     public String loginPost (@RequestParam("email") String email,
@@ -33,8 +34,9 @@ public class SignUpController {
                 .withBirthdate(dt)
                 .withUserTypeId(2)
                 .build();
+
         User user = new User(userDto);
-        //userService.addUser(user);
+        userService.addUser(user);
         return "index";
     }
 

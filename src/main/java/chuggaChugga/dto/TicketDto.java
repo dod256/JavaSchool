@@ -2,9 +2,13 @@ package chuggaChugga.dto;
 
 import chuggaChugga.model.Ticket;
 import chuggaChugga.service.RouteService;
+import chuggaChugga.service.RouteServiceImpl;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TicketDto {
 
     private int id;
@@ -14,11 +18,14 @@ public class TicketDto {
     private String departureStation;
     private DateTime departureDate;
 
+    @Autowired
+    private RouteService routeService;
+
     public TicketDto(){}
 
     public TicketDto(Ticket ticket) {
         id = ticket.getId();
-        train = new TrainDto(ticket.getTrain(), RouteService.getRouteById(ticket.getTrain().getDepartureStation().getRouteId()));//ToDo maybe another way to do THIS
+        train = new TrainDto(ticket.getTrain(), routeService.getRouteById(ticket.getTrain().getDepartureStation().getRouteId()));//ToDo maybe another way to do THIS
         user = new UserDto(ticket.getUser());
         arrivalStation = ticket.getArrivalStation();
         departureStation = ticket.getDepartureStation();

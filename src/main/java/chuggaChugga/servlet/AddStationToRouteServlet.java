@@ -1,6 +1,6 @@
 package chuggaChugga.servlet;
 
-import chuggaChugga.service.StationService;
+import chuggaChugga.service.StationServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AddStationToRouteServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
+/*    public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         if (req.getSession().getAttribute("newRouteStationList") == null) {
             req.getSession().setAttribute("newRouteStationList", new ArrayList<String>());
@@ -22,8 +22,8 @@ public class AddStationToRouteServlet extends HttpServlet {
         newRouteStationList.add("station" +
                 (newRouteStationList.size() + 2));
         req.getSession().setAttribute("stationList",
-                StationService.getAllStations());
+                StationServiceImpl.getAllStations());
         req.getSession().setAttribute("currentManagerAction", "create");
         res.sendRedirect("/WEB-INF/pages/routeManager.jsp");
     }
-}
+*/}

@@ -1,18 +1,9 @@
 package chuggaChugga.service;
 
+import org.springframework.stereotype.Service;
 
-import chuggaChugga.model.RouteLength;
-import chuggaChugga.dao.RouteLengthDao;
 
-public class RouteLengthService extends Service {
-    private static RouteLengthDao routeLengthDao = new RouteLengthDao(em);
-
-    public static void addRouteLength(int length) {
-        routeLengthDao.addRouteLength(new RouteLength(length));
-    }
-
-    public static int getFreeRouteId() {
-        return routeLengthDao.getAllRouteLength().size() + 1;
-    }
-
+public interface RouteLengthService {
+    void addRouteLength(int length);
+    int getFreeRouteId();
 }

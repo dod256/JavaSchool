@@ -2,7 +2,7 @@ package chuggaChugga.servlet;
 
 import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.helper.OperationResultMessage;
-import chuggaChugga.service.RouteService;
+import chuggaChugga.service.RouteServiceImpl;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 *  Response for creating routes
 * */
 public class CreateRouteServlet extends HttpServlet {
-
+/*
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         ArrayList<String> stationList = new ArrayList<String>();
@@ -43,7 +43,7 @@ public class CreateRouteServlet extends HttpServlet {
                 .withWaitingTime(waitingTimeList)
                 .withDepartureTime(time)
                 .build();
-        RouteService.createRoute(newRouteImpl);
+        RouteServiceImpl.createRoute(newRouteImpl);
         boolean tryToCreateRoute = true;
         if (tryToCreateRoute) {
             req.getSession().setAttribute("operationResultMessage",
@@ -54,5 +54,5 @@ public class CreateRouteServlet extends HttpServlet {
         }
         res.sendRedirect("/WEB-INF/pages/showMessage.jsp");
 
-    }
+    }*/
 }
