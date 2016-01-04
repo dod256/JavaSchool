@@ -17,12 +17,6 @@
             </div>
             <div class="col-sm-10 text-left">
                 <h1>Welcome!</h1>
-
-                <form action="test.form" method="get">
-                    <input type="text" name="name">
-                    <input type="submit">
-                </form>
-
             </div>
         </div>
     </div>
