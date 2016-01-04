@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 
     public User getUserByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
-        Criteria criteria =session.createCriteria(User.class);
+        Criteria criteria = session.createCriteria(User.class);
         return (User) criteria
                 .add(Restrictions.eq("email", email))
                 .uniqueResult();

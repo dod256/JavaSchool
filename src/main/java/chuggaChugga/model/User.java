@@ -16,7 +16,7 @@ import java.sql.Date;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String email;
     private String firstName;
