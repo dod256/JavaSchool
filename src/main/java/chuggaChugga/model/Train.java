@@ -3,19 +3,18 @@ package chuggaChugga.model;
 import com.google.common.base.MoreObjects;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.sql.Date;
 
 /*
 * Represent Train table from the DB
 * */
 @Entity
+@Table(name = "Train")
 public class Train {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
 

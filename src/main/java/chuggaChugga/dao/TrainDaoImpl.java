@@ -1,8 +1,12 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.Train;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -12,16 +16,20 @@ import java.util.List;
 @Repository
 public class TrainDaoImpl implements TrainDao {
 
+    @Resource(name="sessionFactory")
+    private SessionFactory sessionFactory;
+
 
     public void addTrain(Train train) {
-        /*
-        EntityTransaction transaction = em.getTransaction();
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         transaction.begin();
-        em.persist(train);
-        transaction.commit();*/
+        session.save(train);
+        transaction.commit();
+        session.close();
     }
 
-    //todo: rewrite
+
     public int getTrainTableSize() {
         /*
         TypedQuery<Train> query = em.createQuery("SELECT a FROM Train a", Train.class);

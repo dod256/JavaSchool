@@ -1,14 +1,15 @@
 package chuggaChugga.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /*
 * Represent RouteLength table from the DB
 * */
 @Entity
+@Table(name = "RouteLength")
 public class RouteLength {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int routeLength;
 

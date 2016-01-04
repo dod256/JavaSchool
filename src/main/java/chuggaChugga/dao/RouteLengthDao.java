@@ -1,8 +1,6 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.RouteLength;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 

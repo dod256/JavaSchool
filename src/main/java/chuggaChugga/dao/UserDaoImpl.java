@@ -18,17 +18,18 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     public void addUser(User user) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         session.persist(user);
+        session.close();
     }
 
     public User getUser(int id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         return (User) session.get(User.class, id);
     }
 
     public User getUserByEmail(String email) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(User.class);
         return (User) criteria
                 .add(Restrictions.eq("email", email))
@@ -37,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
 
     public List<User> getUsers() {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Query query = session.createQuery("From User");
         return query.list();
     }

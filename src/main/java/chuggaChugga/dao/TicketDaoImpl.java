@@ -4,29 +4,34 @@ import chuggaChugga.model.Ticket;
 import chuggaChugga.model.Train;
 import chuggaChugga.model.User;
 import chuggaChugga.data.TicketRequest;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class TicketDaoImpl implements TicketDao{
-    //todo: refactor
 
+    @Resource(name="sessionFactory")
+    private SessionFactory sessionFactory;
 
     public boolean tryToPurhaseTicket(TicketRequest request) {
-       /* EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
 
-        Train train = em.find(Train.class, request.getTrainId());
+        Train train = (Train) session.get(Train.class, request.getTrainId());
         if (train.getNumberOfFreeSeats() == 0) {
             //todo: add logging! (current train have not free seats any more)
             //and throw exception!!!
             transaction.commit();
+            session.close();
             return false;
         }
         DateTime departureDateTime = new DateTime(train.getDepartureDate());
@@ -34,6 +39,7 @@ public class TicketDaoImpl implements TicketDao{
         if (!DateTime.now().plusMinutes(10).isBefore(departureDateTime)) {
             //todo: add logging! (it's tool late to buy ticket at this train)
             transaction.commit();
+            session.close();
             return false;
         }
 
@@ -42,6 +48,7 @@ public class TicketDaoImpl implements TicketDao{
             if (ticket.getTrain().equals(train)) {
                 //todo: add logging! (user already have ticket at this train)
                 transaction.commit();
+                session.close();
                 return false;
             }
         }
@@ -52,23 +59,29 @@ public class TicketDaoImpl implements TicketDao{
                 .withTrain(train)
                 .build();
 
-        em.persist(ticket);
+        session.save(ticket);
         train.setNumberOfFreeSeats(train.getNumberOfFreeSeats() - 1);
 
-        transaction.commit();*/
+        transaction.commit();
+        session.close();
         return true;
     }
 
     public List<Ticket> getTicketsByUser(User user) {
-        //Query query = em.createQuery("from Ticket where userId = " + user.getId());
-        //return query.getResultList();
-        return null;
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(Ticket.class);
+
+        return (List<Ticket>) criteria
+                .add(Restrictions.eq("user", user))
+                .list();
     }
 
 
     public List<Ticket> getTicketByTrain(int trainId) {
-        /*Query query = em.createQuery("from Ticket where trainId = " + trainId);
-        return query.getResultList();*/
-        return null;
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(Ticket.class);
+        return (List<Ticket>) criteria
+                .add(Restrictions.eq("train", trainId))
+                .list();
     }
 }

@@ -8,9 +8,10 @@ import javax.persistence.*;
 * Represent Timetable table from the DB
 * */
 @Entity
+@Table(name = "Timetable")
 public class Timetable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

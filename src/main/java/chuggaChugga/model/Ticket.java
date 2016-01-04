@@ -8,9 +8,10 @@ import javax.persistence.*;
 * Represent Ticket table from the DB
 * */
 @Entity
+@Table(name = "Ticket")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

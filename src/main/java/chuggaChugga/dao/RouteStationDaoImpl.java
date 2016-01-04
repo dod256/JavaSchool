@@ -1,36 +1,42 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.RouteStation;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+import javax.annotation.Resource;
 import java.util.List;
 
 @Repository
 public class RouteStationDaoImpl implements RouteStationDao {
-    //todo:refactor
 
-   // private SessionFactory sessionFactory;
-
+    @Resource(name="sessionFactory")
+    private SessionFactory sessionFactory;
 
     public List<RouteStation> getRouteStationsById(int routeId) {
-    //    Query query = em.createQuery("from RouteStation where routeId = " + routeId);
-    //    return query.getResultList();
-        return null;
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(RouteStation.class);
+        return (List<RouteStation>) criteria
+                .add(Restrictions.eq("routeId", routeId))
+                .list();
     }
 
+
     public List<RouteStation> getAllRouteStations() {
-        //return em.createQuery("from RouteStation").getResultList();
-        return null;
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(RouteStation.class);
+        return (List<RouteStation>)criteria.list();
     }
 
     public void addRouteStation(RouteStation station) {
-        /*EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(station);
-        transaction.commit();*/
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(station);
+        transaction.commit();
+        session.close();
     }
 }

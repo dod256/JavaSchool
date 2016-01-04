@@ -16,7 +16,7 @@ import java.util.ArrayList;
 *
 * */
 
- @Service
+@Service
 public class TrainServiceImpl implements TrainService {
 
     @Autowired

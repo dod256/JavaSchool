@@ -8,13 +8,13 @@ import javax.persistence.*;
 * Represent Station table from the DB
 * */
 @Entity
+@Table(name = "Station")
 public class Station {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String name;
-
 
     public Station() {}
 

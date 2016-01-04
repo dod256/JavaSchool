@@ -12,20 +12,18 @@ import org.springframework.stereotype.Component;
 public class TicketDto {
 
     private int id;
-    private TrainDto train;
+    private String train;
     private UserDto user;
     private String arrivalStation;
     private String departureStation;
     private DateTime departureDate;
 
-    @Autowired
-    private RouteService routeService;
 
     public TicketDto(){}
 
     public TicketDto(Ticket ticket) {
         id = ticket.getId();
-        train = new TrainDto(ticket.getTrain(), routeService.getRouteById(ticket.getTrain().getDepartureStation().getRouteId()));//ToDo maybe another way to do THIS
+        train = ticket.getTrain().getName();
         user = new UserDto(ticket.getUser());
         arrivalStation = ticket.getArrivalStation();
         departureStation = ticket.getDepartureStation();
@@ -36,7 +34,7 @@ public class TicketDto {
         return id;
     }
 
-    public TrainDto getTrain() {
+    public String getTrain() {
         return train;
     }
 

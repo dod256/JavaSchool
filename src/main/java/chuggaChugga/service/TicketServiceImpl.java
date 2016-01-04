@@ -3,7 +3,6 @@ package chuggaChugga.service;
 import chuggaChugga.dao.TicketDao;
 import chuggaChugga.model.Ticket;
 import chuggaChugga.model.User;
-import chuggaChugga.dao.TicketDaoImpl;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
@@ -26,7 +25,7 @@ public class TicketServiceImpl implements TicketService {
     public ArrayList<TicketDto> getTicketsByUser(UserDto userDto) {
         User user = new User(userDto);
         ArrayList<Ticket> ticketList = (ArrayList<Ticket>) ticketDao.getTicketsByUser(user);
-        ArrayList<TicketDto> ticketDtoList = new ArrayList<TicketDto>();
+        ArrayList<TicketDto> ticketDtoList = new ArrayList<>();
         for(Ticket ticket : ticketList) {
             ticketDtoList.add(new TicketDto(ticket));
         }
