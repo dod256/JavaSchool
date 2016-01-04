@@ -31,7 +31,7 @@
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "findStation">
         </div>
-        <button type = "submit" class = "btn btn-default">Show all stations</button>
+        <button type = "submit" class = "btn btn-default">Find station</button>
       </form>
 
     </div>
@@ -55,13 +55,11 @@
           </form>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'showAllStations'}">
-          ${sessionScope.currentManagerAction = null}
           <h1>All Stations</h1>
           <c:set var="stationList" value="${sessionScope.stationList}"/>
           <c:forEach items="${stationList}" var="station">
             <h5>${station.getName()}</h5>
           </c:forEach>
-          ${sessionScope.actionObjectList = null}
         </c:when>
       </c:choose>
 
