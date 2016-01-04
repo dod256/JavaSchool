@@ -56,6 +56,8 @@ public class UserDto {
         return id;
     }
 
+    public boolean checkPassword(String password) { return password.equals(this.password); }
+
     public String getEmail() {
         return email;
     }

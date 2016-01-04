@@ -99,8 +99,6 @@ public class User implements Serializable {
         return email;
     }
 
-    public boolean checkPassword(String password) { return password.equals(this.password); }
-
     public void setBirthDate(Date birthDate) {
         this.birthdate = birthDate;
     }

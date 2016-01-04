@@ -1,6 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.UserDao;
+import chuggaChugga.dto.UserDto;
 import chuggaChugga.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -25,12 +27,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    public List<User> getUsers() { return userDao.getUsers(); }
-
-    public void addUser(User user) {
-        userDao.addUser(user);
+    public List<UserDto> getUsers() {
+        List<User> userList = userDao.getUsers();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for(User user : userList) {
+            userDtoList.add(new UserDto(user));
+        }
+        return userDtoList;
     }
 
-    public User getUserByEmail(String email) { return userDao.getUserByEmail(email); }
+    public void addUser(UserDto user) {
+        userDao.addUser(new User(user));
+    }
+
+    public UserDto getUserByEmail(String email) {
+        return new UserDto(userDao.getUserByEmail(email));
+    }
 
 }

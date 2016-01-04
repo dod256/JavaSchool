@@ -35,8 +35,7 @@ public class SignUpController {
                 .withUserTypeId(2)
                 .build();
 
-        User user = new User(userDto);
-        userService.addUser(user);
+        userService.addUser(userDto);
         return "index";
     }
 
