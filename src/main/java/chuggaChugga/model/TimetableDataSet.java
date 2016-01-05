@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.*;
 
 /*
-* Represent TimetableDataSet table from the DB
+* Represent Timetable table from the DB
 * */
 @Entity
 @Table(name = "Timetable")

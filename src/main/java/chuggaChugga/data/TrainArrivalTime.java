@@ -1,7 +1,7 @@
 package chuggaChugga.data;
 
-import com.google.common.base.MoreObjects;
 import chuggaChugga.model.TrainDataSet;
+import com.google.common.base.MoreObjects;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 

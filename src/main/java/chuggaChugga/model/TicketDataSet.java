@@ -1,11 +1,10 @@
 package chuggaChugga.model;
 
 import com.google.common.base.MoreObjects;
-
 import javax.persistence.*;
 
 /*
-* Represent TicketDataSet table from the DB
+* Represent Ticket table from the DB
 * */
 @Entity
 @Table(name = "Ticket")

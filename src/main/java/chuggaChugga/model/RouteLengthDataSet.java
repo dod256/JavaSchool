@@ -3,7 +3,7 @@ package chuggaChugga.model;
 import javax.persistence.*;
 
 /*
-* Represent RouteLengthDataSet table from the DB
+* Represent RouteLength table from the DB
 * */
 @Entity
 @Table(name = "RouteLength")

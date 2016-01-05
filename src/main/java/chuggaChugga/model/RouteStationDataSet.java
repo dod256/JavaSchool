@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Time;
 
 /*
-* Represent RouteStationDataSet table from the DB
+* Represent RouteStation table from the DB
 * */
 @Entity
 @Table(name = "RouteStation")

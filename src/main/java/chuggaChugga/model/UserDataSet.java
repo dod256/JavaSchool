@@ -3,13 +3,12 @@ package chuggaChugga.model;
 import com.google.common.base.MoreObjects;
 import chuggaChugga.dto.UserDto;
 import org.joda.time.DateTime;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
 /*
-* Represent UserDataSet table from the DB
+* Represent User table from the DB
 * */
 @Entity
 @Table(name = "User")

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class StationDaoImpl implements StationDao {
 
-    @Resource(name="sessionFactory")
+    @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
     public void addStation(StationDataSet station) {
@@ -29,11 +29,8 @@ public class StationDaoImpl implements StationDao {
     }
 
     public StationDataSet getStation(int id) {
-        //ToDo refactor
         return (StationDataSet) sessionFactory.openSession()
-                .createCriteria(StationDataSet.class)
-                .add(Restrictions.eq("id", id))
-                .uniqueResult();
+                .get(StationDataSet.class, id);
     }
 
     public List<StationDataSet> getAllStations() {

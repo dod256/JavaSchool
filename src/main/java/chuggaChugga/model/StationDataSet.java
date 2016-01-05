@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.*;
 
 /*
-* Represent StationDataSet table from the DB
+* Represent Station table from the DB
 * */
 @Entity
 @Table(name = "Station")

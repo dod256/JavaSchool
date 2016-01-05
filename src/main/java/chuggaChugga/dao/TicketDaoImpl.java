@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class TicketDaoImpl implements TicketDao{
 
-    @Resource(name="sessionFactory")
+    @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
     public boolean tryToPurhaseTicket(TicketRequest request) {

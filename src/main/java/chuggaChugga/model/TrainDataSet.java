@@ -2,12 +2,11 @@ package chuggaChugga.model;
 
 import com.google.common.base.MoreObjects;
 import org.joda.time.DateTime;
-
 import javax.persistence.*;
 import java.sql.Date;
 
 /*
-* Represent TrainDataSet table from the DB
+* Represent Train table from the DB
 * */
 @Entity
 @Table(name = "Train")

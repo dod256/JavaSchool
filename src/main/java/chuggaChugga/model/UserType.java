@@ -1,6 +1,5 @@
 package chuggaChugga.model;
 
-
 /*
 * Represent UserType table from the DB
 * */

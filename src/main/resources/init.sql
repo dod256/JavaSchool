@@ -1,36 +1,14 @@
--- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
--- -----------------------------------------------------
--- Schema 
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema 
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema new_schema1
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema new_schema2
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema chugga_chugga
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema chugga_chugga
--- -----------------------------------------------------
 DROP DATABASE chugga_chugga;
 CREATE DATABASE IF NOT EXISTS chugga_chugga DEFAULT CHARACTER SET utf8 ;
 USE `chugga_chugga` ;
 
 -- -----------------------------------------------------
--- Table ``.`StationDataSet`
+-- Table ``.`Station`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Station` (
   `name` VARCHAR(30) NULL,
@@ -40,7 +18,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`RouteStationDataSet`
+-- Table ``.`RouteStation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -61,7 +39,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`TrainDataSet`
+-- Table ``.`Train`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Train` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -89,7 +67,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`TimetableDataSet`
+-- Table ``.`Timetable`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Timetable` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -128,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteLength` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table ``.`UserDataSet`
+-- Table ``.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`User` (
   `email` VARCHAR(45) NULL,
@@ -149,7 +127,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table ``.`TicketDataSet`
+-- Table ``.`Ticket`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,

@@ -1,8 +1,6 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.UserDataSet;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -24,21 +22,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     public UserDataSet getUser(int id) {
-        Session session = sessionFactory.openSession();
-        return (UserDataSet) session.get(UserDataSet.class, id);
+        return (UserDataSet) sessionFactory
+                .openSession()
+                .get(UserDataSet.class, id);
     }
 
     public UserDataSet getUserByEmail(String email) {
-        Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(UserDataSet.class);
-        return (UserDataSet) criteria
+        return (UserDataSet) sessionFactory
+                .openSession()
+                .createCriteria(UserDataSet.class)
                 .add(Restrictions.eq("email", email))
                 .uniqueResult();
     }
 
     public List<UserDataSet> getUsers() {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("From UserDataSet");
-        return query.list();
+        return sessionFactory.openSession()
+                .createCriteria(UserDataSet.class)
+                .list();
     }
 }

@@ -58,7 +58,7 @@ public class StationServiceImpl implements StationService {
     *
     * */
     public StationTimetable getTimetable(StationDataSet station, DateTime transitDate) {
-        ArrayList<TrainArrivalTime> result = new ArrayList<TrainArrivalTime>();
+        ArrayList<TrainArrivalTime> result = new ArrayList<>();
 
         ArrayList<TrainDataSet> trains = trainService.getAllTrains();
         ArrayList<Route> routes = routeService.getAllRoutes();
