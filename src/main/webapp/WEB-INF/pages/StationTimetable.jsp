@@ -15,7 +15,7 @@
         </div>
         <div class="col-sm-10 text-left">
 
-            <form role = "form" name = "ShowTimetableForm" action = "ShowStationTimetableServlet" method = post>
+            <form role = "form" name = "showTimetableForm" action = "showStationTimetable.form" method = post>
                 <div class = "form-group">
                     <label for = "selectName"> Name </label>
                     <select class="form-control" id = "selectName" name="name">
