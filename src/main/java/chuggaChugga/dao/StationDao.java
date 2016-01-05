@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface StationDao {
     void addStation(StationDataSet station);
-    StationDataSet getStation(String name);
+    StationDataSet getStationByName(String name);
+    StationDataSet getStation(int id);
     List<StationDataSet> getAllStations();
 }

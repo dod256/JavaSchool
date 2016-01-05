@@ -20,7 +20,6 @@ public class StationManagerController {
 
     @RequestMapping(value = "/setAddStationAction.form", method = RequestMethod.POST)
     public String addAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("stationList", stationService.getAllStations());
         session.setAttribute("currentManagerAction", actionType);
         return "stationManager";
     }
@@ -34,7 +33,6 @@ public class StationManagerController {
 
     @RequestMapping(value = "/setFindStationAction.form", method = RequestMethod.POST)
     public String findAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("stationList", stationService.getAllStations());
         session.setAttribute("currentManagerAction", actionType);
         return "stationManager";
     }
@@ -51,4 +49,11 @@ public class StationManagerController {
         }
         return "showMessage";
     }
+
+    @RequestMapping(value = "/showStationInfo.form", method = RequestMethod.POST)
+    public String showInfo(@RequestParam("stationId") String stationId, HttpSession session) {
+        session.setAttribute("station", stationService.getStation(Integer.parseInt(stationId)));
+        return "stationInfo";
+    }
+
 }

@@ -41,7 +41,8 @@ public class RouteServiceImpl implements RouteService {
             builder.withArrival(new Time(newRouteImpl.getDepartureTime().plus(onWheel).getMillis()))
                     .withOnWheel(new Time(0, onWheel.getMinutes(), 0))
                             .withRouteId(routeId)
-                            .withStation(stationService.getStation(newRouteImpl.getStation().get(i)))
+                            //ToDo get by id, maybe?
+                            .withStation(stationService.getStationByName(newRouteImpl.getStation().get(i)))
                             .withStationNumber(i + 1)
                             .withWaitingTime(new Time(0, new Period().plusMinutes(newRouteImpl.getWaitingTime().get(i)).getMinutes(), 0));
             routeStationService.addRouteStation(builder.build());

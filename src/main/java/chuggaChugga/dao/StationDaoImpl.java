@@ -21,11 +21,19 @@ public class StationDaoImpl implements StationDao {
         session.close();
     }
 
-    public StationDataSet getStation(String name) {
+    public StationDataSet getStationByName(String name) {
         return (StationDataSet) sessionFactory.openSession()
               .createCriteria(StationDataSet.class)
               .add(Restrictions.eq("name", name))
               .uniqueResult();
+    }
+
+    public StationDataSet getStation(int id) {
+        //ToDo refactor
+        return (StationDataSet) sessionFactory.openSession()
+                .createCriteria(StationDataSet.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
     }
 
     public List<StationDataSet> getAllStations() {

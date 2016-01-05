@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public interface StationService {
     void addStation(StationDataSet station);
-    StationDataSet getStation(String name);
+    StationDataSet getStationByName(String name);
+    StationDataSet getStation(int id);
     ArrayList<StationDataSet> getAllStations();
     StationTimetable getTimetable(StationDataSet station, DateTime transitDate);
 

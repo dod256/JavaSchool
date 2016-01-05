@@ -45,8 +45,9 @@ public class TrainServiceImpl implements TrainService {
     *
     * */
     public TrainTimetable getTrains(TrainRequest trainRequest) {
-        StationDataSet departureStation = stationService.getStation(trainRequest.getDepartureStation());
-        StationDataSet arrivalStation = stationService.getStation(trainRequest.getArrivalStation());
+        //ToDo get by id, maybe?
+        StationDataSet departureStation = stationService.getStationByName(trainRequest.getDepartureStation());
+        StationDataSet arrivalStation = stationService.getStationByName(trainRequest.getArrivalStation());
         TrainTimetable.Builder resultBuilder = TrainTimetable.newBuilder()
                 .withArrivalStation(arrivalStation)
                 .withDepartureStation(departureStation)

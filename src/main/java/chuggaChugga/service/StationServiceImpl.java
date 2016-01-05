@@ -35,8 +35,12 @@ public class StationServiceImpl implements StationService {
         stationDao.addStation(station);
     }
 
-    public StationDataSet getStation(String name) {
-        return stationDao.getStation(name);
+    public StationDataSet getStationByName(String name) {
+        return stationDao.getStationByName(name);
+    }
+
+    public StationDataSet getStation(int id) {
+        return stationDao.getStation(id);
     }
 
     public ArrayList<StationDataSet> getAllStations() {

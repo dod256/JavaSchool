@@ -44,7 +44,6 @@
           </div>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'createStation'}">
-          ${sessionScope.currentManagerAction = null}
           <h1>Create station</h1>
           <form role = "form" name = "AddStationForm" action = "addStation.form" method = post>
             <div class = "form-group">
@@ -56,9 +55,26 @@
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'showAllStations'}">
           <h1>All Stations</h1>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td>Station Name</td>
+                <td>Info</td>
+              </tr>
+            </thead>
           <c:set var="stationList" value="${sessionScope.stationList}"/>
-          <c:forEach items="${stationList}" var="station">
-            <h5>${station.getName()}</h5>
+          <c:forEach items="${stationList }" var="station">
+            <tr>
+              <td><h5>${station.getName()}</h5></td>
+              <td>
+                <form role = "form" name = "showStationInfoForm" action = "showStationInfo.form" method = post>
+                  <div class = "form-group">
+                    <input type="hidden" name = "stationId" value = ${station.getId()}>
+                  </div>
+                  <button type = "submit" class = "btn btn-default">Show Info</button>
+                </form>
+              </td>
+            </tr>
           </c:forEach>
         </c:when>
       </c:choose>
