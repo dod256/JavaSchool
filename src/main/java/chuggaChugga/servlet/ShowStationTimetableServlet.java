@@ -11,6 +11,6 @@ public class ShowStationTimetableServlet extends HttpServlet {
         StationDataSet station = StationServiceImpl.getStation(stationName);
         DateTime date = DateTime.parse(req.getParameter("date"));
         req.getSession().setAttribute("stationTimetable", StationServiceImpl.getTimetable(station, date));
-        res.sendRedirect("/WEB-INF/pages/StationTimetable.jsp");
+        res.sendRedirect("/WEB-INF/pages/stationTimetable.jsp");
     }*/
 }
