@@ -36,28 +36,16 @@
           </div>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'create'}">
-          <h1>Create route</h1>
+          <h1>New route creation</h1>
 
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>Routes</th>
-            </tr>
-            </thead>
-            <tbody>
-              <c:set var="currentRoute" value="${sessionScope.currentRoute}"/>
-              <tr>
-                <c:forEach items="${currentRoute}" var="route">
-                  <td><h5>${routeStation.getStation().getName()} <small> ${routeStation.getArrival()}</small></h5></td>
-                </c:forEach>
-              </tr>
-            </tbody>
-          </table>
-
-
-          <form role = "form" name = CreateRouteForm action = "CreateRouteServlet" method = post>
+          <form role = "form" name = "createRouteForm" action = "createRoute.form" method = post>
             <div class = "form-group">
-              <select class="form-control" id = "station1" name="station1">
+              <button type = "submit" class = "btn btn-default">Create</button>
+            </div>
+          </form>
+          <form role = "form" name = addStationToRouteForm action = "addStationToRoute.form" method = post>
+            <div class = "form-group">
+              <select class="form-control" id = "station" name="station">
                 <c:set var="stationList" value="${sessionScope.stationList}"/>
                 <c:forEach items="${stationList}" var="station">
                   <option>${station.getName()}</option>
@@ -65,31 +53,42 @@
               </select>
             </div>
             <div class = "form-group">
-              <label for = "time"> Departure time </label>
-              <input type="time" class="form-control" id = "time" name="time">
+              <label for = "arrivalTime"> Arrival Time </label>
+              <input type="time" class = "form-control" id = "arrivalTime" name= "arrivalTime">
             </div>
-            <c:set var="newRouteStationList" value="${sessionScope.newRouteStationList}"/>
-            <c:forEach items="${newRouteStationList}" var="newRouteStation">
-              <div class = "form-group">
-                <select class="form-control" id = ${newRouteStation} name=${newRouteStation}>
-                  <c:set var="stationList" value="${sessionScope.stationList}"/>
-                  <c:forEach items="${stationList}" var="station">
-                    <option>${station.getName()}</option>
-                  </c:forEach>
-                </select>
-              </div>
-              <div class = "form-group">
-                <label for = ${newRouteStation}OnWheel> Time On Wheel </label>
-                <input type="text" class="form-control" id = ${newRouteStation}OnWheel name=${newRouteStation}OnWheel>
-              </div>
-              <div class = "form-group">
-                <label for = ${newRouteStation}WaitingTime> Waiting Time </label>
-                <input type="text" class="form-control" id = ${newRouteStation}WaitingTime name=${newRouteStation}WaitingTime>
-              </div>
-            </c:forEach>
-            <button type = "submit" class = "btn btn-default">Create</button>
+            <div class = "form-group">
+              <label for = daysOnWheel> Days On Wheel </label>
+              <input type="text" class="form-control" id = "daysOnWheel" name = "daysOnWheel">
+            </div>
+            <div class = "form-group">
+              <label for = waitingTime> Waiting Time </label>
+              <input type="time" class="form-control" id = "waitingTime" name="waitingTime">
+            </div>
+            <div class = "form-group">
+              <button type = "submit" class = "btn btn-default">Add station</button>
+            </div>
           </form>
-
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Station</th>
+              <th>Arrival Time</th>
+              <th>Waiting Time</th>
+              <th>Days on Wheel</th>
+            </tr>
+            </thead>
+            <tbody>
+              <c:set var="currentRoute" value="${sessionScope.routeBuilder.getRouteStations()}"/>
+                <c:forEach items="${currentRoute}" var="routeStation">
+                  <tr>
+                    <td><h5>${routeStation.getStation()}</h5></td>
+                    <td><h5>${routeStation.getArrivalTimeString()}</h5></td>
+                    <td><h5>${routeStation.getWaitingTimeString()}</h5></td>
+                    <td><h5>${routeStation.getDaysOnWheel()}</h5></td>
+                  </tr>
+                </c:forEach>
+            </tbody>
+          </table>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
 

@@ -30,6 +30,7 @@ public class NewRouteImpl implements NewRoute {
         private ArrayList<NewRouteStation> routeStations;
 
         private Builder() {
+            this.routeStations = new ArrayList<>();
         }
 
         public Builder withRouteStations(ArrayList<NewRouteStation> val) {
