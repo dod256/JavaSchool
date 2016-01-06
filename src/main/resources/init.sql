@@ -51,7 +51,6 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `arrival` TIME NOT NULL,
   `dayCount` INT NOT NULL,
   `waitingTime` TIME NOT NULL,
-  `onWheel` TIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_RouteStation_Station1_idx` (`stationId` ASC),
   CONSTRAINT `station`
@@ -238,68 +237,68 @@ insert into Station (name)
 
 #adler->samara->ufa->omsk->novosib
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (4, 1, 1, '12:25:00', '00:00:00', '00:00:00', 0);
+arrival, waitingTime, dayCount)
+ values (4, 1, 1, '12:25:00', '00:00:00', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (9, 2, 1, '14:26:00', '00:00:01', '02:01:00', 0);
+arrival, waitingTime, dayCount)
+ values (9, 2, 1, '14:26:00', '00:00:01', 0);
  
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (5, 3, 1, '18:27:00', '00:00:40', '06:02:00', 1);
+arrival, waitingTime, dayCount)
+ values (5, 3, 1, '18:27:00', '00:00:40', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (7, 4, 1, '21:25:00', '00:00:20', '09:00:00', 2);
+arrival, waitingTime, dayCount)
+ values (7, 4, 1, '21:25:00', '00:00:20', 2);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (8, 5, 1, '05:28:00', '00:00:20', '17:03:00', 2);
+arrival, waitingTime, dayCount)
+ values (8, 5, 1, '05:28:00', '00:00:20', 2);
  
  
 #ufa->omsk->novosib
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (5, 1, 2, '14:38:00', '00:00:20', '00:00:00', 0);
+arrival, waitingTime, dayCount)
+ values (5, 1, 2, '14:38:00', '00:00:20', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (7, 2, 2, '08:39:00', '00:00:20', '14:01:00', 1);
+arrival, waitingTime, dayCount)
+ values (7, 2, 2, '08:39:00', '00:00:20', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (8, 3, 2, '13:50:00', '00:00:20', '23:12:00', 1);
+arrival, waitingTime, dayCount)
+ values (8, 3, 2, '13:50:00', '00:00:20', 1);
  
 #msk->tver->spb->helsinki
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (1, 1, 3, '10:11:00', '00:00:20', '00:00:00', 0);
+arrival, waitingTime, dayCount)
+ values (1, 1, 3, '10:11:00', '00:00:20', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (3, 2, 3, '14:39:00', '00:00:20', '04:28:00', 0);
+arrival, waitingTime, dayCount)
+ values (3, 2, 3, '14:39:00', '00:00:20', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (2, 3, 3, '22:42:00', '00:00:20', '12:12:31', 1);
+arrival, waitingTime, dayCount)
+ values (2, 3, 3, '22:42:00', '00:00:20', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (6, 4, 3, '08:15:00', '00:01:20', '21:04:00', 2);
+arrival, waitingTime, dayCount)
+ values (6, 4, 3, '08:15:00', '00:01:20', 2);
  
 #msk->tver->spb
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (1, 1, 4, '00:00:00', '00:00:20', '00:00:00', 0);
+arrival, waitingTime, dayCount)
+ values (1, 1, 4, '00:00:00', '00:00:20', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (2, 3, 4, '04:12:00', '00:00:20', '04:12:00', 1);
+arrival, waitingTime, dayCount)
+ values (2, 3, 4, '04:12:00', '00:00:20', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel, dayCount)
- values (3, 2, 4, '10:14:00', '00:01:20', '10:14:00', 3);
+arrival, waitingTime, dayCount)
+ values (3, 2, 4, '10:14:00', '00:01:20', 3);
  
 
 ###########################################################################

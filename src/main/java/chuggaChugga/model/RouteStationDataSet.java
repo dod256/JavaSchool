@@ -21,7 +21,6 @@ public class RouteStationDataSet {
     private int dayCount;
     private Time arrival;
     private Time waitingTime;
-    private Time onWheel;
 
     public RouteStationDataSet(){}
 
@@ -32,7 +31,6 @@ public class RouteStationDataSet {
         stationNumber = builder.stationNumber;
         routeId = builder.routeId;
         waitingTime = builder.waitingTime;
-        onWheel = builder.onWheel;
         dayCount = builder.dayCount;
     }
 
@@ -48,7 +46,6 @@ public class RouteStationDataSet {
         builder.stationNumber = copy.stationNumber;
         builder.routeId = copy.routeId;
         builder.waitingTime = copy.waitingTime;
-        builder.onWheel = copy.onWheel;
         builder.dayCount = copy.dayCount;
         return builder;
     }
@@ -61,7 +58,6 @@ public class RouteStationDataSet {
         private int stationNumber;
         private int routeId;
         private Time waitingTime;
-        private Time onWheel;
         private int dayCount;
 
         private Builder() {
@@ -79,11 +75,6 @@ public class RouteStationDataSet {
 
         public Builder withDayCount(int val) {
             dayCount = val;
-            return this;
-        }
-
-        public Builder withOnWheel(Time val) {
-            onWheel = val;
             return this;
         }
 
@@ -119,10 +110,6 @@ public class RouteStationDataSet {
     public void setDayCount(int dayCount) {
         this.dayCount = dayCount;
     }
-
-    public Time getOnWheel() {return onWheel;}
-
-    public void setOnWheel() {this.onWheel = onWheel;}
 
     public Time getArrival() {
         return arrival;
@@ -181,7 +168,6 @@ public class RouteStationDataSet {
                 .add("stationNumber", stationNumber)
                 .add("routeId", routeId)
                 .add("waitingTime", waitingTime)
-                .add("onWheel", onWheel)
                 .add("dayCount", dayCount)
                 .toString();
     }

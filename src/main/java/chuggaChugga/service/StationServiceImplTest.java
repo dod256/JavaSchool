@@ -44,14 +44,14 @@ public class StationServiceImplTest extends TestCase {
         StationDataSet second = StationDataSet.newBuilder().withId(2).withName("Spb").build();
 
         RouteStationDataSet departure = RouteStationDataSet.newBuilder().withArrival(new Time(4,0,0))
-                .withDayCount(0).withId(1).withOnWheel(new Time(123)).withRouteId(1)
+                .withDayCount(0).withId(1).withRouteId(1)
                 .withStation(first)
                 .withStationNumber(1)
                 .withDayCount(0)
                 .withWaitingTime(new Time(1111)).build();
 
         RouteStationDataSet arrival = RouteStationDataSet.newBuilder().withArrival(new Time(5,0,0))
-                .withDayCount(1).withId(2).withOnWheel(new Time(1237)).withRouteId(1)
+                .withDayCount(1).withId(2).withRouteId(1)
                 .withStation(second)
                 .withStationNumber(2)
                 .withDayCount(1)
@@ -95,7 +95,6 @@ public class StationServiceImplTest extends TestCase {
         firstRes.add(TrainArrivalTime.newBuilder().withArrivalTime(new LocalTime(4, 0, 0)).withTrain(train).build());
         ArrayList<TrainArrivalTime> secondRes = new ArrayList<>();
         secondRes.add(TrainArrivalTime.newBuilder().withArrivalTime(new LocalTime(5,0,0)).withTrain(train).build());
-
 
         assertEquals(stationService.getTimetable(first, departureDate).getTrainArrivalTimes(), firstRes);
         assertEquals(stationService.getTimetable(second, arrivalDate).getTrainArrivalTimes(), secondRes);

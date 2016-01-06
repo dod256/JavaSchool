@@ -7,6 +7,7 @@ import chuggaChugga.model.StationDataSet;
 import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.data.Route;
 import chuggaChugga.data.RouteRequest;
+import org.joda.time.LocalTime;
 import org.joda.time.Period;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,14 +38,19 @@ public class RouteServiceImpl implements RouteService {
         for (NewRouteStation newRouteStation: newRouteImpl.getRouteStations()) {
             int stationNumber = 0;
             RouteStationDataSet.Builder builder = RouteStationDataSet.newBuilder();
-            builder.withArrival(Time.valueOf(newRouteStation.getArrivalTime().toString()))
+            builder.withArrival(toSqlTime(newRouteStation.getArrivalTime()))
                    .withRouteId(routeId)
                    .withStation(stationService.getStationByName(newRouteStation.getStation()))
                    .withStationNumber(++stationNumber)
-                   .withWaitingTime(Time.valueOf(newRouteStation.getWaitingTime().toString()));
+                   .withWaitingTime(toSqlTime(newRouteStation.getArrivalTime()));
             routeStationService.addRouteStation(builder.build());
         }
         routeLengthService.addRouteLength(newRouteImpl.getRouteStations().size());
+    }
+
+    private Time toSqlTime(LocalTime arrivalTime) {
+        return new Time(arrivalTime.getHourOfDay(), arrivalTime.getMinuteOfHour(), arrivalTime.getMinuteOfHour());
+
     }
 
     public Route getRouteById(int routeId) {
