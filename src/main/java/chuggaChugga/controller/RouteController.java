@@ -39,7 +39,6 @@ public class RouteController {
                 .build();
         NewRouteImpl.Builder routeBuilder = (NewRouteImpl.Builder) session.getAttribute("routeBuilder");
         routeBuilder.withNewRouteStation(routeStation);
-        //session.set is needed?
         return "routeManager";
     }
 

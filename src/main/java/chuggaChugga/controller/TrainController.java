@@ -179,11 +179,9 @@ public class TrainController {
         return "trainTimetable";
     }
 
-    @RequestMapping(value = "/purhaseTicket.form", method = RequestMethod.POST)
-    public String purhaseTicket(
+    @RequestMapping(value = "/purchaseTicket.form", method = RequestMethod.POST)
+    public String purchaseTicket(
             @RequestParam("trainId") String trainIdString,
-            @RequestParam("departureStation") String departureStation,
-            @RequestParam("arrivalStation") String arrivalStation,
             HttpSession session) {
         if (session.getAttribute("currentUser") == null) {
             return "login";
@@ -194,8 +192,8 @@ public class TrainController {
        TicketRequest ticketRequest = TicketRequest.newBuilder()
                 .withTrainId(trainId)
                 .withUserDto((UserDto) session.getAttribute("currentUser"))
-                .withArrivalStation(departureStation)
-                .withDepartureStation(arrivalStation)
+                .withArrivalStation((String) session.getAttribute("arrivalStation"))
+                .withDepartureStation((String) session.getAttribute("departureStation"))
                 .build();
         boolean tryToBuy = ticketService.tryToPurhaseTicket(ticketRequest);
 
@@ -204,6 +202,6 @@ public class TrainController {
         } else {
             session.setAttribute("operationResultMessage", new OperationResultMessage("danger", "Couldn't purhase ticket"));
         }
-        return "showMessage.jsp";
+        return "showMessage";
     }
 }

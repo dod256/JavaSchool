@@ -66,7 +66,7 @@
             <td><h5>${trainRouteTime.getDepartureTimeString()}</h5></td>
             <td><h5>${trainRouteTime.getArrivalTimeString()}</h5></td>
             <td>
-              <form role = "form" name = "buyTicketForm" action = "buyTicket.form" method = post>
+              <form role = "form" name = "purchaseTicketForm" action = "purchaseTicket.form" method = post>
                 <div class = "form-group">
                   <input type="hidden" name = "trainId" value = ${trainRouteTime.getTrain().getId()}>
                 </div>
