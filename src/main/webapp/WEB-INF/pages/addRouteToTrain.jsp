@@ -12,7 +12,7 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
-      <form role = "form" name = "ShowAllRoutesForm" action = "ShowAllRoutesServlet" method = post>
+      <form role = "form" name = "showAllRoutesForTrainForm" action = "showAllRoutesForTrain.form" method = post>
         <button type = "submit" class = "btn btn-default">Show all routes</button>
       </form>
     </div>
@@ -20,7 +20,7 @@
 
       <h1> Select Route </h1>
 
-      <form role = "form" name = "ShowRoutesForm" action = "ShowRoutesServlet" method = post>
+      <form role = "form" name = "showRoutesForTrainForm" action = "showRoutesForTrain.form" method = post>
         <div class = "form-group">
           <label for = "departureStation"> Departure Station </label>
           <select class="form-control" id = "departureStation" name="departureStation">
@@ -53,7 +53,7 @@
           <c:forEach items="${routeList}" var="route">
             <tr>
               <td>
-                <form role = "form" name = "AddRouteForm" action = "AddRouteToTrainServlet" method = post>
+                <form role = "form" name = "addRouteToTrainForm" action = "addRouteToTrain.form" method = post>
                   <div class = "form-group">
                     <input type="hidden" name = "routeId" value = ${route.getRouteId()}>
                   </div>

@@ -71,11 +71,11 @@ public class TicketDaoImpl implements TicketDao{
     }
 
 
-    public List<TicketDataSet> getTicketByTrain(int trainId) {
+    public List<TicketDataSet> getTicketByTrain(TrainDataSet train) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(TicketDataSet.class);
         return (List<TicketDataSet>) criteria
-                .add(Restrictions.eq("train", trainId))
+                .add(Restrictions.eq("train", train))
                 .list();
     }
 }

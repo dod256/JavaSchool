@@ -16,7 +16,7 @@
     <div class="col-sm-10 text-left">
 
       <h1>Find Train</h1>
-      <form role = "form" name = "FindTrainForm" action = "FindTrainServlet" method = post>
+      <form role = "form" name = "findTrainTimetableForm" action = "findTrainTimetable.form" method = post>
         <div class = "form-group">
           <label for = "departureStation"> Departure Station </label>
           <select class="form-control" id = "departureStation" name="departureStation">
@@ -66,7 +66,7 @@
             <td><h5>${trainRouteTime.getDepartureTimeString()}</h5></td>
             <td><h5>${trainRouteTime.getArrivalTimeString()}</h5></td>
             <td>
-              <form role = "form" name = "BuyTicketForm" action = "BuyTicketServlet" method = post>
+              <form role = "form" name = "buyTicketForm" action = "buyTicket.form" method = post>
                 <div class = "form-group">
                   <input type="hidden" name = "trainId" value = ${trainRouteTime.getTrain().getId()}>
                 </div>

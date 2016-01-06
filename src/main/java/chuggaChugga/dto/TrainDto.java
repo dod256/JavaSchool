@@ -28,10 +28,12 @@ public class TrainDto {
     }
 
     public String getArrivalStation() {
+        //ToDo REFACTOR!!!!!!!!!!!
         return route.getStations().get(route.getStations().size() - 1).getName();
     }
 
     public String getArrivalStationTime() {
+        //ToDo REFACTOR!!!!!!!!!!!
         return route.getRouteStations().get(route.getStations().size() - 1).getArrival().toString();
     }
 

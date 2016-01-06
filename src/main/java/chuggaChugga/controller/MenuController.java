@@ -56,7 +56,7 @@ public class MenuController {
     @RequestMapping(value = "/findTrain.html", method = RequestMethod.GET)
     public String findTrain(HttpSession session){
         session.setAttribute("stationList", stationService.getAllStations());
-        return "stationTimetable";
+        return "trainTimetable";
     }
 
     @RequestMapping(value = "/signUp.html", method = RequestMethod.GET)

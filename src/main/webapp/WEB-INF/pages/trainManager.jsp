@@ -13,14 +13,14 @@
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
 
-      <form role = "form" name = "SetAddActionForm" action = "TrainManagerSetActionServlet" method = post>
+      <form role = "form" name = "setAddTrainActionForm" action = "setAddTrainAction.form" method = post>
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "create">
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
-      <form role = "form" name = "ShowAllTrainForm" action = "TrainManagerSetActionServlet" method = post>
+      <form role = "form" name = "setShowAllTrainsActionForm" action = "setShowAllTrainsAction.form" method = post>
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "showAll">
         </div>
@@ -37,9 +37,8 @@
           </div>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'create'}">
-          ${sessionScope.currentManagerAction = null}
           <h1>Create train</h1>
-          <form role = "form" name = "AddTrainForm" action = "AddTrainServlet" method = post>
+          <form role = "form" name = "addTrainForm" action = "addTrain.form" method = post>
             <div class = "form-group">
               <label for = "name"> Name </label>
               <input type="text" class="form-control" id = "name" name="name">
@@ -60,8 +59,7 @@
           </form>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
-          ${sessionScope.currentManagerAction = null}
-          <c:set var="trainList" value="${sessionScope.actionObjectList}"/>
+          <c:set var="trainList" value="${sessionScope.trainList}"/>
           <c:choose>
             <c:when test="${trainList != null}">
               <h1>All Trains</h1>
@@ -74,7 +72,7 @@
                   <td>Arrival Station</td>
                   <td>Number of free seats</td>
                   <td>Cost</td>
-                  <td>Show Passangers</td>
+                  <td>Show Passengers</td>
                 </tr>
                 </thead>
                 <c:forEach items="${trainList}" var="train">
@@ -86,7 +84,7 @@
                     <td><h5>${train.getNumberOfFreeSeats()}</h5></td>
                     <td><h5>${train.getCost()}</h5></td>
                     <td>
-                      <form role = "form" name = "ShowPassengersForm" action = "ShowPassengersServlet" method = post>
+                      <form role = "form" name = "showPassengersForm" action = "showPassengers.form" method = post>
                         <div class = "form-group">
                           <input type="hidden" name = "trainId" value = ${train.getId()}>
                         </div>
@@ -98,7 +96,6 @@
               </table>
             </c:when>
           </c:choose>
-          ${sessionScope.actionObjectList = null}
         </c:when>
       </c:choose>
 

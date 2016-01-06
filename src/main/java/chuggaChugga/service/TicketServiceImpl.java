@@ -2,6 +2,7 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.TicketDao;
 import chuggaChugga.model.TicketDataSet;
+import chuggaChugga.model.TrainDataSet;
 import chuggaChugga.model.UserDataSet;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
@@ -39,7 +40,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
 
-    public ArrayList<TicketDataSet> getTicketByTrain(int trainId) {
-        return (ArrayList<TicketDataSet>) ticketDao.getTicketByTrain(trainId);
+    public ArrayList<TicketDataSet> getTicketByTrain(TrainDataSet train) {
+        return (ArrayList<TicketDataSet>) ticketDao.getTicketByTrain(train);
     }
 }

@@ -13,28 +13,19 @@
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
 
-      <form role = "form" name = "SetAddActionForm" action = "RouteManagerSetActionServlet" method = post>
+      <form role = "form" name = "setAddRouteActionForm" action = "setAddRouteAction.form" method = post>
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "create">
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
-      <form role = "form" name = "SetShowAllActionForm" action = "RouteManagerSetActionServlet" method = post>
+      <form role = "form" name = "setShowAllRoutesActionForm" action = "setShowAllRoutesAction.form" method = post>
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "showAll">
         </div>
         <button type = "submit" class = "btn btn-default">Show All</button>
       </form>
-
-      <c:choose>
-        <c:when test="${sessionScope.currentManagerAction == 'create'}">
-        <form role = "form" name = "AddStationToRouteForm" action = "AddStationToRouteServlet" method = post>
-          <button type = "submit" class = "btn btn-default">Add station</button>
-        </form>
-      </c:when>
-      </c:choose>
-
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
@@ -45,8 +36,25 @@
           </div>
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'create'}">
-          ${sessionScope.currentManagerAction = null}
           <h1>Create route</h1>
+
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Routes</th>
+            </tr>
+            </thead>
+            <tbody>
+              <c:set var="currentRoute" value="${sessionScope.currentRoute}"/>
+              <tr>
+                <c:forEach items="${currentRoute}" var="route">
+                  <td><h5>${routeStation.getStation().getName()} <small> ${routeStation.getArrival()}</small></h5></td>
+                </c:forEach>
+              </tr>
+            </tbody>
+          </table>
+
+
           <form role = "form" name = CreateRouteForm action = "CreateRouteServlet" method = post>
             <div class = "form-group">
               <select class="form-control" id = "station1" name="station1">
@@ -84,7 +92,6 @@
 
         </c:when>
         <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
-          ${sessionScope.currentManagerAction = null}
 
           <table class="table table-hover">
             <thead>
@@ -105,8 +112,6 @@
             </tbody>
           </table>
 
-
-          ${sessionScope.actionObjectList = null}
         </c:when>
       </c:choose>
 
