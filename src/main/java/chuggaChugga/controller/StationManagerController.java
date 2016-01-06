@@ -20,22 +20,29 @@ public class StationManagerController {
     @Autowired
     StationService stationService;
 
+
     @RequestMapping(value = "/setAddStationAction.form", method = RequestMethod.POST)
-    public String addAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("currentManagerAction", actionType);
+    public String addAction(
+            @RequestParam("firstStation") String firstStation,
+            @RequestParam("secondStation") String secondStation,
+            @RequestParam("distance") String distance,
+            HttpSession session) {
+        //ToDo: Create a DistanceStationDto and update
+        session.setAttribute("operationResultMessage",
+                new OperationResultMessage("success", "Distance changed"));
+        return "showMessage";
+    }
+
+    @RequestMapping(value = "/setAddStationAction.form", method = RequestMethod.POST)
+    public String addAction(@RequestParam("stationManagerAction") String stationManagerAction, HttpSession session) {
+        session.setAttribute("stationManagerAction", stationManagerAction);
         return "stationManager";
     }
 
     @RequestMapping(value = "/setShowAllStationsAction.form", method = RequestMethod.POST)
-    public String showAllAction(@RequestParam("actionType") String actionType, HttpSession session) {
+    public String showAllAction(@RequestParam("stationManagerAction") String stationManagerAction, HttpSession session) {
         session.setAttribute("stationList", stationService.getAllStations());
-        session.setAttribute("currentManagerAction", actionType);
-        return "stationManager";
-    }
-
-    @RequestMapping(value = "/setFindStationAction.form", method = RequestMethod.POST)
-    public String findAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("currentManagerAction", actionType);
+        session.setAttribute("stationManagerAction", stationManagerAction);
         return "stationManager";
     }
 
@@ -55,6 +62,7 @@ public class StationManagerController {
     @RequestMapping(value = "/showStationInfo.form", method = RequestMethod.POST)
     public String showInfo(@RequestParam("stationId") String stationId, HttpSession session) {
         session.setAttribute("station", stationService.getStation(Integer.parseInt(stationId)));
+        //ToDo: add distanceList via session.setAttribute("distanceList", object);
         return "stationInfo";
     }
 

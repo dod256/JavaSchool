@@ -15,14 +15,14 @@
 
       <form role = "form" name = "setAddTrainActionForm" action = "setAddTrainAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "create">
+          <input type="hidden" name = "actionType" value = "createTrain">
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
       <form role = "form" name = "setShowAllTrainsActionForm" action = "setShowAllTrainsAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "showAll">
+          <input type="hidden" name = "actionType" value = "showAllTrains">
         </div>
         <button type="submit" class="btn btn-default">Show all trains</button>
       </form>
@@ -30,13 +30,13 @@
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
-        <c:when test="${sessionScope.currentManagerAction == null}">
+        <c:when test="${sessionScope.trainManagerAction == null}">
           <h1>Status</h1>
           <div class="alert alert-info">
             <strong>Please, select action</strong>
           </div>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'create'}">
+        <c:when test="${sessionScope.trainManagerAction == 'createTrain'}">
           <h1>Create train</h1>
           <form role = "form" name = "addTrainForm" action = "addTrain.form" method = post>
             <div class = "form-group">
@@ -58,7 +58,7 @@
             <button type = "submit" class = "btn btn-default">Continue</button>
           </form>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
+        <c:when test="${sessionScope.trainManagerAction == 'showAllTrains'}">
           <c:set var="trainList" value="${sessionScope.trainList}"/>
           <c:choose>
             <c:when test="${trainList != null}">

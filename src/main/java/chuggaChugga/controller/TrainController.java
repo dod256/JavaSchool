@@ -100,7 +100,7 @@ public class TrainController {
 
     @RequestMapping(value = "/setAddTrainAction.form", method = RequestMethod.POST)
     public String addAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("currentManagerAction", actionType);
+        session.setAttribute("trainManagerAction", actionType);
         return "trainManager";
     }
 
@@ -113,7 +113,7 @@ public class TrainController {
         }
 
         session.setAttribute("trainList", trainDtoList);
-        session.setAttribute("currentManagerAction", actionType);
+        session.setAttribute("trainManagerAction", actionType);
         return "trainManager";
     }
 

@@ -15,27 +15,27 @@
 
       <form role = "form" name = "setAddRouteActionForm" action = "setAddRouteAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "create">
+          <input type="hidden" name = "actionType" value = "createRoute">
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
       <form role = "form" name = "setShowAllRoutesActionForm" action = "setShowAllRoutesAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "showAll">
+          <input type="hidden" name = "actionType" value = "showAllRoutes">
         </div>
         <button type = "submit" class = "btn btn-default">Show All</button>
       </form>
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
-        <c:when test="${sessionScope.currentManagerAction == null}">
+        <c:when test="${sessionScope.routeManagerAction == null}">
           <h1>Status</h1>
           <div class="alert alert-info">
             <strong>Please, select action</strong>
           </div>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'create'}">
+        <c:when test="${sessionScope.routeManagerAction == 'createRoute'}">
           <h1>New route creation</h1>
 
           <form role = "form" name = "createRouteForm" action = "createRoute.form" method = post>
@@ -90,7 +90,7 @@
             </tbody>
           </table>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'showAll'}">
+        <c:when test="${sessionScope.routeManagerAction == 'showAllRoutes'}">
 
           <table class="table table-hover">
             <thead>
@@ -99,7 +99,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:set var="routeList" value="${sessionScope.actionObjectList}"/>
+            <c:set var="routeList" value="${sessionScope.routeList}"/>
             <c:forEach items="${routeList}" var="route">
               <tr>
                 <c:set var="routeStationList" value="${route.getRouteStations()}"/>

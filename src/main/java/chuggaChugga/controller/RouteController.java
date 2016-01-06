@@ -55,7 +55,7 @@ public class RouteController {
 
     @RequestMapping(value = "/setAddRouteAction.form", method = RequestMethod.POST)
     public String addAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("currentManagerAction", actionType);
+        session.setAttribute("routeManagerAction", actionType);
         session.setAttribute("stationList", stationService.getAllStations());
         session.setAttribute("routeBuilder", NewRouteImpl.newBuilder());
         return "routeManager";
@@ -63,8 +63,8 @@ public class RouteController {
 
     @RequestMapping(value = "/setShowAllRoutesAction.form", method = RequestMethod.POST)
     public String showAllAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("actionObjectList", routeService.getAllRoutes());
-        session.setAttribute("currentManagerAction", actionType);
+        session.setAttribute("routeList", routeService.getAllRoutes());
+        session.setAttribute("routeManagerAction", actionType);
         return "routeManager";
     }
 

@@ -12,33 +12,40 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <%@ include file="greeting.jsp"%>
-
-      <form role = "form" name = "setAddStationActionForm" action = "setAddStationAction.form" method = post>
-        <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "createStation">
-        </div>
-        <button type = "submit" class = "btn btn-default">Create</button>
-      </form>
-
-      <form role = "form" name = "setShowAllStationsActionForm" action = "setShowAllStationsAction.form" method = post>
-        <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "showAllStations">
-        </div>
-        <button type = "submit" class = "btn btn-default">Show all stations</button>
-      </form>
-
-      <form role = "form" name = "setFindStationActionForm" action = "setFindStationAction.form" method = post>
-        <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "findStation">
-        </div>
-        <button type = "submit" class = "btn btn-default">Find station</button>
-      </form>
-
     </div>
     <div class="col-sm-10 text-left">
-      <h1>Some Info</h1>
       <c:set var="station" value="${sessionScope.station}"/>
-      <h5>${station.getName()}</h5>
+      <h1> Info about ${station.getName()}</h1>
+      <h3>Distances</h3>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <td>Station</td>
+          <td>Distance</td>
+        </tr>
+        </thead>
+        <c:set var="distanceList" value="${sessionScope.distanceList}"/>
+        <c:forEach items="${distanceList}" var="distance">
+          <tr>
+            <td><h5>${distance.getSecondStation()}</h5></td>
+            <td><h5>${distance.getDistance()}</h5></td>
+            <td>
+              <form role = "form" name = "changeDistanceFrom" action = "changeDistance.form" method = post>
+                <div class="form-group">
+                  <label for="distance">New Distance</label>
+                  <input type="distance" class="form-control" id="distance" name = "distance">
+                </div>
+                <div class = "form-group">
+                  <input type="hidden" name = "firstStation" value = ${distance.getFirstStation()}>
+                  <input type="hidden" name = "secondStation" value = ${distance.getSecondStation()}>
+                </div>
+                <button type = "submit" class = "btn btn-default">Change Distance</button>
+              </form>
+            </td>
+
+          </tr>
+        </c:forEach>
+      </table>
     </div>
   </div>
 </div>

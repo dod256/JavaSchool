@@ -15,35 +15,28 @@
 
       <form role = "form" name = "setAddStationActionForm" action = "setAddStationAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "createStation">
+          <input type="hidden" name = "stationManagerAction" value = "createStation">
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
       <form role = "form" name = "setShowAllStationsActionForm" action = "setShowAllStationsAction.form" method = post>
         <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "showAllStations">
+          <input type="hidden" name = "stationManagerAction" value = "showAllStations">
         </div>
         <button type = "submit" class = "btn btn-default">Show all stations</button>
-      </form>
-
-      <form role = "form" name = "setFindStationActionForm" action = "setFindStationAction.form" method = post>
-        <div class = "form-group">
-          <input type="hidden" name = "actionType" value = "findStation">
-        </div>
-        <button type = "submit" class = "btn btn-default">Find station</button>
       </form>
 
     </div>
     <div class="col-sm-10 text-left">
       <c:choose>
-        <c:when test="${sessionScope.currentManagerAction == null}">
+        <c:when test="${sessionScope.stationManagerAction == null}">
           <h1>Status</h1>
           <div class="alert alert-info">
             <strong>Please, select action</strong>
           </div>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'createStation'}">
+        <c:when test="${sessionScope.stationManagerAction == 'createStation'}">
           <h1>Create station</h1>
           <form role = "form" name = "AddStationForm" action = "addStation.form" method = post>
             <div class = "form-group">
@@ -53,12 +46,12 @@
             <button type = "submit" class = "btn btn-default">Create</button>
           </form>
         </c:when>
-        <c:when test="${sessionScope.currentManagerAction == 'showAllStations'}">
+        <c:when test="${sessionScope.stationManagerAction == 'showAllStations'}">
           <h1>All Stations</h1>
           <table class="table table-hover">
             <thead>
               <tr>
-                <td>Station Name</td>
+                <td>Station</td>
                 <td>Info</td>
               </tr>
             </thead>
@@ -76,6 +69,7 @@
               </td>
             </tr>
           </c:forEach>
+          </table>
         </c:when>
       </c:choose>
 
