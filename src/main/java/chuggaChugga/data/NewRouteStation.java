@@ -16,39 +16,10 @@ public class NewRouteStation {
         waitingTime = builder.waitingTime;
     }
 
-    public static final class Builder {
-        private String station;
-        private int daysOnWheel;
-        private LocalTime arrivalTime;
-        private LocalTime waitingTime;
-
-        public Builder() {
-        }
-
-        public Builder station(String val) {
-            station = val;
-            return this;
-        }
-
-        public Builder daysOnWheel(int val) {
-            daysOnWheel = val;
-            return this;
-        }
-
-        public Builder arrivalTime(LocalTime val) {
-            arrivalTime = val;
-            return this;
-        }
-
-        public Builder waitingTime(LocalTime val) {
-            waitingTime = val;
-            return this;
-        }
-
-        public NewRouteStation build() {
-            return new NewRouteStation(this);
-        }
+    public static Builder newBuilder() {
+        return new Builder();
     }
+
 
     public String getStation() {
         return station;
@@ -72,5 +43,39 @@ public class NewRouteStation {
 
     public String getWaitingTimeString() {
         return waitingTime.toString(DateTimeFormat.longTime());
+    }
+
+    public static final class Builder {
+        private String station;
+        private int daysOnWheel;
+        private LocalTime arrivalTime;
+        private LocalTime waitingTime;
+
+        private Builder() {
+        }
+
+        public Builder withStation(String val) {
+            station = val;
+            return this;
+        }
+
+        public Builder withDaysOnWheel(int val) {
+            daysOnWheel = val;
+            return this;
+        }
+
+        public Builder withArrivalTime(LocalTime val) {
+            arrivalTime = val;
+            return this;
+        }
+
+        public Builder withWaitingTime(LocalTime val) {
+            waitingTime = val;
+            return this;
+        }
+
+        public NewRouteStation build() {
+            return new NewRouteStation(this);
+        }
     }
 }

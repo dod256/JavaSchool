@@ -37,12 +37,18 @@ public class NewRouteImpl implements NewRoute {
             return this;
         }
 
+        public ArrayList<NewRouteStation> getRouteStations() {
+            return this.routeStations;
+        }
+
         public Builder withNewRouteStation(NewRouteStation val) {
             ArrayList<NewRouteStation> newList = new ArrayList<>(routeStations);
             newList.add(val);
             routeStations = newList;
             return this;
         }
+
+
 
 
         public NewRouteImpl build() {

@@ -11,7 +11,7 @@ import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TicketService;
 import chuggaChugga.service.TrainService;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,7 +129,7 @@ public class TrainController {
             session.setAttribute("operationResultMessage", message);
             return "showMessage";
         }
-        DateTime date = DateTime.parse(dateString);
+        LocalDate date = LocalDate.parse(dateString);
         message = ValidatorImpl.checkNumber(numberOfSeatsString);
         if (message.getStatus().equals("danger")) {
             session.setAttribute("operationResultMessage", message);
@@ -168,7 +168,7 @@ public class TrainController {
             HttpSession session) {
         session.setAttribute("departureStation", departureStation);
         session.setAttribute("arrivalStation", arrivalStation);
-        DateTime date = DateTime.parse(dateString);
+        LocalDate date = LocalDate.parse(dateString);
         TrainRequest trainRequest = TrainRequest.newBuilder()
                 .withDepartureStation(departureStation)
                 .withArrivalStation(arrivalStation)
