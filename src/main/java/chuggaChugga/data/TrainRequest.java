@@ -1,8 +1,12 @@
 package chuggaChugga.data;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 public class TrainRequest {
+
+    private String departureStation;
+    private String arrivalStation;
+    private LocalDate date;
 
     private TrainRequest(Builder builder) {
         arrivalStation = builder.arrivalStation;
@@ -22,27 +26,10 @@ public class TrainRequest {
         return builder;
     }
 
-    public String getDepartureStation() {
-        return departureStation;
-    }
-
-    public String getArrivalStation() {
-        return arrivalStation;
-    }
-
-    public DateTime getDate() {
-        return date;
-    }
-
-    private String departureStation;
-    private String arrivalStation;
-    private DateTime date;
-
-
     public static final class Builder {
         private String arrivalStation;
         private String departureStation;
-        private DateTime date;
+        private LocalDate date;
 
         private Builder() {
         }
@@ -57,7 +44,7 @@ public class TrainRequest {
             return this;
         }
 
-        public Builder withDate(DateTime val) {
+        public Builder withDate(LocalDate val) {
             date = val;
             return this;
         }
@@ -66,4 +53,18 @@ public class TrainRequest {
             return new TrainRequest(this);
         }
     }
+
+    public String getDepartureStation() {
+        return departureStation;
+    }
+
+    public String getArrivalStation() {
+        return arrivalStation;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+
 }

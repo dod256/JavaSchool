@@ -2,11 +2,11 @@ package chuggaChugga.data;
 
 import chuggaChugga.model.TrainDataSet;
 import com.google.common.base.MoreObjects;
-import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 
 public class TrainArrivalTime {
-    private DateTime arrivalTime;
+    private LocalTime arrivalTime;
     private TrainDataSet train;
 
     private TrainArrivalTime(Builder builder) {
@@ -26,13 +26,13 @@ public class TrainArrivalTime {
     }
 
     public static final class Builder {
-        private DateTime arrivalTime;
+        private LocalTime arrivalTime;
         private TrainDataSet train;
 
         private Builder() {
         }
 
-        public Builder withArrivalTime(DateTime val) {
+        public Builder withArrivalTime(LocalTime val) {
             arrivalTime = val;
             return this;
         }
@@ -47,7 +47,7 @@ public class TrainArrivalTime {
         }
     }
 
-    public DateTime getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return arrivalTime;
     }
 
@@ -63,5 +63,24 @@ public class TrainArrivalTime {
                 .add("arrivalTime", arrivalTime)
                 .add("train", train)
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TrainArrivalTime that = (TrainArrivalTime) o;
+
+        if (arrivalTime != null ? !arrivalTime.equals(that.arrivalTime) : that.arrivalTime != null) return false;
+        return !(train != null ? !train.equals(that.train) : that.train != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = arrivalTime != null ? arrivalTime.hashCode() : 0;
+        result = 31 * result + (train != null ? train.hashCode() : 0);
+        return result;
     }
 }

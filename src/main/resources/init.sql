@@ -16,6 +16,29 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Station` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table ``.`StationDistance`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `chugga_chugga`.`StationDistance` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstStation` INT NOT NULL,
+  `secondStation` INT NOT NULL,
+  `distance` INT,
+  PRIMARY KEY (`id`),
+  INDEX `fk_StationDistance_Station1_idx` (`firstStation` ASC),
+  INDEX `fk_StationDistance_Station2_idx` (`secondStation` ASC),
+  CONSTRAINT `fk_StationDistance_Station1_idx`
+    FOREIGN KEY (`firstStation`)
+    REFERENCES `chugga_chugga`.`Station` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_StationDistance_Station2_idx`
+    FOREIGN KEY (`secondStation`)
+    REFERENCES `chugga_chugga`.`Station` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table ``.`RouteStation`
@@ -23,20 +46,20 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteStation` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `stationId` INT NOT NULL,
-  `stationNumber` INT NULL,
-  `routeId` INT NULL,
-  `arrival` TIME NULL,
-  `waitingTime` TIME NULL,
+  `stationNumber` INT NOT NULL,
+  `routeId` INT NOT NULL,
+  `arrival` TIME NOT NULL,
+  `dayCount` INT NOT NULL,
+  `waitingTime` TIME NOT NULL,
   `onWheel` TIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_RouteStation_Station1_idx` (`stationId` ASC),
   CONSTRAINT `station`
     FOREIGN KEY (`stationId`)
     REFERENCES `chugga_chugga`.`Station` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table ``.`Train`
@@ -56,13 +79,13 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Train` (
   CONSTRAINT `fk_Train_RouteStation1`
     FOREIGN KEY (`arrivalStation`)
     REFERENCES `chugga_chugga`.`RouteStation` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Train_RouteStation2`
     FOREIGN KEY (`departureStation`)
     REFERENCES `chugga_chugga`.`RouteStation` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -79,13 +102,13 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Timetable` (
   CONSTRAINT `fk_Timetable_RouteStation1`
     FOREIGN KEY (`routeStationId`)
     REFERENCES `chugga_chugga`.`RouteStation` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Timetable_Train1`
     FOREIGN KEY (`trainId`)
     REFERENCES `chugga_chugga`.`Train` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -152,11 +175,6 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   
 ENGINE = InnoDB;
 
-
-
-
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -214,73 +232,74 @@ insert into Station (name)
 insert into Station (name)
  values ("Samara");
 
-
+###########################################################################
+#9 Stations
 ###########################################################################
 
 #adler->samara->ufa->omsk->novosib
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (4, 1, 1, '12:25:00', '00:00:00', '00:00:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (4, 1, 1, '12:25:00', '00:00:00', '00:00:00', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (9, 2, 1, '14:26:00', '00:00:01', '02:01:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (9, 2, 1, '14:26:00', '00:00:01', '02:01:00', 0);
  
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (5, 3, 1, '18:27:00', '00:00:40', '06:02:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (5, 3, 1, '18:27:00', '00:00:40', '06:02:00', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (7, 4, 1, '21:25:00', '00:00:20', '09:00:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (7, 4, 1, '21:25:00', '00:00:20', '09:00:00', 2);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (8, 5, 1, '05:28:00', '00:00:20', '17:03:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (8, 5, 1, '05:28:00', '00:00:20', '17:03:00', 2);
  
  
 #ufa->omsk->novosib
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (5, 1, 2, '14:38:00', '00:00:20', '00:00:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (5, 1, 2, '14:38:00', '00:00:20', '00:00:00', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (7, 2, 2, '08:39:00', '00:00:20', '14:01:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (7, 2, 2, '08:39:00', '00:00:20', '14:01:00', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (8, 3, 2, '13:50:00', '00:00:20', '23:12:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (8, 3, 2, '13:50:00', '00:00:20', '23:12:00', 1);
  
 #msk->tver->spb->helsinki
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (1, 1, 3, '10:11:00', '00:00:20', '00:00:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (1, 1, 3, '10:11:00', '00:00:20', '00:00:00', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (3, 2, 3, '14:39:00', '00:00:20', '04:28:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (3, 2, 3, '14:39:00', '00:00:20', '04:28:00', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (2, 3, 3, '22:42:00', '00:00:20', '12:12:31');
+arrival, waitingTime, onWheel, dayCount)
+ values (2, 3, 3, '22:42:00', '00:00:20', '12:12:31', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (6, 4, 3, '08:15:00', '00:01:20', '21:04:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (6, 4, 3, '08:15:00', '00:01:20', '21:04:00', 2);
  
 #msk->tver->spb
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (1, 1, 4, '00:00:00', '00:00:20', '00:00:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (1, 1, 4, '00:00:00', '00:00:20', '00:00:00', 0);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (2, 3, 4, '04:12:00', '00:00:20', '04:12:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (2, 3, 4, '04:12:00', '00:00:20', '04:12:00', 1);
 
 insert into RouteStation (stationId, stationNumber, routeId, 
-arrival, waitingTime, onWheel)
- values (3, 2, 4, '10:14:00', '00:01:20', '10:14:00');
+arrival, waitingTime, onWheel, dayCount)
+ values (3, 2, 4, '10:14:00', '00:01:20', '10:14:00', 3);
  
 
 ###########################################################################

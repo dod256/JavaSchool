@@ -2,13 +2,13 @@ package chuggaChugga.data;
 
 import chuggaChugga.model.TrainDataSet;
 import com.google.common.base.MoreObjects;
-import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 
 public class TrainRouteTime {
     private TrainDataSet train;
-    private DateTime departureTime;
-    private DateTime arrivalTime;
+    private LocalTime departureTime;
+    private LocalTime arrivalTime;
 
     private TrainRouteTime(Builder builder) {
         arrivalTime = builder.arrivalTime;
@@ -30,14 +30,14 @@ public class TrainRouteTime {
 
 
     public static final class Builder {
-        private DateTime arrivalTime;
+        private LocalTime arrivalTime;
         private TrainDataSet train;
-        private DateTime departureTime;
+        private LocalTime departureTime;
 
         private Builder() {
         }
 
-        public Builder withArrivalTime(DateTime val) {
+        public Builder withArrivalTime(LocalTime val) {
             arrivalTime = val;
             return this;
         }
@@ -47,7 +47,7 @@ public class TrainRouteTime {
             return this;
         }
 
-        public Builder withDepartureTime(DateTime val) {
+        public Builder withDepartureTime(LocalTime val) {
             departureTime = val;
             return this;
         }
@@ -57,7 +57,7 @@ public class TrainRouteTime {
         }
     }
 
-    public DateTime getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return arrivalTime;
     }
 
@@ -66,11 +66,11 @@ public class TrainRouteTime {
     }
 
 
-    public void setArrivalTime(DateTime arrivalTime) {
+    public void setArrivalTime(LocalTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public DateTime getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
@@ -78,7 +78,7 @@ public class TrainRouteTime {
         return departureTime.toString(DateTimeFormat.shortTime());
     }
 
-    public void setDepartureTime(DateTime departureTime) {
+    public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 

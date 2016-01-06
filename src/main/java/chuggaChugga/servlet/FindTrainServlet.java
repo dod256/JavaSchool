@@ -3,8 +3,7 @@ package chuggaChugga.servlet;
 import chuggaChugga.data.TrainRequest;
 import chuggaChugga.data.TrainTimetable;
 import chuggaChugga.service.TrainServiceImpl;
-import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.joda.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 public class FindTrainServlet extends HttpServlet {
 
-        @Autowired
         TrainServiceImpl trainService;
 
         public void doPost(HttpServletRequest req, HttpServletResponse res)
@@ -23,7 +21,7 @@ public class FindTrainServlet extends HttpServlet {
                 String arrivalStation = req.getParameter("arrivalStation");
                 req.getSession().setAttribute("departureStation", departureStation);
                 req.getSession().setAttribute("arrivalStation", arrivalStation);
-                DateTime date = DateTime.parse(req.getParameter("date"));
+                LocalDate date = LocalDate.parse(req.getParameter("date"));
                 TrainRequest trainRequest = TrainRequest.newBuilder()
                         .withDepartureStation(departureStation)
                         .withArrivalStation(arrivalStation)

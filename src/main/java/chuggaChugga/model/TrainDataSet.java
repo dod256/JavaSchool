@@ -2,6 +2,8 @@ package chuggaChugga.model;
 
 import com.google.common.base.MoreObjects;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -35,8 +37,8 @@ public class TrainDataSet {
         id = builder.id;
         name = builder.name;
         departureStation = builder.departureStation;
-        DateTime date = builder.departureDate;
-        departureDate = new Date(date.getMillis());
+        LocalDate date = builder.departureDate;
+        departureDate = Date.valueOf(date.toString());
         numberOfSeats = builder.numberOfSeats;
         numberOfFreeSeats = builder.numberOfFreeSeats;
         cost = builder.cost;
@@ -55,7 +57,7 @@ public class TrainDataSet {
         builder.id = copy.id;
         builder.name = copy.name;
         builder.departureStation = copy.departureStation;
-        builder.departureDate = new DateTime(copy.departureDate);
+        builder.departureDate = new LocalDate(copy.departureDate);
         builder.numberOfSeats = copy.numberOfSeats;
         builder.numberOfFreeSeats = copy.numberOfFreeSeats;
         builder.cost = copy.cost;
@@ -68,7 +70,7 @@ public class TrainDataSet {
         private int id;
         private String name;
         private RouteStationDataSet departureStation;
-        private DateTime departureDate;
+        private LocalDate departureDate;
         private int numberOfSeats;
         private int numberOfFreeSeats;
         private int cost;
@@ -96,7 +98,7 @@ public class TrainDataSet {
             return this;
         }
 
-        public Builder withDepartureDate(DateTime val) {
+        public Builder withDepartureDate(LocalDate val) {
             departureDate = val;
             return this;
         }
@@ -197,5 +199,38 @@ public class TrainDataSet {
                 .add("numberOfFreeSeats", numberOfFreeSeats)
                 .add("cost", cost)
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TrainDataSet dataSet = (TrainDataSet) o;
+
+        if (id != dataSet.id) return false;
+        if (numberOfSeats != dataSet.numberOfSeats) return false;
+        if (numberOfFreeSeats != dataSet.numberOfFreeSeats) return false;
+        if (cost != dataSet.cost) return false;
+        if (name != null ? !name.equals(dataSet.name) : dataSet.name != null) return false;
+        if (departureStation != null ? !departureStation.equals(dataSet.departureStation) : dataSet.departureStation != null)
+            return false;
+        if (arrivalStation != null ? !arrivalStation.equals(dataSet.arrivalStation) : dataSet.arrivalStation != null)
+            return false;
+        return !(departureDate != null ? !departureDate.equals(dataSet.departureDate) : dataSet.departureDate != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (departureStation != null ? departureStation.hashCode() : 0);
+        result = 31 * result + (arrivalStation != null ? arrivalStation.hashCode() : 0);
+        result = 31 * result + (departureDate != null ? departureDate.hashCode() : 0);
+        result = 31 * result + numberOfSeats;
+        result = 31 * result + numberOfFreeSeats;
+        result = 31 * result + cost;
+        return result;
     }
 }

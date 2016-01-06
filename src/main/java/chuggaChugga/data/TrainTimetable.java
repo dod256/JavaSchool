@@ -2,14 +2,14 @@ package chuggaChugga.data;
 
 import chuggaChugga.model.StationDataSet;
 import com.google.common.base.MoreObjects;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
 public class TrainTimetable {
     private StationDataSet departureStation;
     private StationDataSet arrivalStation;
-    private DateTime departureDate;
+    private LocalDate departureDate;
     private ArrayList<TrainRouteTime> trainRouteTimes;
 
     private TrainTimetable(Builder builder) {
@@ -36,7 +36,7 @@ public class TrainTimetable {
     public static final class Builder {
         private StationDataSet arrivalStation;
         private StationDataSet departureStation;
-        private DateTime departureDate;
+        private LocalDate departureDate;
         private ArrayList<TrainRouteTime> trainRouteTimes;
 
         private Builder() {
@@ -52,7 +52,7 @@ public class TrainTimetable {
             return this;
         }
 
-        public Builder withDepartureDate(DateTime val) {
+        public Builder withDepartureDate(LocalDate val) {
             departureDate = val;
             return this;
         }
@@ -75,11 +75,11 @@ public class TrainTimetable {
         this.arrivalStation = arrivalStation;
     }
 
-    public DateTime getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(DateTime departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 

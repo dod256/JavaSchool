@@ -4,7 +4,7 @@ import chuggaChugga.dao.TrainDao;
 import chuggaChugga.data.*;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.model.*;
-import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +57,7 @@ public class TrainServiceImpl implements TrainService {
         ArrayList<TrainRouteTime> times = new ArrayList<TrainRouteTime>();
         ArrayList<TrainArrivalTime> trainsArrivedOnFirstStation = stationService.getTimetable(departureStation, trainRequest.getDate()).getTrainArrivalTimes();
         for (TrainArrivalTime trainArrivalTime: trainsArrivedOnFirstStation) {
-            DateTime timeTrainPassStation = trainPassStation(trainArrivalTime.getTrain(), arrivalStation);
+            LocalTime timeTrainPassStation = trainPassStation(trainArrivalTime.getTrain(), arrivalStation);
             if (timeTrainPassStation != null) {
                 TrainRouteTime routeTime = TrainRouteTime.newBuilder()
                         .withTrain(trainArrivalTime.getTrain())
@@ -78,14 +78,14 @@ public class TrainServiceImpl implements TrainService {
     *  @return Date
     *
     * */
-    public DateTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation) {
+    public LocalTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation) {
         int routeId = train.getDepartureStation().getRouteId();
         ArrayList<Route> allRoutes = routeService.getAllRoutes();
         for (Route route: allRoutes) {
             if (route.getRouteId() == routeId) {
                 for (RouteStationDataSet station: route.getRouteStations()){
                     if (station.getStation().equals(arrivalStation)) {
-                        return new DateTime(station.getArrival());
+                        return new LocalTime(station.getArrival());
                     }
                 }
             }

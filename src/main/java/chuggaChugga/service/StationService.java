@@ -2,7 +2,7 @@ package chuggaChugga.service;
 
 import chuggaChugga.data.StationTimetable;
 import chuggaChugga.model.StationDataSet;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,6 @@ public interface StationService {
     StationDataSet getStationByName(String name);
     StationDataSet getStation(int id);
     ArrayList<StationDataSet> getAllStations();
-    StationTimetable getTimetable(StationDataSet station, DateTime transitDate);
+    StationTimetable getTimetable(StationDataSet station, LocalDate transitDate);
 
 }

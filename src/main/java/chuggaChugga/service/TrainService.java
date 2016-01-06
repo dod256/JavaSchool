@@ -7,13 +7,14 @@ import chuggaChugga.dto.UserDto;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.model.TrainDataSet;
 import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 
 import java.util.ArrayList;
 
 
 public interface TrainService {
     TrainTimetable getTrains(TrainRequest trainRequest);
-    DateTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation);
+    LocalTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation);
     ArrayList<TrainDataSet> getAllTrains();
     void createTrain(TrainRoute trainRoute);
     TrainDataSet getTrain(int id);

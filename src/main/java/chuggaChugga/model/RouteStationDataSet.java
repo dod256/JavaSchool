@@ -1,7 +1,6 @@
 package chuggaChugga.model;
 
 import com.google.common.base.MoreObjects;
-
 import javax.persistence.*;
 import java.sql.Time;
 
@@ -19,6 +18,7 @@ public class RouteStationDataSet {
     private StationDataSet station;
     private int stationNumber;
     private int routeId;
+    private int dayCount;
     private Time arrival;
     private Time waitingTime;
     private Time onWheel;
@@ -33,6 +33,7 @@ public class RouteStationDataSet {
         routeId = builder.routeId;
         waitingTime = builder.waitingTime;
         onWheel = builder.onWheel;
+        dayCount = builder.dayCount;
     }
 
     public static Builder newBuilder() {
@@ -48,6 +49,7 @@ public class RouteStationDataSet {
         builder.routeId = copy.routeId;
         builder.waitingTime = copy.waitingTime;
         builder.onWheel = copy.onWheel;
+        builder.dayCount = copy.dayCount;
         return builder;
     }
 
@@ -60,6 +62,7 @@ public class RouteStationDataSet {
         private int routeId;
         private Time waitingTime;
         private Time onWheel;
+        private int dayCount;
 
         private Builder() {
         }
@@ -71,6 +74,11 @@ public class RouteStationDataSet {
 
         public Builder withId(int val) {
             id = val;
+            return this;
+        }
+
+        public Builder withDayCount(int val) {
+            dayCount = val;
             return this;
         }
 
@@ -102,6 +110,14 @@ public class RouteStationDataSet {
         public RouteStationDataSet build() {
             return new RouteStationDataSet(this);
         }
+    }
+
+    public int getDayCount() {
+        return dayCount;
+    }
+
+    public void setDayCount(int dayCount) {
+        this.dayCount = dayCount;
     }
 
     public Time getOnWheel() {return onWheel;}
@@ -166,6 +182,7 @@ public class RouteStationDataSet {
                 .add("routeId", routeId)
                 .add("waitingTime", waitingTime)
                 .add("onWheel", onWheel)
+                .add("dayCount", dayCount)
                 .toString();
     }
 }

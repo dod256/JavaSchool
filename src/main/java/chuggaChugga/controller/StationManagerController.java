@@ -5,6 +5,7 @@ import chuggaChugga.helper.ValidatorImpl;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.service.StationService;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,7 +61,7 @@ public class StationManagerController {
     @RequestMapping(value = "/showStationTimetable.form", method = RequestMethod.POST)
     public String showTimetable(@RequestParam("name") String name, @RequestParam("date") String dateString, HttpSession session) {
         StationDataSet station = stationService.getStationByName(name);
-        DateTime date = DateTime.parse(dateString);
+        LocalDate date = LocalDate.parse(dateString);
         session.setAttribute("stationTimetable", stationService.getTimetable(station, date));
         return "stationTimetable";
     }
