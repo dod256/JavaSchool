@@ -1,7 +1,6 @@
 package chuggaChugga.service;
 
 import chuggaChugga.data.Route;
-import chuggaChugga.data.StationTimetable;
 import chuggaChugga.data.TrainArrivalTime;
 import chuggaChugga.model.RouteStationDataSet;
 import chuggaChugga.model.StationDataSet;

@@ -1,83 +1,58 @@
 package chuggaChugga.data;
 
-import org.joda.time.DateTime;
-
 import java.util.ArrayList;
 
 public class NewRouteImpl implements NewRoute {
-    private DateTime departureTime;
-    private ArrayList<String> station;
-    private ArrayList<Integer> onWheel;
-    private ArrayList<Integer> waitingTime;
+
+    private final ArrayList<NewRouteStation> routeStations;
 
     private NewRouteImpl(Builder builder) {
-        departureTime = builder.departureTime;
-        station = builder.station;
-        onWheel = builder.onWheel;
-        waitingTime = builder.waitingTime;
+        routeStations = builder.routeStations;
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public static Builder newBuilder(NewRouteImpl copy) {
-        Builder builder = new Builder();
-        builder.departureTime = copy.departureTime;
-        builder.station = copy.station;
-        builder.onWheel = copy.onWheel;
-        builder.waitingTime = copy.waitingTime;
-        return builder;
+
+    public ArrayList<NewRouteStation> getRouteStations() {
+        return routeStations;
     }
 
+    @Override
+    public String toString() {
+        return "NewRouteImpl{" +
+                "routeStations=" + routeStations +
+                '}';
+    }
 
     public static final class Builder {
-        private DateTime departureTime;
-        private ArrayList<String> station;
-        private ArrayList<Integer> onWheel;
-        private ArrayList<Integer> waitingTime;
+        private ArrayList<NewRouteStation> routeStations;
 
         private Builder() {
         }
 
-        public Builder withDepartureTime(DateTime val) {
-            departureTime = val;
+        public Builder withRouteStations(ArrayList<NewRouteStation> val) {
+            routeStations = val;
             return this;
         }
 
-        public Builder withStation(ArrayList<String> val) {
-            station = val;
+        public Builder withNewRouteStation(NewRouteStation val) {
+            ArrayList<NewRouteStation> newList = new ArrayList<>(routeStations);
+            newList.add(val);
+            routeStations = newList;
             return this;
         }
 
-        public Builder withOnWheel(ArrayList<Integer> val) {
-            onWheel = val;
-            return this;
-        }
-
-        public Builder withWaitingTime(ArrayList<Integer> val) {
-            waitingTime = val;
-            return this;
-        }
 
         public NewRouteImpl build() {
             return new NewRouteImpl(this);
         }
     }
 
-    public DateTime getDepartureTime() {
-        return departureTime;
-    }
-
-    public ArrayList<Integer> getOnWheel() {
-        return onWheel;
-    }
-
-    public ArrayList<String> getStation() {
-        return station;
-    }
-
-    public ArrayList<Integer> getWaitingTime() {
-        return waitingTime;
-    }
+    /*
+    * newRoute by this
+    *
+    * builder to add new newroutestation at List
+    * */
 }

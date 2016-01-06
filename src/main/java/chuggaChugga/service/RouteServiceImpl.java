@@ -1,6 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.RouteStationDao;
+import chuggaChugga.data.NewRouteStation;
 import chuggaChugga.model.RouteStationDataSet;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.data.NewRouteImpl;
@@ -33,23 +34,17 @@ public class RouteServiceImpl implements RouteService {
 
     public void createRoute(NewRouteImpl newRouteImpl) {
         int routeId = routeLengthService.getFreeRouteId();
-
-        Period onWheel = new Period();
-        for (int i = 0; i < newRouteImpl.getStation().size(); i++) {
-            onWheel = onWheel.plusMinutes(newRouteImpl.getOnWheel().get(i));
+        for (NewRouteStation newRouteStation: newRouteImpl.getRouteStations()) {
+            int stationNumber = 0;
             RouteStationDataSet.Builder builder = RouteStationDataSet.newBuilder();
-            builder.withArrival(new Time(newRouteImpl.getDepartureTime().plus(onWheel).getMillis()))
-                    .withOnWheel(new Time(0, onWheel.getMinutes(), 0))
-                            .withRouteId(routeId)
-                            //ToDo get by id, maybe?
-                            .withStation(stationService.getStationByName(newRouteImpl.getStation().get(i)))
-                            .withStationNumber(i + 1)
-                            .withWaitingTime(new Time(0, new Period().plusMinutes(newRouteImpl.getWaitingTime().get(i)).getMinutes(), 0));
+            builder.withArrival(Time.valueOf(newRouteStation.getArrivalTime().toString()))
+                   .withRouteId(routeId)
+                   .withStation(stationService.getStationByName(newRouteStation.getStation()))
+                   .withStationNumber(++stationNumber)
+                   .withWaitingTime(Time.valueOf(newRouteStation.getWaitingTime().toString()));
             routeStationService.addRouteStation(builder.build());
-            onWheel = onWheel.plusMinutes(newRouteImpl.getWaitingTime().get(i));
         }
-
-        routeLengthService.addRouteLength(newRouteImpl.getStation().size());
+        routeLengthService.addRouteLength(newRouteImpl.getRouteStations().size());
     }
 
     public Route getRouteById(int routeId) {
