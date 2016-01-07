@@ -13,18 +13,9 @@ public class UserDto {
     private String password;
     private DateTime birthdate;
     private int userTypeId;
+    private int balance;
 
     public UserDto(){}
-
-    public UserDto(UserDataSet user) {
-        id = user.getId();
-        email = user.getEmail();
-        firstName = user.getFirstName();
-        lastName = user.getLastName();
-        password = user.getPassword();
-        birthdate = user.getBirthDate();
-        userTypeId = user.getUserTypeId();
-    }
 
     private UserDto(Builder builder) {
         id = builder.id;
@@ -34,6 +25,7 @@ public class UserDto {
         password = builder.password;
         birthdate = builder.birthdate;
         userTypeId = builder.userTypeId;
+        balance = builder.balance;
     }
 
     public static Builder newBuilder() {
@@ -49,11 +41,29 @@ public class UserDto {
         builder.password = copy.password;
         builder.birthdate = copy.birthdate;
         builder.userTypeId = copy.userTypeId;
+        builder.balance = copy.balance;
+        return builder;
+    }
+
+    public static Builder newBuilder(UserDataSet copy) {
+        Builder builder = new Builder();
+        builder.id = copy.getId();
+        builder.email = copy.getEmail();
+        builder.firstName = copy.getFirstName();
+        builder.lastName = copy.getLastName();
+        builder.password = copy.getPassword();
+        builder.birthdate = copy.getBirthDate();
+        builder.userTypeId = copy.getUserTypeId();
+        builder.balance = copy.getBalance();
         return builder;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 
     public boolean checkPassword(String password) { return password.equals(this.password); }
@@ -94,12 +104,18 @@ public class UserDto {
         private String password;
         private DateTime birthdate;
         private int userTypeId;
+        private int balance;
 
         private Builder() {
         }
 
         public Builder withId(int val) {
             id = val;
+            return this;
+        }
+
+        public Builder withBalance(int val) {
+            balance = val;
             return this;
         }
 

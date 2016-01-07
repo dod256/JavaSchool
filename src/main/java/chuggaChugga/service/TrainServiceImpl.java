@@ -119,7 +119,7 @@ public class TrainServiceImpl implements TrainService {
         ArrayList<TicketDataSet> tickets = ticketService.getTicketByTrain(trainDao.getTrain(trainId));
         ArrayList<UserDto> result = new ArrayList<UserDto>();
         for (TicketDataSet ticket: tickets) {
-            result.add(new UserDto(ticket.getUser()));
+            result.add(UserDto.newBuilder(ticket.getUser()).build());
         }
         return result;
     }

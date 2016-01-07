@@ -9,5 +9,6 @@ public interface UserService {
 
     List<UserDto> getUsers();
     void addUser(UserDto user);
+    void updateUser(UserDto user);
     UserDto getUserByEmail(String email);
 }

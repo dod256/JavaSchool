@@ -21,7 +21,7 @@ public class TicketDto {
     public TicketDto(TicketDataSet ticket) {
         id = ticket.getId();
         train = ticket.getTrain().getName();
-        user = new UserDto(ticket.getUser());
+        user = UserDto.newBuilder(ticket.getUser()).build();
         arrivalStation = ticket.getArrivalStation();
         departureStation = ticket.getDepartureStation();
         departureDate = new DateTime(ticket.getTrain().getDepartureDate());

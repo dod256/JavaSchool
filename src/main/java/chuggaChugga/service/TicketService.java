@@ -10,6 +10,6 @@ import java.util.ArrayList;
 
 public interface TicketService {
     ArrayList<TicketDto> getTicketsByUser(UserDto userDto);
-    boolean tryToPurhaseTicket(TicketRequest request);
+    boolean tryToPurchaseTicket(TicketRequest request);
     ArrayList<TicketDataSet> getTicketByTrain(TrainDataSet train);
 }

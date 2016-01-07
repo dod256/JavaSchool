@@ -16,15 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TicketDaoImpl implements TicketDao{
+public class TicketDaoImpl implements TicketDao {
 
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
-    public boolean tryToPurhaseTicket(TicketRequest request) {
+    public boolean tryToPurchaseTicket(TicketRequest request) {
         Session session = sessionFactory.openSession();
 
-        TrainDataSet train = (TrainDataSet) session.get(TrainDataSet.class, request.getTrainId());
+        TrainDataSet train = request.getTrain();
+
+        if (train.getCost() > request.getUser().getBalance()) {
+            //todo: add logging! (not enough money)
+            session.close();
+            return false;
+        }
+
         if (train.getNumberOfFreeSeats() == 0) {
             //todo: add logging! (current train have not free seats any more)
             //and throw exception!!!
@@ -39,7 +46,8 @@ public class TicketDaoImpl implements TicketDao{
             return false;
         }
 
-        ArrayList<TicketDataSet> tickets = (ArrayList<TicketDataSet>) getTicketsByUser(new UserDataSet(request.getUserDto()));
+        ArrayList<TicketDataSet> tickets =
+                (ArrayList<TicketDataSet>) getTicketsByUser(UserDataSet.newBuilder(request.getUser()).build());
         for (TicketDataSet ticket: tickets) {
             if (ticket.getTrain().equals(train)) {
                 //todo: add logging! (user already have ticket at this train)
@@ -48,15 +56,15 @@ public class TicketDaoImpl implements TicketDao{
             }
         }
 
-        TicketDataSet ticket = TicketDataSet.newBuilder().withUser(new UserDataSet(request.getUserDto()))
+        TicketDataSet ticket = TicketDataSet.newBuilder().withUser(UserDataSet.newBuilder(request.getUser()).build())
                 .withDepartureStation(request.getDepartureStation())
                 .withArrivalStation(request.getArrivalStation())
                 .withTrain(train)
                 .build();
 
         session.save(ticket);
-        train.setNumberOfFreeSeats(train.getNumberOfFreeSeats() - 1);
-
+        train.setNumberOfFreeSeats(train.getNumberOfFreeSeats() - 1); //todo: not work!
+        session.flush();
         session.close();
         return true;
     }

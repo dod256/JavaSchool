@@ -1,19 +1,20 @@
 package chuggaChugga.data;
 
+import chuggaChugga.model.TrainDataSet;
 import com.google.common.base.MoreObjects;
 import chuggaChugga.dto.UserDto;
 
 public class TicketRequest {
 
     private UserDto userDto;
-    private int trainId;
+    private TrainDataSet train;
     private String departureStation;
     private String arrivalStation;
 
     private TicketRequest(Builder builder) {
         arrivalStation = builder.arrivalStation;
         userDto = builder.userDto;
-        trainId = builder.trainId;
+        train = builder.train;
         departureStation = builder.departureStation;
     }
 
@@ -25,7 +26,7 @@ public class TicketRequest {
         Builder builder = new Builder();
         builder.arrivalStation = copy.arrivalStation;
         builder.userDto = copy.userDto;
-        builder.trainId = copy.trainId;
+        builder.train = copy.train;
         builder.departureStation = copy.departureStation;
         return builder;
     }
@@ -34,7 +35,7 @@ public class TicketRequest {
     public static final class Builder {
         private String arrivalStation;
         private UserDto userDto;
-        private int trainId;
+        private TrainDataSet train;
         private String departureStation;
 
         private Builder() {
@@ -45,13 +46,13 @@ public class TicketRequest {
             return this;
         }
 
-        public Builder withUserDto(UserDto val) {
+        public Builder withUser(UserDto val) {
             userDto = val;
             return this;
         }
 
-        public Builder withTrainId(int val) {
-            trainId = val;
+        public Builder withTrain(TrainDataSet val) {
+            train = val;
             return this;
         }
 
@@ -81,19 +82,19 @@ public class TicketRequest {
         this.departureStation = departureStation;
     }
 
-    public int getTrainId() {
-        return trainId;
+    public TrainDataSet getTrain() {
+        return train;
     }
 
-    public void setTrainId(int trainId) {
-        this.trainId = trainId;
+    public void setTrain(TrainDataSet train) {
+        this.train = train;
     }
 
-    public UserDto getUserDto() {
+    public UserDto getUser() {
         return userDto;
     }
 
-    public void setUserDto(UserDto userDto) {
+    public void setUser(UserDto userDto) {
         this.userDto = userDto;
     }
 
@@ -102,7 +103,7 @@ public class TicketRequest {
         return MoreObjects.toStringHelper(this)
                 .add("arrivalStation", arrivalStation)
                 .add("userDto", userDto)
-                .add("trainId", trainId)
+                .add("train", train)
                 .add("departureStation", departureStation)
                 .toString();
     }

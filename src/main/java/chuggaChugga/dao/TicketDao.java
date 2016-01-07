@@ -11,5 +11,5 @@ import java.util.List;
 public interface TicketDao {
     List<TicketDataSet> getTicketsByUser(UserDataSet user);
     List<TicketDataSet> getTicketByTrain(TrainDataSet train);
-    boolean tryToPurhaseTicket(TicketRequest request);
+    boolean tryToPurchaseTicket(TicketRequest request);
 }

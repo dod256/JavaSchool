@@ -26,17 +26,22 @@ public class UserServiceImpl implements UserService {
         List<UserDataSet> userList = userDao.getUsers();
         List<UserDto> userDtoList = new ArrayList<>();
         for(UserDataSet user : userList) {
-            userDtoList.add(new UserDto(user));
+            userDtoList.add(UserDto.newBuilder(user).build());
         }
         return userDtoList;
     }
 
     public void addUser(UserDto user) {
-        userDao.addUser(new UserDataSet(user));
+        userDao.addUser(UserDataSet.newBuilder(user).build());
+    }
+
+    @Override
+    public void updateUser(UserDto user) {
+        userDao.updateUser(UserDataSet.newBuilder(user).build());
     }
 
     public UserDto getUserByEmail(String email) {
-        return new UserDto(userDao.getUserByEmail(email));
+        return UserDto.newBuilder(userDao.getUserByEmail(email)).build();
     }
 
 }

@@ -36,7 +36,6 @@ public class TrainController {
     @Autowired
     StationService stationService;
 
-
     @RequestMapping(value = "/addRouteToTrain.form", method = RequestMethod.POST)
     public String addRoute(@RequestParam("routeId") String routeId, HttpSession session) {
         OperationResultMessage message =
@@ -64,7 +63,7 @@ public class TrainController {
         trainService.createTrain(trainRoute);
 
         session.setAttribute("operationResultMessage",
-                new OperationResultMessage("success", "TrainDataSet created"));
+                new OperationResultMessage("success", "Train created"));
         return "showMessage";
     }
 
@@ -159,7 +158,6 @@ public class TrainController {
         return "addRouteToTrain";
     }
 
-
     @RequestMapping(value = "/findTrainTimetable.form", method = RequestMethod.POST)
     public String findTrainTimetable(
             @RequestParam("departureStation") String departureStation,
@@ -190,12 +188,12 @@ public class TrainController {
         int trainId = Integer.parseInt(trainIdString);
 
        TicketRequest ticketRequest = TicketRequest.newBuilder()
-                .withTrainId(trainId)
-                .withUserDto((UserDto) session.getAttribute("currentUser"))
+                .withTrain(trainService.getTrain(trainId))
+                .withUser((UserDto) session.getAttribute("currentUser"))
                 .withArrivalStation((String) session.getAttribute("arrivalStation"))
                 .withDepartureStation((String) session.getAttribute("departureStation"))
                 .build();
-        boolean tryToBuy = ticketService.tryToPurhaseTicket(ticketRequest);
+        boolean tryToBuy = ticketService.tryToPurchaseTicket(ticketRequest);
 
         if (tryToBuy) {
             session.setAttribute("operationResultMessage", new OperationResultMessage("success", "Ticket purhased"));

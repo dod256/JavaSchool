@@ -1,44 +1,21 @@
 package chuggaChugga.data;
 
-import org.joda.time.LocalDateTime;
-
 import java.util.ArrayList;
 
 public class Path {
 
-    public class PathPart {
-        private String departureStation;
+    private ArrayList<PathPart> path;
 
-        public String getDepartureStation() {
-            return departureStation;
+    public ArrayList<PathPart> addPart(PathPart part) {
+        if (path == null) {
+            path = new ArrayList<>();
         }
-
-        public String getArrivalStation() {
-            return arrivalStation;
-        }
-
-        public LocalDateTime getDepartureDateTime() {
-            return departureDateTime;
-        }
-
-        public LocalDateTime getArrivalDatetime() {
-            return arrivalDatetime;
-        }
-
-        public String getTrain() {
-            return train;
-        }
-
-        private String arrivalStation;
-        private LocalDateTime departureDateTime;
-        private LocalDateTime arrivalDatetime;
-        private String train;
-
+        path.add(part);
+        return path;
     }
 
     public ArrayList<PathPart> getPath() {
         return path;
     }
 
-    private ArrayList<PathPart> path;
 }

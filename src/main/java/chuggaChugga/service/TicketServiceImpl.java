@@ -1,6 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.TicketDao;
+import chuggaChugga.dao.UserDao;
 import chuggaChugga.model.TicketDataSet;
 import chuggaChugga.model.TrainDataSet;
 import chuggaChugga.model.UserDataSet;
@@ -24,9 +25,11 @@ public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private TicketDao ticketDao;
+    @Autowired
+    private UserService userService;
 
     public ArrayList<TicketDto> getTicketsByUser(UserDto userDto) {
-        UserDataSet user = new UserDataSet(userDto);
+        UserDataSet user = UserDataSet.newBuilder(userDto).build();
         ArrayList<TicketDataSet> ticketList = (ArrayList<TicketDataSet>) ticketDao.getTicketsByUser(user);
         ArrayList<TicketDto> ticketDtoList = new ArrayList<>();
         for(TicketDataSet ticket : ticketList) {
@@ -35,10 +38,15 @@ public class TicketServiceImpl implements TicketService {
         return ticketDtoList;
     }
 
-    public boolean tryToPurhaseTicket(TicketRequest request) {
-        return ticketDao.tryToPurhaseTicket(request);
-    }
+    public boolean tryToPurchaseTicket(TicketRequest request) {
+        boolean result = ticketDao.tryToPurchaseTicket(request);
 
+        if (result) {
+            int newBalance = request.getUser().getBalance() - request.getTrain().getCost();
+            userService.updateUser(UserDto.newBuilder(request.getUser()).withBalance(newBalance).build());//todo: not work!
+        }
+        return result;
+    }
 
     public ArrayList<TicketDataSet> getTicketByTrain(TrainDataSet train) {
         return (ArrayList<TicketDataSet>) ticketDao.getTicketByTrain(train);
