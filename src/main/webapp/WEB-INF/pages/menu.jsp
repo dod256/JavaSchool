@@ -6,6 +6,7 @@
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="stationTimetable.html">Station timetable</a></li>
                 <li><a href="findTrain.html">Find train</a></li>
+                <li><a href="pathManager.html">Find path</a></li>
                 <c:choose>
                     <c:when test="${sessionScope.currentUser != null && sessionScope.currentUser.getUserTypeId() == 1}">
                         <li><a href="trainManager.html">Train manager</a></li>

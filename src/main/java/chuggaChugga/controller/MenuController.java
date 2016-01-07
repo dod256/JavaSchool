@@ -42,6 +42,11 @@ public class MenuController {
         return "stationManager";
     }
 
+    @RequestMapping(value = "/pathManager.html", method = RequestMethod.GET)
+    public String pathManager(Model model){
+        return "pathManager";
+    }
+
     @RequestMapping(value = "/routeManager.html", method = RequestMethod.GET)
     public String routeManager(Model model){
         return "routeManager";
