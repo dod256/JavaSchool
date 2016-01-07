@@ -18,5 +18,5 @@ public interface TrainService {
     ArrayList<TrainDataSet> getAllTrains();
     void createTrain(TrainRoute trainRoute);
     TrainDataSet getTrain(int id);
-    ArrayList<UserDto> getPassangers(int trainId);
+    ArrayList<UserDto> getPassengers(int trainId);
 }

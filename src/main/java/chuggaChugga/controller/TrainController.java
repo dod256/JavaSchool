@@ -92,7 +92,7 @@ public class TrainController {
     @RequestMapping(value = "/showPassengers.form", method = RequestMethod.POST)
     public String showPassengers(@RequestParam("trainId") String trainIdString, HttpSession session) {
         int trainId = Integer.parseInt(trainIdString);
-        ArrayList<UserDto> passengerList = trainService.getPassangers(trainId);
+        ArrayList<UserDto> passengerList = trainService.getPassengers(trainId);
         session.setAttribute("passengerList", passengerList);
         return "showPassengers";
     }

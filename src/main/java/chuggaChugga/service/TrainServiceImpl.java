@@ -2,13 +2,16 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.TrainDao;
 import chuggaChugga.data.*;
+import chuggaChugga.dto.TrainDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.model.*;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -114,13 +117,18 @@ public class TrainServiceImpl implements TrainService {
         return trainDao.getTrain(id);
     }
 
-    public ArrayList<UserDto> getPassangers(int trainId) {
-
+    public ArrayList<UserDto> getPassengers(int trainId) {
         ArrayList<TicketDataSet> tickets = ticketService.getTicketByTrain(trainDao.getTrain(trainId));
         ArrayList<UserDto> result = new ArrayList<UserDto>();
         for (TicketDataSet ticket: tickets) {
             result.add(UserDto.newBuilder(ticket.getUser()).build());
         }
         return result;
+    }
+
+    public TrainDto getEarliestTrain(String departureStation, String arrivalStation, LocalDateTime dateTime) {
+        LocalDate date = new LocalDate(dateTime);
+        //todo: not finished
+        return null;
     }
 }

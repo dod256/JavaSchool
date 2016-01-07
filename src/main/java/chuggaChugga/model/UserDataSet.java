@@ -35,6 +35,7 @@ public class UserDataSet implements Serializable {
         lastName = builder.lastName;
         password = builder.password;
         userTypeId = builder.userTypeId;
+        balance = builder.balance;
         id = builder.id;
     }
 
