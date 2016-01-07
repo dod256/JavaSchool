@@ -1,10 +1,11 @@
 package chuggaChugga.controller;
 
+import chuggaChugga.dto.StationDistanceDto;
 import chuggaChugga.helper.OperationResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
 import chuggaChugga.model.StationDataSet;
+import chuggaChugga.service.StationDistanceService;
 import chuggaChugga.service.StationService;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,21 @@ public class StationManagerController {
 
     @Autowired
     StationService stationService;
+    @Autowired
+    StationDistanceService stationDistanceService;
 
 
-    @RequestMapping(value = "/setAddStationAction.form", method = RequestMethod.POST)
-    public String addAction(
+    @RequestMapping(value = "/changeDistance.form", method = RequestMethod.POST)
+    public String changeDistance(
             @RequestParam("firstStation") String firstStation,
             @RequestParam("secondStation") String secondStation,
             @RequestParam("distance") String distance,
             HttpSession session) {
-        //ToDo: Create a DistanceStationDto and update
+        stationDistanceService.addOrUpdateDistance(StationDistanceDto.newBuilder()
+                        .withDistance(Integer.parseInt(distance))
+                        .withFirstStation(firstStation)
+                        .withSecondStation(secondStation)
+                        .build());
         session.setAttribute("operationResultMessage",
                 new OperationResultMessage("success", "Distance changed"));
         return "showMessage";
@@ -61,8 +68,9 @@ public class StationManagerController {
 
     @RequestMapping(value = "/showStationInfo.form", method = RequestMethod.POST)
     public String showInfo(@RequestParam("stationId") String stationId, HttpSession session) {
-        session.setAttribute("station", stationService.getStation(Integer.parseInt(stationId)));
-        //ToDo: add distanceList via session.setAttribute("distanceList", object);
+        StationDataSet station = stationService.getStation(Integer.parseInt(stationId));
+        session.setAttribute("station", station);
+        session.setAttribute("distanceList", stationDistanceService.findAllDistances(station.getName()));
         return "stationInfo";
     }
 

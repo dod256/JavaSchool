@@ -336,3 +336,8 @@ insert into RouteLength (routeLength)
  values (3);
 
 
+###########################################################################
+insert into StationDistance (firstStation, secondStation, distance)
+values (1,2,100);
+insert into StationDistance (firstStation, secondStation, distance)
+values (2,1,100);
