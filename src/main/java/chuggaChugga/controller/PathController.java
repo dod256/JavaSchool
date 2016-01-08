@@ -1,8 +1,11 @@
 package chuggaChugga.controller;
 
 import chuggaChugga.data.Path;
+import chuggaChugga.data.PathPart;
+import chuggaChugga.dto.TrainDto;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.service.StationService;
+import chuggaChugga.service.TrainService;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,9 @@ public class PathController {
 
     @Autowired
     StationService stationService;
+
+    @Autowired
+    TrainService trainService;
 
     @RequestMapping(value = "/selectPathType.form", method = RequestMethod.POST)
     public String selectPathType(
@@ -45,34 +51,74 @@ public class PathController {
     }
 
     private Path findFastest(String departureStation, String arrivalStation) {
-        ArrayList<StationDataSet> stations = stationService.getAllStations();
-        //Sort by id
+        ArrayList<StationDataSet> stations = stationService.getAllStationsOrderedById();
         int numberOfStations = stations.size();
-        int start = stationService.getStationByName(departureStation).getId();
-        int finish = stationService.getStationByName(arrivalStation).getId();
+        int start = stationService.getStationByName(departureStation).getId() - 1;
+        int finish = stationService.getStationByName(arrivalStation).getId() - 1;
         int maxNumberOfTransfer = 5;
-        LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations + 1];
-        int[][] from = new int[maxNumberOfTransfer][numberOfStations + 1];
-        for(int i = 0; i < arrival.length; i++) {
-            arrival[i] = null;
+        LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations];
+        int[][] from = new int[maxNumberOfTransfer][numberOfStations];
+        PathPart[][] fromTrain = new PathPart[maxNumberOfTransfer][numberOfStations];
+        for(int i = 0; i < numberOfStations; i++) {
+            if (i == start) {
+                arrival[0][i] = LocalDateTime.now();
+                continue;
+            }
+            TrainDto train = trainService.getEarliestTrain(
+                    stations.get(start - 1).getName(),
+                    stations.get(i).getName(),
+                    arrival[0][i]);
+            arrival[0][i] = trainService.getDateTime(train, stations.get(i));
         }
-        //Fill first step
         for(int numberOfTransfer = 1; numberOfTransfer <= maxNumberOfTransfer; numberOfTransfer++) {
-            for(int fromStation = 1; fromStation <= numberOfStations; fromStation++) {
-                for(int toStation = 1; toStation <= numberOfStations; toStation++) {
+            for(int fromStation = 0; fromStation < numberOfStations; fromStation++) {
+                for(int toStation = 0; toStation < numberOfStations; toStation++) {
                     if (fromStation == toStation){
                         continue;
                     }
-                    //TrainDto train = trainService.getEarliestTrain(stations.get(fromStation - 1), stations.get(toStation - 1), arrival[numberOfTransfer - 1][fromStation]);
-                    LocalDateTime arrivalToFinish = null;//=train.getArrivalStationTime() + date????
-                    if (arrivalToFinish.isBefore(arrival[numberOfTransfer][toStation])) {
+                    TrainDto train = trainService.getEarliestTrain(
+                            stations.get(fromStation).getName(),
+                            stations.get(toStation).getName(),
+                            arrival[numberOfTransfer - 1][fromStation]);
+                    LocalDateTime arrivalToFinish = trainService.getDateTime(train, stations.get(toStation));
+                    if (arrival[numberOfTransfer][toStation] == null ||
+                            arrivalToFinish.isBefore(arrival[numberOfTransfer][toStation])) {
                         arrival[numberOfTransfer][toStation] = arrivalToFinish;
-                        from[numberOfTransfer][finish] = fromStation;
+                        from[numberOfTransfer][toStation] = fromStation;
+                        fromTrain[numberOfTransfer][toStation] = PathPart.newBuilder()
+                                .withDepartureStation(stations.get(toStation).getName())
+                                //.withDepartureDateTime()
+                                .withArrivalStation(stations.get(fromStation).getName())
+                                .withArrivalDateTime(trainService.getDateTime(train, stations.get(toStation)))
+                                .withTrain(train.getName())
+                                .build();
                     }
                 }
             }
         }
-        return null;
+        Path answer = new Path();
+        int currentStation = finish;
+        int currentTransfer = 0;
+        while (currentTransfer <= maxNumberOfTransfer && arrival[currentTransfer][finish] == null) {
+            currentTransfer++;
+        }
+        if (arrival[currentTransfer][finish] == null) {
+            return null;
+        }
+        for(int i = currentTransfer + 1; i < maxNumberOfTransfer; i++) {
+            if (arrival[i][finish] == null) {
+                continue;
+            }
+            if (arrival[i][finish].isBefore(arrival[currentTransfer][finish])) {
+                currentTransfer = i;
+            }
+        }
+        for(int i = currentTransfer; i >= 0; i--) {
+            answer.addPart(fromTrain[i][currentStation]);
+            currentStation = from[i][currentStation];
+        }
+        answer.reverse();
+        return answer;
     }
 
     private Path findCheapest(String departureStation, String arrivalStation) {

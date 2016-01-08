@@ -1,6 +1,7 @@
 package chuggaChugga.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Path {
 
@@ -16,6 +17,10 @@ public class Path {
 
     public ArrayList<PathPart> getPath() {
         return path;
+    }
+
+    public void reverse() {
+        Collections.reverse(path);
     }
 
 }
