@@ -3,6 +3,7 @@ package chuggaChugga.controller;
 import chuggaChugga.data.Path;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.service.StationService;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,11 +46,31 @@ public class PathController {
 
     private Path findFastest(String departureStation, String arrivalStation) {
         ArrayList<StationDataSet> stations = stationService.getAllStations();
+        //Sort by id
         int numberOfStations = stations.size();
         int start = stationService.getStationByName(departureStation).getId();
         int finish = stationService.getStationByName(arrivalStation).getId();
-        for(int numberOfTransfer = 0; numberOfTransfer < 4; numberOfTransfer++) {
-            
+        int maxNumberOfTransfer = 5;
+        LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations + 1];
+        int[][] from = new int[maxNumberOfTransfer][numberOfStations + 1];
+        for(int i = 0; i < arrival.length; i++) {
+            arrival[i] = null;
+        }
+        //Fill first step
+        for(int numberOfTransfer = 1; numberOfTransfer <= maxNumberOfTransfer; numberOfTransfer++) {
+            for(int fromStation = 1; fromStation <= numberOfStations; fromStation++) {
+                for(int toStation = 1; toStation <= numberOfStations; toStation++) {
+                    if (fromStation == toStation){
+                        continue;
+                    }
+                    //TrainDto train = trainService.getEarliestTrain(stations.get(fromStation - 1), stations.get(toStation - 1), arrival[numberOfTransfer - 1][fromStation]);
+                    LocalDateTime arrivalToFinish = null;//=train.getArrivalStationTime() + date????
+                    if (arrivalToFinish.isBefore(arrival[numberOfTransfer][toStation])) {
+                        arrival[numberOfTransfer][toStation] = arrivalToFinish;
+                        from[numberOfTransfer][finish] = fromStation;
+                    }
+                }
+            }
         }
         return null;
     }
