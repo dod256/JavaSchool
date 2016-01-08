@@ -11,7 +11,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <%@ include file="greeting.jsp"%>
+      <%@ include file="profileSmall.jsp"%>
     </div>
     <div class="col-sm-10 text-left">
 

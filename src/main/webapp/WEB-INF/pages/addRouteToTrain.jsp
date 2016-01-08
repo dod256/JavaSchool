@@ -11,7 +11,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <%@ include file="greeting.jsp"%>
+      <%@ include file="profileSmall.jsp"%>
       <form role = "form" name = "showAllRoutesForTrainForm" action = "showAllRoutesForTrain.form" method = post>
         <button type = "submit" class = "btn btn-default">Show all routes</button>
       </form>

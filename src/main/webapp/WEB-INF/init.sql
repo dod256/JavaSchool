@@ -138,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`User` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userTypeId` INT NOT NULL,
   `birthDate` DATE NOT NULL,
+  `balance` INT,
   PRIMARY KEY (`id`),
   INDEX `fk_User_UserType1_idx` (`userTypeId` ASC),
   CONSTRAINT `type`
@@ -191,16 +192,16 @@ insert into usertype (type)
 #######################################################################
 #add admins:
 
-insert into USER (email, firstName, lastName, password, userTypeId, birthdate)
- values ("david.koroteev@me", "David", "Koroteev", "qwe", 1, '1993-12-25');
+insert into USER (email, firstName, lastName, password, userTypeId, birthdate, balance)
+ values ("david.koroteev@me", "David", "Koroteev", "qwe", 1, '1993-12-25', 1000000000);
  
  
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
- values ("alena.koroteeva@me", "Alena", "Koroteeva", "qwe", 1, '1993-12-20');
+insert into USER (email, firstName, lastName, password, userTypeId, birthDate, balance)
+ values ("alena.koroteeva@me", "Alena", "Koroteeva", "qwe", 1, '1993-12-20', 10000);
 
 #add customers:
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate)
- values ("pavel.belov@me", "Pavel", "Belov", "qwe", 2, '1991-10-22');
+insert into USER (email, firstName, lastName, password, userTypeId, birthDate, balance)
+ values ("pavel.belov@me", "Pavel", "Belov", "qwe", 2, '1991-10-22', 10);
  
 ###########################################################################
 
