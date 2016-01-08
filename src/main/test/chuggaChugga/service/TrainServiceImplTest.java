@@ -9,7 +9,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class TrainServiceImplTest extends TestCase {
 
     @Test
-    public void testGetDateTime() throws Exception {
+    public void testGetArrivalDateTime() throws Exception {
+        //todo
+    }
 
+    @Test
+    public void testGetDepartureDateTime() throws Exception {
+        //todo:
     }
 }

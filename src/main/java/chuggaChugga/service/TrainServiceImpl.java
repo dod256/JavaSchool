@@ -95,8 +95,12 @@ public class TrainServiceImpl implements TrainService {
         return null;
     }
 
-    public ArrayList<TrainDataSet> getAllTrains() {
-        return (ArrayList<TrainDataSet>) trainDao.getAllTrains();
+    public ArrayList<TrainDto> getAllTrains() {
+        ArrayList<TrainDto> result = new ArrayList<>();
+        for (TrainDataSet train: trainDao.getAllTrains()) {
+            result.add(new TrainDto(train, routeService.getRouteById(train.getArrivalStation().getRouteId())));
+        }
+        return result ;
     }
 
     public void createTrain(TrainRoute trainRoute) {
@@ -127,6 +131,11 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public LocalDateTime getArrivalDateTime(TrainDto train, StationDataSet station) {
+        //todo: mark as nullable
+        if (train == null || station == null) {
+            return null;
+        }
+
         Route route = train.getRoute();
         if (route.getStations().contains(station)) {
             for (RouteStationDataSet routeStationDataSet: route.getRouteStations()) {
@@ -143,12 +152,50 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public LocalDateTime getDepartureDateTime(TrainDto train, StationDataSet station) {
+        //todo: mark as nullable
+        if (train == null || station == null) {
+            return null;
+        }
+
+        Route route = train.getRoute();
+        if (route.getStations().contains(station)) {
+            for (RouteStationDataSet routeStationDataSet: route.getRouteStations()) {
+                if (routeStationDataSet.getStation().equals(station)) {
+                    LocalTime waitingTime = new LocalTime(routeStationDataSet.getWaitingTime());
+                    LocalTime departureTime = new LocalTime(routeStationDataSet.getArrival())
+                            .plusHours(waitingTime.getHourOfDay())
+                            .plusMinutes(waitingTime.getMinuteOfHour())
+                            .plusSeconds(waitingTime.getSecondOfMinute());
+                    LocalDate departureDate = new LocalDate(train.getDepartureDate()).plusDays(routeStationDataSet.getDayCount());
+                    return new LocalDateTime(departureDate.getYear(), departureDate.getMonthOfYear(), departureDate.getDayOfMonth(),
+                            departureTime.getHourOfDay(), departureTime.getMinuteOfHour(), departureTime.getSecondOfMinute());
+                }
+            }
+        }
         return null;
     }
 
-    public TrainDto getEarliestTrain(String departureStation, String arrivalStation, LocalDateTime dateTime) {
-        LocalDate date = new LocalDate(dateTime);
-        //todo: not finished
-        return null;
+    @Override
+    public TrainDto getEarliestTrain(StationDataSet departureStation, StationDataSet arrivalStation, LocalDateTime dateTime) {
+        ArrayList<TrainDto> trains = getAllTrains();
+        TrainDto result = null;
+        LocalDateTime currentDateTime = null;
+        for (TrainDto train: trains) {
+            ArrayList<StationDataSet> stations = train.getRoute().getStations();
+            if (stations.contains(departureStation) && stations.contains(arrivalStation)) {
+                int departureIndex = stations.indexOf(departureStation);
+                int arrivalIndex = stations.indexOf(arrivalStation);
+                if (departureIndex < arrivalIndex) {
+                    LocalDateTime departureTime = getArrivalDateTime(train, departureStation);
+                    if (dateTime.isBefore(departureTime)) {
+                        if (result == null || departureTime.isBefore(currentDateTime)) {
+                            result = train;
+                            currentDateTime = departureTime;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 }
