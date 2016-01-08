@@ -28,7 +28,7 @@ public class MenuController {
     }
 
     @RequestMapping(value = "/home.html", method = RequestMethod.GET)
-    public String home(Model model){
+    public String home(Model model) {
         return "index";
     }
 

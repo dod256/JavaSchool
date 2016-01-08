@@ -50,12 +50,12 @@ public class PathController {
         return "pathInfo";
     }
 
-    private Path findFastest(String departureStation, String arrivalStation) {
+    public Path findFastest(String departureStation, String arrivalStation) {
         ArrayList<StationDataSet> stations = stationService.getAllStationsOrderedById();
         int numberOfStations = stations.size();
         int start = stationService.getStationByName(departureStation).getId() - 1;
         int finish = stationService.getStationByName(arrivalStation).getId() - 1;
-        int maxNumberOfTransfer = 5;
+        int maxNumberOfTransfer = 1;
         LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations];
         int[][] from = new int[maxNumberOfTransfer][numberOfStations];
         PathPart[][] fromTrain = new PathPart[maxNumberOfTransfer][numberOfStations];
@@ -65,12 +65,21 @@ public class PathController {
                 continue;
             }
             TrainDto train = trainService.getEarliestTrain(
-                    stations.get(start - 1),
+                    stations.get(start),
                     stations.get(i),
-                    arrival[0][i]);
+                    arrival[0][start]);
             arrival[0][i] = trainService.getArrivalDateTime(train, stations.get(i));
+            if (arrival[0][i] != null) {
+                fromTrain[0][i] = PathPart.newBuilder()
+                        .withDepartureStation(stations.get(i).getName())
+                        .withDepartureDateTime(trainService.getDepartureDateTime(train, stations.get(start)))
+                        .withArrivalStation(stations.get(start).getName())
+                        .withArrivalDateTime(trainService.getArrivalDateTime(train, stations.get(i)))
+                        .withTrain(train.getName())
+                        .build();
+            }
         }
-        for(int numberOfTransfer = 1; numberOfTransfer <= maxNumberOfTransfer; numberOfTransfer++) {
+        for(int numberOfTransfer = 1; numberOfTransfer < maxNumberOfTransfer; numberOfTransfer++) {
             for(int fromStation = 0; fromStation < numberOfStations; fromStation++) {
                 for(int toStation = 0; toStation < numberOfStations; toStation++) {
                     if (fromStation == toStation){
@@ -99,10 +108,10 @@ public class PathController {
         Path answer = new Path();
         int currentStation = finish;
         int currentTransfer = 0;
-        while (currentTransfer <= maxNumberOfTransfer && arrival[currentTransfer][finish] == null) {
+        while (currentTransfer < maxNumberOfTransfer && arrival[currentTransfer][finish] == null) {
             currentTransfer++;
         }
-        if (arrival[currentTransfer][finish] == null) {
+        if (currentTransfer == maxNumberOfTransfer) {
             return null;
         }
         for(int i = currentTransfer + 1; i < maxNumberOfTransfer; i++) {
@@ -121,7 +130,7 @@ public class PathController {
         return answer;
     }
 
-    private Path findCheapest(String departureStation, String arrivalStation) {
+    public Path findCheapest(String departureStation, String arrivalStation) {
         return null;
     }
 }

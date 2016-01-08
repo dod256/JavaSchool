@@ -31,8 +31,8 @@
                 </thead>
                 <c:forEach items="${path.getPath()}" var="part">
                   <tr>
-                    <td><h5>${part.getDepartureStation()}<small>part.getDepartureDateTime()</small></h5></td>
-                    <td><h5>${part.getArrivalStation()}<small>part.getArrivalDateTime()</small></h5></td>
+                    <td><h5>${part.getDepartureStation()}<small>${part.getDepartureDateTime()}</small></h5></td>
+                    <td><h5>${part.getArrivalStation()}<small>${part.getArrivalDateTime()}</small></h5></td>
                     <td><h5>${part.getTrain()}</h5></td>
                   </tr>
                 </c:forEach>
