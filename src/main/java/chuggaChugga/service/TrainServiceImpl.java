@@ -80,16 +80,10 @@ public class TrainServiceImpl implements TrainService {
     *  @return Date
     *
     * */
-    public LocalTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation) {
-        int routeId = train.getDepartureStation().getRouteId();
-        ArrayList<Route> allRoutes = routeService.getAllRoutes();
-        for (Route route: allRoutes) {
-            if (route.getRouteId() == routeId) {
-                for (RouteStationDataSet station: route.getRouteStations()){
-                    if (station.getStation().equals(arrivalStation)) {
-                        return new LocalTime(station.getArrival());
-                    }
-                }
+    public LocalTime trainPassStation(TrainDto train, StationDataSet arrivalStation) {
+        for (RouteStationDataSet station: train.getRoute().getRouteStations()){
+            if (station.getStation().equals(arrivalStation)) {
+                return new LocalTime(station.getArrival());
             }
         }
         return null;

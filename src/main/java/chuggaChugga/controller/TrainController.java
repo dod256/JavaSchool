@@ -105,12 +105,7 @@ public class TrainController {
 
     @RequestMapping(value = "/setShowAllTrainsAction.form", method = RequestMethod.POST)
     public String showAllAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        ArrayList<TrainDataSet> trainList = trainService.getAllTrains();
-        ArrayList<TrainDto> trainDtoList = new ArrayList<TrainDto>();
-        for(TrainDataSet train : trainList) {
-            trainDtoList.add(new TrainDto(train, routeService.getRouteById(train.getDepartureStation().getRouteId())));
-        }
-
+        ArrayList<TrainDto> trainDtoList = trainService.getAllTrains();
         session.setAttribute("trainList", trainDtoList);
         session.setAttribute("trainManagerAction", actionType);
         return "trainManager";

@@ -1,5 +1,6 @@
 package chuggaChugga.data;
 
+import chuggaChugga.dto.TrainDto;
 import chuggaChugga.model.TrainDataSet;
 import com.google.common.base.MoreObjects;
 import org.joda.time.LocalTime;
@@ -7,7 +8,7 @@ import org.joda.time.format.DateTimeFormat;
 
 public class TrainArrivalTime {
     private LocalTime arrivalTime;
-    private TrainDataSet train;
+    private TrainDto train;
 
     private TrainArrivalTime(Builder builder) {
         arrivalTime = builder.arrivalTime;
@@ -27,7 +28,7 @@ public class TrainArrivalTime {
 
     public static final class Builder {
         private LocalTime arrivalTime;
-        private TrainDataSet train;
+        private TrainDto train;
 
         private Builder() {
         }
@@ -37,7 +38,7 @@ public class TrainArrivalTime {
             return this;
         }
 
-        public Builder withTrain(TrainDataSet val) {
+        public Builder withTrain(TrainDto val) {
             train = val;
             return this;
         }
@@ -53,7 +54,7 @@ public class TrainArrivalTime {
 
     public String getArrivalTimeString() { return arrivalTime.toString(DateTimeFormat.shortTime()); }
 
-    public TrainDataSet getTrain() {
+    public TrainDto getTrain() {
         return train;
     }
 

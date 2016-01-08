@@ -1,6 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.StationDao;
+import chuggaChugga.dto.TrainDto;
 import chuggaChugga.model.RouteStationDataSet;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.model.TrainDataSet;
@@ -77,10 +78,9 @@ public class StationServiceImpl implements StationService {
     public StationTimetable getTimetable(StationDataSet station, LocalDate transitDate) {
         StationTimetable.Builder timetableBuilder = StationTimetable.newBuilder();
         ArrayList<TrainArrivalTime> trainArrivalTime = new ArrayList<>();
-        ArrayList<TrainDataSet> trains = trainService.getAllTrains();
-        ArrayList<Route> routes = routeService.getAllRoutes();
-        for (TrainDataSet train : trains) {
-            RouteStationDataSet departureStation = train.getDepartureStation();
+        ArrayList<TrainDto> trains = trainService.getAllTrains();
+        for (TrainDto train : trains) {
+            RouteStationDataSet departureStation = train.getDepartureRouteStation();
             LocalDate departureDate = new LocalDate(train.getDepartureDate());
             if (departureStation.getStation().equals(station) && departureDate.equals(transitDate)) {
                 trainArrivalTime.add(
@@ -88,18 +88,17 @@ public class StationServiceImpl implements StationService {
                                 .withArrivalTime(new LocalTime(departureStation.getArrival()))
                                 .withTrain(train).build());
             } else {
-                for (Route route : routes) {
-                    if (route.getRouteId() == departureStation.getRouteId() && route.getStations().contains(station)) {
-                        for (RouteStationDataSet routeStationOfCurrentRoute : route.getRouteStations()) {
-                            if (routeStationOfCurrentRoute.getStation().equals(station)) {
-                                LocalDate arrivalDate = departureDate.plusDays(routeStationOfCurrentRoute.getDayCount());
-                                if (arrivalDate.equals(transitDate)) {
-                                    trainArrivalTime.add(TrainArrivalTime.newBuilder()
-                                            .withTrain(train)
-                                            .withArrivalTime(new LocalTime(routeStationOfCurrentRoute.getArrival()))
-                                            .build());
-                                    break;
-                                }
+                Route route = train.getRoute();
+                if (route.getStations().contains(station)) {
+                    for (RouteStationDataSet routeStationOfCurrentRoute : route.getRouteStations()) {
+                        if (routeStationOfCurrentRoute.getStation().equals(station)) {
+                            LocalDate arrivalDate = departureDate.plusDays(routeStationOfCurrentRoute.getDayCount());
+                            if (arrivalDate.equals(transitDate)) {
+                                trainArrivalTime.add(TrainArrivalTime.newBuilder()
+                                        .withTrain(train)
+                                        .withArrivalTime(new LocalTime(routeStationOfCurrentRoute.getArrival()))
+                                        .build());
+                                break;
                             }
                         }
                     }
@@ -111,7 +110,6 @@ public class StationServiceImpl implements StationService {
                 .withDate(transitDate)
                 .withTrainArrivalTimes(trainArrivalTime)
                 .build();
-
     }
 
 }

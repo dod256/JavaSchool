@@ -65,8 +65,8 @@ public class PathController {
                 continue;
             }
             TrainDto train = trainService.getEarliestTrain(
-                    stations.get(start - 1).getName(),
-                    stations.get(i).getName(),
+                    stations.get(start - 1),
+                    stations.get(i),
                     arrival[0][i]);
             arrival[0][i] = trainService.getArrivalDateTime(train, stations.get(i));
         }
@@ -77,8 +77,8 @@ public class PathController {
                         continue;
                     }
                     TrainDto train = trainService.getEarliestTrain(
-                            stations.get(fromStation).getName(),
-                            stations.get(toStation).getName(),
+                            stations.get(fromStation),
+                            stations.get(toStation),
                             arrival[numberOfTransfer - 1][fromStation]);
                     LocalDateTime arrivalToFinish = trainService.getArrivalDateTime(train, stations.get(toStation));
                     if (arrival[numberOfTransfer][toStation] == null ||

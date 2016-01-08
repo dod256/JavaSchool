@@ -1,11 +1,33 @@
 package chuggaChugga.dto;
 
+import chuggaChugga.model.RouteStationDataSet;
 import chuggaChugga.model.TrainDataSet;
 import chuggaChugga.data.Route;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
 public class TrainDto {
+
+    private int id;
+    private String name;
+    Route route;
+    private DateTime departureDate;
+    private int numberOfSeats;
+    private int numberOfFreeSeats;
+    private int cost;
+
+    public TrainDto(){}
+
+    public TrainDto(TrainDataSet train, Route trainRoute) {
+        id = train.getId();
+        name = train.getName();
+        departureDate = new DateTime(train.getDepartureDate());
+        numberOfSeats = train.getNumberOfSeats();
+        numberOfFreeSeats = train.getNumberOfFreeSeats();
+        cost = train.getCost();
+        route = trainRoute;
+    }
+
 
     public int getId() {
         return id;
@@ -21,6 +43,10 @@ public class TrainDto {
 
     public String getDepartureStation() {
         return route.getStations().get(0).getName();
+    }
+
+    public RouteStationDataSet getDepartureRouteStation() {
+        return route.getRouteStations().get(0);
     }
 
     public String getDepartureStationTime() {
@@ -53,26 +79,6 @@ public class TrainDto {
 
     public int getCost() {
         return cost;
-    }
-
-    private int id;
-    private String name;
-    Route route;
-    private DateTime departureDate;
-    private int numberOfSeats;
-    private int numberOfFreeSeats;
-    private int cost;
-
-    public TrainDto(){}
-
-    public TrainDto(TrainDataSet train, Route trainRoute) {
-        id = train.getId();
-        name = train.getName();
-        departureDate = new DateTime(train.getDepartureDate());
-        numberOfSeats = train.getNumberOfSeats();
-        numberOfFreeSeats = train.getNumberOfFreeSeats();
-        cost = train.getCost();
-        route = trainRoute;
     }
 
 }

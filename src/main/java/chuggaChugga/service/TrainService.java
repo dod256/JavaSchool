@@ -11,10 +11,9 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import java.util.ArrayList;
 
-
 public interface TrainService {
     TrainTimetable getTrains(TrainRequest trainRequest);
-    LocalTime trainPassStation(TrainDataSet train, StationDataSet arrivalStation);
+    LocalTime trainPassStation(TrainDto train, StationDataSet arrivalStation);
     ArrayList<TrainDto> getAllTrains();
     void createTrain(TrainRoute trainRoute);
     TrainDataSet getTrain(int id);
