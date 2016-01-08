@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /*
 *  Implements logic connected to stations
@@ -48,6 +50,20 @@ public class StationServiceImpl implements StationService {
         ArrayList<StationDataSet> result = (ArrayList<StationDataSet>) stationDao.getAllStations();
         result.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
         return result;
+    }
+
+    @Override
+    public ArrayList<StationDataSet> getAllStationsOrderedById() {
+        ArrayList<StationDataSet> sortedById = getAllStations();
+        Collections.sort(sortedById, (o1, o2) -> o1.getId() - o2.getId());
+        return sortedById;
+    }
+
+    @Override
+    public ArrayList<StationDataSet> getAllStationsOrderdByName() {
+        ArrayList<StationDataSet> sortedByName = getAllStations();
+        Collections.sort(sortedByName, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+        return sortedByName;
     }
 
     /*

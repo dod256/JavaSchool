@@ -12,6 +12,9 @@ public interface StationService {
     StationDataSet getStationByName(String name);
     StationDataSet getStation(int id);
     ArrayList<StationDataSet> getAllStations();
+    ArrayList<StationDataSet> getAllStationsOrderedById();
+    ArrayList<StationDataSet> getAllStationsOrderdByName();
+
     StationTimetable getTimetable(StationDataSet station, LocalDate transitDate);
 
 }
