@@ -1,14 +1,10 @@
-package services;
+package chuggaChugga.service;
 
 import chuggaChugga.data.Route;
 import chuggaChugga.data.TrainArrivalTime;
 import chuggaChugga.model.RouteStationDataSet;
 import chuggaChugga.model.StationDataSet;
 import chuggaChugga.model.TrainDataSet;
-import chuggaChugga.service.RouteService;
-import chuggaChugga.service.StationService;
-import chuggaChugga.service.StationServiceImpl;
-import chuggaChugga.service.TrainService;
 import junit.framework.TestCase;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;

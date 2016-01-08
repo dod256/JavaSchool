@@ -20,6 +20,7 @@ public interface TrainService {
     TrainDataSet getTrain(int id);
     ArrayList<UserDto> getPassengers(int trainId);
     //todo: rename
-    LocalDateTime getDateTime(TrainDto train, StationDataSet station);
+    LocalDateTime getArrivalDateTime(TrainDto train, StationDataSet station);
+    LocalDateTime getDepartureDateTime(TrainDto train, StationDataSet station);
     TrainDto getEarliestTrain(String departureStation, String arrivalStation, LocalDateTime dateTime);
 }

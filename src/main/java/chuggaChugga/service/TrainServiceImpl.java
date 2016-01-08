@@ -126,17 +126,24 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public LocalDateTime getDateTime(TrainDto train, StationDataSet station) {
+    public LocalDateTime getArrivalDateTime(TrainDto train, StationDataSet station) {
         Route route = train.getRoute();
         if (route.getStations().contains(station)) {
             for (RouteStationDataSet routeStationDataSet: route.getRouteStations()) {
                 if (routeStationDataSet.getStation().equals(station)) {
-                    
+                    LocalTime arrivalTime = new LocalTime(routeStationDataSet.getArrival());
+                    LocalDate arrivalDate = new LocalDate(train.getDepartureDate()).plusDays(routeStationDataSet.getDayCount());
+                    return new LocalDateTime(arrivalDate.getYear(), arrivalDate.getMonthOfYear(), arrivalDate.getDayOfMonth(),
+                            arrivalTime.getHourOfDay(), arrivalTime.getMinuteOfHour(), arrivalTime.getSecondOfMinute());
                 }
             }
-        } else {
-            return null;
         }
+        return null;
+    }
+
+    @Override
+    public LocalDateTime getDepartureDateTime(TrainDto train, StationDataSet station) {
+        return null;
     }
 
     public TrainDto getEarliestTrain(String departureStation, String arrivalStation, LocalDateTime dateTime) {
