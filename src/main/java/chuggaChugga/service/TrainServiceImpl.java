@@ -5,6 +5,7 @@ import chuggaChugga.data.*;
 import chuggaChugga.dto.TrainDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.model.*;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +125,13 @@ public class TrainServiceImpl implements TrainService {
             result.add(UserDto.newBuilder(ticket.getUser()).build());
         }
         return result;
+    }
+
+    @Override
+    public DateTime getDateTime(TrainDto train, StationDataSet station) {
+        Route route = train.getRoute();
+        route.getStations().contains(station);
+        return null;
     }
 
     public TrainDto getEarliestTrain(String departureStation, String arrivalStation, LocalDateTime dateTime) {
