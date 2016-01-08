@@ -68,7 +68,7 @@ public class PathController {
                     stations.get(start - 1).getName(),
                     stations.get(i).getName(),
                     arrival[0][i]);
-            arrival[0][i] = trainService.getDateTime(train, stations.get(i));
+            arrival[0][i] = trainService.getArrivalDateTime(train, stations.get(i));
         }
         for(int numberOfTransfer = 1; numberOfTransfer <= maxNumberOfTransfer; numberOfTransfer++) {
             for(int fromStation = 0; fromStation < numberOfStations; fromStation++) {
@@ -80,16 +80,16 @@ public class PathController {
                             stations.get(fromStation).getName(),
                             stations.get(toStation).getName(),
                             arrival[numberOfTransfer - 1][fromStation]);
-                    LocalDateTime arrivalToFinish = trainService.getDateTime(train, stations.get(toStation));
+                    LocalDateTime arrivalToFinish = trainService.getArrivalDateTime(train, stations.get(toStation));
                     if (arrival[numberOfTransfer][toStation] == null ||
                             arrivalToFinish.isBefore(arrival[numberOfTransfer][toStation])) {
                         arrival[numberOfTransfer][toStation] = arrivalToFinish;
                         from[numberOfTransfer][toStation] = fromStation;
                         fromTrain[numberOfTransfer][toStation] = PathPart.newBuilder()
                                 .withDepartureStation(stations.get(toStation).getName())
-                                //.withDepartureDateTime()
+                                .withDepartureDateTime(trainService.getDepartureDateTime(train, stations.get(fromStation)))
                                 .withArrivalStation(stations.get(fromStation).getName())
-                                .withArrivalDateTime(trainService.getDateTime(train, stations.get(toStation)))
+                                .withArrivalDateTime(trainService.getArrivalDateTime(train, stations.get(toStation)))
                                 .withTrain(train.getName())
                                 .build();
                     }
