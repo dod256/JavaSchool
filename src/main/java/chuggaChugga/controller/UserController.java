@@ -3,6 +3,7 @@ package chuggaChugga.controller;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.helper.OperationResultMessage;
+import chuggaChugga.helper.Validator;
 import chuggaChugga.helper.ValidatorImpl;
 import chuggaChugga.service.TicketService;
 import chuggaChugga.service.UserService;
@@ -30,6 +31,9 @@ public class UserController {
                 @RequestParam("deposit") String deposit,
                 HttpSession session) {
             UserDto user = (UserDto) session.getAttribute("currentUser");
+            OperationResultMessage check = ValidatorImpl.checkNumber(deposit);
+        
+            user.makeDeposit(Integer.parseInt(deposit));
             userService.updateUser(user);
             //ToDo get by id
             session.setAttribute("currentUser", userService.getUserByEmail(user.getEmail()));

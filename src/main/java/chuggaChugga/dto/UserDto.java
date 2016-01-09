@@ -92,6 +92,8 @@ public class UserDto {
         return birthdate.toString(DateTimeFormat.longDate());
     }
 
+    public void makeDeposit(int deposit) {this.balance += deposit;}
+
     public int getUserTypeId() {
         return userTypeId;
     }
