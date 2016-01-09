@@ -54,17 +54,21 @@
             <td>Route</td>
             <td>${trainTimetable.getDepartureStation().getName()}</td>
             <td>${trainTimetable.getArrivalStation().getName()}</td>
+            <td>Number of free seats</td>
+            <td>Cost</td>
           </tr>
         </thead>
         <c:forEach items="${trainTimetable.getTrainRouteTimes()}" var="trainRouteTime">
           <tr>
             <td><h5>${trainRouteTime.getTrain().getName()}</h5></td>
             <td>
-              <h5>${trainRouteTime.getTrain().getDepartureStation().getStation().getName()} <small>${trainArrivalTime.getTrain().getDepartureStation().getArrival()}</small></h5>
-              <h5>${trainRouteTime.getTrain().getArrivalStation().getStation().getName()} <small>${trainArrivalTime.getTrain().getArrivalStation().getArrival()}</small></h5>
+              <h5>${trainRouteTime.getTrain().getDepartureStation()} <small>${trainArrivalTime.getTrain().getDepartureStation().getArrival()}</small></h5>
+              <h5>${trainRouteTime.getTrain().getArrivalStation()} <small>${trainArrivalTime.getTrain().getArrivalStation().getArrival()}</small></h5>
             </td>
             <td><h5>${trainRouteTime.getDepartureTimeString()}</h5></td>
             <td><h5>${trainRouteTime.getArrivalTimeString()}</h5></td>
+            <td><h5>${trainRouteTime.getTrain().getNumberOfFreeSeats()}</h5></td>
+            <td><h5>${trainRouteTime.getTrain().getCost()}</h5></td>
             <td>
               <form role = "form" name = "purchaseTicketForm" action = "purchaseTicket.form" method = post>
                 <div class = "form-group">

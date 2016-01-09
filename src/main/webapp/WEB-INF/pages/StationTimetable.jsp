@@ -48,8 +48,8 @@
                         <tr>
                             <td><h5>${trainArrivalTime.getTrain().getName()}</h5></td>
                             <td>
-                                <h5>${trainArrivalTime.getTrain().getDepartureStation().getStation().getName()} <small>${trainArrivalTime.getTrain().getDepartureStation().getArrival()}</small></h5>
-                                <h5>${trainArrivalTime.getTrain().getArrivalStation().getStation().getName()} <small>${trainArrivalTime.getTrain().getArrivalStation().getArrival()}</small></h5>
+                                <h5>${trainArrivalTime.getTrain().getDepartureStation()} <small>show date and time</small></h5>
+                                <h5>${trainArrivalTime.getTrain().getArrivalStation()} <small>show date and time</small></h5>
                             </td>
                             <td><h5>${trainArrivalTime.getArrivalTimeString()}</h5></td>
                         </tr>

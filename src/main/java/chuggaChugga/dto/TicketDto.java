@@ -1,5 +1,4 @@
 package chuggaChugga.dto;
-
 import chuggaChugga.model.TicketDataSet;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -7,6 +6,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TicketDto {
+
+
+
+    //ToDo add fields: LocalDateTime departureDateTime, arrivalDateTime
+    //     delete fields: DateTime departureDate
+    //     add methods: getDeparture(Date, Time or DateTime)(w\o String)
+    //     delete methods: connected to departureDate
+    //     and refactor Builder
 
     private int id;
     private String train;

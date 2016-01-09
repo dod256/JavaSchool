@@ -33,33 +33,42 @@ public class MenuController {
     }
 
     @RequestMapping(value = "/trainManager.html", method = RequestMethod.GET)
-    public String trainManager(Model model){
+    public String trainManager(HttpSession session){
+        session.removeAttribute("trainManagerAction");
+        session.removeAttribute("trainList");
         return "trainManager";
     }
 
     @RequestMapping(value = "/stationManager.html", method = RequestMethod.GET)
-    public String stationManager(Model model){
+    public String stationManager(HttpSession session){
+        session.removeAttribute("stationManagerAction");
+        session.removeAttribute("stationList");
         return "stationManager";
     }
 
     @RequestMapping(value = "/pathManager.html", method = RequestMethod.GET)
-    public String pathManager(Model model){
+    public String pathManager(HttpSession session){
+        session.removeAttribute("pathType");
         return "pathManager";
     }
 
     @RequestMapping(value = "/routeManager.html", method = RequestMethod.GET)
-    public String routeManager(Model model){
+    public String routeManager(HttpSession session){
+        session.removeAttribute("routeManagerAction");
+        session.removeAttribute("routeList");
         return "routeManager";
     }
 
     @RequestMapping(value = "/stationTimetable.html", method = RequestMethod.GET)
     public String stationTimetable(HttpSession session){
+        session.removeAttribute("stationTimetable");
         session.setAttribute("stationList", stationService.getAllStations());
         return "stationTimetable";
     }
 
     @RequestMapping(value = "/findTrain.html", method = RequestMethod.GET)
     public String findTrain(HttpSession session){
+        session.removeAttribute("trainTimetable");
         session.setAttribute("stationList", stationService.getAllStations());
         return "trainTimetable";
     }

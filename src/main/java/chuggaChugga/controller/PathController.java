@@ -55,7 +55,7 @@ public class PathController {
         int numberOfStations = stations.size();
         int start = stationService.getStationByName(departureStation).getId() - 1;
         int finish = stationService.getStationByName(arrivalStation).getId() - 1;
-        int maxNumberOfTransfer = 1;
+        int maxNumberOfTransfer = 2;
         LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations];
         int[][] from = new int[maxNumberOfTransfer][numberOfStations];
         PathPart[][] fromTrain = new PathPart[maxNumberOfTransfer][numberOfStations];
@@ -68,12 +68,15 @@ public class PathController {
                     stations.get(start),
                     stations.get(i),
                     arrival[0][start]);
+            if (train == null) {
+                continue;
+            }
             arrival[0][i] = trainService.getArrivalDateTime(train, stations.get(i));
             if (arrival[0][i] != null) {
                 fromTrain[0][i] = PathPart.newBuilder()
-                        .withDepartureStation(stations.get(i).getName())
+                        .withDepartureStation(stations.get(start).getName())
                         .withDepartureDateTime(trainService.getDepartureDateTime(train, stations.get(start)))
-                        .withArrivalStation(stations.get(start).getName())
+                        .withArrivalStation(stations.get(i).getName())
                         .withArrivalDateTime(trainService.getArrivalDateTime(train, stations.get(i)))
                         .withTrain(train.getName())
                         .build();
@@ -81,23 +84,29 @@ public class PathController {
         }
         for(int numberOfTransfer = 1; numberOfTransfer < maxNumberOfTransfer; numberOfTransfer++) {
             for(int fromStation = 0; fromStation < numberOfStations; fromStation++) {
+                if (arrival[numberOfTransfer - 1][fromStation] == null) {
+                    continue;
+                }
                 for(int toStation = 0; toStation < numberOfStations; toStation++) {
-                    if (fromStation == toStation){
+                    if (fromStation == toStation ){
                         continue;
                     }
                     TrainDto train = trainService.getEarliestTrain(
                             stations.get(fromStation),
                             stations.get(toStation),
                             arrival[numberOfTransfer - 1][fromStation]);
+                    if (train == null) {
+                        continue;
+                    }
                     LocalDateTime arrivalToFinish = trainService.getArrivalDateTime(train, stations.get(toStation));
                     if (arrival[numberOfTransfer][toStation] == null ||
                             arrivalToFinish.isBefore(arrival[numberOfTransfer][toStation])) {
                         arrival[numberOfTransfer][toStation] = arrivalToFinish;
                         from[numberOfTransfer][toStation] = fromStation;
                         fromTrain[numberOfTransfer][toStation] = PathPart.newBuilder()
-                                .withDepartureStation(stations.get(toStation).getName())
+                                .withDepartureStation(stations.get(fromStation).getName())
                                 .withDepartureDateTime(trainService.getDepartureDateTime(train, stations.get(fromStation)))
-                                .withArrivalStation(stations.get(fromStation).getName())
+                                .withArrivalStation(stations.get(toStation).getName())
                                 .withArrivalDateTime(trainService.getArrivalDateTime(train, stations.get(toStation)))
                                 .withTrain(train.getName())
                                 .build();
