@@ -8,13 +8,15 @@ import chuggaChugga.model.TrainDataSet;
 import junit.framework.TestCase;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.sql.Time;
 import java.util.ArrayList;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrainServiceImplTest extends TestCase {
@@ -23,6 +25,7 @@ public class TrainServiceImplTest extends TestCase {
     StationDataSet stationMsk;
     StationDataSet stationTver;
     StationDataSet stationSpb;
+
 
     public TrainServiceImplTest() {
         generate();
@@ -116,4 +119,12 @@ public class TrainServiceImplTest extends TestCase {
         assertEquals(trainService.getDepartureDateTime(trainDto, stationSpb), new LocalDateTime(2016, 1, 2, 1, 20, 0));
     }
 
+    @Test
+    public void testGetEarliestTrain() throws Exception {
+        TrainServiceImpl trainService = mock(TrainServiceImpl.class);
+        ArrayList<TrainDto> allTrains = new ArrayList<>();
+        allTrains.add(trainDto);
+        when(trainService.getAllTrains()).thenReturn(allTrains);
+        assertEquals(trainService.getEarliestTrain(stationSpb, stationMsk, new LocalDateTime(2015, 12, 12, 21, 21, 21)), trainDto);
+    }
 }

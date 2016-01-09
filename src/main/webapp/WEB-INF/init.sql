@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Train` (
   `arrivalStation` INT NOT NULL,
   `departureStation` INT NOT NULL,
   `departureDate` DATE NOT NULL,
+  `routeId` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Train_RouteStation1_idx` (`arrivalStation` ASC),
   INDEX `fk_Train_RouteStation2_idx` (`departureStation` ASC),
@@ -305,20 +306,25 @@ arrival, waitingTime, dayCount)
 ###########################################################################
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
-cost, arrivalStation, departureStation, departureDate)
- values ("Arrow", 100, 99, 1000, 5, 1, "2015-12-04");
+cost, arrivalStation, departureStation, departureDate, routeId)
+ values ("Arrow", 100, 99, 1000, 5, 1, "2015-12-04", 1);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats, 
+cost, arrivalStation, departureStation, departureDate, routeId)
+ values ("Arrow1", 100, 99, 1000, 5, 1, "2016-12-04", 1);
+
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
-cost, arrivalStation, departureStation, departureDate)
- values ("Hogwarst express", 100, 99, 1000, 8, 6, "2015-12-04");
+cost, arrivalStation, departureStation, departureDate, routeId)
+ values ("Hogwarst express", 100, 99, 1000, 8, 6, "2015-12-04", 2);
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
-cost, arrivalStation, departureStation, departureDate)
- values ("Orient express", 100, 99, 1000, 12, 9, "2015-12-04");
+cost, arrivalStation, departureStation, departureDate, routeId)
+ values ("Orient express", 100, 99, 1000, 12, 9, "2015-12-04", 3);
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
-cost, arrivalStation, departureStation, departureDate)
- values ("Pride of Africa", 100, 99, 10000, 14, 13, "2015-12-01");
+cost, arrivalStation, departureStation, departureDate, routeId)
+ values ("Pride of Africa", 100, 99, 10000, 14, 13, "2015-12-01", 4);
 
 
 ###########################################################################

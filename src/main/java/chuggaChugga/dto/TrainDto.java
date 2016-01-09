@@ -81,4 +81,16 @@ public class TrainDto {
         return cost;
     }
 
+    @Override
+    public String toString() {
+        return "TrainDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", route=" + route +
+                ", departureDate=" + departureDate +
+                ", numberOfSeats=" + numberOfSeats +
+                ", numberOfFreeSeats=" + numberOfFreeSeats +
+                ", cost=" + cost +
+                '}';
+    }
 }

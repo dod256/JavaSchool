@@ -99,13 +99,10 @@ public class TrainServiceImpl implements TrainService {
 
     public void createTrain(TrainRoute trainRoute) {
         trainDao.addTrain(trainRoute.getTrain());
-
         TrainDataSet trainWithId = TrainDataSet.newBuilder(trainRoute.getTrain()).withId(trainDao.getTrainTableSize()).build();
-
         for (RouteStationDataSet routeStation : trainRoute.getRoute().getRouteStations()) {
             TimetableDataSet.Builder timetableBuilder = TimetableDataSet.newBuilder();
             timetableBuilder.withTrain(trainWithId).withRouteStation(routeStation);
-
             timetableService.addTimetable(timetableBuilder.build());
         }
     }
@@ -169,14 +166,22 @@ public class TrainServiceImpl implements TrainService {
         return null;
     }
 
+    public ArrayList<TrainDto> getAllTrainsWhichPassStation(StationDataSet station) {
+        ArrayList<TrainDto> result = new ArrayList<>();
+        for (TrainDataSet train: trainDao.getAllTrainsWhichPassStation(station)) {
+            result.add(new TrainDto(train, routeService.getRouteById(train.getArrivalStation().getRouteId())));
+        }
+        return result;
+    }
+
     @Override
     public TrainDto getEarliestTrain(StationDataSet departureStation, StationDataSet arrivalStation, LocalDateTime dateTime) {
-        ArrayList<TrainDto> trains = getAllTrains();
+        ArrayList<TrainDto> trains = getAllTrainsWhichPassStation(departureStation);
         TrainDto result = null;
         LocalDateTime currentDateTime = null;
         for (TrainDto train: trains) {
             ArrayList<StationDataSet> stations = train.getRoute().getStations();
-            if (stations.contains(departureStation) && stations.contains(arrivalStation)) {
+            if (stations.contains(arrivalStation)) {
                 int departureIndex = stations.indexOf(departureStation);
                 int arrivalIndex = stations.indexOf(arrivalStation);
                 if (departureIndex < arrivalIndex) {

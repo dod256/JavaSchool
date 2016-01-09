@@ -21,4 +21,5 @@ public interface TrainService {
     LocalDateTime getArrivalDateTime(TrainDto train, StationDataSet station);
     LocalDateTime getDepartureDateTime(TrainDto train, StationDataSet station);
     TrainDto getEarliestTrain(StationDataSet departureStation, StationDataSet arrivalStation, LocalDateTime dateTime);
+    ArrayList<TrainDto> getAllTrainsWhichPassStation(StationDataSet station);
 }

@@ -35,7 +35,6 @@ public class StationServiceImpl implements StationService {
     private RouteService routeService;
 
     public void addStation(StationDataSet station) {
-        System.out.println(trainService.getAllTrains());
         stationDao.addStation(station);
     }
 
@@ -78,6 +77,7 @@ public class StationServiceImpl implements StationService {
     public StationTimetable getTimetable(StationDataSet station, LocalDate transitDate) {
         StationTimetable.Builder timetableBuilder = StationTimetable.newBuilder();
         ArrayList<TrainArrivalTime> trainArrivalTime = new ArrayList<>();
+        //todo: rewrite!
         ArrayList<TrainDto> trains = trainService.getAllTrains();
         for (TrainDto train : trains) {
             RouteStationDataSet departureStation = train.getDepartureRouteStation();

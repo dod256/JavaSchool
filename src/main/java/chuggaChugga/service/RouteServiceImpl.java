@@ -91,8 +91,8 @@ public class RouteServiceImpl implements RouteService {
                         .withStations(stations)
                         .withRouteStations(routeStations)
                         .build());
-                stations = new ArrayList<StationDataSet>();
-                routeStations = new ArrayList<RouteStationDataSet>();
+                stations = new ArrayList<>();
+                routeStations = new ArrayList<>();
                 routeBuilder.withRouteId(currentRouteStation.getRouteId());
             }
             stations.add(currentRouteStation.getStation());

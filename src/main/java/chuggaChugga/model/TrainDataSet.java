@@ -30,6 +30,7 @@ public class TrainDataSet {
     private Date departureDate;
     private int numberOfSeats;
     private int numberOfFreeSeats;
+    private int routeId;
     private int cost;
 
     private TrainDataSet(Builder builder) {
@@ -42,6 +43,7 @@ public class TrainDataSet {
         numberOfSeats = builder.numberOfSeats;
         numberOfFreeSeats = builder.numberOfFreeSeats;
         cost = builder.cost;
+        routeId = builder.routeId;
     }
 
     public TrainDataSet() {
@@ -61,6 +63,7 @@ public class TrainDataSet {
         builder.numberOfSeats = copy.numberOfSeats;
         builder.numberOfFreeSeats = copy.numberOfFreeSeats;
         builder.cost = copy.cost;
+        builder.routeId = copy.routeId;
         return builder;
     }
 
@@ -74,6 +77,7 @@ public class TrainDataSet {
         private int numberOfSeats;
         private int numberOfFreeSeats;
         private int cost;
+        private int routeId;
 
         private Builder() {
         }
@@ -90,6 +94,11 @@ public class TrainDataSet {
 
         public Builder withName(String val) {
             name = val;
+            return this;
+        }
+
+        public Builder withRouteId(int val) {
+            routeId = val;
             return this;
         }
 
@@ -183,6 +192,14 @@ public class TrainDataSet {
         return numberOfSeats;
     }
 
+    public int getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(int routeId) {
+        this.routeId = routeId;
+    }
+
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
@@ -198,6 +215,7 @@ public class TrainDataSet {
                 .add("numberOfSeats", numberOfSeats)
                 .add("numberOfFreeSeats", numberOfFreeSeats)
                 .add("cost", cost)
+                .add("routeId", routeId)
                 .toString();
     }
 
@@ -206,18 +224,19 @@ public class TrainDataSet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TrainDataSet dataSet = (TrainDataSet) o;
+        TrainDataSet that = (TrainDataSet) o;
 
-        if (id != dataSet.id) return false;
-        if (numberOfSeats != dataSet.numberOfSeats) return false;
-        if (numberOfFreeSeats != dataSet.numberOfFreeSeats) return false;
-        if (cost != dataSet.cost) return false;
-        if (name != null ? !name.equals(dataSet.name) : dataSet.name != null) return false;
-        if (departureStation != null ? !departureStation.equals(dataSet.departureStation) : dataSet.departureStation != null)
+        if (id != that.id) return false;
+        if (numberOfSeats != that.numberOfSeats) return false;
+        if (numberOfFreeSeats != that.numberOfFreeSeats) return false;
+        if (routeId != that.routeId) return false;
+        if (cost != that.cost) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (departureStation != null ? !departureStation.equals(that.departureStation) : that.departureStation != null)
             return false;
-        if (arrivalStation != null ? !arrivalStation.equals(dataSet.arrivalStation) : dataSet.arrivalStation != null)
+        if (arrivalStation != null ? !arrivalStation.equals(that.arrivalStation) : that.arrivalStation != null)
             return false;
-        return !(departureDate != null ? !departureDate.equals(dataSet.departureDate) : dataSet.departureDate != null);
+        return !(departureDate != null ? !departureDate.equals(that.departureDate) : that.departureDate != null);
 
     }
 
@@ -230,6 +249,7 @@ public class TrainDataSet {
         result = 31 * result + (departureDate != null ? departureDate.hashCode() : 0);
         result = 31 * result + numberOfSeats;
         result = 31 * result + numberOfFreeSeats;
+        result = 31 * result + routeId;
         result = 31 * result + cost;
         return result;
     }

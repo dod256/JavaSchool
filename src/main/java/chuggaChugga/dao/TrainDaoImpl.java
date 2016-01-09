@@ -1,6 +1,8 @@
 package chuggaChugga.dao;
 
+import chuggaChugga.model.StationDataSet;
 import chuggaChugga.model.TrainDataSet;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -33,6 +35,16 @@ public class TrainDaoImpl implements TrainDao {
                     .openSession()
                     .createCriteria(TrainDataSet.class)
                     .list();
+    }
+
+    @Override
+    public List<TrainDataSet> getAllTrainsWhichPassStation(StationDataSet station) {
+        Session session = sessionFactory.openSession();
+        String s = "select train.* from train inner join (select * from routestation where " +
+                "routestation.stationId =" + station.getId() + ") as A on train.routeId = A.routeId;";
+        SQLQuery query = session.createSQLQuery(s);
+        query.addEntity(TrainDataSet.class);
+        return query.list();
     }
 
     public TrainDataSet getTrain(int id) {
