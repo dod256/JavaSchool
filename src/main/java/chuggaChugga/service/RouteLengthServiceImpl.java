@@ -18,6 +18,7 @@ public class RouteLengthServiceImpl implements RouteLengthService {
     }
 
     public int getFreeRouteId() {
+        //ToDo wtf???
         return routeLengthDao.getAllRouteLength().size() + 1;
     }
 

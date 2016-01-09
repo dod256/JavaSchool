@@ -34,6 +34,7 @@ public class RouteServiceImpl implements RouteService {
     private RouteLengthService routeLengthService;
 
     public void createRoute(NewRouteImpl newRouteImpl) {
+        //ToDo find bug
         int routeId = routeLengthService.getFreeRouteId();
         for (NewRouteStation newRouteStation: newRouteImpl.getRouteStations()) {
             int stationNumber = 0;
