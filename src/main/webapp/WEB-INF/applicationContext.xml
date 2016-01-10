@@ -25,4 +25,5 @@
 	<import resource="mvc-dispatcher-servlet.xml" />
 	<import resource="hibernate-context.xml" />
 
+
 </beans>

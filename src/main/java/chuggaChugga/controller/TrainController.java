@@ -52,6 +52,7 @@ public class TrainController {
         ArrayList<RouteStationDataSet> routeStations =
                 route.getRouteStations();
         trainBuilder = trainBuilder
+                .withRouteId(id)
                 .withDepartureStation(routeStations.get(0))
                 .withArrivalStation(routeStations
                         .get(routeStations.size() - 1));
