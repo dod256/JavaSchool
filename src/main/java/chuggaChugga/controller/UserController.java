@@ -3,25 +3,25 @@ package chuggaChugga.controller;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.helper.OperationResultMessage;
-import chuggaChugga.helper.Validator;
 import chuggaChugga.helper.ValidatorImpl;
 import chuggaChugga.service.TicketService;
-import chuggaChugga.service.UserService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
-public class UserController {
-
-    @Autowired
-    UserService userService;
+public class UserController extends MyController {
 
     @Autowired
     TicketService ticketService;
@@ -42,17 +42,20 @@ public class UserController {
             return "profile";
     }
 
-    @RequestMapping(value = "/login.form",method = RequestMethod.POST)
-    public String login (@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
-        UserDto user = userService.getUserByEmail(email);
-        if (user != null && user.checkPassword(password)) {
-            session.setAttribute("currentUser", user);
-            ArrayList<TicketDto> ticketList = ticketService.getTicketsByUser((UserDto) session.getAttribute("currentUser"));
-            session.setAttribute("ticketList", ticketList);
-            return "profile";
-        } else {
-            return "login";
+    @RequestMapping(value = "/loginSuccess",method = RequestMethod.GET)
+    public String loginSuccess (HttpSession session){
+        saveUserInSession(session);
+        return "profile";
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        session.removeAttribute("currentUser");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        return "redirect:/login.html?logout";
     }
 
     @RequestMapping(value = "/signUp.form", method = RequestMethod.POST)

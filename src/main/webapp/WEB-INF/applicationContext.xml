@@ -24,6 +24,6 @@
 	<!-- Load Hibernate related configuration -->
 	<import resource="mvc-dispatcher-servlet.xml" />
 	<import resource="hibernate-context.xml" />
-
+	<import resource="spring-security.xml" />
 
 </beans>

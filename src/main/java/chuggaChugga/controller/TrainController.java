@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
-public class TrainController {
+public class TrainController extends MyController {
 
     @Autowired
     TrainService trainService;

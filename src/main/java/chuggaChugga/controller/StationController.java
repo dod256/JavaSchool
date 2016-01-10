@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class StationController {
+public class StationController extends MyController {
 
     @Autowired
     StationService stationService;

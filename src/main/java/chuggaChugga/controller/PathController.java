@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
-public class PathController {
+public class PathController extends MyController {
 
     @Autowired
     StationService stationService;

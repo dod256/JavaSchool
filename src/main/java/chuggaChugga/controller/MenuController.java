@@ -5,6 +5,7 @@ import chuggaChugga.dto.UserDto;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
-public class MenuController {
+public class MenuController extends MyController {
 
     @Autowired
     TicketService ticketService;
@@ -27,20 +28,30 @@ public class MenuController {
         return "login";
     }
 
+    @RequestMapping(value = "/logout.html", method = RequestMethod.GET)
+    public String logout(HttpSession session){
+        session.setAttribute("currentUser", null);
+        return "index";
+    }
+
     @RequestMapping(value = "/home.html", method = RequestMethod.GET)
     public String home(Model model) {
         return "index";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/trainManager.html", method = RequestMethod.GET)
     public String trainManager(HttpSession session){
+        saveUserInSession(session);
         session.removeAttribute("trainManagerAction");
         session.removeAttribute("trainList");
         return "trainManager";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/stationManager.html", method = RequestMethod.GET)
     public String stationManager(HttpSession session){
+        saveUserInSession(session);
         session.removeAttribute("stationManagerAction");
         session.removeAttribute("stationList");
         return "stationManager";
@@ -52,8 +63,10 @@ public class MenuController {
         return "pathManager";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/routeManager.html", method = RequestMethod.GET)
     public String routeManager(HttpSession session){
+        saveUserInSession(session);
         session.removeAttribute("routeManagerAction");
         session.removeAttribute("routeList");
         return "routeManager";
@@ -76,12 +89,6 @@ public class MenuController {
     @RequestMapping(value = "/signUp.html", method = RequestMethod.GET)
     public String signUp(Model model){
         return "signUp";
-    }
-
-    @RequestMapping(value = "/logout.html", method = RequestMethod.GET)
-    public String logout(HttpSession session){
-        session.setAttribute("currentUser", null);
-        return "index";
     }
 
     @RequestMapping(value = "/profile.html", method = RequestMethod.GET)

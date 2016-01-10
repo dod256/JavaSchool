@@ -7,13 +7,9 @@
                 <li><a href="stationTimetable.html">Station timetable</a></li>
                 <li><a href="findTrain.html">Find train</a></li>
                 <li><a href="pathManager.html">Find path</a></li>
-                <c:choose>
-                    <c:when test="${sessionScope.currentUser != null && sessionScope.currentUser.getUserTypeId() == 1}">
-                        <li><a href="trainManager.html">Train manager</a></li>
-                        <li><a href="stationManager.html">Station manager</a></li>
-                        <li><a href="routeManager.html">Route manager</a></li>
-                    </c:when>
-                </c:choose>
+                <li><a href="stationManager.html">Station manager</a></li>
+                <li><a href="trainManager.html">Train manager</a></li>
+                <li><a href="routeManager.html">Route manager</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
@@ -27,7 +23,7 @@
                     </c:when>
                     <c:otherwise>
                         <li>
-                            <a href="logout.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                            <a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                         </li>
                     </c:otherwise>
                 </c:choose>
