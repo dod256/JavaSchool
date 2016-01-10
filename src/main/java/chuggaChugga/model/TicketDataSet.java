@@ -2,6 +2,7 @@ package chuggaChugga.model;
 
 import com.google.common.base.MoreObjects;
 import javax.persistence.*;
+import java.sql.Date;
 
 /*
 * Represent Ticket table from the DB

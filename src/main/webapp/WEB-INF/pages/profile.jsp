@@ -42,8 +42,8 @@
                             <td><h5>${ticket.getId()}</h5></td>
                             <td><h5>${ticket.getDepartureDateString()}</h5></td>
                             <td><h5>${ticket.getTrain()}</h5></td>
-                            <td><h5>${ticket.getDepartureStation()} <small>time</small></h5></td>
-                            <td><h5>${ticket.getArrivalStation()} <small>time</small></h5></td>
+                            <td><h5>${ticket.getDepartureStation()} <small>${ticket.getDepartureDateTimeString()}</small></h5></td>
+                            <td><h5>${ticket.getArrivalStation()} <small>${ticket.getArrivalDateTimeString()}</small></h5></td>
                         </tr>
                     </c:forEach>
                 </table>
