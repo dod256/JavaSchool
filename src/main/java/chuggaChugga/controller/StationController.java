@@ -8,6 +8,7 @@ import chuggaChugga.service.StationDistanceService;
 import chuggaChugga.service.StationService;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,24 +41,11 @@ public class StationController extends MyController {
         return "showMessage";
     }
 
-    @RequestMapping(value = "/setAddStationAction.form", method = RequestMethod.POST)
-    public String addAction(@RequestParam("stationManagerAction") String stationManagerAction, HttpSession session) {
-        session.setAttribute("stationManagerAction", stationManagerAction);
-        return "stationManager";
-    }
-
-    @RequestMapping(value = "/setShowAllStationsAction.form", method = RequestMethod.POST)
-    public String showAllAction(@RequestParam("stationManagerAction") String stationManagerAction, HttpSession session) {
-        session.setAttribute("stationList", stationService.getAllStations());
-        session.setAttribute("stationManagerAction", stationManagerAction);
-        return "stationManager";
-    }
-
-    @RequestMapping(value = "/addStation.form", method = RequestMethod.POST)
-    public String add(@RequestParam("name") String name, HttpSession session) {
+    @RequestMapping(value = "/createStation.form", method = RequestMethod.POST)
+    public String create(@RequestParam("name") String name, HttpSession session) {
         OperationResultMessage message = ValidatorImpl.checkName(name);
         if (message.getStatus().equals("danger")) {
-            session.setAttribute("operationResultMessage", message);
+            return "redirect:/createStation.html?error=true";
         } else {
             stationService.addStation(StationDataSet.newBuilder().withName(name).build());
             session.setAttribute("operationResultMessage",
@@ -71,7 +59,7 @@ public class StationController extends MyController {
         StationDataSet station = stationService.getStation(Integer.parseInt(stationId));
         session.setAttribute("station", station);
         session.setAttribute("distanceList", stationDistanceService.findAllDistances(station.getName()));
-        return "stationInfo";
+        return "station/stationInfo";
     }
 
     @RequestMapping(value = "/showStationTimetable.form", method = RequestMethod.POST)
@@ -79,7 +67,7 @@ public class StationController extends MyController {
         StationDataSet station = stationService.getStationByName(name);
         LocalDate date = LocalDate.parse(dateString);
         session.setAttribute("stationTimetable", stationService.getTimetable(station, date));
-        return "stationTimetable";
+        return "station/stationTimetable";
     }
 
 }

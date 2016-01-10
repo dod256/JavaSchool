@@ -3,7 +3,7 @@
 <html>
 <head>
   <title></title>
-  <%@ include file = "/WEB-INF/pages/style.jsp" %>
+  <%@ include file = "/WEB-INF/pages/style/style.jsp" %>
 <body>
 
 <%@ include file = "/WEB-INF/pages/menu.jsp" %>
@@ -15,7 +15,7 @@
 
     </div>
     <div class="col-sm-10 text-left">
-
+      <%@ include file = "/WEB-INF/pages/user/loginSmallForm.jsp" %>
     </div>
   </div>
 </div>

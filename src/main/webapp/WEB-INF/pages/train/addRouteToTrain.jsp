@@ -3,7 +3,7 @@
 <html>
 <head>
   <title></title>
-  <%@ include file = "/WEB-INF/pages/style.jsp" %>
+  <%@ include file = "/WEB-INF/pages/style/style.jsp" %>
 <body>
 
 <%@ include file = "/WEB-INF/pages/menu.jsp" %>
@@ -11,7 +11,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <%@ include file="profileSmall.jsp"%>
+      <%@ include file="../user/profileSmall.jsp"%>
       <form role = "form" name = "showAllRoutesForTrainForm" action = "showAllRoutesForTrain.form" method = post>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">Show all routes</button>

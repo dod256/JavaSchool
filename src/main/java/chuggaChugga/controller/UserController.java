@@ -39,13 +39,13 @@ public class UserController extends MyController {
             session.setAttribute("currentUser", userService.getUserByEmail(user.getEmail()));
             ArrayList<TicketDto> ticketList = ticketService.getTicketsByUser((UserDto) session.getAttribute("currentUser"));
             session.setAttribute("ticketList", ticketList);
-            return "profile";
+            return "user/profile";
     }
 
     @RequestMapping(value = "/loginSuccess",method = RequestMethod.GET)
     public String loginSuccess (HttpSession session){
         saveUserInSession(session);
-        return "profile";
+        return "user/profile";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)

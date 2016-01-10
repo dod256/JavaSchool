@@ -2,8 +2,10 @@ package chuggaChugga.controller;
 
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
+import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TicketService;
+import chuggaChugga.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -23,9 +25,15 @@ public class MenuController extends MyController {
     @Autowired
     StationService stationService;
 
+    @Autowired
+    TrainService trainService;
+
+    @Autowired
+    RouteService routeService;
+
     @RequestMapping(value = "/login.html", method = RequestMethod.GET)
     public String login(Model model){
-        return "login";
+        return "user/login";
     }
 
     @RequestMapping(value = "/logout.html", method = RequestMethod.GET)
@@ -40,21 +48,48 @@ public class MenuController extends MyController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/trainManager.html", method = RequestMethod.GET)
-    public String trainManager(HttpSession session){
+    @RequestMapping(value = "/createStation.html", method = RequestMethod.GET)
+    public String createStation(HttpSession session) {
         saveUserInSession(session);
-        session.removeAttribute("trainManagerAction");
-        session.removeAttribute("trainList");
-        return "trainManager";
+        return "station/createStation";
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/stationManager.html", method = RequestMethod.GET)
-    public String stationManager(HttpSession session){
+    @RequestMapping(value = "/showAllStations.html", method = RequestMethod.GET)
+    public String showAllStations(HttpSession session) {
         saveUserInSession(session);
-        session.removeAttribute("stationManagerAction");
-        session.removeAttribute("stationList");
-        return "stationManager";
+        session.setAttribute("stationList", stationService.getAllStationsOrderdByName());
+        return "station/showAllStations";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/createTrain.html", method = RequestMethod.GET)
+    public String createTrain(HttpSession session) {
+        saveUserInSession(session);
+        return "train/createTrain";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/showAllTrains.html", method = RequestMethod.GET)
+    public String showAllTrains(HttpSession session) {
+        saveUserInSession(session);
+        session.setAttribute("trainList", trainService.getAllTrains());
+        return "train/showAllTrains";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/createRoute.html", method = RequestMethod.GET)
+    public String createRoute(HttpSession session) {
+        saveUserInSession(session);
+        return "route/createRoute";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/showAllRoutes.html", method = RequestMethod.GET)
+    public String showAllRoutes(HttpSession session) {
+        saveUserInSession(session);
+        session.setAttribute("routeList", routeService.getAllRoutes());
+        return "route/showAllRoutes";
     }
 
     @RequestMapping(value = "/pathManager.html", method = RequestMethod.GET)
@@ -63,42 +98,33 @@ public class MenuController extends MyController {
         return "pathManager";
     }
 
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/routeManager.html", method = RequestMethod.GET)
-    public String routeManager(HttpSession session){
-        saveUserInSession(session);
-        session.removeAttribute("routeManagerAction");
-        session.removeAttribute("routeList");
-        return "routeManager";
-    }
-
     @RequestMapping(value = "/stationTimetable.html", method = RequestMethod.GET)
     public String stationTimetable(HttpSession session){
         session.removeAttribute("stationTimetable");
         session.setAttribute("stationList", stationService.getAllStations());
-        return "stationTimetable";
+        return "station/stationTimetable";
     }
 
     @RequestMapping(value = "/findTrain.html", method = RequestMethod.GET)
     public String findTrain(HttpSession session){
         session.removeAttribute("trainTimetable");
         session.setAttribute("stationList", stationService.getAllStations());
-        return "trainTimetable";
+        return "train/trainTimetable";
     }
 
     @RequestMapping(value = "/signUp.html", method = RequestMethod.GET)
     public String signUp(Model model){
-        return "signUp";
+        return "user/signUp";
     }
 
     @RequestMapping(value = "/profile.html", method = RequestMethod.GET)
     public String profile(HttpSession session){
         if (session.getAttribute("currentUser") == null) {
-            return "login";
+            return "user/login";
         }
         ArrayList<TicketDto> ticketList = ticketService.getTicketsByUser((UserDto) session.getAttribute("currentUser"));
         session.setAttribute("ticketList", ticketList);
-        return "profile";
+        return "user/profile";
     }
 
 }

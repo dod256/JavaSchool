@@ -1,6 +1,5 @@
 package chuggaChugga.controller;
 
-import chuggaChugga.data.NewRoute;
 import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.data.NewRouteStation;
 import chuggaChugga.helper.OperationResultMessage;
@@ -39,7 +38,7 @@ public class RouteController extends MyController {
                 .build();
         NewRouteImpl.Builder routeBuilder = (NewRouteImpl.Builder) session.getAttribute("routeBuilder");
         routeBuilder.withNewRouteStation(routeStation);
-        return "routeManager";
+        return "route/createRoute";
     }
 
     @RequestMapping(value = "/createRoute.form", method = RequestMethod.POST)
@@ -52,21 +51,5 @@ public class RouteController extends MyController {
                 new OperationResultMessage("success", "Route created"));
         return "showMessage";
     }
-
-    @RequestMapping(value = "/setAddRouteAction.form", method = RequestMethod.POST)
-    public String addAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("routeManagerAction", actionType);
-        session.setAttribute("stationList", stationService.getAllStations());
-        session.setAttribute("routeBuilder", NewRouteImpl.newBuilder());
-        return "routeManager";
-    }
-
-    @RequestMapping(value = "/setShowAllRoutesAction.form", method = RequestMethod.POST)
-    public String showAllAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("routeList", routeService.getAllRoutes());
-        session.setAttribute("routeManagerAction", actionType);
-        return "routeManager";
-    }
-
 
 }

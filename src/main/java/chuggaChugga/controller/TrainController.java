@@ -1,7 +1,6 @@
 package chuggaChugga.controller;
 
 import chuggaChugga.data.*;
-import chuggaChugga.dto.TrainDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.helper.OperationResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
@@ -72,7 +71,7 @@ public class TrainController extends MyController {
     public String showAllRoutes(HttpSession session) {
         ArrayList<Route> routeList = routeService.getAllRoutes();
         session.setAttribute("routeList", routeList);
-        return "addRouteToTrain";
+        return "train/addRouteToTrain";
     }
 
     @RequestMapping(value = "/showRoutesForTrain.form", method = RequestMethod.POST)
@@ -87,7 +86,7 @@ public class TrainController extends MyController {
         ArrayList<Route> routeList = routeService.getRoutes(request);
 
         session.setAttribute("routeList", routeList);
-        return "addRouteToTrain";
+        return "train/addRouteToTrain";
     }
 
     @RequestMapping(value = "/showPassengers.form", method = RequestMethod.POST)
@@ -95,21 +94,7 @@ public class TrainController extends MyController {
         int trainId = Integer.parseInt(trainIdString);
         ArrayList<UserDto> passengerList = trainService.getPassengers(trainId);
         session.setAttribute("passengerList", passengerList);
-        return "showPassengers";
-    }
-
-    @RequestMapping(value = "/setAddTrainAction.form", method = RequestMethod.POST)
-    public String addAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        session.setAttribute("trainManagerAction", actionType);
-        return "trainManager";
-    }
-
-    @RequestMapping(value = "/setShowAllTrainsAction.form", method = RequestMethod.POST)
-    public String showAllAction(@RequestParam("actionType") String actionType, HttpSession session) {
-        ArrayList<TrainDto> trainDtoList = trainService.getAllTrains();
-        session.setAttribute("trainList", trainDtoList);
-        session.setAttribute("trainManagerAction", actionType);
-        return "trainManager";
+        return "train/showPassengers";
     }
 
     @RequestMapping(value = "/addTrain.form", method = RequestMethod.POST)
@@ -151,7 +136,7 @@ public class TrainController extends MyController {
                 .withName(name);
         session.setAttribute("trainBuilder", trainBuilder);
         session.setAttribute("stationList", stationService.getAllStations());
-        return "addRouteToTrain";
+        return "train/addRouteToTrain";
     }
 
     @RequestMapping(value = "/findTrainTimetable.form", method = RequestMethod.POST)
@@ -170,7 +155,7 @@ public class TrainController extends MyController {
                 .build();
         TrainTimetable trainTimetable = trainService.getTrains(trainRequest);
         session.setAttribute("trainTimetable", trainTimetable);
-        return "trainTimetable";
+        return "train/trainTimetable";
     }
 
     @RequestMapping(value = "/purchaseTicket.form", method = RequestMethod.POST)
@@ -178,7 +163,7 @@ public class TrainController extends MyController {
             @RequestParam("trainId") String trainIdString,
             HttpSession session) {
         if (session.getAttribute("currentUser") == null) {
-            return "login";
+            return "user/login";
         }
 
         int trainId = Integer.parseInt(trainIdString);
