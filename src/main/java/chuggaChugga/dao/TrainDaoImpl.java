@@ -22,6 +22,14 @@ public class TrainDaoImpl implements TrainDao {
         session.close();
     }
 
+    @Override
+    public void updateTrain(TrainDataSet train) {
+        Session session = sessionFactory.openSession();
+        session.update(train);
+        session.flush();
+        session.close();
+    }
+
     public int getTrainTableSize() {
         return sessionFactory
                     .openSession()

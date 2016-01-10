@@ -44,6 +44,8 @@ public class TicketServiceImpl implements TicketService {
         if (result) {
             int newBalance = request.getUser().getBalance() - request.getTrain().getCost();
             userService.updateUser(UserDto.newBuilder(request.getUser()).withBalance(newBalance).build());//todo: check if work!
+            int seats = request.getTrain().getNumberOfFreeSeats();
+            request.getTrain().setNumberOfFreeSeats(seats - 1);
         }
         return result;
     }

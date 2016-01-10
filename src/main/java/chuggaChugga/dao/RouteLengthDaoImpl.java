@@ -19,10 +19,9 @@ public class RouteLengthDaoImpl implements RouteLengthDao {
         session.close();
     }
 
-    public List<RouteLengthDataSet> getAllRouteLength() {
-        return (List<RouteLengthDataSet>) sessionFactory
+    public int getFreeRouteId() {
+        return sessionFactory
                 .openSession()
-                .createCriteria(RouteLengthDataSet.class)
-                .list();
+                .createSQLQuery("SELECT COUNT(*) FROM routelength").getFirstResult();
     }
 }

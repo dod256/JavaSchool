@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface RouteLengthDao {
     void addRouteLength(RouteLengthDataSet routeLength);
-    List<RouteLengthDataSet> getAllRouteLength();
+    int getFreeRouteId();
 }
