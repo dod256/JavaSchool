@@ -100,7 +100,6 @@ public class UserController extends MyController {
                 .withFirstName(firstName)
                 .withLastName(lastName)
                 .withBirthdate(dt)
-                .withUserTypeId(2)
                 .build();
 
         userService.addUser(userDto);

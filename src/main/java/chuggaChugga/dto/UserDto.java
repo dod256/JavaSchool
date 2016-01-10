@@ -12,7 +12,6 @@ public class UserDto {
     private String lastName;
     private String password;
     private DateTime birthdate;
-    private int userTypeId;
     private int balance;
 
     public UserDto(){}
@@ -24,7 +23,6 @@ public class UserDto {
         lastName = builder.lastName;
         password = builder.password;
         birthdate = builder.birthdate;
-        userTypeId = builder.userTypeId;
         balance = builder.balance;
     }
 
@@ -40,7 +38,6 @@ public class UserDto {
         builder.lastName = copy.lastName;
         builder.password = copy.password;
         builder.birthdate = copy.birthdate;
-        builder.userTypeId = copy.userTypeId;
         builder.balance = copy.balance;
         return builder;
     }
@@ -53,7 +50,6 @@ public class UserDto {
         builder.lastName = copy.getLastName();
         builder.password = copy.getPassword();
         builder.birthdate = copy.getBirthDate();
-        builder.userTypeId = copy.getUserTypeId();
         builder.balance = copy.getBalance();
         return builder;
     }
@@ -94,10 +90,6 @@ public class UserDto {
 
     public void makeDeposit(int deposit) {this.balance += deposit;}
 
-    public int getUserTypeId() {
-        return userTypeId;
-    }
-
     public static final class Builder {
         private int id;
         private String email;
@@ -105,7 +97,6 @@ public class UserDto {
         private String lastName;
         private String password;
         private DateTime birthdate;
-        private int userTypeId;
         private int balance;
 
         private Builder() {
@@ -143,11 +134,6 @@ public class UserDto {
 
         public Builder withBirthdate(DateTime val) {
             birthdate = val;
-            return this;
-        }
-
-        public Builder withUserTypeId(int val) {
-            userTypeId = val;
             return this;
         }
 

@@ -23,10 +23,7 @@ public class UserDataSet implements Serializable {
     private String lastName;
     private String password;
     private Date birthdate;
-    private int userTypeId;
     private int balance;
-
-
 
     private UserDataSet(Builder builder) {
         birthdate = builder.birthdate;
@@ -34,7 +31,6 @@ public class UserDataSet implements Serializable {
         firstName = builder.firstName;
         lastName = builder.lastName;
         password = builder.password;
-        userTypeId = builder.userTypeId;
         balance = builder.balance;
         id = builder.id;
     }
@@ -58,7 +54,6 @@ public class UserDataSet implements Serializable {
         builder.firstName = copy.firstName;
         builder.lastName = copy.lastName;
         builder.password = copy.password;
-        builder.userTypeId = copy.userTypeId;
         builder.id = copy.id;
         builder.balance = copy.balance;
         return builder;
@@ -72,17 +67,8 @@ public class UserDataSet implements Serializable {
         builder.lastName = userDto.getLastName();
         builder.password = userDto.getPassword();
         builder.birthdate = new Date(userDto.getBirthDate().getMillis());
-        builder.userTypeId = userDto.getUserTypeId();
         builder.balance = userDto.getBalance();
         return builder;
-    }
-
-    public int getUserTypeId() {
-        return userTypeId;
-    }
-
-    public void setUserTypeId(int userTypeId) {
-        this.userTypeId = userTypeId;
     }
 
     public String getPassword() {
@@ -105,6 +91,14 @@ public class UserDataSet implements Serializable {
 
     public DateTime getBirthDate() {
         return new DateTime(birthdate);
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public UserDataSet() {
@@ -140,7 +134,6 @@ public class UserDataSet implements Serializable {
         private String firstName;
         private String lastName;
         private String password;
-        private int userTypeId;
         private int id;
         private int balance;
         private Builder() {
@@ -181,11 +174,6 @@ public class UserDataSet implements Serializable {
             return this;
         }
 
-        public Builder withUserTypeId(int val) {
-            userTypeId = val;
-            return this;
-        }
-
         public UserDataSet build() {
             return new UserDataSet(this);
         }
@@ -199,7 +187,6 @@ public class UserDataSet implements Serializable {
                 .add("firstName", firstName)
                 .add("lastName", lastName)
                 .add("password", password)
-                .add("userTypeId", userTypeId)
                 .add("balance", balance)
                 .toString();
     }

@@ -9,7 +9,7 @@
         <form-login
                 login-page='/login.html'
                 default-target-url="/loginSuccess"
-                authentication-failure-url="/login.html?error=true" />
+                authentication-failure-url="/login.html?error=true"/>
     </http>
 
     <global-method-security secured-annotations="enabled"/>
@@ -21,6 +21,5 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
-
 
 </beans:beans>

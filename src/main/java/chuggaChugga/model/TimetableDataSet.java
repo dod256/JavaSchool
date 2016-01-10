@@ -1,7 +1,6 @@
 package chuggaChugga.model;
 
 import com.google.common.base.MoreObjects;
-
 import javax.persistence.*;
 
 /*

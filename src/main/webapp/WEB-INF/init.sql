@@ -111,14 +111,35 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Timetable` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table ``.`User`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `chugga_chugga`.`User` (
+  `email` VARCHAR(45) NULL,
+  `firstName` VARCHAR(45) NULL,
+  `lastName` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `birthDate` DATE NOT NULL,
+  `balance` INT,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table ``.`UserType`
+-- Table ``.`UserRole`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chugga_chugga`.`UserType` (
+CREATE TABLE IF NOT EXISTS `chugga_chugga`.`UserRole` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
+  `userId` INT NOT NULL,
+  `userRole` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_UserRole_User1_idx` (`userId` ASC),
+  CONSTRAINT `fk_UserRole_User1_idx`
+    FOREIGN KEY (`userId`)
+    REFERENCES `chugga_chugga`.`User` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -128,26 +149,6 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`RouteLength` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
--- -----------------------------------------------------
--- Table ``.`User`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chugga_chugga`.`User` (
-  `email` VARCHAR(45) NULL,
-  `firstName` VARCHAR(45) NULL,
-  `lastName` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `userTypeId` INT NOT NULL,
-  `birthDate` DATE NOT NULL,
-  `balance` INT,
-  PRIMARY KEY (`id`),
-  INDEX `fk_User_UserType1_idx` (`userTypeId` ASC),
-  CONSTRAINT `type`
-    FOREIGN KEY (`userTypeId`)
-    REFERENCES `chugga_chugga`.`UserType` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -183,28 +184,33 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 USE chugga_chugga;
 
-insert into usertype (type)
- values ("admin");
- 
-insert into usertype (type)
- values ("customer");
 
 
 #######################################################################
-#add admins:
 
-insert into USER (email, firstName, lastName, password, userTypeId, birthdate, balance)
- values ("david.koroteev@me", "David", "Koroteev", "qwe", 1, '1993-12-25', 1000000000);
+insert into USER (email, firstName, lastName, password, birthdate, balance)
+ values ("david.koroteev@me", "David", "Koroteev", "qwe", '1993-12-25', 1000000000);
  
  
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate, balance)
- values ("alena.koroteeva@me", "Alena", "Koroteeva", "qwe", 1, '1993-12-20', 10000);
+insert into USER (email, firstName, lastName, password, birthDate, balance)
+ values ("alena.koroteeva@me", "Alena", "Koroteeva", "qwe", '1993-12-20', 10000);
 
-#add customers:
-insert into USER (email, firstName, lastName, password, userTypeId, birthDate, balance)
- values ("pavel.belov@me", "Pavel", "Belov", "qwe", 2, '1991-10-22', 10);
+insert into USER (email, firstName, lastName, password, birthDate, balance)
+ values ("pavel.belov@me", "Pavel", "Belov", "qwe", '1991-10-22', 10);
  
 ###########################################################################
+
+insert into userRole (userId, userRole)
+ values (1, "ROLE_ADMIN");
+ 
+ insert into userRole (userId, userRole)
+ values (2, "ROLE_ADMIN");
+ 
+insert into userRole (userId, userRole)
+ values (3, "ROLE_USER");
+
+###########################################################################
+
 
 insert into Station (name)
  values ("Moscow");
@@ -302,12 +308,21 @@ insert into RouteStation (stationId, stationNumber, routeId,
 arrival, waitingTime, dayCount)
  values (3, 2, 4, '10:14:00', '00:01:20', 3);
  
+#novosibirsk->helsinki
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, dayCount)
+ values (8, 1, 5, '04:12:00', '00:00:20', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId, 
+arrival, waitingTime, dayCount)
+ values (6, 2, 5, '10:14:00', '00:01:20', 1);
+ 
 
 ###########################################################################
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Arrow", 100, 99, 1000, 5, 1, "2015-12-04", 1);
+ values ("Arrow", 100, 99, 1000, 5, 1, "2016-01-20", 1);
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
@@ -316,15 +331,19 @@ cost, arrivalStation, departureStation, departureDate, routeId)
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Hogwarst express", 100, 99, 1000, 8, 6, "2015-12-04", 2);
+ values ("Hogwarst express", 100, 99, 1000, 8, 6, "2016-01-20", 2);
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Orient express", 100, 99, 1000, 12, 9, "2015-12-04", 3);
+ values ("Orient express", 100, 99, 1000, 12, 9, "2016-01-20", 3);
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Pride of Africa", 100, 99, 10000, 14, 13, "2015-12-01", 4);
+ values ("Pride of Africa", 100, 99, 10000, 14, 13, "2016-01-20", 4);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats, 
+cost, arrivalStation, departureStation, departureDate, routeId)
+ values ("Tutu", 100, 99, 10000, 17, 16, "2016-01-30", 5);
 
 
 ###########################################################################

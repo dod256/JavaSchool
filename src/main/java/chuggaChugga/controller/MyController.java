@@ -18,7 +18,6 @@ public class MyController {
     protected String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         if (principal instanceof UserDetails) {
             userName = ((UserDetails)principal).getUsername();
         } else {
@@ -31,6 +30,5 @@ public class MyController {
         String username = getPrincipal();
         UserDto user = userService.getUserByEmail(username);
         session.setAttribute("currentUser", user);
-
     }
 }
