@@ -16,6 +16,7 @@
       <form role = "form" name = "setAddStationActionForm" action = "setAddStationAction.form" method = post>
         <div class = "form-group">
           <input type="hidden" name = "stationManagerAction" value = "createStation">
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </div>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
@@ -23,6 +24,7 @@
       <form role = "form" name = "setShowAllStationsActionForm" action = "setShowAllStationsAction.form" method = post>
         <div class = "form-group">
           <input type="hidden" name = "stationManagerAction" value = "showAllStations">
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </div>
         <button type = "submit" class = "btn btn-default">Show all stations</button>
       </form>
@@ -43,6 +45,7 @@
               <label for = "name"> Name </label>
               <input type="text" class="form-control" id = "name" name="name">
             </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button type = "submit" class = "btn btn-default">Create</button>
           </form>
         </c:when>
@@ -64,6 +67,7 @@
                   <div class = "form-group">
                     <input type="hidden" name = "stationId" value = ${station.getId()}>
                   </div>
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                   <button type = "submit" class = "btn btn-default">Show Info</button>
                 </form>
               </td>

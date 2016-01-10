@@ -38,6 +38,7 @@
           <label for = "date"> Birthday </label>
           <input type="date" class="form-control" id = "date" name="birthdate">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-default">Sign Up</button>
       </form>
 

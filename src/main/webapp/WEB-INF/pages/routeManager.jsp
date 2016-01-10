@@ -17,6 +17,7 @@
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "createRoute">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
@@ -24,6 +25,7 @@
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "showAllRoutes">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">Show All</button>
       </form>
     </div>
@@ -64,6 +66,7 @@
               <label for = waitingTime> Waiting Time </label>
               <input type="time" class="form-control" id = "waitingTime" name="waitingTime">
             </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class = "form-group">
               <button type = "submit" class = "btn btn-default">Add station</button>
             </div>

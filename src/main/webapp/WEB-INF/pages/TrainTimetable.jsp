@@ -39,6 +39,7 @@
           <label for = "date"> Date </label>
           <input type="date" class="form-control" id = "date" name="date">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-default">Find</button>
       </form>
 
@@ -74,6 +75,7 @@
                 <div class = "form-group">
                   <input type="hidden" name = "trainId" value = ${trainRouteTime.getTrain().getId()}>
                 </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type = "submit" class = "btn btn-default">Purhase</button>
               </form>
             </td>

@@ -29,6 +29,7 @@
                     <label for = "date"> Departure date </label>
                     <input type="date" class="form-control" id = "date" name="date">
                 </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type = "submit" class = "btn btn-default">Find</button>
             </form>
             <c:set var="stationTimetable" value="${sessionScope.stationTimetable}"/>

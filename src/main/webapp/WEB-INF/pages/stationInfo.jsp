@@ -39,6 +39,7 @@
                   <input type="hidden" name = "firstStation" value = ${distance.getFirstStation()}>
                   <input type="hidden" name = "secondStation" value = ${distance.getSecondStation()}>
                 </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type = "submit" class = "btn btn-default">Change Distance</button>
               </form>
             </td>

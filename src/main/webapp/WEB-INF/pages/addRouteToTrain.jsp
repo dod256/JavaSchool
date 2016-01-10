@@ -13,6 +13,7 @@
     <div class="col-sm-2 sidenav">
       <%@ include file="profileSmall.jsp"%>
       <form role = "form" name = "showAllRoutesForTrainForm" action = "showAllRoutesForTrain.form" method = post>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">Show all routes</button>
       </form>
     </div>
@@ -39,6 +40,7 @@
             </c:forEach>
           </select>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">Find</button>
       </form>
 
@@ -57,7 +59,8 @@
                   <div class = "form-group">
                     <input type="hidden" name = "routeId" value = ${route.getRouteId()}>
                   </div>
-                    <button type = "submit" class = "btn btn-default">Add</button>
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <button type = "submit" class = "btn btn-default">Add</button>
                 </form>
               </td>
               <c:set var="routeStationList" value="${route.getRouteStations()}"/>

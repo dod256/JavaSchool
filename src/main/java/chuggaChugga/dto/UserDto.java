@@ -1,8 +1,12 @@
 package chuggaChugga.dto;
 
 import chuggaChugga.model.UserDataSet;
+import chuggaChugga.model.UserRoleDataSet;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDto {
 
@@ -140,5 +144,12 @@ public class UserDto {
         public UserDto build() {
             return new UserDto(this);
         }
+    }
+
+    public List<UserRoleDataSet> getRoles() {
+        //ToDo Important!!!!!!!!
+        List<UserRoleDataSet> roles = new ArrayList<>();
+        roles.add(UserRoleDataSet.newBuilder().withUserRole("ROLE_ADMIN").build());
+        return roles;
     }
 }

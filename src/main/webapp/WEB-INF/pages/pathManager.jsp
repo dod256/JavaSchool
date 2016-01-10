@@ -19,6 +19,7 @@
         <div class = "form-group">
           <input type="hidden" name = "pathType" value = "fastest">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">the Fastest</button>
       </form>
 
@@ -26,6 +27,7 @@
         <div class = "form-group">
           <input type="hidden" name = "pathType" value = "cheapest">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">the Cheapest</button>
       </form>
 
@@ -54,6 +56,7 @@
           </select>
         </div>
         <input type="hidden" name = "pathType" value = ${sessionScope.pathType}>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-default">Find</button>
       </form>
     </div>

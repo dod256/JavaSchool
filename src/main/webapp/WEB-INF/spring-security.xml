@@ -15,11 +15,9 @@
     <global-method-security secured-annotations="enabled"/>
 
     <authentication-manager >
-        <authentication-provider>
-            <user-service>
-                <user name="david.koroteev@me" password="qwe" authorities="ROLE_ADMIN" />
-            </user-service>
-        </authentication-provider>
+            <authentication-provider user-service-ref="customUserDetailsService"/>
     </authentication-manager>
+
+    <beans:bean id="customUserDetailsService" class="chuggaChugga.service.CustomUserDetailsService" />
 
 </beans:beans>

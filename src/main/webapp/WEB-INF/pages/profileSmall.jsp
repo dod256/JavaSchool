@@ -15,6 +15,7 @@
           <label for="deposit">Deposit</label>
           <input type="text" class="form-control" id="deposit" name = "deposit">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-default">Make deposit</button>
       </form>
 

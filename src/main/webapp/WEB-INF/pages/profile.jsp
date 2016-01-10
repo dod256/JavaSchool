@@ -21,10 +21,10 @@
 
 
             <c:choose>
-            <c:when test="${sessionScope.ticketList == null}">
+            <c:when test="${sessionScope.ticketList == null || sessionScope.ticketList.size() == 0}">
                 <h3>You don't have any tickets.</h3>
             </c:when>
-            <c:when test="${sessionScope.ticketList != null}">
+            <c:otherwise>
                 <h1>Ticket List</h1>
                 <table class="table table-hover">
                     <thead>
@@ -47,7 +47,7 @@
                         </tr>
                     </c:forEach>
                 </table>
-            </c:when>
+            </c:otherwise>
             </c:choose>
 
 

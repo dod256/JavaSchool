@@ -17,6 +17,7 @@
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "createTrain">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type = "submit" class = "btn btn-default">Create</button>
       </form>
 
@@ -24,6 +25,7 @@
         <div class = "form-group">
           <input type="hidden" name = "actionType" value = "showAllTrains">
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-default">Show all trains</button>
       </form>
 
@@ -55,6 +57,7 @@
               <label for = "cost"> Cost per ticket </label>
               <input type="text" class="form-control" id = "cost" name="cost">
             </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button type = "submit" class = "btn btn-default">Continue</button>
           </form>
         </c:when>
@@ -88,6 +91,7 @@
                         <div class = "form-group">
                           <input type="hidden" name = "trainId" value = ${train.getId()}>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <button type = "submit" class = "btn btn-default">Show All</button>
                       </form>
                     </td>
