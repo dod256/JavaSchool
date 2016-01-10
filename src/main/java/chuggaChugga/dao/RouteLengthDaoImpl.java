@@ -1,11 +1,12 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.model.RouteLengthDataSet;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
-import java.util.List;
+import java.math.BigInteger;
 
 @Repository
 public class RouteLengthDaoImpl implements RouteLengthDao {
@@ -19,9 +20,11 @@ public class RouteLengthDaoImpl implements RouteLengthDao {
         session.close();
     }
 
+    @Override
     public int getFreeRouteId() {
-        return sessionFactory
-                .openSession()
-                .createSQLQuery("SELECT COUNT(*) FROM routelength").getFirstResult();
+        Session session = sessionFactory.openSession();
+        String s = "SELECT COUNT(*) FROM routelength;";
+        SQLQuery query = session.createSQLQuery(s);
+        return ((BigInteger)query.uniqueResult()).intValue();
     }
 }

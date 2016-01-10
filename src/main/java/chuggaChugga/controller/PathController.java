@@ -59,9 +59,9 @@ public class PathController {
         LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations];
         int[][] from = new int[maxNumberOfTransfer][numberOfStations];
         PathPart[][] fromTrain = new PathPart[maxNumberOfTransfer][numberOfStations];
+        arrival[0][start] = LocalDateTime.now();
         for(int i = 0; i < numberOfStations; i++) {
             if (i == start) {
-                arrival[0][i] = LocalDateTime.now();
                 continue;
             }
             TrainDto train = trainService.getEarliestTrain(
