@@ -15,7 +15,7 @@ public class MyController {
     @Autowired
     UserService userService;
 
-    final private int maxNumberOfElementsOnPage = 5;
+    final protected int maxNumberOfElementsOnPage = 5;
 
     protected String getPrincipal(){
         String userName = null;

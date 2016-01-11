@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 public class StationController extends MyController {
@@ -40,25 +41,43 @@ public class StationController extends MyController {
         return "showMessage";
     }
 
-    @RequestMapping(value = "/stationPagerInc.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/stationPagerInc.html", method = RequestMethod.GET)
     public String pagerInc(HttpSession session) {
         int pager = (int) session.getAttribute("stationPager");
         int maxPager = (int) session.getAttribute("stationMaxPager");
-        if (pager < maxPager) {
+        if (pager + 1 < maxPager) {
             pager++;
         }
         session.setAttribute("stationPager", pager);
-        return "showAllStations";
+
+        ArrayList<StationDataSet> stationFullList = (ArrayList<StationDataSet>) session.getAttribute("stationFullList");
+        int n = Math.min((pager + 1) * maxNumberOfElementsOnPage, stationFullList.size());
+        ArrayList<StationDataSet> stationList = new ArrayList<>();
+        for(int i = pager * maxNumberOfElementsOnPage; i < n; i++) {
+            stationList.add(stationFullList.get(i));
+        }
+        session.setAttribute("stationList", stationList);
+
+        return "station/showAllStations";
     }
 
-    @RequestMapping(value = "/stationPagerDec.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/stationPagerDec.html", method = RequestMethod.GET)
     public String pagerDec(HttpSession session) {
         int pager = (int) session.getAttribute("stationPager");
         if (pager > 0) {
             pager--;
         }
         session.setAttribute("stationPager", pager);
-        return "showAllStations";
+
+        ArrayList<StationDataSet> stationFullList = (ArrayList<StationDataSet>) session.getAttribute("stationFullList");
+        int n = Math.min((pager + 1) * maxNumberOfElementsOnPage, stationFullList.size());
+        ArrayList<StationDataSet> stationList = new ArrayList<>();
+        for(int i = pager * maxNumberOfElementsOnPage; i < n; i++) {
+            stationList.add(stationFullList.get(i));
+        }
+        session.setAttribute("stationList", stationList);
+
+        return "station/showAllStations";
     }
 
     @RequestMapping(value = "/createStation.form", method = RequestMethod.POST)

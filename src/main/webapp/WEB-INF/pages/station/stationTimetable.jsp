@@ -18,7 +18,7 @@
             <form role = "form" name = "showTimetableForm" action = "showStationTimetable.form" method = post>
                 <div class = "form-group">
                     <label for = "selectName"> Name </label>
-                    <select class="form-control" id = "selectName" name="name">
+                    <select data-live-search = "true" class="form-control" id = "selectName" name="name">
                         <c:set var="stationList" value="${sessionScope.stationList}"/>
                         <c:forEach items="${stationList}" var="station">
                             <option>${station.getName()}</option>

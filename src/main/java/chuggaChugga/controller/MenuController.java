@@ -1,5 +1,6 @@
 package chuggaChugga.controller;
 
+import chuggaChugga.domain.StationDataSet;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.service.RouteService;
@@ -58,7 +59,19 @@ public class MenuController extends MyController {
     @RequestMapping(value = "/showAllStations.html", method = RequestMethod.GET)
     public String showAllStations(HttpSession session) {
         saveUserInSession(session);
-        session.setAttribute("stationList", stationService.getAllStationsOrderdByName());
+        ArrayList<StationDataSet> stationFullList = stationService.getAllStationsOrderdByName();
+        int length = stationFullList.size();
+        session.setAttribute("stationFullList", stationFullList);
+        session.setAttribute("stationPager", 0);
+        session.setAttribute("stationMaxPager", (
+                length / maxNumberOfElementsOnPage) +
+                (length % maxNumberOfElementsOnPage == 0 ? 0 : 1));
+        int n = Math.min(maxNumberOfElementsOnPage, stationFullList.size());
+        ArrayList<StationDataSet> stationList = new ArrayList<>();
+        for(int i = 0; i < n; i++) {
+            stationList.add(stationFullList.get(i));
+        }
+        session.setAttribute("stationList", stationList);
         return "station/showAllStations";
     }
 
