@@ -66,11 +66,6 @@ public class TrainRouteTime {
         return arrivalTime.toString(DateTimeFormat.shortTime());
     }
 
-
-    public void setArrivalTime(LocalTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
     public LocalTime getDepartureTime() {
         return departureTime;
     }
@@ -79,16 +74,8 @@ public class TrainRouteTime {
         return departureTime.toString(DateTimeFormat.shortTime());
     }
 
-    public void setDepartureTime(LocalTime departureTime) {
-        this.departureTime = departureTime;
-    }
-
     public TrainDto getTrain() {
         return train;
-    }
-
-    public void setTrain(TrainDto train) {
-        this.train = train;
     }
 
     @Override

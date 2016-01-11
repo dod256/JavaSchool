@@ -16,6 +16,7 @@ public interface TrainService {
     LocalTime trainPassStation(TrainDto train, StationDataSet arrivalStation);
     ArrayList<TrainDto> getAllTrains();
     void createTrain(TrainRoute trainRoute);
+    void updateTrain(TrainDataSet train);
     TrainDataSet getTrain(int id);
     ArrayList<UserDto> getPassengers(int trainId);
     LocalDateTime getArrivalDateTime(TrainDto train, StationDataSet station);

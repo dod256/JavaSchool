@@ -171,4 +171,33 @@ public class RouteStationDataSet {
                 .add("dayCount", dayCount)
                 .toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RouteStationDataSet that = (RouteStationDataSet) o;
+
+        if (id != that.id) return false;
+        if (stationNumber != that.stationNumber) return false;
+        if (routeId != that.routeId) return false;
+        if (dayCount != that.dayCount) return false;
+        if (station != null ? !station.equals(that.station) : that.station != null) return false;
+        if (arrival != null ? !arrival.equals(that.arrival) : that.arrival != null) return false;
+        return !(waitingTime != null ? !waitingTime.equals(that.waitingTime) : that.waitingTime != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (station != null ? station.hashCode() : 0);
+        result = 31 * result + stationNumber;
+        result = 31 * result + routeId;
+        result = 31 * result + dayCount;
+        result = 31 * result + (arrival != null ? arrival.hashCode() : 0);
+        result = 31 * result + (waitingTime != null ? waitingTime.hashCode() : 0);
+        return result;
+    }
 }

@@ -31,7 +31,6 @@ public class TicketRequest {
         return builder;
     }
 
-
     public static final class Builder {
         private String arrivalStation;
         private UserDto userDto;
@@ -70,32 +69,16 @@ public class TicketRequest {
         return arrivalStation;
     }
 
-    public void setArrivalStation(String arrivalStation) {
-        this.arrivalStation = arrivalStation;
-    }
-
     public String getDepartureStation() {
         return departureStation;
-    }
-
-    public void setDepartureStation(String departureStation) {
-        this.departureStation = departureStation;
     }
 
     public TrainDataSet getTrain() {
         return train;
     }
 
-    public void setTrain(TrainDataSet train) {
-        this.train = train;
-    }
-
     public UserDto getUser() {
         return userDto;
-    }
-
-    public void setUser(UserDto userDto) {
-        this.userDto = userDto;
     }
 
     @Override

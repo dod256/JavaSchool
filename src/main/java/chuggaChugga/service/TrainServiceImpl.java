@@ -107,6 +107,11 @@ public class TrainServiceImpl implements TrainService {
         }
     }
 
+    @Override
+    public void updateTrain(TrainDataSet train) {
+        trainDao.updateTrain(train);
+    }
+
     public TrainDataSet getTrain(int id) {
         return trainDao.getTrain(id);
     }

@@ -63,7 +63,6 @@ public class TicketDaoImpl implements TicketDao {
                 .build();
 
         session.save(ticket);
-        train.setNumberOfFreeSeats(train.getNumberOfFreeSeats() - 1); //todo: not work!
         session.flush();
         session.close();
         return true;

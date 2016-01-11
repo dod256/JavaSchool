@@ -24,7 +24,6 @@ public class TrainRoute {
         return builder;
     }
 
-
     public static final class Builder {
         private Route route;
         private TrainDataSet train;
@@ -51,16 +50,8 @@ public class TrainRoute {
         return route;
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
-    }
-
     public TrainDataSet getTrain() {
         return train;
-    }
-
-    public void setTrain(TrainDataSet train) {
-        this.train = train;
     }
 
     @Override
