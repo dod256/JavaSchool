@@ -16,11 +16,16 @@
     <div class="col-sm-10 text-left">
 
           <h1>Create station</h1>
-          <c:if test="${param.error != null}">
+          <c:if test="${param.invalidName != null}">
             <div class="alert alert-danger">
               <p>Invalid name.</p>
             </div>
           </c:if>
+        <c:if test="${param.alreadyExist != null}">
+            <div class="alert alert-danger">
+                <p>The station with the same name already exists.</p>
+            </div>
+        </c:if>
           <form role = "form" name = "CreateStationForm" action = "createStation.form" method = post>
             <div class = "form-group">
               <label for = "name"> Name </label>

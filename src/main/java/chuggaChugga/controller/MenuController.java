@@ -80,6 +80,7 @@ public class MenuController extends MyController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/createRoute.html", method = RequestMethod.GET)
     public String createRoute(HttpSession session) {
+        session.setAttribute("stationList", stationService.getAllStations());
         saveUserInSession(session);
         return "route/createRoute";
     }

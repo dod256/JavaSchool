@@ -1,7 +1,6 @@
 package chuggaChugga.data;
 
 import chuggaChugga.dto.TrainDto;
-import chuggaChugga.model.TrainDataSet;
 import com.google.common.base.MoreObjects;
 import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;

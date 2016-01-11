@@ -1,4 +1,4 @@
-package chuggaChugga.model;
+package chuggaChugga.domain;
 
 import com.google.common.base.MoreObjects;
 import chuggaChugga.dto.UserDto;

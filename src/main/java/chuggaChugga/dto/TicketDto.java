@@ -1,6 +1,5 @@
 package chuggaChugga.dto;
-import chuggaChugga.model.TicketDataSet;
-import org.joda.time.DateTime;
+import chuggaChugga.domain.TicketDataSet;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.stereotype.Component;

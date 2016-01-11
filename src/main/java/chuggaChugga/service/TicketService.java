@@ -3,8 +3,8 @@ package chuggaChugga.service;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.TicketDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.TicketDataSet;
+import chuggaChugga.domain.TrainDataSet;
 
 import java.util.ArrayList;
 

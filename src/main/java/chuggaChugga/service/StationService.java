@@ -1,7 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.data.StationTimetable;
-import chuggaChugga.model.StationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;

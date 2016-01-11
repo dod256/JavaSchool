@@ -1,6 +1,6 @@
 package chuggaChugga.service;
 
-import chuggaChugga.model.TimetableDataSet;
+import chuggaChugga.domain.TimetableDataSet;
 
 
 public interface TimetableService {

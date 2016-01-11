@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.RouteLengthDataSet;
+import chuggaChugga.domain.RouteLengthDataSet;
 
 public interface RouteLengthDao {
     void addRouteLength(RouteLengthDataSet routeLength);

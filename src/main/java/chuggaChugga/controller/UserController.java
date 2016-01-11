@@ -2,7 +2,7 @@ package chuggaChugga.controller;
 
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.helper.OperationResultMessage;
+import chuggaChugga.helper.ResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
 import chuggaChugga.service.TicketService;
 import org.joda.time.DateTime;
@@ -31,7 +31,7 @@ public class UserController extends MyController {
                 @RequestParam("deposit") String deposit,
                 HttpSession session) {
             UserDto user = (UserDto) session.getAttribute("currentUser");
-            OperationResultMessage check = ValidatorImpl.checkNumber(deposit);
+            ResultMessage check = ValidatorImpl.checkNumber(deposit);
         
             user.makeDeposit(Integer.parseInt(deposit));
             userService.updateUser(user);
@@ -67,7 +67,7 @@ public class UserController extends MyController {
                              @RequestParam("birthdate") String birthdate,
                              HttpSession session){
 
-        OperationResultMessage message = ValidatorImpl.checkEmail(email);
+        ResultMessage message = ValidatorImpl.checkEmail(email);
         if (message.getStatus().equals("danger")) {
             session.setAttribute("operationResultMessage", message);
             return "showMessage";

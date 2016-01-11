@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.RouteStationDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

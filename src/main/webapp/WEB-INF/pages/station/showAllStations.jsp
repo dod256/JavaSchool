@@ -16,6 +16,10 @@
     <div class="col-sm-10 text-left">
 
           <h1>All Stations</h1>
+        <ul class="pager">
+          <li class="previous"><a href="stationPagerDec.html">Previous</a></li>
+          <li class="next"><a href="stationPagerInc.html">Next</a></li>
+        </ul>
           <table class="table table-hover">
             <thead>
             <tr>

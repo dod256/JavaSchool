@@ -1,7 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.TimetableDao;
-import chuggaChugga.model.TimetableDataSet;
+import chuggaChugga.domain.TimetableDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

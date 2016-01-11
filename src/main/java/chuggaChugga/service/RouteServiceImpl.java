@@ -2,13 +2,12 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.RouteStationDao;
 import chuggaChugga.data.NewRouteStation;
-import chuggaChugga.model.RouteStationDataSet;
-import chuggaChugga.model.StationDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.data.Route;
 import chuggaChugga.data.RouteRequest;
 import org.joda.time.LocalTime;
-import org.joda.time.Period;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

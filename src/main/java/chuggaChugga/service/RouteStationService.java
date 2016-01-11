@@ -1,6 +1,6 @@
 package chuggaChugga.service;
 
-import chuggaChugga.model.RouteStationDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
 
 
 public interface RouteStationService {

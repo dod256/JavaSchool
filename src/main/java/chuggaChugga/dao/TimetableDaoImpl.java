@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.TimetableDataSet;
+import chuggaChugga.domain.TimetableDataSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

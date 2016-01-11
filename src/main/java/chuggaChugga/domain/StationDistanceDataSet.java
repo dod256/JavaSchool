@@ -1,6 +1,4 @@
-package chuggaChugga.model;
-
-import chuggaChugga.dto.StationDistanceDto;
+package chuggaChugga.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;

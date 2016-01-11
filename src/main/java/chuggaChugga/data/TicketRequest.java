@@ -1,6 +1,6 @@
 package chuggaChugga.data;
 
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.TrainDataSet;
 import com.google.common.base.MoreObjects;
 import chuggaChugga.dto.UserDto;
 

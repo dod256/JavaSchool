@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.TimetableDataSet;
+import chuggaChugga.domain.TimetableDataSet;
 
 
 public interface TimetableDao {

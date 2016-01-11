@@ -1,4 +1,4 @@
-package chuggaChugga.model;
+package chuggaChugga.domain;
 
 import javax.persistence.*;
 

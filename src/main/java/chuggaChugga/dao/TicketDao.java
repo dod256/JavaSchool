@@ -1,9 +1,9 @@
 package chuggaChugga.dao;
 
 import chuggaChugga.data.TicketRequest;
-import chuggaChugga.model.TicketDataSet;
-import chuggaChugga.model.TrainDataSet;
-import chuggaChugga.model.UserDataSet;
+import chuggaChugga.domain.TicketDataSet;
+import chuggaChugga.domain.TrainDataSet;
+import chuggaChugga.domain.UserDataSet;
 
 import java.util.List;
 

@@ -1,6 +1,4 @@
-package chuggaChugga.model;
-
-import org.springframework.security.core.userdetails.User;
+package chuggaChugga.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;

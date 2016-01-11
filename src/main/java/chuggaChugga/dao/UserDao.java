@@ -1,6 +1,6 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.UserDataSet;
+import chuggaChugga.domain.UserDataSet;
 
 import java.util.List;
 

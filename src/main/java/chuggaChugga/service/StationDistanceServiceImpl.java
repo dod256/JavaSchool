@@ -2,8 +2,8 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.StationDistanceDao;
 import chuggaChugga.dto.StationDistanceDto;
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.StationDistanceDataSet;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.domain.StationDistanceDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,8 +1,8 @@
 package chuggaChugga.data;
 
-import chuggaChugga.model.StationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import com.google.common.base.MoreObjects;
-import chuggaChugga.model.RouteStationDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
 
 import java.util.ArrayList;
 

@@ -5,71 +5,71 @@ import java.util.regex.Pattern;
 
 public class ValidatorImpl implements Validator{
 
-    public static OperationResultMessage generalCheck(String string) {
+    public static ResultMessage generalCheck(String string) {
         if (string == null || string.equals("")) {
-            return new OperationResultMessage("danger", "String is empty");
+            return new ResultMessage("danger", "String is empty");
         } else {
-            return new OperationResultMessage("success", "String is not empty");
+            return new ResultMessage("success", "String is not empty");
         }
     }
 
 
-    public static OperationResultMessage checkNumber(String number) {
-        OperationResultMessage isEmpty = generalCheck(number);
+    public static ResultMessage checkNumber(String number) {
+        ResultMessage isEmpty = generalCheck(number);
         if (isEmpty.getStatus().equals("danger")) {
             return isEmpty;
         }
         Pattern p = Pattern.compile("^[0-9]+?$");
         Matcher m = p.matcher(number);
         if (m.matches()) {
-            return new OperationResultMessage("success", "It's a number");
+            return new ResultMessage("success", "It's a number");
         } else {
-            return new OperationResultMessage("danger", "It isn't a number");
+            return new ResultMessage("danger", "It isn't a number");
         }
     }
 
-    public static OperationResultMessage checkDate(String date) {
-        OperationResultMessage isEmpty = generalCheck(date);
+    public static ResultMessage checkDate(String date) {
+        ResultMessage isEmpty = generalCheck(date);
         if (isEmpty.getStatus().equals("danger")) {
             return isEmpty;
         }
         if (date == null || date.equals("")) {
-            return new OperationResultMessage("danger", "Incorrect date");
+            return new ResultMessage("danger", "Incorrect date");
         } else {
-            return new OperationResultMessage("success", "Date is ok");
+            return new ResultMessage("success", "Date is ok");
         }
     }
 
-    public static OperationResultMessage checkEmail(String email) {
-        OperationResultMessage isEmpty = generalCheck(email);
+    public static ResultMessage checkEmail(String email) {
+        ResultMessage isEmpty = generalCheck(email);
         if (isEmpty.getStatus().equals("danger")) {
             return isEmpty;
         }
         Pattern p = Pattern.compile("^[@a-zA-Z0-9_\\-\\.]+?$");
         Matcher m = p.matcher(email);
         if (m.matches()) {
-            return new OperationResultMessage("success", "Email is ok");
+            return new ResultMessage("success", "Email is ok");
         } else {
-            return new OperationResultMessage("danger", "Incorrect email. Use only a-z, A-Z, 0-9, _ and -");
+            return new ResultMessage("danger", "Incorrect email. Use only a-z, A-Z, 0-9, _ and -");
         }
     }
 
-    public static OperationResultMessage checkName(String name) {
-        OperationResultMessage isEmpty = generalCheck(name);
+    public static ResultMessage checkName(String name) {
+        ResultMessage isEmpty = generalCheck(name);
         if (isEmpty.getStatus().equals("danger")) {
             return isEmpty;
         }
         Pattern p = Pattern.compile("^[a-zA-Z]+?$");
         Matcher m = p.matcher(name);
         if (m.matches()) {
-            return new OperationResultMessage("success", "Name is ok");
+            return new ResultMessage("success", "Name is ok");
         } else {
-            return new OperationResultMessage("danger", "Incorrect name. Use only a-z, A-Z");
+            return new ResultMessage("danger", "Incorrect name. Use only a-z, A-Z");
         }
     }
 
-    public static OperationResultMessage checkPasswords(String password, String secondPassword) {
-        OperationResultMessage isEmpty = generalCheck(password);
+    public static ResultMessage checkPasswords(String password, String secondPassword) {
+        ResultMessage isEmpty = generalCheck(password);
         if (isEmpty.getStatus().equals("danger")) {
             return isEmpty;
         }
@@ -78,9 +78,9 @@ public class ValidatorImpl implements Validator{
             return isEmpty;
         }
         if (password.equals(secondPassword)) {
-            return new OperationResultMessage("success", "Passwords is ok");
+            return new ResultMessage("success", "Passwords is ok");
         } else {
-            return new OperationResultMessage("danger", "The passwords don't match");
+            return new ResultMessage("danger", "The passwords don't match");
         }
     }
 

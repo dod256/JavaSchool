@@ -2,7 +2,7 @@ package chuggaChugga.controller;
 
 import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.data.NewRouteStation;
-import chuggaChugga.helper.OperationResultMessage;
+import chuggaChugga.helper.ResultMessage;
 import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
 import org.joda.time.LocalTime;
@@ -36,8 +36,12 @@ public class RouteController extends MyController {
                 .withWaitingTime(new LocalTime(waitingTime))
                 .withDaysOnWheel(Integer.parseInt(daysOnWheel))
                 .build();
+        if (session.getAttribute("routeBuilder") == null) {
+            session.setAttribute("routeBuilder", NewRouteImpl.newBuilder());
+        }
         NewRouteImpl.Builder routeBuilder = (NewRouteImpl.Builder) session.getAttribute("routeBuilder");
         routeBuilder.withNewRouteStation(routeStation);
+        session.removeAttribute("routeBuilder");
         return "route/createRoute";
     }
 
@@ -48,7 +52,7 @@ public class RouteController extends MyController {
         routeService.createRoute(route);
         session.removeAttribute("routeBuilder");
         session.setAttribute("operationResultMessage",
-                new OperationResultMessage("success", "Route created"));
+                new ResultMessage("success", "Route created"));
         return "showMessage";
     }
 

@@ -3,7 +3,7 @@ package chuggaChugga.controller;
 import chuggaChugga.data.Path;
 import chuggaChugga.data.PathPart;
 import chuggaChugga.dto.TrainDto;
-import chuggaChugga.model.StationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TrainService;
 import org.joda.time.LocalDateTime;

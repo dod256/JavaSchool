@@ -1,7 +1,7 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.domain.TrainDataSet;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package chuggaChugga.helper;
 
 import com.google.common.base.MoreObjects;
 
-public class OperationResultMessage {
+public class ResultMessage {
 
     private String status;
     private String message;
@@ -15,7 +15,7 @@ public class OperationResultMessage {
         return message;
     }
 
-    public OperationResultMessage(String status, String message) {
+    public ResultMessage(String status, String message) {
         this.status = status;
         this.message = message;
     }
@@ -23,9 +23,9 @@ public class OperationResultMessage {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OperationResultMessage)) return false;
+        if (!(o instanceof ResultMessage)) return false;
 
-        OperationResultMessage that = (OperationResultMessage) o;
+        ResultMessage that = (ResultMessage) o;
 
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
         return !(message != null ? !message.equals(that.message) : that.message != null);

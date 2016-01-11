@@ -1,8 +1,7 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.StationDistanceDataSet;
-import chuggaChugga.model.UserDataSet;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.domain.StationDistanceDataSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

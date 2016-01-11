@@ -1,11 +1,10 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dao.TicketDao;
-import chuggaChugga.dao.UserDao;
 import chuggaChugga.dto.TrainDto;
-import chuggaChugga.model.TicketDataSet;
-import chuggaChugga.model.TrainDataSet;
-import chuggaChugga.model.UserDataSet;
+import chuggaChugga.domain.TicketDataSet;
+import chuggaChugga.domain.TrainDataSet;
+import chuggaChugga.domain.UserDataSet;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;

@@ -1,6 +1,6 @@
 package chuggaChugga.dto;
 
-import chuggaChugga.model.StationDistanceDataSet;
+import chuggaChugga.domain.StationDistanceDataSet;
 
 public class StationDistanceDto {
 

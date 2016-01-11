@@ -2,9 +2,8 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.StationDao;
 import chuggaChugga.dto.TrainDto;
-import chuggaChugga.model.RouteStationDataSet;
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import chuggaChugga.data.Route;
 import chuggaChugga.data.StationTimetable;
 import chuggaChugga.data.TrainArrivalTime;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /*
 *  Implements logic connected to stations

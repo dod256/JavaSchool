@@ -1,6 +1,6 @@
 package chuggaChugga.data;
 
-import chuggaChugga.model.StationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import com.google.common.base.MoreObjects;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;

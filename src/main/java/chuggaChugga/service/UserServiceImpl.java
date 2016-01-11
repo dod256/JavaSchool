@@ -2,7 +2,7 @@ package chuggaChugga.service;
 
 import chuggaChugga.dao.UserDao;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.UserDataSet;
+import chuggaChugga.domain.UserDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -2,9 +2,9 @@ package chuggaChugga.service;
 
 import chuggaChugga.data.Route;
 import chuggaChugga.dto.TrainDto;
-import chuggaChugga.model.RouteStationDataSet;
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.domain.TrainDataSet;
 import junit.framework.TestCase;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;

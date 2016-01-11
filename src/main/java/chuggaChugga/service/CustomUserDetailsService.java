@@ -1,8 +1,7 @@
 package chuggaChugga.service;
 
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.UserDataSet;
-import chuggaChugga.model.UserRoleDataSet;
+import chuggaChugga.domain.UserRoleDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

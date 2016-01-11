@@ -4,7 +4,7 @@ import chuggaChugga.dao.TrainDao;
 import chuggaChugga.data.*;
 import chuggaChugga.dto.TrainDto;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.model.*;
+import chuggaChugga.domain.*;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;

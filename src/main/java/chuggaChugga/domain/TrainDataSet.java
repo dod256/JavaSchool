@@ -1,7 +1,6 @@
-package chuggaChugga.model;
+package chuggaChugga.domain;
 
 import com.google.common.base.MoreObjects;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;

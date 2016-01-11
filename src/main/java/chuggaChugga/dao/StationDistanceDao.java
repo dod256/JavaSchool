@@ -1,7 +1,7 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.StationDistanceDataSet;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.domain.StationDistanceDataSet;
 import java.util.ArrayList;
 
 public interface StationDistanceDao {

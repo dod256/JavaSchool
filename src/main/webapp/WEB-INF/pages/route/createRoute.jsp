@@ -16,6 +16,7 @@
     <div class="col-sm-10 text-left">
           <h1>New route creation</h1>
           <form role = "form" name = "createRouteForm" action = "createRoute.form" method = post>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class = "form-group">
               <button type = "submit" class = "btn btn-default">Create route</button>
             </div>

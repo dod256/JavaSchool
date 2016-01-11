@@ -1,14 +1,10 @@
 package chuggaChugga.controller;
 
-import chuggaChugga.data.TrainArrivalTime;
-import chuggaChugga.model.StationDataSet;
+import chuggaChugga.domain.StationDataSet;
 import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
-import chuggaChugga.service.StationServiceImpl;
 import chuggaChugga.service.TrainService;
 import junit.framework.TestCase;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 import static org.mockito.Matchers.any;

@@ -1,7 +1,7 @@
 package chuggaChugga.dao;
 
-import chuggaChugga.model.StationDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.domain.TrainDataSet;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -29,7 +29,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>chuggaChugga.model</value>
+                <value>chuggaChugga.domain</value>
             </list>
         </property>
         <property name="hibernateProperties">

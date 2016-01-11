@@ -1,6 +1,4 @@
-package chuggaChugga.model;
-
-import com.google.common.base.MoreObjects;
+package chuggaChugga.domain;
 
 import javax.persistence.*;
 

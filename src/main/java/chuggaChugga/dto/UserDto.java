@@ -1,7 +1,7 @@
 package chuggaChugga.dto;
 
-import chuggaChugga.model.UserDataSet;
-import chuggaChugga.model.UserRoleDataSet;
+import chuggaChugga.domain.UserDataSet;
+import chuggaChugga.domain.UserRoleDataSet;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 

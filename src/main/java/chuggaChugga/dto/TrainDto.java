@@ -1,7 +1,7 @@
 package chuggaChugga.dto;
 
-import chuggaChugga.model.RouteStationDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
+import chuggaChugga.domain.TrainDataSet;
 import chuggaChugga.data.Route;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

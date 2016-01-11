@@ -15,6 +15,8 @@ public class MyController {
     @Autowired
     UserService userService;
 
+    final private int maxNumberOfElementsOnPage = 5;
+
     protected String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -2,10 +2,10 @@ package chuggaChugga.controller;
 
 import chuggaChugga.data.*;
 import chuggaChugga.dto.UserDto;
-import chuggaChugga.helper.OperationResultMessage;
+import chuggaChugga.helper.ResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
-import chuggaChugga.model.RouteStationDataSet;
-import chuggaChugga.model.TrainDataSet;
+import chuggaChugga.domain.RouteStationDataSet;
+import chuggaChugga.domain.TrainDataSet;
 import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TicketService;
@@ -37,7 +37,7 @@ public class TrainController extends MyController {
 
     @RequestMapping(value = "/addRouteToTrain.form", method = RequestMethod.POST)
     public String addRoute(@RequestParam("routeId") String routeId, HttpSession session) {
-        OperationResultMessage message =
+        ResultMessage message =
                 ValidatorImpl.checkNumber(routeId);
         if (message.getStatus().equals("danger")) {
             session.setAttribute("operationResultMessage", message);
@@ -63,7 +63,7 @@ public class TrainController extends MyController {
         trainService.createTrain(trainRoute);
 
         session.setAttribute("operationResultMessage",
-                new OperationResultMessage("success", "Train created"));
+                new ResultMessage("success", "Train created"));
         return "showMessage";
     }
 
@@ -104,7 +104,7 @@ public class TrainController extends MyController {
             @RequestParam("name") String name,
             @RequestParam("numberOfSeats") String numberOfSeatsString,
             HttpSession session) {
-        OperationResultMessage message = ValidatorImpl.checkDate(dateString);
+        ResultMessage message = ValidatorImpl.checkDate(dateString);
         if (message.getStatus().equals("danger")) {
             session.setAttribute("operationResultMessage", message);
             return "showMessage";
@@ -177,9 +177,9 @@ public class TrainController extends MyController {
         boolean tryToBuy = ticketService.tryToPurchaseTicket(ticketRequest);
 
         if (tryToBuy) {
-            session.setAttribute("operationResultMessage", new OperationResultMessage("success", "Ticket purhased"));
+            session.setAttribute("operationResultMessage", new ResultMessage("success", "Ticket purhased"));
         } else {
-            session.setAttribute("operationResultMessage", new OperationResultMessage("danger", "Couldn't purhase ticket"));
+            session.setAttribute("operationResultMessage", new ResultMessage("danger", "Couldn't purhase ticket"));
         }
         return "showMessage";
     }
