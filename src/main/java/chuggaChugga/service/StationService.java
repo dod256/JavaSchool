@@ -14,6 +14,7 @@ public interface StationService {
     ArrayList<StationDataSet> getAllStations();
     ArrayList<StationDataSet> getAllStationsOrderedById();
     ArrayList<StationDataSet> getAllStationsOrderdByName();
+    boolean isAlreadyExist(String name);
 
     StationTimetable getTimetable(StationDataSet station, LocalDate transitDate);
 

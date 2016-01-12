@@ -110,12 +110,9 @@ public class StationController extends MyController {
         if (message.getStatus().equals("danger")) {
             return "redirect:/createStation.html?invalidName";
         }
-        /*
-        //ToDo uncomment
         if (stationService.isAlreadyExist(name)) {
             return "redirect:/createStation.html?alreadyExist";
         }
-        */
         stationService.addStation(StationDataSet.newBuilder().withName(name).build());
         session.setAttribute("operationResultMessage",
                     new ResultMessage("success", "Station created"));

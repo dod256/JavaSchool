@@ -50,6 +50,16 @@ public class StationServiceImpl implements StationService {
         return result;
     }
 
+    public boolean isAlreadyExist(String name) {
+        ArrayList<StationDataSet> stationList = getAllStations();
+        for(StationDataSet station : stationList) {
+            if (station.equals("name")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public ArrayList<StationDataSet> getAllStationsOrderedById() {
         ArrayList<StationDataSet> sortedById = getAllStations();
