@@ -173,7 +173,8 @@ public class TrainServiceImpl implements TrainService {
 
     public ArrayList<TrainDto> getAllTrainsWhichPassStation(StationDataSet station) {
         ArrayList<TrainDto> result = new ArrayList<>();
-        for (TrainDataSet train: trainDao.getAllTrainsWhichPassStation(station)) {
+        ArrayList<TrainDataSet> trainList = (ArrayList<TrainDataSet>) trainDao.getAllTrainsWhichPassStation(station);
+        for (TrainDataSet train: trainList) {
             result.add(new TrainDto(train, routeService.getRouteById(train.getArrivalStation().getRouteId())));
         }
         return result;
