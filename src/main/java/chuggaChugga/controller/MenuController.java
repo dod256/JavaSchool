@@ -7,6 +7,7 @@ import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TicketService;
 import chuggaChugga.service.TrainService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,8 @@ public class MenuController extends MyController {
 
     @Autowired
     RouteService routeService;
+
+
 
     @RequestMapping(value = "/login.html", method = RequestMethod.GET)
     public String login(Model model){

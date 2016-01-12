@@ -9,6 +9,7 @@ import chuggaChugga.domain.UserDataSet;
 import chuggaChugga.data.TicketRequest;
 import chuggaChugga.dto.TicketDto;
 import chuggaChugga.dto.UserDto;
+import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class TicketServiceImpl implements TicketService {
     private StationService stationService;
     @Autowired
     private RouteService routeService;
+    private static final Logger logger = Logger.getLogger(TicketServiceImpl.class);
 
     public ArrayList<TicketDto> getTicketsByUser(UserDto userDto) {
         UserDataSet user = UserDataSet.newBuilder(userDto).build();
@@ -62,6 +64,7 @@ public class TicketServiceImpl implements TicketService {
             TrainDataSet train = request.getTrain();
             train.setNumberOfFreeSeats(seats - 1);
             trainService.updateTrain(train);
+            logger.info("Passenger " + request.getUser() + " bought ticket to train " + request.getTrain());
         }
         return result;
     }

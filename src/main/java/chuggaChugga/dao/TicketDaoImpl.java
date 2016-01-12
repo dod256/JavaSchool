@@ -4,6 +4,7 @@ import chuggaChugga.domain.TicketDataSet;
 import chuggaChugga.domain.TrainDataSet;
 import chuggaChugga.domain.UserDataSet;
 import chuggaChugga.data.TicketRequest;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -24,27 +25,30 @@ public class TicketDaoImpl implements TicketDao {
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
+    private static final Logger logger = Logger.getLogger(TicketDaoImpl.class);
+
     public boolean tryToPurchaseTicket(TicketRequest request) {
         Session session = sessionFactory.openSession();
 
         TrainDataSet train = request.getTrain();
 
         if (train.getCost() > request.getUser().getBalance()) {
-            //todo: add logging! (not enough money)
+            logger.error("User " + request.getUser() + " could not purchase ticket because he have not enough money");
             session.close();
             return false;
         }
 
         if (train.getNumberOfFreeSeats() == 0) {
-            //todo: add logging! (current train have not free seats any more)
-            //and throw exception!!!
+            logger.error("User " + request.getUser() + " could not purchase ticket because train "
+                    + request.getTrain() + "have not got enough free seats any more");
             session.close();
             return false;
         }
         DateTime departureDateTime = new DateTime(train.getDepartureDate());
         departureDateTime = departureDateTime.plus(train.getDepartureStation().getArrival().getTime());
         if (!DateTime.now().plusMinutes(10).isBefore(departureDateTime)) {
-            //todo: add logging! (it's tool late to buy ticket at this train)
+            logger.error("User " + request.getUser() + " could not purchase ticket because train "+ train.toString() +
+                "ill arrive less then by 10 minutes");
             session.close();
             return false;
         }
@@ -53,7 +57,7 @@ public class TicketDaoImpl implements TicketDao {
                 (ArrayList<TicketDataSet>) getTicketsByUser(UserDataSet.newBuilder(request.getUser()).build());
         for (TicketDataSet ticket: tickets) {
             if (ticket.getTrain().equals(train)) {
-                //todo: add logging! (user already have ticket at this train)
+                logger.error("User " + request.getUser() + " already have ticket on this train");
                 session.close();
                 return false;
             }

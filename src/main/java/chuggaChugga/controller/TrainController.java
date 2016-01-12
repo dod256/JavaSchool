@@ -13,6 +13,7 @@ import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TicketService;
 import chuggaChugga.service.TrainService;
+import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -40,6 +41,8 @@ public class TrainController extends MyController {
 
     @Autowired
     StationService stationService;
+
+    private static final Logger logger = Logger.getLogger(TrainController.class);
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/addRouteToTrain.form", method = RequestMethod.POST)

@@ -155,4 +155,16 @@ public class UserDto {
         roles.add(UserRoleDataSet.newBuilder().withUserRole("ROLE_USER").build());
         return roles;
     }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", balance=" + balance +
+                '}';
+    }
 }
