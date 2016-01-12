@@ -1,6 +1,7 @@
 package chuggaChugga.data;
 
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
 
 public class PathPart {
     private String departureStation;
@@ -83,8 +84,16 @@ public class PathPart {
         return departureDateTime;
     }
 
+    public String getDepartureDateTimeString() {
+        return departureDateTime.toString(DateTimeFormat.longDateTime());
+    }
+
     public LocalDateTime getArrivalDateTime() {
         return arrivalDateTime;
+    }
+
+    public String getArrivalDateTimeString() {
+        return arrivalDateTime.toString(DateTimeFormat.longDateTime());
     }
 
     public String getTrain() {

@@ -234,9 +234,7 @@ public class TrainController extends MyController {
     public String purchaseTicket(
             @RequestParam("trainId") String trainIdString,
             HttpSession session) {
-        if (session.getAttribute("currentUser") == null) {
-            return "user/login";
-        }
+        saveUserInSession(session);
 
         int trainId = Integer.parseInt(trainIdString);
 
@@ -253,6 +251,7 @@ public class TrainController extends MyController {
         } else {
             session.setAttribute("operationResultMessage", new ResultMessage("danger", "Couldn't purhase ticket"));
         }
+        saveUserInSession(session);
         return "showMessage";
     }
 }
