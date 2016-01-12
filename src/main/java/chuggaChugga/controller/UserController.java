@@ -100,10 +100,10 @@ public class UserController extends MyController {
                 .withFirstName(firstName)
                 .withLastName(lastName)
                 .withBirthdate(dt)
+                .withBalance(0)
                 .build();
 
         userService.addUser(userDto);
         return "index";
     }
-
 }

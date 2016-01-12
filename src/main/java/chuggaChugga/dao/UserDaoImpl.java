@@ -17,7 +17,8 @@ public class UserDaoImpl implements UserDao {
 
     public void addUser(UserDataSet user) {
         Session session = sessionFactory.openSession();
-        session.persist(user);
+        session.save(user);
+        session.flush();
         session.close();
     }
 
