@@ -1,7 +1,5 @@
 package chuggaChugga.data;
 
-import java.time.LocalDateTime;
-
 public class TicketForReport {
     private final String userFirstName;
     private final String userLastName;
@@ -9,8 +7,8 @@ public class TicketForReport {
     private final String departureStation;
     private final String arrivalStation;
     private final int cost;
-    private final LocalDateTime departureDate;
-    private final LocalDateTime arrivalDate;
+    private final String departureDate;
+    private final String arrivalDate;
 
     private TicketForReport(Builder builder) {
         userFirstName = builder.userFirstName;
@@ -34,8 +32,8 @@ public class TicketForReport {
         private String departureStation;
         private String arrivalStation;
         private int cost;
-        private LocalDateTime departureDate;
-        private LocalDateTime arrivalDate;
+        private String departureDate;
+        private String arrivalDate;
 
         private Builder() {
         }
@@ -70,12 +68,12 @@ public class TicketForReport {
             return this;
         }
 
-        public Builder withDepartureDate(LocalDateTime val) {
+        public Builder withDepartureDate(String val) {
             departureDate = val;
             return this;
         }
 
-        public Builder withArrivalDate(LocalDateTime val) {
+        public Builder withArrivalDate(String val) {
             arrivalDate = val;
             return this;
         }
@@ -109,11 +107,11 @@ public class TicketForReport {
         return cost;
     }
 
-    public LocalDateTime getDepartureDate() {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public LocalDateTime getArrivalDate() {
+    public String getArrivalDate() {
         return arrivalDate;
     }
 

@@ -160,6 +160,7 @@ CREATE TABLE IF NOT EXISTS `chugga_chugga`.`Ticket` (
   `departureStation` VARCHAR(45) NULL,
   `trainId` INT NOT NULL,
   `userId` INT NOT NULL,
+  `purchaseDate` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Ticket_Train1_idx` (`trainId` ASC),
   INDEX `fk_Ticket_User1_idx` (`userId` ASC),

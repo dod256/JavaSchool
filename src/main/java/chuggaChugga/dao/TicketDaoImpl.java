@@ -5,6 +5,7 @@ import chuggaChugga.domain.TrainDataSet;
 import chuggaChugga.domain.UserDataSet;
 import chuggaChugga.data.TicketRequest;
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -12,6 +13,8 @@ import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,12 +63,21 @@ public class TicketDaoImpl implements TicketDao {
                 .withDepartureStation(request.getDepartureStation())
                 .withArrivalStation(request.getArrivalStation())
                 .withTrain(train)
+                .withPurchaseDate(Date.valueOf(LocalDate.now()))
                 .build();
 
         session.save(ticket);
         session.flush();
         session.close();
         return true;
+    }
+
+    @Override
+    public List<TicketDataSet> getAllTicket() {
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(TicketDataSet.class);
+
+        return (List<TicketDataSet>) criteria.list();
     }
 
     public List<TicketDataSet> getTicketsByUser(UserDataSet user) {
@@ -75,6 +87,17 @@ public class TicketDaoImpl implements TicketDao {
         return (List<TicketDataSet>) criteria
                 .add(Restrictions.eq("user", user))
                 .list();
+    }
+
+    @Override
+    public List<TicketDataSet> getTicketsByUserFromPeriod(UserDataSet user, Date firstDate, Date secondDate) {
+        Session session = sessionFactory.openSession();
+        String s = "select * from ticket " +
+                "where userid = " + user.getId() + " and purchaseDate >= \""+ firstDate +
+                "\" and purchaseDate <= \"" + secondDate + "\" ;";
+        SQLQuery query = session.createSQLQuery(s);
+        query.addEntity(TicketDataSet.class);
+        return (ArrayList<TicketDataSet>)query.list();
     }
 
 

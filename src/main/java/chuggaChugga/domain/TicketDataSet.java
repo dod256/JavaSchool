@@ -2,6 +2,7 @@ package chuggaChugga.domain;
 
 import com.google.common.base.MoreObjects;
 import javax.persistence.*;
+import java.sql.Date;
 
 /*
 * Represent Ticket table from the DB
@@ -23,6 +24,7 @@ public class TicketDataSet {
 
     private String arrivalStation;
     private String departureStation;
+    private Date purchaseDate;
 
     private TicketDataSet(Builder builder) {
         arrivalStation = builder.arrivalStation;
@@ -30,6 +32,7 @@ public class TicketDataSet {
         train = builder.train;
         user = builder.user;
         departureStation = builder.departureStation;
+        purchaseDate = builder.purchaseDate;
     }
 
     public TicketDataSet() {
@@ -46,6 +49,7 @@ public class TicketDataSet {
         builder.train = copy.train;
         builder.user = copy.user;
         builder.departureStation = copy.departureStation;
+        builder.purchaseDate = copy.purchaseDate;
         return builder;
     }
 
@@ -56,6 +60,7 @@ public class TicketDataSet {
         private TrainDataSet train;
         private UserDataSet user;
         private String departureStation;
+        private Date purchaseDate;
 
         private Builder() {
         }
@@ -85,9 +90,22 @@ public class TicketDataSet {
             return this;
         }
 
+        public Builder withPurchaseDate(Date val) {
+            purchaseDate = val;
+            return this;
+        }
+
         public TicketDataSet build() {
             return new TicketDataSet(this);
         }
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
     public String getArrivalStation() {
@@ -138,6 +156,7 @@ public class TicketDataSet {
                 .add("train", train)
                 .add("user", user)
                 .add("departureStation", departureStation)
+                .add("purchaseDate", purchaseDate)
                 .toString();
     }
 }
