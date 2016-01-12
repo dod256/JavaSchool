@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
     <head>
         <title>Login</title>
@@ -18,7 +18,6 @@
             </div>
             <div class="col-sm-10 text-left">
                 <h1>Welcome!</h1>
-
             </div>
         </div>
     </div>

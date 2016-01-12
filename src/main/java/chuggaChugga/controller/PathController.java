@@ -4,6 +4,7 @@ import chuggaChugga.data.Path;
 import chuggaChugga.data.PathPart;
 import chuggaChugga.dto.TrainDto;
 import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.helper.Constants;
 import chuggaChugga.service.StationService;
 import chuggaChugga.service.TrainService;
 import org.joda.time.LocalDateTime;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
+
+import static chuggaChugga.helper.Constants.MAX_NUMBER_OF_TRANSFERS;
 
 @Controller
 public class PathController extends MyController {
@@ -51,10 +54,9 @@ public class PathController extends MyController {
         int numberOfStations = stations.size();
         int start = stationService.getStationByName(departureStation).getId() - 1;
         int finish = stationService.getStationByName(arrivalStation).getId() - 1;
-        int maxNumberOfTransfer = 2;
-        LocalDateTime[][] arrival = new LocalDateTime[maxNumberOfTransfer][numberOfStations];
-        int[][] from = new int[maxNumberOfTransfer][numberOfStations];
-        PathPart[][] fromTrain = new PathPart[maxNumberOfTransfer][numberOfStations];
+        LocalDateTime[][] arrival = new LocalDateTime[MAX_NUMBER_OF_TRANSFERS][numberOfStations];
+        int[][] from = new int[MAX_NUMBER_OF_TRANSFERS][numberOfStations];
+        PathPart[][] fromTrain = new PathPart[MAX_NUMBER_OF_TRANSFERS][numberOfStations];
         arrival[0][start] = LocalDateTime.now();
         for(int i = 0; i < numberOfStations; i++) {
             if (i == start) {
@@ -78,7 +80,7 @@ public class PathController extends MyController {
                         .build();
             }
         }
-        for(int numberOfTransfer = 1; numberOfTransfer < maxNumberOfTransfer; numberOfTransfer++) {
+        for(int numberOfTransfer = 1; numberOfTransfer < MAX_NUMBER_OF_TRANSFERS; numberOfTransfer++) {
             for(int fromStation = 0; fromStation < numberOfStations; fromStation++) {
                 if (arrival[numberOfTransfer - 1][fromStation] == null) {
                     continue;
@@ -113,13 +115,13 @@ public class PathController extends MyController {
         Path answer = new Path();
         int currentStation = finish;
         int currentTransfer = 0;
-        while (currentTransfer < maxNumberOfTransfer && arrival[currentTransfer][finish] == null) {
+        while (currentTransfer < MAX_NUMBER_OF_TRANSFERS && arrival[currentTransfer][finish] == null) {
             currentTransfer++;
         }
-        if (currentTransfer == maxNumberOfTransfer) {
+        if (currentTransfer == MAX_NUMBER_OF_TRANSFERS) {
             return null;
         }
-        for(int i = currentTransfer + 1; i < maxNumberOfTransfer; i++) {
+        for(int i = currentTransfer + 1; i < MAX_NUMBER_OF_TRANSFERS; i++) {
             if (arrival[i][finish] == null) {
                 continue;
             }

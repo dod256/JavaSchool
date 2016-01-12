@@ -4,6 +4,7 @@ import chuggaChugga.data.NewRouteImpl;
 import chuggaChugga.data.NewRouteStation;
 import chuggaChugga.data.Route;
 import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.helper.Constants;
 import chuggaChugga.helper.ResultMessage;
 import chuggaChugga.service.RouteService;
 import chuggaChugga.service.StationService;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+
+import static chuggaChugga.helper.Constants.MAX_NUMBER_OF_ELEMENTS_ON_PAGE;
 
 @Controller
 public class RouteController extends MyController {
@@ -45,7 +48,6 @@ public class RouteController extends MyController {
         }
         NewRouteImpl.Builder routeBuilder = (NewRouteImpl.Builder) session.getAttribute("routeBuilder");
         routeBuilder.withNewRouteStation(routeStation);
-        session.removeAttribute("routeBuilder");
         return "route/createRoute";
     }
 
@@ -58,9 +60,9 @@ public class RouteController extends MyController {
         session.setAttribute("routeFullList", routeFullList);
         session.setAttribute("routePager", 0);
         session.setAttribute("routeMaxPager", (
-                length / maxNumberOfElementsOnPage) +
-                (length % maxNumberOfElementsOnPage == 0 ? 0 : 1));
-        int n = Math.min(maxNumberOfElementsOnPage, routeFullList.size());
+                length / MAX_NUMBER_OF_ELEMENTS_ON_PAGE) +
+                (length % MAX_NUMBER_OF_ELEMENTS_ON_PAGE == 0 ? 0 : 1));
+        int n = Math.min(MAX_NUMBER_OF_ELEMENTS_ON_PAGE, routeFullList.size());
         ArrayList<Route> routeList = new ArrayList<>();
         for(int i = 0; i < n; i++) {
             routeList.add(routeFullList.get(i));
@@ -79,9 +81,9 @@ public class RouteController extends MyController {
         session.setAttribute("routePager", pager);
 
         ArrayList<Route> routeFullList = (ArrayList<Route>) session.getAttribute("routeFullList");
-        int n = Math.min((pager + 1) * maxNumberOfElementsOnPage, routeFullList.size());
+        int n = Math.min((pager + 1) * MAX_NUMBER_OF_ELEMENTS_ON_PAGE, routeFullList.size());
         ArrayList<Route> routeList = new ArrayList<>();
-        for(int i = pager * maxNumberOfElementsOnPage; i < n; i++) {
+        for(int i = pager * MAX_NUMBER_OF_ELEMENTS_ON_PAGE; i < n; i++) {
             routeList.add(routeFullList.get(i));
         }
         session.setAttribute("routeList", routeList);
@@ -98,9 +100,9 @@ public class RouteController extends MyController {
         session.setAttribute("routePager", pager);
 
         ArrayList<Route> routeFullList = (ArrayList<Route>) session.getAttribute("routeFullList");
-        int n = Math.min((pager + 1) * maxNumberOfElementsOnPage, routeFullList.size());
+        int n = Math.min((pager + 1) * MAX_NUMBER_OF_ELEMENTS_ON_PAGE, routeFullList.size());
         ArrayList<Route> routeList = new ArrayList<>();
-        for(int i = pager * maxNumberOfElementsOnPage; i < n; i++) {
+        for(int i = pager * MAX_NUMBER_OF_ELEMENTS_ON_PAGE; i < n; i++) {
             routeList.add(routeFullList.get(i));
         }
         session.setAttribute("routeList", routeList);

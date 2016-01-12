@@ -67,6 +67,7 @@ public class MenuController extends MyController {
     public String createRoute(HttpSession session) {
         session.setAttribute("stationList", stationService.getAllStations());
         saveUserInSession(session);
+        session.removeAttribute("routeBuilder");
         return "route/createRoute";
     }
 

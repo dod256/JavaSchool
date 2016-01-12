@@ -15,10 +15,8 @@ public class MyController {
     @Autowired
     UserService userService;
 
-    final protected int maxNumberOfElementsOnPage = 5;
-
     protected String getPrincipal(){
-        String userName = null;
+        String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             userName = ((UserDetails)principal).getUsername();

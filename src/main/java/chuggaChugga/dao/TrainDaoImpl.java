@@ -52,7 +52,9 @@ public class TrainDaoImpl implements TrainDao {
                 "routestation.stationId =" + station.getId() + ") as A on train.routeId = A.routeId;";
         SQLQuery query = session.createSQLQuery(s);
         query.addEntity(TrainDataSet.class);
-        return query.list();
+        List<TrainDataSet> trainList = query.list();
+        session.close();
+        return trainList;
     }
 
     public TrainDataSet getTrain(int id) {

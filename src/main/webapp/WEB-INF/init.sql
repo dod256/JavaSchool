@@ -210,6 +210,12 @@ insert into userRole (userId, userRole)
 insert into userRole (userId, userRole)
  values (3, "ROLE_USER");
 
+insert into userRole (userId, userRole)
+values (1, "ROLE_USER");
+
+insert into userRole (userId, userRole)
+values (2, "ROLE_USER");
+
 ###########################################################################
 
 
@@ -235,10 +241,13 @@ insert into Station (name)
  values ("Omsk");
  
 insert into Station (name)
- values ("Novosibirsk");
+ values ("Salavat");
 
 insert into Station (name)
  values ("Samara");
+
+insert into Station (name)
+ values ("London");
 
 ###########################################################################
 #9 Stations
@@ -317,13 +326,84 @@ arrival, waitingTime, dayCount)
 insert into RouteStation (stationId, stationNumber, routeId, 
 arrival, waitingTime, dayCount)
  values (6, 2, 5, '10:14:00', '00:01:20', 1);
- 
+
+#London->stPetersburg
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (10, 1, 6, '19:12:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (2, 2, 6, '15:46:00', '00:20:00', 6);
+
+#stPetersburg->Helsinki
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (2, 1, 7, '17:46:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (6, 2, 7, '23:51:00', '00:20:00', 0);
+
+#London->Helsinki
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (10, 1, 8, '10:13:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (6, 2, 8, '13:32:00', '00:20:00', 4);
+
+#Moscow->Tver->Spb
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (1, 1, 9, '09:26:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (3, 2, 9, '13:32:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (2, 3, 9, '16:19:00', '00:20:00', 0);
+
+
+#Tver->Ufa
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (3, 1, 10, '15:41:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (5, 2, 10, '20:25:00', '00:20:00', 2);
+
+#Ufa->Salavat
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (5, 1, 11, '00:19:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (8, 2, 11, '10:25:00', '00:20:00', 0);
+
+#Msk->Salavat->Omsk
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (1, 1, 12, '08:15:00', '00:20:00', 0);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (8, 2, 12, '09:25:00', '00:20:00', 5);
+
+insert into RouteStation (stationId, stationNumber, routeId,
+                          arrival, waitingTime, dayCount)
+values (7, 3, 12, '13:38:00', '00:20:00', 7);
 
 ###########################################################################
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Arrow", 100, 99, 1000, 5, 1, "2016-01-20", 1);
+ values ("Arrow", 100, 99, 1000, 5, 1, "2016-02-20", 1);
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
@@ -332,20 +412,47 @@ cost, arrivalStation, departureStation, departureDate, routeId)
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Hogwarst express", 100, 99, 1000, 8, 6, "2016-01-20", 2);
+ values ("Hogwarst express", 100, 99, 1000, 8, 6, "2016-01-28", 2);
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Orient express", 100, 99, 1000, 12, 9, "2016-01-20", 3);
+ values ("Orient express", 100, 99, 1000, 12, 9, "2016-02-05", 3);
  
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
- values ("Pride of Africa", 100, 99, 10000, 14, 13, "2016-01-20", 4);
+ values ("Pride of Africa", 100, 99, 10000, 14, 13, "2016-01-30", 4);
 
 insert into Train (name, numberOfSeats, numberOfFreeSeats, 
 cost, arrivalStation, departureStation, departureDate, routeId)
  values ("Tutu", 100, 99, 10000, 17, 16, "2016-01-30", 5);
 
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("A1", 1000, 1000, 7000, 19, 18, "2016-01-15", 6);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("A2", 1000, 1000, 5000, 21, 20, "2016-01-21", 7);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("A3", 1000, 1000, 6000, 23, 22, "2016-01-16", 8);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("B1", 1000, 1000, 2000, 26, 24, "2016-01-22", 9);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("B2", 1000, 1000, 5000, 28, 27, "2016-01-22", 10);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("B3", 1000, 1000, 1000, 30, 29, "2016-01-25", 11);
+
+insert into Train (name, numberOfSeats, numberOfFreeSeats,
+                   cost, arrivalStation, departureStation, departureDate, routeId)
+values ("B4", 1000, 1000, 9000, 33, 31, "2016-01-22", 12);
 
 ###########################################################################
 
@@ -361,6 +468,14 @@ insert into RouteLength (routeLength)
  values (4);
 insert into RouteLength (routeLength)
  values (3);
+insert into RouteLength (routeLength)
+values (2);
+insert into RouteLength (routeLength)
+values (2);
+insert into RouteLength (routeLength)
+values (2);
+insert into RouteLength (routeLength)
+values (2);
 
 
 ###########################################################################
