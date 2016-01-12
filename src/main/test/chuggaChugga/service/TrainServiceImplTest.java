@@ -37,7 +37,7 @@ public class TrainServiceImplTest extends TestCase {
 
         stationMsk = StationDataSet.newBuilder().withName("MSK").build();
         stationSpb = StationDataSet.newBuilder().withName("SPB").build();
-        stationSpb = StationDataSet.newBuilder().withName("Tver").build();
+        stationTver = StationDataSet.newBuilder().withName("Tver").build();
         RouteStationDataSet msk = RouteStationDataSet.newBuilder()
                 .withArrival(new Time(12,1,0))
                 .withRouteId(1)
@@ -60,7 +60,7 @@ public class TrainServiceImplTest extends TestCase {
                 .withArrival(new Time(23, 20, 0))
                 .withRouteId(1)
                 .withDayCount(0)
-                .withStation(stationSpb)
+                .withStation(stationTver)
                 .withStationNumber(1)
                 .withWaitingTime(new Time(2, 0, 0))
                 .build();
@@ -111,20 +111,5 @@ public class TrainServiceImplTest extends TestCase {
     public void testGetArrivalDateTimeMiddleStation() throws Exception {
         TrainServiceImpl trainService = new TrainServiceImpl();
         assertEquals(trainService.getArrivalDateTime(trainDto, stationTver), new LocalDateTime(2016, 1, 1, 23, 20, 0));
-    }
-
-    @Test
-    public void testGetDepartureDateTimeWithDayTransition() throws Exception {
-        TrainServiceImpl trainService = new TrainServiceImpl();
-        assertEquals(trainService.getDepartureDateTime(trainDto, stationSpb), new LocalDateTime(2016, 1, 2, 1, 20, 0));
-    }
-
-    @Test
-    public void testGetEarliestTrain() throws Exception {
-        TrainServiceImpl trainService = mock(TrainServiceImpl.class);
-        ArrayList<TrainDto> allTrains = new ArrayList<>();
-        allTrains.add(trainDto);
-        when(trainService.getAllTrains()).thenReturn(allTrains);
-        assertEquals(trainService.getEarliestTrain(stationSpb, stationMsk, new LocalDateTime(2015, 12, 12, 21, 21, 21)), trainDto);
     }
 }
