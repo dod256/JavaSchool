@@ -7,6 +7,7 @@ import chuggaChugga.helper.ValidatorImpl;
 import chuggaChugga.service.TicketService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -26,6 +27,7 @@ public class UserController extends MyController {
     @Autowired
     TicketService ticketService;
 
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/makeDeposit.form",method = RequestMethod.POST)
     public String makeDeposit(
                 @RequestParam("deposit") String deposit,
@@ -45,9 +47,12 @@ public class UserController extends MyController {
     @RequestMapping(value = "/loginSuccess",method = RequestMethod.GET)
     public String loginSuccess (HttpSession session){
         saveUserInSession(session);
+        ArrayList<TicketDto> ticketList = ticketService.getTicketsByUser((UserDto) session.getAttribute("currentUser"));
+        session.setAttribute("ticketList", ticketList);
         return "user/profile";
     }
 
+    @Secured("ROLE_USER")
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         session.removeAttribute("currentUser");
@@ -66,31 +71,26 @@ public class UserController extends MyController {
                              @RequestParam("lastName") String lastName,
                              @RequestParam("birthdate") String birthdate,
                              HttpSession session){
-
-        ResultMessage message = ValidatorImpl.checkEmail(email);
-        if (message.getStatus().equals("danger")) {
-            session.setAttribute("operationResultMessage", message);
-            return "showMessage";
+        if ("danger".equals(ValidatorImpl.checkName(firstName).getStatus())) {
+            return "redirect:/signUp.html?invalidName";
         }
-        message = ValidatorImpl.checkPasswords(password, secondPassword);
-        if (message.getStatus().equals("danger")) {
-            session.setAttribute("operationResultMessage", message);
-            return "showMessage";
+        if ("danger".equals(ValidatorImpl.checkName(lastName).getStatus())) {
+            return "redirect:/signUp.html?invalidName";
         }
-        message = ValidatorImpl.checkName(firstName);
-        if (message.getStatus().equals("danger")) {
-            session.setAttribute("operationResultMessage", message);
-            return "showMessage";
+        if ("danger".equals(ValidatorImpl.checkEmail(email).getStatus())) {
+            return "redirect:/signUp.html?invalidEmail";
         }
-        message = ValidatorImpl.checkName(lastName);
-        if (message.getStatus().equals("danger")) {
-            session.setAttribute("operationResultMessage", message);
-            return "showMessage";
+        if ("danger".equals(ValidatorImpl.generalCheck(password).getStatus())) {
+            return "redirect:/signUp.html?invalidPass1";
         }
-        message = ValidatorImpl.checkDate(birthdate);
-        if (message.getStatus().equals("danger")) {
-            session.setAttribute("operationResultMessage", message);
-            return "showMessage";
+        if ("danger".equals(ValidatorImpl.generalCheck(secondPassword).getStatus())) {
+            return "redirect:/signUp.html?invalidPass2";
+        }
+        if ("danger".equals(ValidatorImpl.checkPasswords(password, secondPassword).getStatus())) {
+            return "redirect:/signUp.html?invalidPass";
+        }
+        if ("danger".equals(ValidatorImpl.checkDate(birthdate).getStatus())) {
+            return "redirect:/signUp.html?invalidDate";
         }
 
         DateTime dt = DateTime.parse(birthdate);

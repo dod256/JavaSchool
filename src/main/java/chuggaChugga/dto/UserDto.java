@@ -149,7 +149,10 @@ public class UserDto {
     public List<UserRoleDataSet> getRoles() {
         //ToDo Important!!!!!!!!
         List<UserRoleDataSet> roles = new ArrayList<>();
-        roles.add(UserRoleDataSet.newBuilder().withUserRole("ROLE_ADMIN").build());
+        if ("david.koroteev@me".equals(email)) {
+            roles.add(UserRoleDataSet.newBuilder().withUserRole("ROLE_ADMIN").build());
+        }
+        roles.add(UserRoleDataSet.newBuilder().withUserRole("ROLE_USER").build());
         return roles;
     }
 }

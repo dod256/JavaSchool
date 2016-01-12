@@ -43,10 +43,6 @@ public class PathController extends MyController {
         if ("fastest".equals(pathType)) {
             session.setAttribute("path", findFastest(departureStation, arrivalStation));
         }
-        if ("cheapest".equals(pathType)) {
-            session.setAttribute("path", findCheapest(departureStation, arrivalStation));
-        }
-        session.removeAttribute("pathType");
         return "pathInfo";
     }
 
@@ -137,9 +133,5 @@ public class PathController extends MyController {
         }
         answer.reverse();
         return answer;
-    }
-
-    public Path findCheapest(String departureStation, String arrivalStation) {
-        return null;
     }
 }

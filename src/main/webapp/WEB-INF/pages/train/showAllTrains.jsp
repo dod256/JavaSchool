@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
   <title>Train Manager</title>
@@ -14,23 +15,20 @@
       <%@ include file="../user/profileSmall.jsp"%>
     </div>
     <div class="col-sm-10 text-left">
-          <c:set var="trainList" value="${sessionScope.trainList}"/>
-          <c:choose>
-            <c:when test="${trainList == null}">
-              <h3>There are no trains</h3>
-            </c:when>
-            <c:otherwise>
-            <h1>All Trains</h1>
+              <ul class="pager">
+                <li class="previous"><a href="trainPagerDec.html">Previous</a></li>
+                <li class="next"><a href="trainPagerInc.html">Next</a></li>
+              </ul>
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <td>Train Name</td>
-                  <td>Departure Date</td>
-                  <td>Departure Station</td>
-                  <td>Arrival Station</td>
-                  <td>Number of free seats</td>
-                  <td>Cost</td>
-                  <td>Show Passengers</td>
+                  <th>Train Name</th>
+                  <th>Departure Date</th>
+                  <th>Departure Station</th>
+                  <th>Arrival Station</th>
+                  <th>Number of free seats</th>
+                  <th>Cost</th>
+                  <th>Show Passengers</th>
                 </tr>
                 </thead>
                 <c:forEach items="${trainList}" var="train">
@@ -53,9 +51,6 @@
                   </tr>
                 </c:forEach>
               </table>
-            </c:otherwise>
-          </c:choose>
-
     </div>
   </div>
 </div>

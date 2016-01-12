@@ -4,6 +4,7 @@ import chuggaChugga.domain.RouteStationDataSet;
 import chuggaChugga.domain.TrainDataSet;
 import chuggaChugga.data.Route;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 
 public class TrainDto {
@@ -11,7 +12,7 @@ public class TrainDto {
     private int id;
     private String name;
     Route route;
-    private DateTime departureDate;
+    private LocalDateTime departureDate;
     private int numberOfSeats;
     private int numberOfFreeSeats;
     private int cost;
@@ -21,15 +22,12 @@ public class TrainDto {
     public TrainDto(TrainDataSet train, Route trainRoute) {
         id = train.getId();
         name = train.getName();
-        departureDate = new DateTime(train.getDepartureDate());
+        departureDate = new LocalDateTime(train.getDepartureDate());
         numberOfSeats = train.getNumberOfSeats();
         numberOfFreeSeats = train.getNumberOfFreeSeats();
         cost = train.getCost();
         route = trainRoute;
     }
-
-
-
 
     public int getId() {
         return id;
@@ -56,16 +54,14 @@ public class TrainDto {
     }
 
     public String getArrivalStation() {
-        //ToDo REFACTOR!!!!!!!!!!!
         return route.getStations().get(route.getStations().size() - 1).getName();
     }
 
     public String getArrivalStationTime() {
-        //ToDo REFACTOR!!!!!!!!!!!
         return route.getRouteStations().get(route.getStations().size() - 1).getArrival().toString();
     }
 
-    public DateTime getDepartureDate() {
+    public LocalDateTime getDepartureDate() {
         return departureDate;
     }
 

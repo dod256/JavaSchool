@@ -56,38 +56,10 @@ public class MenuController extends MyController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/showAllStations.html", method = RequestMethod.GET)
-    public String showAllStations(HttpSession session) {
-        saveUserInSession(session);
-        ArrayList<StationDataSet> stationFullList = stationService.getAllStationsOrderdByName();
-        int length = stationFullList.size();
-        session.setAttribute("stationFullList", stationFullList);
-        session.setAttribute("stationPager", 0);
-        session.setAttribute("stationMaxPager", (
-                length / maxNumberOfElementsOnPage) +
-                (length % maxNumberOfElementsOnPage == 0 ? 0 : 1));
-        int n = Math.min(maxNumberOfElementsOnPage, stationFullList.size());
-        ArrayList<StationDataSet> stationList = new ArrayList<>();
-        for(int i = 0; i < n; i++) {
-            stationList.add(stationFullList.get(i));
-        }
-        session.setAttribute("stationList", stationList);
-        return "station/showAllStations";
-    }
-
-    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/createTrain.html", method = RequestMethod.GET)
     public String createTrain(HttpSession session) {
         saveUserInSession(session);
         return "train/createTrain";
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/showAllTrains.html", method = RequestMethod.GET)
-    public String showAllTrains(HttpSession session) {
-        saveUserInSession(session);
-        session.setAttribute("trainList", trainService.getAllTrains());
-        return "train/showAllTrains";
     }
 
     @Secured("ROLE_ADMIN")
@@ -98,17 +70,9 @@ public class MenuController extends MyController {
         return "route/createRoute";
     }
 
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/showAllRoutes.html", method = RequestMethod.GET)
-    public String showAllRoutes(HttpSession session) {
-        saveUserInSession(session);
-        session.setAttribute("routeList", routeService.getAllRoutes());
-        return "route/showAllRoutes";
-    }
-
     @RequestMapping(value = "/pathManager.html", method = RequestMethod.GET)
     public String pathManager(HttpSession session){
-        session.removeAttribute("pathType");
+        session.setAttribute("stationList", stationService.getAllStations());
         return "pathManager";
     }
 
@@ -131,11 +95,10 @@ public class MenuController extends MyController {
         return "user/signUp";
     }
 
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/profile.html", method = RequestMethod.GET)
     public String profile(HttpSession session){
-        if (session.getAttribute("currentUser") == null) {
-            return "user/login";
-        }
+        saveUserInSession(session);
         ArrayList<TicketDto> ticketList = ticketService.getTicketsByUser((UserDto) session.getAttribute("currentUser"));
         session.setAttribute("ticketList", ticketList);
         return "user/profile";

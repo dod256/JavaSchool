@@ -1,6 +1,8 @@
 package chuggaChugga.controller;
 
 import chuggaChugga.data.*;
+import chuggaChugga.domain.StationDataSet;
+import chuggaChugga.dto.TrainDto;
 import chuggaChugga.dto.UserDto;
 import chuggaChugga.helper.ResultMessage;
 import chuggaChugga.helper.ValidatorImpl;
@@ -12,6 +14,7 @@ import chuggaChugga.service.TicketService;
 import chuggaChugga.service.TrainService;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +38,7 @@ public class TrainController extends MyController {
     @Autowired
     StationService stationService;
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/addRouteToTrain.form", method = RequestMethod.POST)
     public String addRoute(@RequestParam("routeId") String routeId, HttpSession session) {
         ResultMessage message =
@@ -67,6 +71,67 @@ public class TrainController extends MyController {
         return "showMessage";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/showAllTrains.html", method = RequestMethod.GET)
+    public String showAllTrains(HttpSession session) {
+        saveUserInSession(session);
+        ArrayList<TrainDto> trainFullList = trainService.getAllTrains();
+        int length = trainFullList.size();
+        session.setAttribute("trainFullList", trainFullList);
+        session.setAttribute("trainPager", 0);
+        session.setAttribute("trainMaxPager", (
+                length / maxNumberOfElementsOnPage) +
+                (length % maxNumberOfElementsOnPage == 0 ? 0 : 1));
+        int n = Math.min(maxNumberOfElementsOnPage, trainFullList.size());
+        ArrayList<TrainDto> trainList = new ArrayList<>();
+        for(int i = 0; i < n; i++) {
+            trainList.add(trainFullList.get(i));
+        }
+        session.setAttribute("trainList", trainList);
+        return "train/showAllTrains";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/trainPagerInc.html", method = RequestMethod.GET)
+    public String pagerInc(HttpSession session) {
+        int pager = (int) session.getAttribute("trainPager");
+        int maxPager = (int) session.getAttribute("trainMaxPager");
+        if (pager + 1 < maxPager) {
+            pager++;
+        }
+        session.setAttribute("trainPager", pager);
+
+        ArrayList<TrainDto> trainFullList = (ArrayList<TrainDto>) session.getAttribute("trainFullList");
+        int n = Math.min((pager + 1) * maxNumberOfElementsOnPage, trainFullList.size());
+        ArrayList<TrainDto> trainList = new ArrayList<>();
+        for(int i = pager * maxNumberOfElementsOnPage; i < n; i++) {
+            trainList.add(trainFullList.get(i));
+        }
+        session.setAttribute("trainList", trainList);
+        return "train/showAllTrains";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/trainPagerDec.html", method = RequestMethod.GET)
+    public String pagerDec(HttpSession session) {
+        int pager = (int) session.getAttribute("trainPager");
+        if (pager > 0) {
+            pager--;
+        }
+        session.setAttribute("trainPager", pager);
+
+        ArrayList<TrainDto> trainFullList = (ArrayList<TrainDto>) session.getAttribute("trainFullList");
+        int n = Math.min((pager + 1) * maxNumberOfElementsOnPage, trainFullList.size());
+        ArrayList<TrainDto> trainList = new ArrayList<>();
+        for(int i = pager * maxNumberOfElementsOnPage; i < n; i++) {
+            trainList.add(trainFullList.get(i));
+        }
+        session.setAttribute("trainList", trainList);
+        return "train/showAllTrains";
+
+    }
+
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/showAllRoutesForTrain.form", method = RequestMethod.POST)
     public String showAllRoutes(HttpSession session) {
         ArrayList<Route> routeList = routeService.getAllRoutes();
@@ -74,6 +139,7 @@ public class TrainController extends MyController {
         return "train/addRouteToTrain";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/showRoutesForTrain.form", method = RequestMethod.POST)
     public String showRoutes(
             @RequestParam("departureStation") String departureStation,
@@ -89,6 +155,7 @@ public class TrainController extends MyController {
         return "train/addRouteToTrain";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/showPassengers.form", method = RequestMethod.POST)
     public String showPassengers(@RequestParam("trainId") String trainIdString, HttpSession session) {
         int trainId = Integer.parseInt(trainIdString);
@@ -97,6 +164,7 @@ public class TrainController extends MyController {
         return "train/showPassengers";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/addTrain.form", method = RequestMethod.POST)
     public String addTrain(
             @RequestParam("date") String dateString,
@@ -158,6 +226,7 @@ public class TrainController extends MyController {
         return "train/trainTimetable";
     }
 
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/purchaseTicket.form", method = RequestMethod.POST)
     public String purchaseTicket(
             @RequestParam("trainId") String trainIdString,

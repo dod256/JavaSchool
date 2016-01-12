@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>Station Timetable</title>
@@ -49,8 +50,8 @@
                         <tr>
                             <td><h5>${trainArrivalTime.getTrain().getName()}</h5></td>
                             <td>
-                                <h5>${trainArrivalTime.getTrain().getDepartureStation()} <small>show date and time</small></h5>
-                                <h5>${trainArrivalTime.getTrain().getArrivalStation()} <small>show date and time</small></h5>
+                                <h5>${trainArrivalTime.getTrain().getDepartureStation()}</h5>
+                                <h5>${trainArrivalTime.getTrain().getArrivalStation()}</h5>
                             </td>
                             <td><h5>${trainArrivalTime.getArrivalTimeString()}</h5></td>
                         </tr>
